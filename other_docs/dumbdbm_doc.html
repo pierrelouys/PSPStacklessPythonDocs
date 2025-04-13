@@ -1,0 +1,62 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dumbdbm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/dumbdbm.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/dumbdbm.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;dumb&nbsp;and&nbsp;slow&nbsp;but&nbsp;simple&nbsp;dbm&nbsp;clone.<br>
+&nbsp;<br>
+For&nbsp;database&nbsp;spam,&nbsp;spam.dir&nbsp;contains&nbsp;the&nbsp;index&nbsp;(a&nbsp;text&nbsp;file),<br>
+spam.bak&nbsp;*may*&nbsp;contain&nbsp;a&nbsp;backup&nbsp;of&nbsp;the&nbsp;index&nbsp;(also&nbsp;a&nbsp;text&nbsp;file),<br>
+while&nbsp;spam.dat&nbsp;contains&nbsp;the&nbsp;data&nbsp;(a&nbsp;binary&nbsp;file).<br>
+&nbsp;<br>
+XXX&nbsp;TO&nbsp;DO:<br>
+&nbsp;<br>
+-&nbsp;seems&nbsp;to&nbsp;contain&nbsp;a&nbsp;bug&nbsp;when&nbsp;updating...<br>
+&nbsp;<br>
+-&nbsp;reclaim&nbsp;free&nbsp;space&nbsp;(currently,&nbsp;space&nbsp;once&nbsp;occupied&nbsp;by&nbsp;deleted&nbsp;or&nbsp;expanded<br>
+items&nbsp;is&nbsp;never&nbsp;reused)<br>
+&nbsp;<br>
+-&nbsp;support&nbsp;concurrent&nbsp;access&nbsp;(currently,&nbsp;if&nbsp;two&nbsp;processes&nbsp;take&nbsp;turns&nbsp;making<br>
+updates,&nbsp;they&nbsp;can&nbsp;mess&nbsp;up&nbsp;the&nbsp;index)<br>
+&nbsp;<br>
+-&nbsp;support&nbsp;efficient&nbsp;access&nbsp;to&nbsp;large&nbsp;databases&nbsp;(currently,&nbsp;the&nbsp;whole&nbsp;index<br>
+is&nbsp;read&nbsp;when&nbsp;the&nbsp;database&nbsp;is&nbsp;opened,&nbsp;and&nbsp;some&nbsp;updates&nbsp;rewrite&nbsp;the&nbsp;whole&nbsp;index)<br>
+&nbsp;<br>
+-&nbsp;support&nbsp;opening&nbsp;for&nbsp;read-only&nbsp;(flag&nbsp;=&nbsp;'m')</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="UserDict.html">UserDict</a><br>
+</td><td width="25%" valign=top><a href="__builtin__.html">__builtin__</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-open"><strong>open</strong></a>(file, flag<font color="#909090">=None</font>, mode<font color="#909090">=438</font>)</dt><dd><tt>Open&nbsp;the&nbsp;database&nbsp;file,&nbsp;filename,&nbsp;and&nbsp;return&nbsp;corresponding&nbsp;object.<br>
+&nbsp;<br>
+The&nbsp;flag&nbsp;argument,&nbsp;used&nbsp;to&nbsp;control&nbsp;how&nbsp;the&nbsp;database&nbsp;is&nbsp;opened&nbsp;in&nbsp;the<br>
+other&nbsp;DBM&nbsp;implementations,&nbsp;is&nbsp;ignored&nbsp;in&nbsp;the&nbsp;dumbdbm&nbsp;module;&nbsp;the<br>
+database&nbsp;is&nbsp;always&nbsp;opened&nbsp;for&nbsp;update,&nbsp;and&nbsp;will&nbsp;be&nbsp;created&nbsp;if&nbsp;it&nbsp;does<br>
+not&nbsp;exist.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;mode&nbsp;argument&nbsp;is&nbsp;the&nbsp;UNIX&nbsp;mode&nbsp;of&nbsp;the&nbsp;file,&nbsp;used&nbsp;only&nbsp;when<br>
+the&nbsp;database&nbsp;has&nbsp;to&nbsp;be&nbsp;created.&nbsp;&nbsp;It&nbsp;defaults&nbsp;to&nbsp;octal&nbsp;code&nbsp;0666&nbsp;(and<br>
+will&nbsp;be&nbsp;modified&nbsp;by&nbsp;the&nbsp;prevailing&nbsp;umask).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

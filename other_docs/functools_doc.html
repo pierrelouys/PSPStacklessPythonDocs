@@ -1,0 +1,93 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>functools</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/functools.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/functools.py</a></font></td></tr></table>
+    <p><tt>functools.py&nbsp;-&nbsp;Tools&nbsp;for&nbsp;working&nbsp;with&nbsp;functions&nbsp;and&nbsp;callable&nbsp;objects</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="functools.html#partial">partial</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="partial">class <strong>partial</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#partial">partial</a>(func,&nbsp;*args,&nbsp;**keywords)&nbsp;-&nbsp;new&nbsp;function&nbsp;with&nbsp;<a href="#partial">partial</a>&nbsp;application<br>
+of&nbsp;the&nbsp;given&nbsp;arguments&nbsp;and&nbsp;keywords.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="partial-__call__"><strong>__call__</strong></a>(...)</dt><dd><tt>x.<a href="#partial-__call__">__call__</a>(...)&nbsp;&lt;==&gt;&nbsp;x(...)</tt></dd></dl>
+
+<dl><dt><a name="partial-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#partial-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="partial-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#partial-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="partial-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#partial-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+<dd><tt>tuple&nbsp;of&nbsp;arguments&nbsp;to&nbsp;future&nbsp;partial&nbsp;calls</tt></dd>
+</dl>
+<dl><dt><strong>func</strong></dt>
+<dd><tt>function&nbsp;object&nbsp;to&nbsp;use&nbsp;in&nbsp;future&nbsp;partial&nbsp;calls</tt></dd>
+</dl>
+<dl><dt><strong>keywords</strong></dt>
+<dd><tt>dictionary&nbsp;of&nbsp;keyword&nbsp;arguments&nbsp;to&nbsp;future&nbsp;partial&nbsp;calls</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b6dc5c&gt;<dd><tt>T.<a href="#partial-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-update_wrapper"><strong>update_wrapper</strong></a>(wrapper, wrapped, assigned<font color="#909090">=('__module__', '__name__', '__doc__')</font>, updated<font color="#909090">=('__dict__',)</font>)</dt><dd><tt>Update&nbsp;a&nbsp;wrapper&nbsp;function&nbsp;to&nbsp;look&nbsp;like&nbsp;the&nbsp;wrapped&nbsp;function<br>
+&nbsp;<br>
+wrapper&nbsp;is&nbsp;the&nbsp;function&nbsp;to&nbsp;be&nbsp;updated<br>
+wrapped&nbsp;is&nbsp;the&nbsp;original&nbsp;function<br>
+assigned&nbsp;is&nbsp;a&nbsp;tuple&nbsp;naming&nbsp;the&nbsp;attributes&nbsp;assigned&nbsp;directly<br>
+from&nbsp;the&nbsp;wrapped&nbsp;function&nbsp;to&nbsp;the&nbsp;wrapper&nbsp;function&nbsp;(defaults&nbsp;to<br>
+functools.WRAPPER_ASSIGNMENTS)<br>
+updated&nbsp;is&nbsp;a&nbsp;tuple&nbsp;naming&nbsp;the&nbsp;attributes&nbsp;off&nbsp;the&nbsp;wrapper&nbsp;that<br>
+are&nbsp;updated&nbsp;with&nbsp;the&nbsp;corresponding&nbsp;attribute&nbsp;from&nbsp;the&nbsp;wrapped<br>
+function&nbsp;(defaults&nbsp;to&nbsp;functools.WRAPPER_UPDATES)</tt></dd></dl>
+ <dl><dt><a name="-wraps"><strong>wraps</strong></a>(wrapped, assigned<font color="#909090">=('__module__', '__name__', '__doc__')</font>, updated<font color="#909090">=('__dict__',)</font>)</dt><dd><tt>Decorator&nbsp;factory&nbsp;to&nbsp;apply&nbsp;<a href="#-update_wrapper">update_wrapper</a>()&nbsp;to&nbsp;a&nbsp;wrapper&nbsp;function<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;decorator&nbsp;that&nbsp;invokes&nbsp;<a href="#-update_wrapper">update_wrapper</a>()&nbsp;with&nbsp;the&nbsp;decorated<br>
+function&nbsp;as&nbsp;the&nbsp;wrapper&nbsp;argument&nbsp;and&nbsp;the&nbsp;arguments&nbsp;to&nbsp;<a href="#-wraps">wraps</a>()&nbsp;as&nbsp;the<br>
+remaining&nbsp;arguments.&nbsp;Default&nbsp;arguments&nbsp;are&nbsp;as&nbsp;for&nbsp;<a href="#-update_wrapper">update_wrapper</a>().<br>
+This&nbsp;is&nbsp;a&nbsp;convenience&nbsp;function&nbsp;to&nbsp;simplify&nbsp;applying&nbsp;<a href="#partial">partial</a>()&nbsp;to<br>
+<a href="#-update_wrapper">update_wrapper</a>().</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>WRAPPER_ASSIGNMENTS</strong> = ('__module__', '__name__', '__doc__')<br>
+<strong>WRAPPER_UPDATES</strong> = ('__dict__',)<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

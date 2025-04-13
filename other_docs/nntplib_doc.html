@@ -1,0 +1,867 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>nntplib</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/nntplib.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/nntplib.py</a></font></td></tr></table>
+    <p><tt>An&nbsp;<a href="#NNTP">NNTP</a>&nbsp;client&nbsp;class&nbsp;based&nbsp;on&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc977.txt">RFC&nbsp;977</a>:&nbsp;Network&nbsp;News&nbsp;Transfer&nbsp;Protocol.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;from&nbsp;nntplib&nbsp;import&nbsp;<a href="#NNTP">NNTP</a><br>
+&gt;&gt;&gt;&nbsp;s&nbsp;=&nbsp;<a href="#NNTP">NNTP</a>('news')<br>
+&gt;&gt;&gt;&nbsp;resp,&nbsp;count,&nbsp;first,&nbsp;last,&nbsp;name&nbsp;=&nbsp;s.group('comp.lang.python')<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;'Group',&nbsp;name,&nbsp;'has',&nbsp;count,&nbsp;'articles,&nbsp;range',&nbsp;first,&nbsp;'to',&nbsp;last<br>
+Group&nbsp;comp.lang.python&nbsp;has&nbsp;51&nbsp;articles,&nbsp;range&nbsp;5770&nbsp;to&nbsp;5821<br>
+&gt;&gt;&gt;&nbsp;resp,&nbsp;subs&nbsp;=&nbsp;s.xhdr('subject',&nbsp;first&nbsp;+&nbsp;'-'&nbsp;+&nbsp;last)<br>
+&gt;&gt;&gt;&nbsp;resp&nbsp;=&nbsp;s.quit()<br>
+&gt;&gt;&gt;<br>
+&nbsp;<br>
+Here&nbsp;'resp'&nbsp;is&nbsp;the&nbsp;server&nbsp;response&nbsp;line.<br>
+Error&nbsp;responses&nbsp;are&nbsp;turned&nbsp;into&nbsp;exceptions.<br>
+&nbsp;<br>
+To&nbsp;post&nbsp;an&nbsp;article&nbsp;from&nbsp;a&nbsp;file:<br>
+&gt;&gt;&gt;&nbsp;f&nbsp;=&nbsp;open(filename,&nbsp;'r')&nbsp;#&nbsp;file&nbsp;containing&nbsp;article,&nbsp;including&nbsp;header<br>
+&gt;&gt;&gt;&nbsp;resp&nbsp;=&nbsp;s.post(f)<br>
+&gt;&gt;&gt;<br>
+&nbsp;<br>
+For&nbsp;descriptions&nbsp;of&nbsp;all&nbsp;methods,&nbsp;read&nbsp;the&nbsp;comments&nbsp;in&nbsp;the&nbsp;code&nbsp;below.<br>
+Note&nbsp;that&nbsp;all&nbsp;arguments&nbsp;and&nbsp;return&nbsp;values&nbsp;representing&nbsp;article&nbsp;numbers<br>
+are&nbsp;strings,&nbsp;not&nbsp;numbers,&nbsp;since&nbsp;they&nbsp;are&nbsp;rarely&nbsp;used&nbsp;for&nbsp;calculations.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="nntplib.html#NNTP">NNTP</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPError">NNTPError</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="nntplib.html#NNTPDataError">NNTPDataError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPDataError">NNTPDataError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPPermanentError">NNTPPermanentError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPPermanentError">NNTPPermanentError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPProtocolError">NNTPProtocolError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPProtocolError">NNTPProtocolError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPReplyError">NNTPReplyError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPReplyError">NNTPReplyError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPTemporaryError">NNTPTemporaryError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="nntplib.html#NNTPTemporaryError">NNTPTemporaryError</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTP">class <strong>NNTP</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>#&nbsp;The&nbsp;class&nbsp;itself<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NNTP-__init__"><strong>__init__</strong></a>(self, host, port<font color="#909090">=119</font>, user<font color="#909090">=None</font>, password<font color="#909090">=None</font>, readermode<font color="#909090">=None</font>, usenetrc<font color="#909090">=True</font>)</dt><dd><tt>Initialize&nbsp;an&nbsp;instance.&nbsp;&nbsp;Arguments:<br>
+-&nbsp;host:&nbsp;hostname&nbsp;to&nbsp;connect&nbsp;to<br>
+-&nbsp;port:&nbsp;port&nbsp;to&nbsp;connect&nbsp;to&nbsp;(default&nbsp;the&nbsp;standard&nbsp;<a href="#NNTP">NNTP</a>&nbsp;port)<br>
+-&nbsp;user:&nbsp;username&nbsp;to&nbsp;authenticate&nbsp;with<br>
+-&nbsp;password:&nbsp;password&nbsp;to&nbsp;use&nbsp;with&nbsp;username<br>
+-&nbsp;readermode:&nbsp;if&nbsp;true,&nbsp;send&nbsp;'mode&nbsp;reader'&nbsp;command&nbsp;after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connecting.<br>
+&nbsp;<br>
+readermode&nbsp;is&nbsp;sometimes&nbsp;necessary&nbsp;if&nbsp;you&nbsp;are&nbsp;connecting&nbsp;to&nbsp;an<br>
+<a href="#NNTP">NNTP</a>&nbsp;server&nbsp;on&nbsp;the&nbsp;local&nbsp;machine&nbsp;and&nbsp;intend&nbsp;to&nbsp;call<br>
+reader-specific&nbsp;comamnds,&nbsp;such&nbsp;as&nbsp;`group'.&nbsp;&nbsp;If&nbsp;you&nbsp;get<br>
+unexpected&nbsp;NNTPPermanentErrors,&nbsp;you&nbsp;might&nbsp;need&nbsp;to&nbsp;set<br>
+readermode.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-artcmd"><strong>artcmd</strong></a>(self, line, file<font color="#909090">=None</font>)</dt><dd><tt>Internal:&nbsp;process&nbsp;a&nbsp;HEAD,&nbsp;BODY&nbsp;or&nbsp;ARTICLE&nbsp;command.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-article"><strong>article</strong></a>(self, id)</dt><dd><tt>Process&nbsp;an&nbsp;ARTICLE&nbsp;command.&nbsp;&nbsp;Argument:<br>
+-&nbsp;id:&nbsp;article&nbsp;number&nbsp;or&nbsp;message&nbsp;id<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;nr:&nbsp;article&nbsp;number<br>
+-&nbsp;id:&nbsp;message&nbsp;id<br>
+-&nbsp;list:&nbsp;the&nbsp;lines&nbsp;of&nbsp;the&nbsp;article</tt></dd></dl>
+
+<dl><dt><a name="NNTP-body"><strong>body</strong></a>(self, id, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;a&nbsp;BODY&nbsp;command.&nbsp;&nbsp;Argument:<br>
+-&nbsp;id:&nbsp;article&nbsp;number&nbsp;or&nbsp;message&nbsp;id<br>
+-&nbsp;file:&nbsp;Filename&nbsp;string&nbsp;or&nbsp;file&nbsp;object&nbsp;to&nbsp;store&nbsp;the&nbsp;article&nbsp;in<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;nr:&nbsp;article&nbsp;number<br>
+-&nbsp;id:&nbsp;message&nbsp;id<br>
+-&nbsp;list:&nbsp;the&nbsp;lines&nbsp;of&nbsp;the&nbsp;article's&nbsp;body&nbsp;or&nbsp;an&nbsp;empty&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;file&nbsp;was&nbsp;used</tt></dd></dl>
+
+<dl><dt><a name="NNTP-date"><strong>date</strong></a>(self)</dt><dd><tt>Process&nbsp;the&nbsp;DATE&nbsp;command.&nbsp;Arguments:<br>
+None<br>
+Returns:<br>
+resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+date:&nbsp;Date&nbsp;suitable&nbsp;for&nbsp;newnews/newgroups&nbsp;commands&nbsp;etc.<br>
+time:&nbsp;Time&nbsp;suitable&nbsp;for&nbsp;newnews/newgroups&nbsp;commands&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-debug"><strong>debug</strong></a> = <a href="#NNTP-set_debuglevel">set_debuglevel</a>(self, level)</dt></dl>
+
+<dl><dt><a name="NNTP-description"><strong>description</strong></a>(self, group)</dt><dd><tt>Get&nbsp;a&nbsp;description&nbsp;for&nbsp;a&nbsp;single&nbsp;group.&nbsp;&nbsp;If&nbsp;more&nbsp;than&nbsp;one<br>
+group&nbsp;matches&nbsp;('group'&nbsp;is&nbsp;a&nbsp;pattern),&nbsp;return&nbsp;the&nbsp;first.&nbsp;&nbsp;If&nbsp;no<br>
+group&nbsp;matches,&nbsp;return&nbsp;an&nbsp;empty&nbsp;string.<br>
+&nbsp;<br>
+This&nbsp;elides&nbsp;the&nbsp;response&nbsp;code&nbsp;from&nbsp;the&nbsp;server,&nbsp;since&nbsp;it&nbsp;can<br>
+only&nbsp;be&nbsp;'215'&nbsp;or&nbsp;'285'&nbsp;(for&nbsp;xgtitle)&nbsp;anyway.&nbsp;&nbsp;If&nbsp;the&nbsp;response<br>
+code&nbsp;is&nbsp;needed,&nbsp;use&nbsp;the&nbsp;'descriptions'&nbsp;method.<br>
+&nbsp;<br>
+NOTE:&nbsp;This&nbsp;neither&nbsp;checks&nbsp;for&nbsp;a&nbsp;wildcard&nbsp;in&nbsp;'group'&nbsp;nor&nbsp;does<br>
+it&nbsp;check&nbsp;whether&nbsp;the&nbsp;group&nbsp;actually&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-descriptions"><strong>descriptions</strong></a>(self, group_pattern)</dt><dd><tt>Get&nbsp;descriptions&nbsp;for&nbsp;a&nbsp;range&nbsp;of&nbsp;groups.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-getline"><strong>getline</strong></a>(self)</dt><dd><tt>Internal:&nbsp;return&nbsp;one&nbsp;line&nbsp;from&nbsp;the&nbsp;server,&nbsp;stripping&nbsp;CRLF.<br>
+Raise&nbsp;EOFError&nbsp;if&nbsp;the&nbsp;connection&nbsp;is&nbsp;closed.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-getlongresp"><strong>getlongresp</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt>Internal:&nbsp;get&nbsp;a&nbsp;response&nbsp;plus&nbsp;following&nbsp;text&nbsp;from&nbsp;the&nbsp;server.<br>
+Raise&nbsp;various&nbsp;errors&nbsp;if&nbsp;the&nbsp;response&nbsp;indicates&nbsp;an&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-getresp"><strong>getresp</strong></a>(self)</dt><dd><tt>Internal:&nbsp;get&nbsp;a&nbsp;response&nbsp;from&nbsp;the&nbsp;server.<br>
+Raise&nbsp;various&nbsp;errors&nbsp;if&nbsp;the&nbsp;response&nbsp;indicates&nbsp;an&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-getwelcome"><strong>getwelcome</strong></a>(self)</dt><dd><tt>Get&nbsp;the&nbsp;welcome&nbsp;message&nbsp;from&nbsp;the&nbsp;server<br>
+(this&nbsp;is&nbsp;read&nbsp;and&nbsp;squirreled&nbsp;away&nbsp;by&nbsp;<a href="#NNTP-__init__">__init__</a>()).<br>
+If&nbsp;the&nbsp;response&nbsp;code&nbsp;is&nbsp;200,&nbsp;posting&nbsp;is&nbsp;allowed;<br>
+if&nbsp;it&nbsp;201,&nbsp;posting&nbsp;is&nbsp;not&nbsp;allowed.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-group"><strong>group</strong></a>(self, name)</dt><dd><tt>Process&nbsp;a&nbsp;GROUP&nbsp;command.&nbsp;&nbsp;Argument:<br>
+-&nbsp;group:&nbsp;the&nbsp;group&nbsp;name<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;count:&nbsp;number&nbsp;of&nbsp;articles&nbsp;(string)<br>
+-&nbsp;first:&nbsp;first&nbsp;article&nbsp;number&nbsp;(string)<br>
+-&nbsp;last:&nbsp;last&nbsp;article&nbsp;number&nbsp;(string)<br>
+-&nbsp;name:&nbsp;the&nbsp;group&nbsp;name</tt></dd></dl>
+
+<dl><dt><a name="NNTP-head"><strong>head</strong></a>(self, id)</dt><dd><tt>Process&nbsp;a&nbsp;HEAD&nbsp;command.&nbsp;&nbsp;Argument:<br>
+-&nbsp;id:&nbsp;article&nbsp;number&nbsp;or&nbsp;message&nbsp;id<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;nr:&nbsp;article&nbsp;number<br>
+-&nbsp;id:&nbsp;message&nbsp;id<br>
+-&nbsp;list:&nbsp;the&nbsp;lines&nbsp;of&nbsp;the&nbsp;article's&nbsp;header</tt></dd></dl>
+
+<dl><dt><a name="NNTP-help"><strong>help</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;a&nbsp;HELP&nbsp;command.&nbsp;&nbsp;Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;strings</tt></dd></dl>
+
+<dl><dt><a name="NNTP-ihave"><strong>ihave</strong></a>(self, id, f)</dt><dd><tt>Process&nbsp;an&nbsp;IHAVE&nbsp;command.&nbsp;&nbsp;Arguments:<br>
+-&nbsp;id:&nbsp;message-id&nbsp;of&nbsp;the&nbsp;article<br>
+-&nbsp;f:&nbsp;&nbsp;file&nbsp;containing&nbsp;the&nbsp;article<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+Note&nbsp;that&nbsp;if&nbsp;the&nbsp;server&nbsp;refuses&nbsp;the&nbsp;article&nbsp;an&nbsp;exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-last"><strong>last</strong></a>(self)</dt><dd><tt>Process&nbsp;a&nbsp;LAST&nbsp;command.&nbsp;&nbsp;No&nbsp;arguments.&nbsp;&nbsp;Return&nbsp;as&nbsp;for&nbsp;STAT.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-list"><strong>list</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;a&nbsp;LIST&nbsp;command.&nbsp;&nbsp;Return:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;(group,&nbsp;last,&nbsp;first,&nbsp;flag)&nbsp;(strings)</tt></dd></dl>
+
+<dl><dt><a name="NNTP-longcmd"><strong>longcmd</strong></a>(self, line, file<font color="#909090">=None</font>)</dt><dd><tt>Internal:&nbsp;send&nbsp;a&nbsp;command&nbsp;and&nbsp;get&nbsp;the&nbsp;response&nbsp;plus&nbsp;following&nbsp;text.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-newgroups"><strong>newgroups</strong></a>(self, date, time, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;a&nbsp;NEWGROUPS&nbsp;command.&nbsp;&nbsp;Arguments:<br>
+-&nbsp;date:&nbsp;string&nbsp;'yymmdd'&nbsp;indicating&nbsp;the&nbsp;date<br>
+-&nbsp;time:&nbsp;string&nbsp;'hhmmss'&nbsp;indicating&nbsp;the&nbsp;time<br>
+Return:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;newsgroup&nbsp;names</tt></dd></dl>
+
+<dl><dt><a name="NNTP-newnews"><strong>newnews</strong></a>(self, group, date, time, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;a&nbsp;NEWNEWS&nbsp;command.&nbsp;&nbsp;Arguments:<br>
+-&nbsp;group:&nbsp;group&nbsp;name&nbsp;or&nbsp;'*'<br>
+-&nbsp;date:&nbsp;string&nbsp;'yymmdd'&nbsp;indicating&nbsp;the&nbsp;date<br>
+-&nbsp;time:&nbsp;string&nbsp;'hhmmss'&nbsp;indicating&nbsp;the&nbsp;time<br>
+Return:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;message&nbsp;ids</tt></dd></dl>
+
+<dl><dt><a name="NNTP-next"><strong>next</strong></a>(self)</dt><dd><tt>Process&nbsp;a&nbsp;NEXT&nbsp;command.&nbsp;&nbsp;No&nbsp;arguments.&nbsp;&nbsp;Return&nbsp;as&nbsp;for&nbsp;STAT.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-post"><strong>post</strong></a>(self, f)</dt><dd><tt>Process&nbsp;a&nbsp;POST&nbsp;command.&nbsp;&nbsp;Arguments:<br>
+-&nbsp;f:&nbsp;file&nbsp;containing&nbsp;the&nbsp;article<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful</tt></dd></dl>
+
+<dl><dt><a name="NNTP-putcmd"><strong>putcmd</strong></a>(self, line)</dt><dd><tt>Internal:&nbsp;send&nbsp;one&nbsp;command&nbsp;to&nbsp;the&nbsp;server&nbsp;(through&nbsp;<a href="#NNTP-putline">putline</a>()).</tt></dd></dl>
+
+<dl><dt><a name="NNTP-putline"><strong>putline</strong></a>(self, line)</dt><dd><tt>Internal:&nbsp;send&nbsp;one&nbsp;line&nbsp;to&nbsp;the&nbsp;server,&nbsp;appending&nbsp;CRLF.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-quit"><strong>quit</strong></a>(self)</dt><dd><tt>Process&nbsp;a&nbsp;QUIT&nbsp;command&nbsp;and&nbsp;close&nbsp;the&nbsp;socket.&nbsp;&nbsp;Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful</tt></dd></dl>
+
+<dl><dt><a name="NNTP-set_debuglevel"><strong>set_debuglevel</strong></a>(self, level)</dt><dd><tt>Set&nbsp;the&nbsp;debugging&nbsp;level.&nbsp;&nbsp;Argument&nbsp;'level'&nbsp;means:<br>
+0:&nbsp;no&nbsp;debugging&nbsp;output&nbsp;(default)<br>
+1:&nbsp;print&nbsp;commands&nbsp;and&nbsp;responses&nbsp;but&nbsp;not&nbsp;body&nbsp;text&nbsp;etc.<br>
+2:&nbsp;also&nbsp;print&nbsp;raw&nbsp;lines&nbsp;read&nbsp;and&nbsp;sent&nbsp;before&nbsp;stripping&nbsp;CR/LF</tt></dd></dl>
+
+<dl><dt><a name="NNTP-shortcmd"><strong>shortcmd</strong></a>(self, line)</dt><dd><tt>Internal:&nbsp;send&nbsp;a&nbsp;command&nbsp;and&nbsp;get&nbsp;the&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-slave"><strong>slave</strong></a>(self)</dt><dd><tt>Process&nbsp;a&nbsp;SLAVE&nbsp;command.&nbsp;&nbsp;Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful</tt></dd></dl>
+
+<dl><dt><a name="NNTP-stat"><strong>stat</strong></a>(self, id)</dt><dd><tt>Process&nbsp;a&nbsp;STAT&nbsp;command.&nbsp;&nbsp;Argument:<br>
+-&nbsp;id:&nbsp;article&nbsp;number&nbsp;or&nbsp;message&nbsp;id<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;nr:&nbsp;&nbsp;&nbsp;the&nbsp;article&nbsp;number<br>
+-&nbsp;id:&nbsp;&nbsp;&nbsp;the&nbsp;message&nbsp;id</tt></dd></dl>
+
+<dl><dt><a name="NNTP-statcmd"><strong>statcmd</strong></a>(self, line)</dt><dd><tt>Internal:&nbsp;process&nbsp;a&nbsp;STAT,&nbsp;NEXT&nbsp;or&nbsp;LAST&nbsp;command.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-statparse"><strong>statparse</strong></a>(self, resp)</dt><dd><tt>Internal:&nbsp;parse&nbsp;the&nbsp;response&nbsp;of&nbsp;a&nbsp;STAT,&nbsp;NEXT&nbsp;or&nbsp;LAST&nbsp;command.</tt></dd></dl>
+
+<dl><dt><a name="NNTP-xgtitle"><strong>xgtitle</strong></a>(self, group, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;an&nbsp;XGTITLE&nbsp;command&nbsp;(optional&nbsp;server&nbsp;extension)&nbsp;Arguments:<br>
+-&nbsp;group:&nbsp;group&nbsp;name&nbsp;wildcard&nbsp;(i.e.&nbsp;news.*)<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;(name,title)&nbsp;strings</tt></dd></dl>
+
+<dl><dt><a name="NNTP-xhdr"><strong>xhdr</strong></a>(self, hdr, str, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;an&nbsp;XHDR&nbsp;command&nbsp;(optional&nbsp;server&nbsp;extension).&nbsp;&nbsp;Arguments:<br>
+-&nbsp;hdr:&nbsp;the&nbsp;header&nbsp;type&nbsp;(e.g.&nbsp;'subject')<br>
+-&nbsp;str:&nbsp;an&nbsp;article&nbsp;nr,&nbsp;a&nbsp;message&nbsp;id,&nbsp;or&nbsp;a&nbsp;range&nbsp;nr1-nr2<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;(nr,&nbsp;value)&nbsp;strings</tt></dd></dl>
+
+<dl><dt><a name="NNTP-xover"><strong>xover</strong></a>(self, start, end, file<font color="#909090">=None</font>)</dt><dd><tt>Process&nbsp;an&nbsp;XOVER&nbsp;command&nbsp;(optional&nbsp;server&nbsp;extension)&nbsp;Arguments:<br>
+-&nbsp;start:&nbsp;start&nbsp;of&nbsp;range<br>
+-&nbsp;end:&nbsp;end&nbsp;of&nbsp;range<br>
+Returns:<br>
+-&nbsp;resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+-&nbsp;list:&nbsp;list&nbsp;of&nbsp;(art-nr,&nbsp;subject,&nbsp;poster,&nbsp;date,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id,&nbsp;references,&nbsp;size,&nbsp;lines)</tt></dd></dl>
+
+<dl><dt><a name="NNTP-xpath"><strong>xpath</strong></a>(self, id)</dt><dd><tt>Process&nbsp;an&nbsp;XPATH&nbsp;command&nbsp;(optional&nbsp;server&nbsp;extension)&nbsp;Arguments:<br>
+-&nbsp;id:&nbsp;Message&nbsp;id&nbsp;of&nbsp;article<br>
+Returns:<br>
+resp:&nbsp;server&nbsp;response&nbsp;if&nbsp;successful<br>
+path:&nbsp;directory&nbsp;path&nbsp;to&nbsp;article</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTPDataError">class <strong>NNTPDataError</strong></a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Error&nbsp;in&nbsp;response&nbsp;data<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPDataError">NNTPDataError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPDataError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#NNTPDataError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPDataError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPDataError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPDataError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPDataError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTPPermanentError">class <strong>NNTPPermanentError</strong></a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>5xx&nbsp;errors<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPPermanentError">NNTPPermanentError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPPermanentError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#NNTPPermanentError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPPermanentError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPPermanentError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPPermanentError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPPermanentError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTPProtocolError">class <strong>NNTPProtocolError</strong></a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Response&nbsp;does&nbsp;not&nbsp;begin&nbsp;with&nbsp;[1-5]<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPProtocolError">NNTPProtocolError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPProtocolError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#NNTPProtocolError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPProtocolError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPProtocolError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPProtocolError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPProtocolError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTPReplyError">class <strong>NNTPReplyError</strong></a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unexpected&nbsp;[123]xx&nbsp;reply<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPReplyError">NNTPReplyError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPReplyError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#NNTPReplyError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPReplyError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPReplyError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPReplyError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPReplyError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NNTPTemporaryError">class <strong>NNTPTemporaryError</strong></a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>4xx&nbsp;errors<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPTemporaryError">NNTPTemporaryError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPTemporaryError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#NNTPTemporaryError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPTemporaryError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NNTPTemporaryError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error_data</strong> = <a name="error_data">class NNTPDataError</a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Error&nbsp;in&nbsp;response&nbsp;data<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPDataError">NNTPDataError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPDataError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_data-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPDataError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPDataError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPDataError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPDataError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_data-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error_perm</strong> = <a name="error_perm">class NNTPPermanentError</a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>5xx&nbsp;errors<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPPermanentError">NNTPPermanentError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPPermanentError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_perm-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPPermanentError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPPermanentError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPPermanentError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPPermanentError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_perm-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error_proto</strong> = <a name="error_proto">class NNTPProtocolError</a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Response&nbsp;does&nbsp;not&nbsp;begin&nbsp;with&nbsp;[1-5]<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPProtocolError">NNTPProtocolError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPProtocolError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_proto-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPProtocolError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPProtocolError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPProtocolError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPProtocolError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error_reply</strong> = <a name="error_reply">class NNTPReplyError</a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unexpected&nbsp;[123]xx&nbsp;reply<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPReplyError">NNTPReplyError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPReplyError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_reply-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPReplyError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPReplyError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPReplyError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPReplyError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_reply-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error_temp</strong> = <a name="error_temp">class NNTPTemporaryError</a>(<a href="nntplib.html#NNTPError">NNTPError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>4xx&nbsp;errors<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="nntplib.html#NNTPTemporaryError">NNTPTemporaryError</a></dd>
+<dd><a href="nntplib.html#NNTPError">NNTPError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><a name="NNTPTemporaryError-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="nntplib.html#NNTPError">NNTPError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_temp-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NNTPTemporaryError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NNTPTemporaryError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_temp-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['NNTP', 'NNTPReplyError', 'NNTPTemporaryError', 'NNTPPermanentError', 'NNTPProtocolError', 'NNTPDataError', 'error_reply', 'error_temp', 'error_perm', 'error_proto', 'error_data']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,132 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pipes</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pipes.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pipes.py</a></font></td></tr></table>
+    <p><tt>Conversion&nbsp;pipeline&nbsp;templates.<br>
+&nbsp;<br>
+The&nbsp;problem:<br>
+------------<br>
+&nbsp;<br>
+Suppose&nbsp;you&nbsp;have&nbsp;some&nbsp;data&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;convert&nbsp;to&nbsp;another&nbsp;format,<br>
+such&nbsp;as&nbsp;from&nbsp;GIF&nbsp;image&nbsp;format&nbsp;to&nbsp;PPM&nbsp;image&nbsp;format.&nbsp;&nbsp;Maybe&nbsp;the<br>
+conversion&nbsp;involves&nbsp;several&nbsp;steps&nbsp;(e.g.&nbsp;piping&nbsp;it&nbsp;through&nbsp;compress&nbsp;or<br>
+uuencode).&nbsp;&nbsp;Some&nbsp;of&nbsp;the&nbsp;conversion&nbsp;steps&nbsp;may&nbsp;require&nbsp;that&nbsp;their&nbsp;input<br>
+is&nbsp;a&nbsp;disk&nbsp;file,&nbsp;others&nbsp;may&nbsp;be&nbsp;able&nbsp;to&nbsp;read&nbsp;standard&nbsp;input;&nbsp;similar&nbsp;for<br>
+their&nbsp;output.&nbsp;&nbsp;The&nbsp;input&nbsp;to&nbsp;the&nbsp;entire&nbsp;conversion&nbsp;may&nbsp;also&nbsp;be&nbsp;read<br>
+from&nbsp;a&nbsp;disk&nbsp;file&nbsp;or&nbsp;from&nbsp;an&nbsp;open&nbsp;file,&nbsp;and&nbsp;similar&nbsp;for&nbsp;its&nbsp;output.<br>
+&nbsp;<br>
+The&nbsp;module&nbsp;lets&nbsp;you&nbsp;construct&nbsp;a&nbsp;pipeline&nbsp;template&nbsp;by&nbsp;sticking&nbsp;one&nbsp;or<br>
+more&nbsp;conversion&nbsp;steps&nbsp;together.&nbsp;&nbsp;It&nbsp;will&nbsp;take&nbsp;care&nbsp;of&nbsp;creating&nbsp;and<br>
+removing&nbsp;temporary&nbsp;files&nbsp;if&nbsp;they&nbsp;are&nbsp;necessary&nbsp;to&nbsp;hold&nbsp;intermediate<br>
+data.&nbsp;&nbsp;You&nbsp;can&nbsp;then&nbsp;use&nbsp;the&nbsp;template&nbsp;to&nbsp;do&nbsp;conversions&nbsp;from&nbsp;many<br>
+different&nbsp;sources&nbsp;to&nbsp;many&nbsp;different&nbsp;destinations.&nbsp;&nbsp;The&nbsp;temporary<br>
+file&nbsp;names&nbsp;used&nbsp;are&nbsp;different&nbsp;each&nbsp;time&nbsp;the&nbsp;template&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+The&nbsp;templates&nbsp;are&nbsp;objects&nbsp;so&nbsp;you&nbsp;can&nbsp;create&nbsp;templates&nbsp;for&nbsp;many<br>
+different&nbsp;conversion&nbsp;steps&nbsp;and&nbsp;store&nbsp;them&nbsp;in&nbsp;a&nbsp;dictionary,&nbsp;for<br>
+instance.<br>
+&nbsp;<br>
+&nbsp;<br>
+Directions:<br>
+-----------<br>
+&nbsp;<br>
+To&nbsp;create&nbsp;a&nbsp;template:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;t&nbsp;=&nbsp;<a href="#Template">Template</a>()<br>
+&nbsp;<br>
+To&nbsp;add&nbsp;a&nbsp;conversion&nbsp;step&nbsp;to&nbsp;a&nbsp;template:<br>
+&nbsp;&nbsp;&nbsp;t.append(command,&nbsp;kind)<br>
+where&nbsp;kind&nbsp;is&nbsp;a&nbsp;string&nbsp;of&nbsp;two&nbsp;characters:&nbsp;the&nbsp;first&nbsp;is&nbsp;'-'&nbsp;if&nbsp;the<br>
+command&nbsp;reads&nbsp;its&nbsp;standard&nbsp;input&nbsp;or&nbsp;'f'&nbsp;if&nbsp;it&nbsp;requires&nbsp;a&nbsp;file;&nbsp;the<br>
+second&nbsp;likewise&nbsp;for&nbsp;the&nbsp;output.&nbsp;The&nbsp;command&nbsp;must&nbsp;be&nbsp;valid&nbsp;/bin/sh<br>
+syntax.&nbsp;&nbsp;If&nbsp;input&nbsp;or&nbsp;output&nbsp;files&nbsp;are&nbsp;required,&nbsp;they&nbsp;are&nbsp;passed&nbsp;as<br>
+$IN&nbsp;and&nbsp;$OUT;&nbsp;otherwise,&nbsp;it&nbsp;must&nbsp;be&nbsp;&nbsp;possible&nbsp;to&nbsp;use&nbsp;the&nbsp;command&nbsp;in<br>
+a&nbsp;pipeline.<br>
+&nbsp;<br>
+To&nbsp;add&nbsp;a&nbsp;conversion&nbsp;step&nbsp;at&nbsp;the&nbsp;beginning:<br>
+&nbsp;&nbsp;&nbsp;t.prepend(command,&nbsp;kind)<br>
+&nbsp;<br>
+To&nbsp;convert&nbsp;a&nbsp;file&nbsp;to&nbsp;another&nbsp;file&nbsp;using&nbsp;a&nbsp;template:<br>
+&nbsp;&nbsp;sts&nbsp;=&nbsp;t.copy(infile,&nbsp;outfile)<br>
+If&nbsp;infile&nbsp;or&nbsp;outfile&nbsp;are&nbsp;the&nbsp;empty&nbsp;string,&nbsp;standard&nbsp;input&nbsp;is&nbsp;read&nbsp;or<br>
+standard&nbsp;output&nbsp;is&nbsp;written,&nbsp;respectively.&nbsp;&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;the<br>
+exit&nbsp;status&nbsp;of&nbsp;the&nbsp;conversion&nbsp;pipeline.<br>
+&nbsp;<br>
+To&nbsp;open&nbsp;a&nbsp;file&nbsp;for&nbsp;reading&nbsp;or&nbsp;writing&nbsp;through&nbsp;a&nbsp;conversion&nbsp;pipeline:<br>
+&nbsp;&nbsp;&nbsp;fp&nbsp;=&nbsp;t.open(file,&nbsp;mode)<br>
+where&nbsp;mode&nbsp;is&nbsp;'r'&nbsp;to&nbsp;read&nbsp;the&nbsp;file,&nbsp;or&nbsp;'w'&nbsp;to&nbsp;write&nbsp;it&nbsp;--&nbsp;just&nbsp;like<br>
+for&nbsp;the&nbsp;built-in&nbsp;function&nbsp;open()&nbsp;or&nbsp;for&nbsp;os.popen().<br>
+&nbsp;<br>
+To&nbsp;create&nbsp;a&nbsp;new&nbsp;template&nbsp;object&nbsp;initialized&nbsp;to&nbsp;a&nbsp;given&nbsp;one:<br>
+&nbsp;&nbsp;&nbsp;t2&nbsp;=&nbsp;t.clone()<br>
+&nbsp;<br>
+For&nbsp;an&nbsp;example,&nbsp;see&nbsp;the&nbsp;function&nbsp;test()&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;file.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="string.html">string</a><br>
+</td><td width="25%" valign=top><a href="tempfile.html">tempfile</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pipes.html#Template">Template</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Template">class <strong>Template</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;representing&nbsp;a&nbsp;pipeline&nbsp;template.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Template-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt><a href="#Template">Template</a>()&nbsp;returns&nbsp;a&nbsp;fresh&nbsp;pipeline&nbsp;template.</tt></dd></dl>
+
+<dl><dt><a name="Template-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>t.<a href="#Template-__repr__">__repr__</a>()&nbsp;implements&nbsp;repr(t).</tt></dd></dl>
+
+<dl><dt><a name="Template-append"><strong>append</strong></a>(self, cmd, kind)</dt><dd><tt>t.<a href="#Template-append">append</a>(cmd,&nbsp;kind)&nbsp;adds&nbsp;a&nbsp;new&nbsp;step&nbsp;at&nbsp;the&nbsp;end.</tt></dd></dl>
+
+<dl><dt><a name="Template-clone"><strong>clone</strong></a>(self)</dt><dd><tt>t.<a href="#Template-clone">clone</a>()&nbsp;returns&nbsp;a&nbsp;new&nbsp;pipeline&nbsp;template&nbsp;with&nbsp;identical<br>
+initial&nbsp;state&nbsp;as&nbsp;the&nbsp;current&nbsp;one.</tt></dd></dl>
+
+<dl><dt><a name="Template-copy"><strong>copy</strong></a>(self, infile, outfile)</dt></dl>
+
+<dl><dt><a name="Template-debug"><strong>debug</strong></a>(self, flag)</dt><dd><tt>t.<a href="#Template-debug">debug</a>(flag)&nbsp;turns&nbsp;debugging&nbsp;on&nbsp;or&nbsp;off.</tt></dd></dl>
+
+<dl><dt><a name="Template-makepipeline"><strong>makepipeline</strong></a>(self, infile, outfile)</dt></dl>
+
+<dl><dt><a name="Template-open"><strong>open</strong></a>(self, file, rw)</dt><dd><tt>t.<a href="#Template-open">open</a>(file,&nbsp;rw)&nbsp;returns&nbsp;a&nbsp;pipe&nbsp;or&nbsp;file&nbsp;object&nbsp;open&nbsp;for<br>
+reading&nbsp;or&nbsp;writing;&nbsp;the&nbsp;file&nbsp;is&nbsp;the&nbsp;other&nbsp;end&nbsp;of&nbsp;the&nbsp;pipeline.</tt></dd></dl>
+
+<dl><dt><a name="Template-open_r"><strong>open_r</strong></a>(self, file)</dt><dd><tt>t.<a href="#Template-open_r">open_r</a>(file)&nbsp;and&nbsp;t.<a href="#Template-open_w">open_w</a>(file)&nbsp;implement<br>
+t.<a href="#Template-open">open</a>(file,&nbsp;'r')&nbsp;and&nbsp;t.<a href="#Template-open">open</a>(file,&nbsp;'w')&nbsp;respectively.</tt></dd></dl>
+
+<dl><dt><a name="Template-open_w"><strong>open_w</strong></a>(self, file)</dt></dl>
+
+<dl><dt><a name="Template-prepend"><strong>prepend</strong></a>(self, cmd, kind)</dt><dd><tt>t.<a href="#Template-prepend">prepend</a>(cmd,&nbsp;kind)&nbsp;adds&nbsp;a&nbsp;new&nbsp;step&nbsp;at&nbsp;the&nbsp;front.</tt></dd></dl>
+
+<dl><dt><a name="Template-reset"><strong>reset</strong></a>(self)</dt><dd><tt>t.<a href="#Template-reset">reset</a>()&nbsp;restores&nbsp;a&nbsp;pipeline&nbsp;template&nbsp;to&nbsp;its&nbsp;initial&nbsp;state.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['Template']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,194 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dummy_thread</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/dummy_thread.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/dummy_thread.py</a></font></td></tr></table>
+    <p><tt>Drop-in&nbsp;replacement&nbsp;for&nbsp;the&nbsp;thread&nbsp;module.<br>
+&nbsp;<br>
+Meant&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;a&nbsp;brain-dead&nbsp;substitute&nbsp;so&nbsp;that&nbsp;threaded&nbsp;code&nbsp;does<br>
+not&nbsp;need&nbsp;to&nbsp;be&nbsp;rewritten&nbsp;for&nbsp;when&nbsp;the&nbsp;thread&nbsp;module&nbsp;is&nbsp;not&nbsp;present.<br>
+&nbsp;<br>
+Suggested&nbsp;usage&nbsp;is::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;thread<br>
+&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;ImportError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;dummy_thread&nbsp;as&nbsp;thread</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="traceback.html">traceback</a><br>
+</td><td width="25%" valign=top><a href="warnings.html">warnings</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dummy_thread.html#LockType">LockType</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dummy_thread.html#error">error</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LockType">class <strong>LockType</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;implementing&nbsp;dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#LockType">LockType</a>.<br>
+&nbsp;<br>
+Compatibility&nbsp;is&nbsp;maintained&nbsp;by&nbsp;maintaining&nbsp;self.<strong>locked_status</strong><br>
+which&nbsp;is&nbsp;a&nbsp;boolean&nbsp;that&nbsp;stores&nbsp;the&nbsp;state&nbsp;of&nbsp;the&nbsp;lock.&nbsp;&nbsp;Pickling&nbsp;of<br>
+the&nbsp;lock,&nbsp;though,&nbsp;should&nbsp;not&nbsp;be&nbsp;done&nbsp;since&nbsp;if&nbsp;the&nbsp;thread&nbsp;module&nbsp;is<br>
+then&nbsp;used&nbsp;with&nbsp;an&nbsp;unpickled&nbsp;``lock()``&nbsp;from&nbsp;here&nbsp;problems&nbsp;could<br>
+occur&nbsp;from&nbsp;this&nbsp;class&nbsp;not&nbsp;having&nbsp;atomic&nbsp;methods.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="LockType-__enter__"><strong>__enter__</strong></a> = <a href="#LockType-acquire">acquire</a>(self, waitflag<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="LockType-__exit__"><strong>__exit__</strong></a>(self, typ, val, tb)</dt></dl>
+
+<dl><dt><a name="LockType-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LockType-acquire"><strong>acquire</strong></a>(self, waitflag<font color="#909090">=None</font>)</dt><dd><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;<a href="#LockType-acquire">acquire</a>().<br>
+&nbsp;<br>
+For&nbsp;blocking&nbsp;calls,&nbsp;self.<strong>locked_status</strong>&nbsp;is&nbsp;automatically&nbsp;set&nbsp;to<br>
+True&nbsp;and&nbsp;returned&nbsp;appropriately&nbsp;based&nbsp;on&nbsp;value&nbsp;of<br>
+``waitflag``.&nbsp;&nbsp;If&nbsp;it&nbsp;is&nbsp;non-blocking,&nbsp;then&nbsp;the&nbsp;value&nbsp;is<br>
+actually&nbsp;checked&nbsp;and&nbsp;not&nbsp;set&nbsp;if&nbsp;it&nbsp;is&nbsp;already&nbsp;acquired.&nbsp;&nbsp;This<br>
+is&nbsp;all&nbsp;done&nbsp;so&nbsp;that&nbsp;threading.Condition's&nbsp;assert&nbsp;statements<br>
+aren't&nbsp;triggered&nbsp;and&nbsp;throw&nbsp;a&nbsp;little&nbsp;fit.</tt></dd></dl>
+
+<dl><dt><a name="LockType-locked"><strong>locked</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LockType-release"><strong>release</strong></a>(self)</dt><dd><tt>Release&nbsp;the&nbsp;dummy&nbsp;lock.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="error">class <strong>error</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#error">error</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="dummy_thread.html#error">error</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="error-__init__"><strong>__init__</strong></a>(self, *args)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="error-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="error-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="error-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="error-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="error-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-allocate_lock"><strong>allocate_lock</strong></a>()</dt><dd><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#-allocate_lock">allocate_lock</a>().</tt></dd></dl>
+ <dl><dt><a name="-exit"><strong>exit</strong></a>()</dt><dd><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#-exit">exit</a>().</tt></dd></dl>
+ <dl><dt><a name="-get_ident"><strong>get_ident</strong></a>()</dt><dd><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#-get_ident">get_ident</a>().<br>
+&nbsp;<br>
+Since&nbsp;this&nbsp;module&nbsp;should&nbsp;only&nbsp;be&nbsp;used&nbsp;when&nbsp;threadmodule&nbsp;is&nbsp;not<br>
+available,&nbsp;it&nbsp;is&nbsp;safe&nbsp;to&nbsp;assume&nbsp;that&nbsp;the&nbsp;current&nbsp;process&nbsp;is&nbsp;the<br>
+only&nbsp;thread.&nbsp;&nbsp;Thus&nbsp;a&nbsp;constant&nbsp;can&nbsp;be&nbsp;safely&nbsp;returned.</tt></dd></dl>
+ <dl><dt><a name="-interrupt_main"><strong>interrupt_main</strong></a>()</dt><dd><tt>Set&nbsp;_interrupt&nbsp;flag&nbsp;to&nbsp;True&nbsp;to&nbsp;have&nbsp;start_new_thread&nbsp;raise<br>
+KeyboardInterrupt&nbsp;upon&nbsp;exiting.</tt></dd></dl>
+ <dl><dt><a name="-start_new_thread"><strong>start_new_thread</strong></a>(function, args, kwargs<font color="#909090">={}</font>)</dt><dd><tt>Dummy&nbsp;implementation&nbsp;of&nbsp;thread.<a href="#-start_new_thread">start_new_thread</a>().<br>
+&nbsp;<br>
+Compatibility&nbsp;is&nbsp;maintained&nbsp;by&nbsp;making&nbsp;sure&nbsp;that&nbsp;``args``&nbsp;is&nbsp;a<br>
+tuple&nbsp;and&nbsp;``kwargs``&nbsp;is&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;If&nbsp;an&nbsp;exception&nbsp;is&nbsp;raised<br>
+and&nbsp;it&nbsp;is&nbsp;SystemExit&nbsp;(which&nbsp;can&nbsp;be&nbsp;done&nbsp;by&nbsp;thread.<a href="#-exit">exit</a>())&nbsp;it&nbsp;is<br>
+caught&nbsp;and&nbsp;nothing&nbsp;is&nbsp;done;&nbsp;all&nbsp;other&nbsp;exceptions&nbsp;are&nbsp;printed&nbsp;out<br>
+by&nbsp;using&nbsp;traceback.print_exc().<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;executed&nbsp;function&nbsp;calls&nbsp;interrupt_main&nbsp;the&nbsp;KeyboardInterrupt&nbsp;will&nbsp;be<br>
+raised&nbsp;when&nbsp;the&nbsp;function&nbsp;returns.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['error', 'start_new_thread', 'exit', 'get_ident', 'allocate_lock', 'interrupt_main', 'LockType']<br>
+<strong>__author__</strong> = 'Brett Cannon'<br>
+<strong>__email__</strong> = 'brett@python.org'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Brett&nbsp;Cannon</td></tr></table>

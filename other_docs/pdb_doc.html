@@ -1,0 +1,462 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pdb</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pdb.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pdb.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;Python&nbsp;debugger.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="bdb.html">bdb</a><br>
+<a href="cmd.html">cmd</a><br>
+</td><td width="25%" valign=top><a href="linecache.html">linecache</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pprint.html">pprint</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="traceback.html">traceback</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="bdb.html#Bdb">bdb.Bdb</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pdb.html#Pdb">Pdb</a>(<a href="bdb.html#Bdb">bdb.Bdb</a>, <a href="cmd.html#Cmd">cmd.Cmd</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="cmd.html#Cmd">cmd.Cmd</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pdb.html#Pdb">Pdb</a>(<a href="bdb.html#Bdb">bdb.Bdb</a>, <a href="cmd.html#Cmd">cmd.Cmd</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pdb">class <strong>Pdb</strong></a>(<a href="bdb.html#Bdb">bdb.Bdb</a>, <a href="cmd.html#Cmd">cmd.Cmd</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pdb.html#Pdb">Pdb</a></dd>
+<dd><a href="bdb.html#Bdb">bdb.Bdb</a></dd>
+<dd><a href="cmd.html#Cmd">cmd.Cmd</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Pdb-__init__"><strong>__init__</strong></a>(self, completekey<font color="#909090">='tab'</font>, stdin<font color="#909090">=None</font>, stdout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-bp_commands"><strong>bp_commands</strong></a>(self, frame)</dt><dd><tt>Call&nbsp;every&nbsp;command&nbsp;that&nbsp;was&nbsp;set&nbsp;for&nbsp;the&nbsp;current&nbsp;active&nbsp;breakpoint&nbsp;(if&nbsp;there&nbsp;is&nbsp;one)<br>
+Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;normal&nbsp;interaction&nbsp;function&nbsp;must&nbsp;be&nbsp;called,&nbsp;False&nbsp;otherwise</tt></dd></dl>
+
+<dl><dt><a name="Pdb-checkline"><strong>checkline</strong></a>(self, filename, lineno)</dt><dd><tt>Check&nbsp;whether&nbsp;specified&nbsp;line&nbsp;seems&nbsp;to&nbsp;be&nbsp;executable.<br>
+&nbsp;<br>
+Return&nbsp;`lineno`&nbsp;if&nbsp;it&nbsp;is,&nbsp;0&nbsp;if&nbsp;not&nbsp;(e.g.&nbsp;a&nbsp;docstring,&nbsp;comment,&nbsp;blank<br>
+line&nbsp;or&nbsp;EOF).&nbsp;Warning:&nbsp;testing&nbsp;is&nbsp;not&nbsp;comprehensive.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-default"><strong>default</strong></a>(self, line)</dt></dl>
+
+<dl><dt><a name="Pdb-defaultFile"><strong>defaultFile</strong></a>(self)</dt><dd><tt>Produce&nbsp;a&nbsp;reasonable&nbsp;default.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-do_EOF"><strong>do_EOF</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_a"><strong>do_a</strong></a> = <a href="#Pdb-do_args">do_args</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_alias"><strong>do_alias</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_args"><strong>do_args</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_b"><strong>do_b</strong></a> = <a href="#Pdb-do_break">do_break</a>(self, arg, temporary<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-do_break"><strong>do_break</strong></a>(self, arg, temporary<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-do_bt"><strong>do_bt</strong></a> = <a href="#Pdb-do_where">do_where</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_c"><strong>do_c</strong></a> = <a href="#Pdb-do_continue">do_continue</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_cl"><strong>do_cl</strong></a> = <a href="#Pdb-do_clear">do_clear</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_clear"><strong>do_clear</strong></a>(self, arg)</dt><dd><tt>Three&nbsp;possibilities,&nbsp;tried&nbsp;in&nbsp;this&nbsp;order:<br>
+clear&nbsp;-&gt;&nbsp;clear&nbsp;all&nbsp;breaks,&nbsp;ask&nbsp;for&nbsp;confirmation<br>
+clear&nbsp;file:lineno&nbsp;-&gt;&nbsp;clear&nbsp;all&nbsp;breaks&nbsp;at&nbsp;file:lineno<br>
+clear&nbsp;bpno&nbsp;bpno&nbsp;...&nbsp;-&gt;&nbsp;clear&nbsp;breakpoints&nbsp;by&nbsp;number</tt></dd></dl>
+
+<dl><dt><a name="Pdb-do_commands"><strong>do_commands</strong></a>(self, arg)</dt><dd><tt>Defines&nbsp;a&nbsp;list&nbsp;of&nbsp;commands&nbsp;associated&nbsp;to&nbsp;a&nbsp;breakpoint<br>
+Those&nbsp;commands&nbsp;will&nbsp;be&nbsp;executed&nbsp;whenever&nbsp;the&nbsp;breakpoint&nbsp;causes&nbsp;the&nbsp;program&nbsp;to&nbsp;stop&nbsp;execution.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-do_condition"><strong>do_condition</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_cont"><strong>do_cont</strong></a> = <a href="#Pdb-do_continue">do_continue</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_continue"><strong>do_continue</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_d"><strong>do_d</strong></a> = <a href="#Pdb-do_down">do_down</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_debug"><strong>do_debug</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_disable"><strong>do_disable</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_down"><strong>do_down</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_enable"><strong>do_enable</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_exit"><strong>do_exit</strong></a> = <a href="#Pdb-do_quit">do_quit</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_h"><strong>do_h</strong></a> = do_help(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_ignore"><strong>do_ignore</strong></a>(self, arg)</dt><dd><tt>arg&nbsp;is&nbsp;bp&nbsp;number&nbsp;followed&nbsp;by&nbsp;ignore&nbsp;count.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-do_j"><strong>do_j</strong></a> = <a href="#Pdb-do_jump">do_jump</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_jump"><strong>do_jump</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_l"><strong>do_l</strong></a> = <a href="#Pdb-do_list">do_list</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_list"><strong>do_list</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_n"><strong>do_n</strong></a> = <a href="#Pdb-do_next">do_next</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_next"><strong>do_next</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_p"><strong>do_p</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_pp"><strong>do_pp</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_q"><strong>do_q</strong></a> = <a href="#Pdb-do_quit">do_quit</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_quit"><strong>do_quit</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_r"><strong>do_r</strong></a> = <a href="#Pdb-do_return">do_return</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_return"><strong>do_return</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_retval"><strong>do_retval</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_rv"><strong>do_rv</strong></a> = <a href="#Pdb-do_retval">do_retval</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_s"><strong>do_s</strong></a> = <a href="#Pdb-do_step">do_step</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_step"><strong>do_step</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_tbreak"><strong>do_tbreak</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_u"><strong>do_u</strong></a> = <a href="#Pdb-do_up">do_up</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_unalias"><strong>do_unalias</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_up"><strong>do_up</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_w"><strong>do_w</strong></a> = <a href="#Pdb-do_where">do_where</a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_whatis"><strong>do_whatis</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-do_where"><strong>do_where</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-execRcLines"><strong>execRcLines</strong></a>(self)</dt><dd><tt>#&nbsp;Can&nbsp;be&nbsp;executed&nbsp;earlier&nbsp;than&nbsp;'setup'&nbsp;if&nbsp;desired</tt></dd></dl>
+
+<dl><dt><a name="Pdb-forget"><strong>forget</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-handle_command_def"><strong>handle_command_def</strong></a>(self, line)</dt><dd><tt>Handles&nbsp;one&nbsp;command&nbsp;line&nbsp;during&nbsp;command&nbsp;list&nbsp;definition.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-help_EOF"><strong>help_EOF</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_a"><strong>help_a</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_alias"><strong>help_alias</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_args"><strong>help_args</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_b"><strong>help_b</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_break"><strong>help_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_bt"><strong>help_bt</strong></a> = <a href="#Pdb-help_w">help_w</a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_c"><strong>help_c</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_cl"><strong>help_cl</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_clear"><strong>help_clear</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_commands"><strong>help_commands</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_condition"><strong>help_condition</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_cont"><strong>help_cont</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_continue"><strong>help_continue</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_d"><strong>help_d</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_debug"><strong>help_debug</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_disable"><strong>help_disable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_down"><strong>help_down</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_enable"><strong>help_enable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_exec"><strong>help_exec</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_exit"><strong>help_exit</strong></a> = <a href="#Pdb-help_q">help_q</a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_h"><strong>help_h</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_help"><strong>help_help</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_ignore"><strong>help_ignore</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_j"><strong>help_j</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_jump"><strong>help_jump</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_l"><strong>help_l</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_list"><strong>help_list</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_n"><strong>help_n</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_next"><strong>help_next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_p"><strong>help_p</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_pdb"><strong>help_pdb</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_pp"><strong>help_pp</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_q"><strong>help_q</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_quit"><strong>help_quit</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_r"><strong>help_r</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_return"><strong>help_return</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_s"><strong>help_s</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_step"><strong>help_step</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_tbreak"><strong>help_tbreak</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_u"><strong>help_u</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_unalias"><strong>help_unalias</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_up"><strong>help_up</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_w"><strong>help_w</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_whatis"><strong>help_whatis</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-help_where"><strong>help_where</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-interaction"><strong>interaction</strong></a>(self, frame, traceback)</dt></dl>
+
+<dl><dt><a name="Pdb-lineinfo"><strong>lineinfo</strong></a>(self, identifier)</dt></dl>
+
+<dl><dt><a name="Pdb-lookupmodule"><strong>lookupmodule</strong></a>(self, filename)</dt><dd><tt>Helper&nbsp;function&nbsp;for&nbsp;break/clear&nbsp;parsing&nbsp;--&nbsp;may&nbsp;be&nbsp;overridden.<br>
+&nbsp;<br>
+<a href="#Pdb-lookupmodule">lookupmodule</a>()&nbsp;translates&nbsp;(possibly&nbsp;incomplete)&nbsp;file&nbsp;or&nbsp;module&nbsp;name<br>
+into&nbsp;an&nbsp;absolute&nbsp;file&nbsp;name.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-onecmd"><strong>onecmd</strong></a>(self, line)</dt><dd><tt>Interpret&nbsp;the&nbsp;argument&nbsp;as&nbsp;though&nbsp;it&nbsp;had&nbsp;been&nbsp;typed&nbsp;in&nbsp;response<br>
+to&nbsp;the&nbsp;prompt.<br>
+&nbsp;<br>
+Checks&nbsp;whether&nbsp;this&nbsp;line&nbsp;is&nbsp;typed&nbsp;at&nbsp;the&nbsp;normal&nbsp;prompt&nbsp;or&nbsp;in<br>
+a&nbsp;breakpoint&nbsp;command&nbsp;list&nbsp;definition.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-precmd"><strong>precmd</strong></a>(self, line)</dt><dd><tt>Handle&nbsp;alias&nbsp;expansion&nbsp;and&nbsp;';;'&nbsp;separator.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-print_stack_entry"><strong>print_stack_entry</strong></a>(self, frame_lineno, prompt_prefix<font color="#909090">='<font color="#c040c0">\n</font>-&gt; '</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-print_stack_trace"><strong>print_stack_trace</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-reset"><strong>reset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-setup"><strong>setup</strong></a>(self, f, t)</dt></dl>
+
+<dl><dt><a name="Pdb-user_call"><strong>user_call</strong></a>(self, frame, argument_list)</dt><dd><tt>This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;there&nbsp;is&nbsp;the&nbsp;remote&nbsp;possibility<br>
+that&nbsp;we&nbsp;ever&nbsp;need&nbsp;to&nbsp;stop&nbsp;in&nbsp;this&nbsp;function.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-user_exception"><strong>user_exception</strong></a>(self, frame, (exc_type, exc_value, exc_traceback))</dt><dd><tt>This&nbsp;function&nbsp;is&nbsp;called&nbsp;if&nbsp;an&nbsp;exception&nbsp;occurs,<br>
+but&nbsp;only&nbsp;if&nbsp;we&nbsp;are&nbsp;to&nbsp;stop&nbsp;at&nbsp;or&nbsp;just&nbsp;below&nbsp;this&nbsp;level.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-user_line"><strong>user_line</strong></a>(self, frame)</dt><dd><tt>This&nbsp;function&nbsp;is&nbsp;called&nbsp;when&nbsp;we&nbsp;stop&nbsp;or&nbsp;break&nbsp;at&nbsp;this&nbsp;line.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-user_return"><strong>user_return</strong></a>(self, frame, return_value)</dt><dd><tt>This&nbsp;function&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;return&nbsp;trap&nbsp;is&nbsp;set&nbsp;here.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>commands_resuming</strong> = ['do_continue', 'do_step', 'do_next', 'do_return', 'do_quit', 'do_jump']</dl>
+
+<hr>
+Methods inherited from <a href="bdb.html#Bdb">bdb.Bdb</a>:<br>
+<dl><dt><a name="Pdb-break_anywhere"><strong>break_anywhere</strong></a>(self, frame)</dt></dl>
+
+<dl><dt><a name="Pdb-break_here"><strong>break_here</strong></a>(self, frame)</dt></dl>
+
+<dl><dt><a name="Pdb-canonic"><strong>canonic</strong></a>(self, filename)</dt></dl>
+
+<dl><dt><a name="Pdb-clear_all_breaks"><strong>clear_all_breaks</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-clear_all_file_breaks"><strong>clear_all_file_breaks</strong></a>(self, filename)</dt></dl>
+
+<dl><dt><a name="Pdb-clear_bpbynumber"><strong>clear_bpbynumber</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-clear_break"><strong>clear_break</strong></a>(self, filename, lineno)</dt></dl>
+
+<dl><dt><a name="Pdb-dispatch_call"><strong>dispatch_call</strong></a>(self, frame, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-dispatch_exception"><strong>dispatch_exception</strong></a>(self, frame, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-dispatch_line"><strong>dispatch_line</strong></a>(self, frame)</dt></dl>
+
+<dl><dt><a name="Pdb-dispatch_return"><strong>dispatch_return</strong></a>(self, frame, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-format_stack_entry"><strong>format_stack_entry</strong></a>(self, frame_lineno, lprefix<font color="#909090">=': '</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-get_all_breaks"><strong>get_all_breaks</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-get_break"><strong>get_break</strong></a>(self, filename, lineno)</dt></dl>
+
+<dl><dt><a name="Pdb-get_breaks"><strong>get_breaks</strong></a>(self, filename, lineno)</dt></dl>
+
+<dl><dt><a name="Pdb-get_file_breaks"><strong>get_file_breaks</strong></a>(self, filename)</dt></dl>
+
+<dl><dt><a name="Pdb-get_stack"><strong>get_stack</strong></a>(self, f, t)</dt></dl>
+
+<dl><dt><a name="Pdb-run"><strong>run</strong></a>(self, cmd, globals<font color="#909090">=None</font>, locals<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-runcall"><strong>runcall</strong></a>(self, func, *args, **kwds)</dt></dl>
+
+<dl><dt><a name="Pdb-runctx"><strong>runctx</strong></a>(self, cmd, globals, locals)</dt></dl>
+
+<dl><dt><a name="Pdb-runeval"><strong>runeval</strong></a>(self, expr, globals<font color="#909090">=None</font>, locals<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-set_break"><strong>set_break</strong></a>(self, filename, lineno, temporary<font color="#909090">=0</font>, cond<font color="#909090">=None</font>, funcname<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Pdb-set_continue"><strong>set_continue</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-set_next"><strong>set_next</strong></a>(self, frame)</dt><dd><tt>Stop&nbsp;on&nbsp;the&nbsp;next&nbsp;line&nbsp;in&nbsp;or&nbsp;below&nbsp;the&nbsp;given&nbsp;frame.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-set_quit"><strong>set_quit</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-set_return"><strong>set_return</strong></a>(self, frame)</dt><dd><tt>Stop&nbsp;when&nbsp;returning&nbsp;from&nbsp;the&nbsp;given&nbsp;frame.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-set_step"><strong>set_step</strong></a>(self)</dt><dd><tt>Stop&nbsp;after&nbsp;one&nbsp;line&nbsp;of&nbsp;code.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-set_trace"><strong>set_trace</strong></a>(self, frame<font color="#909090">=None</font>)</dt><dd><tt>Start&nbsp;debugging&nbsp;from&nbsp;`frame`.<br>
+&nbsp;<br>
+If&nbsp;frame&nbsp;is&nbsp;not&nbsp;specified,&nbsp;debugging&nbsp;starts&nbsp;from&nbsp;caller's&nbsp;frame.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-stop_here"><strong>stop_here</strong></a>(self, frame)</dt></dl>
+
+<dl><dt><a name="Pdb-trace_dispatch"><strong>trace_dispatch</strong></a>(self, frame, event, arg)</dt></dl>
+
+<hr>
+Methods inherited from <a href="cmd.html#Cmd">cmd.Cmd</a>:<br>
+<dl><dt><a name="Pdb-cmdloop"><strong>cmdloop</strong></a>(self, intro<font color="#909090">=None</font>)</dt><dd><tt>Repeatedly&nbsp;issue&nbsp;a&nbsp;prompt,&nbsp;accept&nbsp;input,&nbsp;parse&nbsp;an&nbsp;initial&nbsp;prefix<br>
+off&nbsp;the&nbsp;received&nbsp;input,&nbsp;and&nbsp;dispatch&nbsp;to&nbsp;action&nbsp;methods,&nbsp;passing&nbsp;them<br>
+the&nbsp;remainder&nbsp;of&nbsp;the&nbsp;line&nbsp;as&nbsp;argument.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-columnize"><strong>columnize</strong></a>(self, list, displaywidth<font color="#909090">=80</font>)</dt><dd><tt>Display&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;as&nbsp;a&nbsp;compact&nbsp;set&nbsp;of&nbsp;columns.<br>
+&nbsp;<br>
+Each&nbsp;column&nbsp;is&nbsp;only&nbsp;as&nbsp;wide&nbsp;as&nbsp;necessary.<br>
+Columns&nbsp;are&nbsp;separated&nbsp;by&nbsp;two&nbsp;spaces&nbsp;(one&nbsp;was&nbsp;not&nbsp;legible&nbsp;enough).</tt></dd></dl>
+
+<dl><dt><a name="Pdb-complete"><strong>complete</strong></a>(self, text, state)</dt><dd><tt>Return&nbsp;the&nbsp;next&nbsp;possible&nbsp;completion&nbsp;for&nbsp;'text'.<br>
+&nbsp;<br>
+If&nbsp;a&nbsp;command&nbsp;has&nbsp;not&nbsp;been&nbsp;entered,&nbsp;then&nbsp;complete&nbsp;against&nbsp;command&nbsp;list.<br>
+Otherwise&nbsp;try&nbsp;to&nbsp;call&nbsp;complete_&lt;command&gt;&nbsp;to&nbsp;get&nbsp;list&nbsp;of&nbsp;completions.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-complete_help"><strong>complete_help</strong></a>(self, *args)</dt></dl>
+
+<dl><dt><a name="Pdb-completedefault"><strong>completedefault</strong></a>(self, *ignored)</dt><dd><tt>Method&nbsp;called&nbsp;to&nbsp;complete&nbsp;an&nbsp;input&nbsp;line&nbsp;when&nbsp;no&nbsp;command-specific<br>
+complete_*()&nbsp;method&nbsp;is&nbsp;available.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;it&nbsp;returns&nbsp;an&nbsp;empty&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-completenames"><strong>completenames</strong></a>(self, text, *ignored)</dt></dl>
+
+<dl><dt><a name="Pdb-do_help"><strong>do_help</strong></a>(self, arg)</dt></dl>
+
+<dl><dt><a name="Pdb-emptyline"><strong>emptyline</strong></a>(self)</dt><dd><tt>Called&nbsp;when&nbsp;an&nbsp;empty&nbsp;line&nbsp;is&nbsp;entered&nbsp;in&nbsp;response&nbsp;to&nbsp;the&nbsp;prompt.<br>
+&nbsp;<br>
+If&nbsp;this&nbsp;method&nbsp;is&nbsp;not&nbsp;overridden,&nbsp;it&nbsp;repeats&nbsp;the&nbsp;last&nbsp;nonempty<br>
+command&nbsp;entered.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-get_names"><strong>get_names</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pdb-parseline"><strong>parseline</strong></a>(self, line)</dt><dd><tt>Parse&nbsp;the&nbsp;line&nbsp;into&nbsp;a&nbsp;command&nbsp;name&nbsp;and&nbsp;a&nbsp;string&nbsp;containing<br>
+the&nbsp;arguments.&nbsp;&nbsp;Returns&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;(command,&nbsp;args,&nbsp;line).<br>
+'command'&nbsp;and&nbsp;'args'&nbsp;may&nbsp;be&nbsp;None&nbsp;if&nbsp;the&nbsp;line&nbsp;couldn't&nbsp;be&nbsp;parsed.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-postcmd"><strong>postcmd</strong></a>(self, stop, line)</dt><dd><tt>Hook&nbsp;method&nbsp;executed&nbsp;just&nbsp;after&nbsp;a&nbsp;command&nbsp;dispatch&nbsp;is&nbsp;finished.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-postloop"><strong>postloop</strong></a>(self)</dt><dd><tt>Hook&nbsp;method&nbsp;executed&nbsp;once&nbsp;when&nbsp;the&nbsp;<a href="#Pdb-cmdloop">cmdloop</a>()&nbsp;method&nbsp;is&nbsp;about&nbsp;to<br>
+return.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-preloop"><strong>preloop</strong></a>(self)</dt><dd><tt>Hook&nbsp;method&nbsp;executed&nbsp;once&nbsp;when&nbsp;the&nbsp;<a href="#Pdb-cmdloop">cmdloop</a>()&nbsp;method&nbsp;is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="Pdb-print_topics"><strong>print_topics</strong></a>(self, header, cmds, cmdlen, maxcol)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="cmd.html#Cmd">cmd.Cmd</a>:<br>
+<dl><dt><strong>doc_header</strong> = 'Documented commands (type help &lt;topic&gt;):'</dl>
+
+<dl><dt><strong>doc_leader</strong> = ''</dl>
+
+<dl><dt><strong>identchars</strong> = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'</dl>
+
+<dl><dt><strong>intro</strong> = None</dl>
+
+<dl><dt><strong>lastcmd</strong> = ''</dl>
+
+<dl><dt><strong>misc_header</strong> = 'Miscellaneous help topics:'</dl>
+
+<dl><dt><strong>nohelp</strong> = '*** No help on %s'</dl>
+
+<dl><dt><strong>prompt</strong> = '(Cmd) '</dl>
+
+<dl><dt><strong>ruler</strong> = '='</dl>
+
+<dl><dt><strong>undoc_header</strong> = 'Undocumented commands:'</dl>
+
+<dl><dt><strong>use_rawinput</strong> = 1</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-help"><strong>help</strong></a>()</dt><dd><tt>#&nbsp;print&nbsp;help</tt></dd></dl>
+ <dl><dt><a name="-pm"><strong>pm</strong></a>()</dt></dl>
+ <dl><dt><a name="-post_mortem"><strong>post_mortem</strong></a>(t)</dt></dl>
+ <dl><dt><a name="-run"><strong>run</strong></a>(statement, globals<font color="#909090">=None</font>, locals<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-runcall"><strong>runcall</strong></a>(*args, **kwds)</dt></dl>
+ <dl><dt><a name="-runctx"><strong>runctx</strong></a>(statement, globals, locals)</dt></dl>
+ <dl><dt><a name="-runeval"><strong>runeval</strong></a>(expression, globals<font color="#909090">=None</font>, locals<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-set_trace"><strong>set_trace</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['run', 'pm', 'Pdb', 'runeval', 'runctx', 'runcall', 'set_trace', 'post_mortem', 'help']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

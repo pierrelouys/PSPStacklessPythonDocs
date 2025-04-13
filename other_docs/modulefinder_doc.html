@@ -1,0 +1,131 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>modulefinder</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/modulefinder.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/modulefinder.py</a></font></td></tr></table>
+    <p><tt>Find&nbsp;modules&nbsp;used&nbsp;by&nbsp;a&nbsp;script,&nbsp;using&nbsp;introspection.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="dis.html">dis</a><br>
+<a href="imp.html">imp</a><br>
+</td><td width="25%" valign=top><a href="marshal.html">marshal</a><br>
+<a href="new.html">new</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="modulefinder.html#Module">Module</a>
+</font></dt><dt><font face="helvetica, arial"><a href="modulefinder.html#ModuleFinder">ModuleFinder</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Module">class <strong>Module</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Module-__init__"><strong>__init__</strong></a>(self, name, file<font color="#909090">=None</font>, path<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Module-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ModuleFinder">class <strong>ModuleFinder</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ModuleFinder-__init__"><strong>__init__</strong></a>(self, path<font color="#909090">=None</font>, debug<font color="#909090">=0</font>, excludes<font color="#909090">=[]</font>, replace_paths<font color="#909090">=[]</font>)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-add_module"><strong>add_module</strong></a>(self, fqname)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-any_missing"><strong>any_missing</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;modules&nbsp;that&nbsp;appear&nbsp;to&nbsp;be&nbsp;missing.&nbsp;Use<br>
+<a href="#ModuleFinder-any_missing_maybe">any_missing_maybe</a>()&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;know&nbsp;which&nbsp;modules&nbsp;are<br>
+certain&nbsp;to&nbsp;be&nbsp;missing,&nbsp;and&nbsp;which&nbsp;*may*&nbsp;be&nbsp;missing.</tt></dd></dl>
+
+<dl><dt><a name="ModuleFinder-any_missing_maybe"><strong>any_missing_maybe</strong></a>(self)</dt><dd><tt>Return&nbsp;two&nbsp;lists,&nbsp;one&nbsp;with&nbsp;modules&nbsp;that&nbsp;are&nbsp;certainly&nbsp;missing<br>
+and&nbsp;one&nbsp;with&nbsp;modules&nbsp;that&nbsp;*may*&nbsp;be&nbsp;missing.&nbsp;The&nbsp;latter&nbsp;names&nbsp;could<br>
+either&nbsp;be&nbsp;submodules&nbsp;*or*&nbsp;just&nbsp;global&nbsp;names&nbsp;in&nbsp;the&nbsp;package.<br>
+&nbsp;<br>
+The&nbsp;reason&nbsp;it&nbsp;can't&nbsp;always&nbsp;be&nbsp;determined&nbsp;is&nbsp;that&nbsp;it's&nbsp;impossible&nbsp;to<br>
+tell&nbsp;which&nbsp;names&nbsp;are&nbsp;imported&nbsp;when&nbsp;"from&nbsp;module&nbsp;import&nbsp;*"&nbsp;is&nbsp;done<br>
+with&nbsp;an&nbsp;extension&nbsp;module,&nbsp;short&nbsp;of&nbsp;actually&nbsp;importing&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="ModuleFinder-determine_parent"><strong>determine_parent</strong></a>(self, caller)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-ensure_fromlist"><strong>ensure_fromlist</strong></a>(self, m, fromlist, recursive<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-find_all_submodules"><strong>find_all_submodules</strong></a>(self, m)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-find_head_package"><strong>find_head_package</strong></a>(self, parent, name)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-find_module"><strong>find_module</strong></a>(self, name, path, parent<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-import_hook"><strong>import_hook</strong></a>(self, name, caller<font color="#909090">=None</font>, fromlist<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-import_module"><strong>import_module</strong></a>(self, partname, fqname, parent)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-load_file"><strong>load_file</strong></a>(self, pathname)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-load_module"><strong>load_module</strong></a>(self, fqname, fp, pathname, (suffix, mode, type))</dt></dl>
+
+<dl><dt><a name="ModuleFinder-load_package"><strong>load_package</strong></a>(self, fqname, pathname)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-load_tail"><strong>load_tail</strong></a>(self, q, tail)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-msg"><strong>msg</strong></a>(self, level, str, *args)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-msgin"><strong>msgin</strong></a>(self, *args)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-msgout"><strong>msgout</strong></a>(self, *args)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-replace_paths_in_code"><strong>replace_paths_in_code</strong></a>(self, co)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-report"><strong>report</strong></a>(self)</dt><dd><tt>Print&nbsp;a&nbsp;report&nbsp;to&nbsp;stdout,&nbsp;listing&nbsp;the&nbsp;found&nbsp;modules&nbsp;with&nbsp;their<br>
+paths,&nbsp;as&nbsp;well&nbsp;as&nbsp;modules&nbsp;that&nbsp;are&nbsp;missing,&nbsp;or&nbsp;seem&nbsp;to&nbsp;be&nbsp;missing.</tt></dd></dl>
+
+<dl><dt><a name="ModuleFinder-run_script"><strong>run_script</strong></a>(self, pathname)</dt></dl>
+
+<dl><dt><a name="ModuleFinder-scan_code"><strong>scan_code</strong></a>(self, co, m)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-AddPackagePath"><strong>AddPackagePath</strong></a>(packagename, path)</dt><dd><tt>#&nbsp;A&nbsp;Public&nbsp;interface</tt></dd></dl>
+ <dl><dt><a name="-ReplacePackage"><strong>ReplacePackage</strong></a>(oldname, newname)</dt></dl>
+ <dl><dt><a name="-test"><strong>test</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>IMPORT_NAME</strong> = 107<br>
+<strong>LOAD_CONST</strong> = 100<br>
+<strong>READ_MODE</strong> = 'U'<br>
+<strong>STORE_GLOBAL</strong> = 97<br>
+<strong>STORE_NAME</strong> = 90<br>
+<strong>STORE_OPS</strong> = [90, 97]<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>packagePathMap</strong> = {}<br>
+<strong>replacePackageMap</strong> = {}</td></tr></table>

@@ -1,0 +1,301 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>formatter</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/formatter.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/formatter.py</a></font></td></tr></table>
+    <p><tt>Generic&nbsp;output&nbsp;formatting.<br>
+&nbsp;<br>
+Formatter&nbsp;objects&nbsp;transform&nbsp;an&nbsp;abstract&nbsp;flow&nbsp;of&nbsp;formatting&nbsp;events&nbsp;into<br>
+specific&nbsp;output&nbsp;events&nbsp;on&nbsp;writer&nbsp;objects.&nbsp;Formatters&nbsp;manage&nbsp;several&nbsp;stack<br>
+structures&nbsp;to&nbsp;allow&nbsp;various&nbsp;properties&nbsp;of&nbsp;a&nbsp;writer&nbsp;object&nbsp;to&nbsp;be&nbsp;changed&nbsp;and<br>
+restored;&nbsp;writers&nbsp;need&nbsp;not&nbsp;be&nbsp;able&nbsp;to&nbsp;handle&nbsp;relative&nbsp;changes&nbsp;nor&nbsp;any&nbsp;sort<br>
+of&nbsp;``change&nbsp;back''&nbsp;operation.&nbsp;Specific&nbsp;writer&nbsp;properties&nbsp;which&nbsp;may&nbsp;be<br>
+controlled&nbsp;via&nbsp;formatter&nbsp;objects&nbsp;are&nbsp;horizontal&nbsp;alignment,&nbsp;font,&nbsp;and&nbsp;left<br>
+margin&nbsp;indentations.&nbsp;A&nbsp;mechanism&nbsp;is&nbsp;provided&nbsp;which&nbsp;supports&nbsp;providing<br>
+arbitrary,&nbsp;non-exclusive&nbsp;style&nbsp;settings&nbsp;to&nbsp;a&nbsp;writer&nbsp;as&nbsp;well.&nbsp;Additional<br>
+interfaces&nbsp;facilitate&nbsp;formatting&nbsp;events&nbsp;which&nbsp;are&nbsp;not&nbsp;reversible,&nbsp;such&nbsp;as<br>
+paragraph&nbsp;separation.<br>
+&nbsp;<br>
+Writer&nbsp;objects&nbsp;encapsulate&nbsp;device&nbsp;interfaces.&nbsp;Abstract&nbsp;devices,&nbsp;such&nbsp;as<br>
+file&nbsp;formats,&nbsp;are&nbsp;supported&nbsp;as&nbsp;well&nbsp;as&nbsp;physical&nbsp;devices.&nbsp;The&nbsp;provided<br>
+implementations&nbsp;all&nbsp;work&nbsp;with&nbsp;abstract&nbsp;devices.&nbsp;The&nbsp;interface&nbsp;makes<br>
+available&nbsp;mechanisms&nbsp;for&nbsp;setting&nbsp;the&nbsp;properties&nbsp;which&nbsp;formatter&nbsp;objects<br>
+manage&nbsp;and&nbsp;inserting&nbsp;data&nbsp;into&nbsp;the&nbsp;output.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="formatter.html#AbstractFormatter">AbstractFormatter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="formatter.html#NullFormatter">NullFormatter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="formatter.html#NullWriter">NullWriter</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="formatter.html#AbstractWriter">AbstractWriter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="formatter.html#DumbWriter">DumbWriter</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AbstractFormatter">class <strong>AbstractFormatter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;standard&nbsp;formatter.<br>
+&nbsp;<br>
+This&nbsp;implementation&nbsp;has&nbsp;demonstrated&nbsp;wide&nbsp;applicability&nbsp;to&nbsp;many&nbsp;writers,<br>
+and&nbsp;may&nbsp;be&nbsp;used&nbsp;directly&nbsp;in&nbsp;most&nbsp;circumstances.&nbsp;&nbsp;It&nbsp;has&nbsp;been&nbsp;used&nbsp;to<br>
+implement&nbsp;a&nbsp;full-featured&nbsp;World&nbsp;Wide&nbsp;Web&nbsp;browser.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AbstractFormatter-__init__"><strong>__init__</strong></a>(self, writer)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-add_flowing_data"><strong>add_flowing_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-add_hor_rule"><strong>add_hor_rule</strong></a>(self, *args, **kw)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-add_label_data"><strong>add_label_data</strong></a>(self, format, counter, blankline<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-add_line_break"><strong>add_line_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-add_literal_data"><strong>add_literal_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-assert_line_data"><strong>assert_line_data</strong></a>(self, flag<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-end_paragraph"><strong>end_paragraph</strong></a>(self, blankline)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-flush_softspace"><strong>flush_softspace</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-format_counter"><strong>format_counter</strong></a>(self, format, counter)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-format_letter"><strong>format_letter</strong></a>(self, case, counter)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-format_roman"><strong>format_roman</strong></a>(self, case, counter)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-pop_alignment"><strong>pop_alignment</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-pop_font"><strong>pop_font</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-pop_margin"><strong>pop_margin</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-pop_style"><strong>pop_style</strong></a>(self, n<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-push_alignment"><strong>push_alignment</strong></a>(self, align)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-push_font"><strong>push_font</strong></a>(self, (size, i, b, tt))</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-push_margin"><strong>push_margin</strong></a>(self, margin)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-push_style"><strong>push_style</strong></a>(self, *styles)</dt></dl>
+
+<dl><dt><a name="AbstractFormatter-set_spacing"><strong>set_spacing</strong></a>(self, spacing)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AbstractWriter">class <strong>AbstractWriter</strong></a>(<a href="formatter.html#NullWriter">NullWriter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;writer&nbsp;which&nbsp;can&nbsp;be&nbsp;used&nbsp;in&nbsp;debugging&nbsp;formatters,&nbsp;but&nbsp;not&nbsp;much&nbsp;else.<br>
+&nbsp;<br>
+Each&nbsp;method&nbsp;simply&nbsp;announces&nbsp;itself&nbsp;by&nbsp;printing&nbsp;its&nbsp;name&nbsp;and<br>
+arguments&nbsp;on&nbsp;standard&nbsp;output.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AbstractWriter-new_alignment"><strong>new_alignment</strong></a>(self, align)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-new_font"><strong>new_font</strong></a>(self, font)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-new_margin"><strong>new_margin</strong></a>(self, margin, level)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-new_spacing"><strong>new_spacing</strong></a>(self, spacing)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-new_styles"><strong>new_styles</strong></a>(self, styles)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_flowing_data"><strong>send_flowing_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_hor_rule"><strong>send_hor_rule</strong></a>(self, *args, **kw)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_label_data"><strong>send_label_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_line_break"><strong>send_line_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_literal_data"><strong>send_literal_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-send_paragraph"><strong>send_paragraph</strong></a>(self, blankline)</dt></dl>
+
+<hr>
+Methods inherited from <a href="formatter.html#NullWriter">NullWriter</a>:<br>
+<dl><dt><a name="AbstractWriter-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbstractWriter-flush"><strong>flush</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DumbWriter">class <strong>DumbWriter</strong></a>(<a href="formatter.html#NullWriter">NullWriter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Simple&nbsp;writer&nbsp;class&nbsp;which&nbsp;writes&nbsp;output&nbsp;on&nbsp;the&nbsp;file&nbsp;object&nbsp;passed&nbsp;in<br>
+as&nbsp;the&nbsp;file&nbsp;parameter&nbsp;or,&nbsp;if&nbsp;file&nbsp;is&nbsp;omitted,&nbsp;on&nbsp;standard&nbsp;output.&nbsp;&nbsp;The<br>
+output&nbsp;is&nbsp;simply&nbsp;word-wrapped&nbsp;to&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;specified&nbsp;by<br>
+the&nbsp;maxcol&nbsp;parameter.&nbsp;&nbsp;This&nbsp;class&nbsp;is&nbsp;suitable&nbsp;for&nbsp;reflowing&nbsp;a&nbsp;sequence<br>
+of&nbsp;paragraphs.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DumbWriter-__init__"><strong>__init__</strong></a>(self, file<font color="#909090">=None</font>, maxcol<font color="#909090">=72</font>)</dt></dl>
+
+<dl><dt><a name="DumbWriter-reset"><strong>reset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_flowing_data"><strong>send_flowing_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_hor_rule"><strong>send_hor_rule</strong></a>(self, *args, **kw)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_line_break"><strong>send_line_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_literal_data"><strong>send_literal_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_paragraph"><strong>send_paragraph</strong></a>(self, blankline)</dt></dl>
+
+<hr>
+Methods inherited from <a href="formatter.html#NullWriter">NullWriter</a>:<br>
+<dl><dt><a name="DumbWriter-flush"><strong>flush</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DumbWriter-new_alignment"><strong>new_alignment</strong></a>(self, align)</dt></dl>
+
+<dl><dt><a name="DumbWriter-new_font"><strong>new_font</strong></a>(self, font)</dt></dl>
+
+<dl><dt><a name="DumbWriter-new_margin"><strong>new_margin</strong></a>(self, margin, level)</dt></dl>
+
+<dl><dt><a name="DumbWriter-new_spacing"><strong>new_spacing</strong></a>(self, spacing)</dt></dl>
+
+<dl><dt><a name="DumbWriter-new_styles"><strong>new_styles</strong></a>(self, styles)</dt></dl>
+
+<dl><dt><a name="DumbWriter-send_label_data"><strong>send_label_data</strong></a>(self, data)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NullFormatter">class <strong>NullFormatter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;formatter&nbsp;which&nbsp;does&nbsp;nothing.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;writer&nbsp;parameter&nbsp;is&nbsp;omitted,&nbsp;a&nbsp;<a href="#NullWriter">NullWriter</a>&nbsp;instance&nbsp;is&nbsp;created.<br>
+No&nbsp;methods&nbsp;of&nbsp;the&nbsp;writer&nbsp;are&nbsp;called&nbsp;by&nbsp;<a href="#NullFormatter">NullFormatter</a>&nbsp;instances.<br>
+&nbsp;<br>
+Implementations&nbsp;should&nbsp;inherit&nbsp;from&nbsp;this&nbsp;class&nbsp;if&nbsp;implementing&nbsp;a&nbsp;writer<br>
+interface&nbsp;but&nbsp;don't&nbsp;need&nbsp;to&nbsp;inherit&nbsp;any&nbsp;implementation.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NullFormatter-__init__"><strong>__init__</strong></a>(self, writer<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="NullFormatter-add_flowing_data"><strong>add_flowing_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="NullFormatter-add_hor_rule"><strong>add_hor_rule</strong></a>(self, *args, **kw)</dt></dl>
+
+<dl><dt><a name="NullFormatter-add_label_data"><strong>add_label_data</strong></a>(self, format, counter, blankline<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="NullFormatter-add_line_break"><strong>add_line_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullFormatter-add_literal_data"><strong>add_literal_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="NullFormatter-assert_line_data"><strong>assert_line_data</strong></a>(self, flag<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="NullFormatter-end_paragraph"><strong>end_paragraph</strong></a>(self, blankline)</dt></dl>
+
+<dl><dt><a name="NullFormatter-flush_softspace"><strong>flush_softspace</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullFormatter-pop_alignment"><strong>pop_alignment</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullFormatter-pop_font"><strong>pop_font</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullFormatter-pop_margin"><strong>pop_margin</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullFormatter-pop_style"><strong>pop_style</strong></a>(self, n<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="NullFormatter-push_alignment"><strong>push_alignment</strong></a>(self, align)</dt></dl>
+
+<dl><dt><a name="NullFormatter-push_font"><strong>push_font</strong></a>(self, x)</dt></dl>
+
+<dl><dt><a name="NullFormatter-push_margin"><strong>push_margin</strong></a>(self, margin)</dt></dl>
+
+<dl><dt><a name="NullFormatter-push_style"><strong>push_style</strong></a>(self, *styles)</dt></dl>
+
+<dl><dt><a name="NullFormatter-set_spacing"><strong>set_spacing</strong></a>(self, spacing)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NullWriter">class <strong>NullWriter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Minimal&nbsp;writer&nbsp;interface&nbsp;to&nbsp;use&nbsp;in&nbsp;testing&nbsp;&amp;&nbsp;inheritance.<br>
+&nbsp;<br>
+A&nbsp;writer&nbsp;which&nbsp;only&nbsp;provides&nbsp;the&nbsp;interface&nbsp;definition;&nbsp;no&nbsp;actions&nbsp;are<br>
+taken&nbsp;on&nbsp;any&nbsp;methods.&nbsp;&nbsp;This&nbsp;should&nbsp;be&nbsp;the&nbsp;base&nbsp;class&nbsp;for&nbsp;all&nbsp;writers<br>
+which&nbsp;do&nbsp;not&nbsp;need&nbsp;to&nbsp;inherit&nbsp;any&nbsp;implementation&nbsp;methods.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NullWriter-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullWriter-flush"><strong>flush</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullWriter-new_alignment"><strong>new_alignment</strong></a>(self, align)</dt></dl>
+
+<dl><dt><a name="NullWriter-new_font"><strong>new_font</strong></a>(self, font)</dt></dl>
+
+<dl><dt><a name="NullWriter-new_margin"><strong>new_margin</strong></a>(self, margin, level)</dt></dl>
+
+<dl><dt><a name="NullWriter-new_spacing"><strong>new_spacing</strong></a>(self, spacing)</dt></dl>
+
+<dl><dt><a name="NullWriter-new_styles"><strong>new_styles</strong></a>(self, styles)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_flowing_data"><strong>send_flowing_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_hor_rule"><strong>send_hor_rule</strong></a>(self, *args, **kw)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_label_data"><strong>send_label_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_line_break"><strong>send_line_break</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_literal_data"><strong>send_literal_data</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="NullWriter-send_paragraph"><strong>send_paragraph</strong></a>(self, blankline)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-test"><strong>test</strong></a>(file<font color="#909090">=None</font>)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AS_IS</strong> = None<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

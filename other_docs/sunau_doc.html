@@ -1,0 +1,307 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>sunau</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sunau.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sunau.py</a></font></td></tr></table>
+    <p><tt>Stuff&nbsp;to&nbsp;parse&nbsp;Sun&nbsp;and&nbsp;NeXT&nbsp;audio&nbsp;files.<br>
+&nbsp;<br>
+An&nbsp;audio&nbsp;file&nbsp;consists&nbsp;of&nbsp;a&nbsp;header&nbsp;followed&nbsp;by&nbsp;the&nbsp;data.&nbsp;&nbsp;The&nbsp;structure<br>
+of&nbsp;the&nbsp;header&nbsp;is&nbsp;as&nbsp;follows.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;magic&nbsp;word&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;header&nbsp;size&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;data&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;encoding&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;sample&nbsp;rate&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;#&nbsp;of&nbsp;channels&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;info&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---------------+<br>
+&nbsp;<br>
+The&nbsp;magic&nbsp;word&nbsp;consists&nbsp;of&nbsp;the&nbsp;4&nbsp;characters&nbsp;'.snd'.&nbsp;&nbsp;Apart&nbsp;from&nbsp;the<br>
+info&nbsp;field,&nbsp;all&nbsp;header&nbsp;fields&nbsp;are&nbsp;4&nbsp;bytes&nbsp;in&nbsp;size.&nbsp;&nbsp;They&nbsp;are&nbsp;all<br>
+32-bit&nbsp;unsigned&nbsp;integers&nbsp;encoded&nbsp;in&nbsp;big-endian&nbsp;byte&nbsp;order.<br>
+&nbsp;<br>
+The&nbsp;header&nbsp;size&nbsp;really&nbsp;gives&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;data.<br>
+The&nbsp;data&nbsp;size&nbsp;is&nbsp;the&nbsp;physical&nbsp;size&nbsp;of&nbsp;the&nbsp;data.&nbsp;&nbsp;From&nbsp;the&nbsp;other<br>
+parameters&nbsp;the&nbsp;number&nbsp;of&nbsp;frames&nbsp;can&nbsp;be&nbsp;calculated.<br>
+The&nbsp;encoding&nbsp;gives&nbsp;the&nbsp;way&nbsp;in&nbsp;which&nbsp;audio&nbsp;samples&nbsp;are&nbsp;encoded.<br>
+Possible&nbsp;values&nbsp;are&nbsp;listed&nbsp;below.<br>
+The&nbsp;info&nbsp;field&nbsp;currently&nbsp;consists&nbsp;of&nbsp;an&nbsp;ASCII&nbsp;string&nbsp;giving&nbsp;a<br>
+human-readable&nbsp;description&nbsp;of&nbsp;the&nbsp;audio&nbsp;file.&nbsp;&nbsp;The&nbsp;info&nbsp;field&nbsp;is<br>
+padded&nbsp;with&nbsp;NUL&nbsp;bytes&nbsp;to&nbsp;the&nbsp;header&nbsp;size.<br>
+&nbsp;<br>
+Usage.<br>
+&nbsp;<br>
+Reading&nbsp;audio&nbsp;files:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;=&nbsp;sunau.<a href="#-open">open</a>(file,&nbsp;'r')<br>
+where&nbsp;file&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;file&nbsp;or&nbsp;an&nbsp;open&nbsp;file&nbsp;pointer.<br>
+The&nbsp;open&nbsp;file&nbsp;pointer&nbsp;must&nbsp;have&nbsp;methods&nbsp;read(),&nbsp;seek(),&nbsp;and&nbsp;close().<br>
+When&nbsp;the&nbsp;setpos()&nbsp;and&nbsp;rewind()&nbsp;methods&nbsp;are&nbsp;not&nbsp;used,&nbsp;the&nbsp;seek()<br>
+method&nbsp;is&nbsp;not&nbsp;&nbsp;necessary.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;an&nbsp;instance&nbsp;of&nbsp;a&nbsp;class&nbsp;with&nbsp;the&nbsp;following&nbsp;public&nbsp;methods:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getnchannels()&nbsp;&nbsp;--&nbsp;returns&nbsp;number&nbsp;of&nbsp;audio&nbsp;channels&nbsp;(1&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mono,&nbsp;2&nbsp;for&nbsp;stereo)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getsampwidth()&nbsp;&nbsp;--&nbsp;returns&nbsp;sample&nbsp;width&nbsp;in&nbsp;bytes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getframerate()&nbsp;&nbsp;--&nbsp;returns&nbsp;sampling&nbsp;frequency<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getnframes()&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;number&nbsp;of&nbsp;audio&nbsp;frames<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getcomptype()&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;compression&nbsp;type&nbsp;('NONE'&nbsp;or&nbsp;'ULAW')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getcompname()&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;human-readable&nbsp;version&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compression&nbsp;type&nbsp;('not&nbsp;compressed'&nbsp;matches&nbsp;'NONE')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getparams()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;a&nbsp;tuple&nbsp;consisting&nbsp;of&nbsp;all&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;above&nbsp;in&nbsp;the&nbsp;above&nbsp;order<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getmarkers()&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;None&nbsp;(for&nbsp;compatibility&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aifc&nbsp;module)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getmark(id)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;raises&nbsp;an&nbsp;error&nbsp;since&nbsp;the&nbsp;mark&nbsp;does&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exist&nbsp;(for&nbsp;compatibility&nbsp;with&nbsp;the&nbsp;aifc&nbsp;module)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;readframes(n)&nbsp;&nbsp;&nbsp;--&nbsp;returns&nbsp;at&nbsp;most&nbsp;n&nbsp;frames&nbsp;of&nbsp;audio<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewind()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;rewind&nbsp;to&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;audio&nbsp;stream<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setpos(pos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;seek&nbsp;to&nbsp;the&nbsp;specified&nbsp;position<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tell()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;return&nbsp;the&nbsp;current&nbsp;position<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;close&nbsp;the&nbsp;instance&nbsp;(make&nbsp;it&nbsp;unusable)<br>
+The&nbsp;position&nbsp;returned&nbsp;by&nbsp;tell()&nbsp;and&nbsp;the&nbsp;position&nbsp;given&nbsp;to&nbsp;setpos()<br>
+are&nbsp;compatible&nbsp;and&nbsp;have&nbsp;nothing&nbsp;to&nbsp;do&nbsp;with&nbsp;the&nbsp;actual&nbsp;position&nbsp;in&nbsp;the<br>
+file.<br>
+The&nbsp;close()&nbsp;method&nbsp;is&nbsp;called&nbsp;automatically&nbsp;when&nbsp;the&nbsp;class&nbsp;instance<br>
+is&nbsp;destroyed.<br>
+&nbsp;<br>
+Writing&nbsp;audio&nbsp;files:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;=&nbsp;sunau.<a href="#-open">open</a>(file,&nbsp;'w')<br>
+where&nbsp;file&nbsp;is&nbsp;either&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;file&nbsp;or&nbsp;an&nbsp;open&nbsp;file&nbsp;pointer.<br>
+The&nbsp;open&nbsp;file&nbsp;pointer&nbsp;must&nbsp;have&nbsp;methods&nbsp;write(),&nbsp;tell(),&nbsp;seek(),&nbsp;and<br>
+close().<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;an&nbsp;instance&nbsp;of&nbsp;a&nbsp;class&nbsp;with&nbsp;the&nbsp;following&nbsp;public&nbsp;methods:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setnchannels(n)&nbsp;--&nbsp;set&nbsp;the&nbsp;number&nbsp;of&nbsp;channels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setsampwidth(n)&nbsp;--&nbsp;set&nbsp;the&nbsp;sample&nbsp;width<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setframerate(n)&nbsp;--&nbsp;set&nbsp;the&nbsp;frame&nbsp;rate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setnframes(n)&nbsp;&nbsp;&nbsp;--&nbsp;set&nbsp;the&nbsp;number&nbsp;of&nbsp;frames<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setcomptype(type,&nbsp;name)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;set&nbsp;the&nbsp;compression&nbsp;type&nbsp;and&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;human-readable&nbsp;compression&nbsp;type<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setparams(tuple)--&nbsp;set&nbsp;all&nbsp;parameters&nbsp;at&nbsp;once<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tell()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;return&nbsp;current&nbsp;position&nbsp;in&nbsp;output&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeframesraw(data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;write&nbsp;audio&nbsp;frames&nbsp;without&nbsp;pathing&nbsp;up&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file&nbsp;header<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeframes(data)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;write&nbsp;audio&nbsp;frames&nbsp;and&nbsp;patch&nbsp;up&nbsp;the&nbsp;file&nbsp;header<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;patch&nbsp;up&nbsp;the&nbsp;file&nbsp;header&nbsp;and&nbsp;close&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;file<br>
+You&nbsp;should&nbsp;set&nbsp;the&nbsp;parameters&nbsp;before&nbsp;the&nbsp;first&nbsp;writeframesraw&nbsp;or<br>
+writeframes.&nbsp;&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;frames&nbsp;does&nbsp;not&nbsp;need&nbsp;to&nbsp;be&nbsp;set,<br>
+but&nbsp;when&nbsp;it&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;correct&nbsp;value,&nbsp;the&nbsp;header&nbsp;does&nbsp;not&nbsp;have&nbsp;to<br>
+be&nbsp;patched&nbsp;up.<br>
+It&nbsp;is&nbsp;best&nbsp;to&nbsp;first&nbsp;set&nbsp;all&nbsp;parameters,&nbsp;perhaps&nbsp;possibly&nbsp;the<br>
+compression&nbsp;type,&nbsp;and&nbsp;then&nbsp;write&nbsp;audio&nbsp;frames&nbsp;using&nbsp;writeframesraw.<br>
+When&nbsp;all&nbsp;frames&nbsp;have&nbsp;been&nbsp;written,&nbsp;either&nbsp;call&nbsp;writeframes('')&nbsp;or<br>
+close()&nbsp;to&nbsp;patch&nbsp;up&nbsp;the&nbsp;sizes&nbsp;in&nbsp;the&nbsp;header.<br>
+The&nbsp;close()&nbsp;method&nbsp;is&nbsp;called&nbsp;automatically&nbsp;when&nbsp;the&nbsp;class&nbsp;instance<br>
+is&nbsp;destroyed.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="sunau.html#Error">Error</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="sunau.html#Au_read">Au_read</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sunau.html#Au_write">Au_write</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Au_read">class <strong>Au_read</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Au_read-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-__init__"><strong>__init__</strong></a>(self, f)</dt></dl>
+
+<dl><dt><a name="Au_read-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getcompname"><strong>getcompname</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getcomptype"><strong>getcomptype</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getfp"><strong>getfp</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getframerate"><strong>getframerate</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getmark"><strong>getmark</strong></a>(self, id)</dt></dl>
+
+<dl><dt><a name="Au_read-getmarkers"><strong>getmarkers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getnchannels"><strong>getnchannels</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getnframes"><strong>getnframes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getparams"><strong>getparams</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-getsampwidth"><strong>getsampwidth</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-initfp"><strong>initfp</strong></a>(self, file)</dt></dl>
+
+<dl><dt><a name="Au_read-readframes"><strong>readframes</strong></a>(self, nframes)</dt></dl>
+
+<dl><dt><a name="Au_read-rewind"><strong>rewind</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_read-setpos"><strong>setpos</strong></a>(self, pos)</dt></dl>
+
+<dl><dt><a name="Au_read-tell"><strong>tell</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Au_write">class <strong>Au_write</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Au_write-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-__init__"><strong>__init__</strong></a>(self, f)</dt></dl>
+
+<dl><dt><a name="Au_write-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getcompname"><strong>getcompname</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getcomptype"><strong>getcomptype</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getframerate"><strong>getframerate</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getnchannels"><strong>getnchannels</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getnframes"><strong>getnframes</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getparams"><strong>getparams</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-getsampwidth"><strong>getsampwidth</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-initfp"><strong>initfp</strong></a>(self, file)</dt></dl>
+
+<dl><dt><a name="Au_write-setcomptype"><strong>setcomptype</strong></a>(self, type, name)</dt></dl>
+
+<dl><dt><a name="Au_write-setframerate"><strong>setframerate</strong></a>(self, framerate)</dt></dl>
+
+<dl><dt><a name="Au_write-setnchannels"><strong>setnchannels</strong></a>(self, nchannels)</dt></dl>
+
+<dl><dt><a name="Au_write-setnframes"><strong>setnframes</strong></a>(self, nframes)</dt></dl>
+
+<dl><dt><a name="Au_write-setparams"><strong>setparams</strong></a>(self, (nchannels, sampwidth, framerate, nframes, comptype, compname))</dt></dl>
+
+<dl><dt><a name="Au_write-setsampwidth"><strong>setsampwidth</strong></a>(self, sampwidth)</dt></dl>
+
+<dl><dt><a name="Au_write-tell"><strong>tell</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Au_write-writeframes"><strong>writeframes</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="Au_write-writeframesraw"><strong>writeframesraw</strong></a>(self, data)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Error">class <strong>Error</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sunau.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="Error-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#Error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Error-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Error-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Error-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Error-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Error-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-open"><strong>open</strong></a>(f, mode<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-openfp"><strong>openfp</strong></a> = open(f, mode<font color="#909090">=None</font>)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AUDIO_FILE_ENCODING_ADPCM_G721</strong> = 23<br>
+<strong>AUDIO_FILE_ENCODING_ADPCM_G722</strong> = 24<br>
+<strong>AUDIO_FILE_ENCODING_ADPCM_G723_3</strong> = 25<br>
+<strong>AUDIO_FILE_ENCODING_ADPCM_G723_5</strong> = 26<br>
+<strong>AUDIO_FILE_ENCODING_ALAW_8</strong> = 27<br>
+<strong>AUDIO_FILE_ENCODING_DOUBLE</strong> = 7<br>
+<strong>AUDIO_FILE_ENCODING_FLOAT</strong> = 6<br>
+<strong>AUDIO_FILE_ENCODING_LINEAR_16</strong> = 3<br>
+<strong>AUDIO_FILE_ENCODING_LINEAR_24</strong> = 4<br>
+<strong>AUDIO_FILE_ENCODING_LINEAR_32</strong> = 5<br>
+<strong>AUDIO_FILE_ENCODING_LINEAR_8</strong> = 2<br>
+<strong>AUDIO_FILE_ENCODING_MULAW_8</strong> = 1<br>
+<strong>AUDIO_FILE_MAGIC</strong> = 779316836<br>
+<strong>AUDIO_UNKNOWN_SIZE</strong> = 4294967295L<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,74 @@
+
+Please wait a moment while I gather a list of all available modules...
+
+BaseHTTPServer      collections         marshal             site
+Bastion             colorsys            math                smtpd
+CGIHTTPServer       command             md5                 smtplib
+ConfigParser        commands            mhlib               sndhdr
+Cookie              compileall          mime                socket
+DocXMLRPCServer     compiler            mimetools           sqlite3
+HTMLParser          contextlib          mimetypes           sre
+MimeWriter          cookielib           mimify              sre_compile
+Queue               copy                modulefinder        sre_constants
+SimpleHTTPServer    copy_reg            multifile           sre_parse
+SimpleXMLRPCServer  csv                 mutex               stat
+SocketServer        ctypes              netrc               statvfs
+StringIO            datetime            new                 string
+UserDict            dbhash              nntplib             stringold
+UserList            decimal             ntpath              stringprep
+UserString          difflib             nturl2path          strop
+_LWPCookieJar       dircache            opcode              struct
+_MozillaCookieJar   dis                 operator            subprocess
+__builtin__         distutils           optparse            sunau
+__future__          doctest             os                  sunaudio
+_ast                dom                 os2emxpath          symbol
+_bisect             dumbdbm             parser              symtable
+_codecs             dummy_thread        parsers             sys
+_csv                dummy_threading     pdb                 tabnanny
+_elementtree        email               pickle              tarfile
+_functools          encodings           pickletools         telnetlib
+_heapq              errno               pipes               tempfile
+_locale             etree               pkgutil             test
+_md5                exceptions          platform            tests
+_random             filecmp             popen2              textwrap
+_sha512             fileinput           poplib              this
+_socket             fnmatch             posixfile           thread
+_sqlite3            formatter           posixpath           threading
+_sre                fpformat            pprint              time
+_strptime           ftplib              profile             timeit
+_struct             functools           psp2d               timing
+_symtable           gc                  pspmp3              toaiff
+_threading_local    generate_docs       pspnet              token
+_types              getopt              pspogg              tokenize
+_weakref            getpass             pspos               trace
+aifc                gettext             psppath             traceback
+anydbm              glob                pspsnd              tty
+array               gopherlib           pstats              types
+asynchat            gzip                pty                 unicodedata
+asyncore            hashlib             py_compile          unittest
+atexit              heapq               pyclbr              urllib
+audiodev            hmac                pydoc               urllib2
+audioop             hotshot             pyexpat             urlparse
+base64              htmlentitydefs      quopri              user
+bdb                 htmllib             random              uu
+binascii            httplib             re                  uuid
+binhex              ihooks              repr                warnings
+bisect              imaplib             rexec               wave
+bsddb               imghdr              rfc822              weakref
+bz2                 imp                 rlcompleter         webbrowser
+cPickle             imputil             robotparser         whichdb
+cProfile            inspect             runpy               wsgiref
+cStringIO           itertools           sax                 xdrlib
+calendar            keyword             sched               xml
+cgi                 linecache           script              xmllib
+cgitb               locale              select              xmlrpclib
+chunk               logging             sets                zipfile
+cmath               macpath             sgmllib             zipimport
+cmd                 macurl2path         sha                 zlib
+code                mailbox             shelve              
+codecs              mailcap             shlex               
+codeop              markupbase          shutil              
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose descriptions contain the word "spam".
+

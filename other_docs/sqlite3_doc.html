@@ -1,0 +1,1046 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>sqlite3</strong></big></big> (version 50634)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sqlite3/__init__.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sqlite3/__init__.py</a></font></td></tr></table>
+    <p><tt>Python&nbsp;wrapper&nbsp;for&nbsp;Expat&nbsp;parser.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sqlite3.dbapi2.html">dbapi2</a><br>
+</td><td width="25%" valign=top><a href="sqlite3.test.html"><strong>test</strong>&nbsp;(package)</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial">pyexpat.xmlparser
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#Cache">Cache</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#Connection">Connection</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#Cursor">Cursor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#PrepareProtocol">PrepareProtocol</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#Row">Row</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#Statement">Statement</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial">xml.parsers.expat.ExpatError
+</font></dt><dt><font face="helvetica, arial">xml.parsers.expat.ExpatError
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#StandardError">exceptions.StandardError</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="sqlite3.html#Error">Error</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="sqlite3.html#DatabaseError">DatabaseError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="sqlite3.html#DataError">DataError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#IntegrityError">IntegrityError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#InternalError">InternalError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#NotSupportedError">NotSupportedError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#OperationalError">OperationalError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sqlite3.html#ProgrammingError">ProgrammingError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="sqlite3.html#InterfaceError">InterfaceError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="sqlite3.html#Warning">Warning</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Cache">class <strong>Cache</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Cache-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Cache-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="Cache-display"><strong>display</strong></a>(...)</dt><dd><tt>For&nbsp;debugging&nbsp;only.</tt></dd></dl>
+
+<dl><dt><a name="Cache-get"><strong>get</strong></a>(...)</dt><dd><tt>Gets&nbsp;an&nbsp;entry&nbsp;from&nbsp;the&nbsp;cache&nbsp;or&nbsp;calls&nbsp;the&nbsp;factory&nbsp;function&nbsp;to&nbsp;produce&nbsp;one.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b9886c&gt;<dd><tt>T.<a href="#Cache-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Connection">class <strong>Connection</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SQLite&nbsp;database&nbsp;connection&nbsp;<a href="__builtin__.html#object">object</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Connection-__call__"><strong>__call__</strong></a>(...)</dt><dd><tt>x.<a href="#Connection-__call__">__call__</a>(...)&nbsp;&lt;==&gt;&nbsp;x(...)</tt></dd></dl>
+
+<dl><dt><a name="Connection-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Connection-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="Connection-close"><strong>close</strong></a>(...)</dt><dd><tt>Closes&nbsp;the&nbsp;connection.</tt></dd></dl>
+
+<dl><dt><a name="Connection-commit"><strong>commit</strong></a>(...)</dt><dd><tt>Commit&nbsp;the&nbsp;current&nbsp;transaction.</tt></dd></dl>
+
+<dl><dt><a name="Connection-create_aggregate"><strong>create_aggregate</strong></a>(...)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;aggregate.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-create_collation"><strong>create_collation</strong></a>(...)</dt><dd><tt>Creates&nbsp;a&nbsp;collation&nbsp;function.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-create_function"><strong>create_function</strong></a>(...)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;function.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-cursor"><strong>cursor</strong></a>(...)</dt><dd><tt>Return&nbsp;a&nbsp;cursor&nbsp;for&nbsp;the&nbsp;connection.</tt></dd></dl>
+
+<dl><dt><a name="Connection-execute"><strong>execute</strong></a>(...)</dt><dd><tt>Executes&nbsp;a&nbsp;SQL&nbsp;statement.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-executemany"><strong>executemany</strong></a>(...)</dt><dd><tt>Repeatedly&nbsp;executes&nbsp;a&nbsp;SQL&nbsp;statement.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-executescript"><strong>executescript</strong></a>(...)</dt><dd><tt>Executes&nbsp;a&nbsp;multiple&nbsp;SQL&nbsp;statements&nbsp;at&nbsp;once.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-interrupt"><strong>interrupt</strong></a>(...)</dt><dd><tt>Abort&nbsp;any&nbsp;pending&nbsp;database&nbsp;operation.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-rollback"><strong>rollback</strong></a>(...)</dt><dd><tt>Roll&nbsp;back&nbsp;the&nbsp;current&nbsp;transaction.</tt></dd></dl>
+
+<dl><dt><a name="Connection-set_authorizer"><strong>set_authorizer</strong></a>(...)</dt><dd><tt>Sets&nbsp;authorizer&nbsp;callback.&nbsp;Non-standard.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>DataError</strong></dt>
+</dl>
+<dl><dt><strong>DatabaseError</strong></dt>
+</dl>
+<dl><dt><strong>Error</strong></dt>
+</dl>
+<dl><dt><strong>IntegrityError</strong></dt>
+</dl>
+<dl><dt><strong>InterfaceError</strong></dt>
+</dl>
+<dl><dt><strong>InternalError</strong></dt>
+</dl>
+<dl><dt><strong>NotSupportedError</strong></dt>
+</dl>
+<dl><dt><strong>OperationalError</strong></dt>
+</dl>
+<dl><dt><strong>ProgrammingError</strong></dt>
+</dl>
+<dl><dt><strong>Warning</strong></dt>
+</dl>
+<dl><dt><strong>isolation_level</strong></dt>
+</dl>
+<dl><dt><strong>row_factory</strong></dt>
+</dl>
+<dl><dt><strong>text_factory</strong></dt>
+</dl>
+<dl><dt><strong>total_changes</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b98abc&gt;<dd><tt>T.<a href="#Connection-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Cursor">class <strong>Cursor</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>SQLite&nbsp;database&nbsp;cursor&nbsp;class.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Cursor-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Cursor-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="Cursor-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#Cursor-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="Cursor-close"><strong>close</strong></a>(...)</dt><dd><tt>Closes&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-execute"><strong>execute</strong></a>(...)</dt><dd><tt>Executes&nbsp;a&nbsp;SQL&nbsp;statement.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-executemany"><strong>executemany</strong></a>(...)</dt><dd><tt>Repeatedly&nbsp;executes&nbsp;a&nbsp;SQL&nbsp;statement.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-executescript"><strong>executescript</strong></a>(...)</dt><dd><tt>Executes&nbsp;a&nbsp;multiple&nbsp;SQL&nbsp;statements&nbsp;at&nbsp;once.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-fetchall"><strong>fetchall</strong></a>(...)</dt><dd><tt>Fetches&nbsp;one&nbsp;row&nbsp;from&nbsp;the&nbsp;resultset.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-fetchmany"><strong>fetchmany</strong></a>(...)</dt><dd><tt>Fetches&nbsp;all&nbsp;rows&nbsp;from&nbsp;the&nbsp;resultset.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-fetchone"><strong>fetchone</strong></a>(...)</dt><dd><tt>Fetches&nbsp;several&nbsp;rows&nbsp;from&nbsp;the&nbsp;resultset.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-next"><strong>next</strong></a>(...)</dt><dd><tt>x.<a href="#Cursor-next">next</a>()&nbsp;-&gt;&nbsp;the&nbsp;next&nbsp;value,&nbsp;or&nbsp;raise&nbsp;StopIteration</tt></dd></dl>
+
+<dl><dt><a name="Cursor-setinputsizes"><strong>setinputsizes</strong></a>(...)</dt><dd><tt>Required&nbsp;by&nbsp;DB-API.&nbsp;Does&nbsp;nothing&nbsp;in&nbsp;pysqlite.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-setoutputsize"><strong>setoutputsize</strong></a>(...)</dt><dd><tt>Required&nbsp;by&nbsp;DB-API.&nbsp;Does&nbsp;nothing&nbsp;in&nbsp;pysqlite.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>arraysize</strong></dt>
+</dl>
+<dl><dt><strong>connection</strong></dt>
+</dl>
+<dl><dt><strong>description</strong></dt>
+</dl>
+<dl><dt><strong>lastrowid</strong></dt>
+</dl>
+<dl><dt><strong>row_factory</strong></dt>
+</dl>
+<dl><dt><strong>rowcount</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b98f44&gt;<dd><tt>T.<a href="#Cursor-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DataError">class <strong>DataError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#DataError">DataError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="DataError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#DataError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="DataError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DataError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DataError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="DataError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="DataError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DataError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="DataError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="DataError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DataError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#DataError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DatabaseError">class <strong>DatabaseError</strong></a>(<a href="sqlite3.html#Error">Error</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="DatabaseError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#DatabaseError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="DatabaseError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DatabaseError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="DatabaseError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DatabaseError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#DatabaseError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Error">class <strong>Error</strong></a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="Error-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#Error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Error-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Error-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Error-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Error-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Error-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExpatError">class <strong>ExpatError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd>ExpatError</dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="ExpatError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#ExpatError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ExpatError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ExpatError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ExpatError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#ExpatError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IntegrityError">class <strong>IntegrityError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#IntegrityError">IntegrityError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="IntegrityError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#IntegrityError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="IntegrityError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IntegrityError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="IntegrityError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IntegrityError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#IntegrityError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InterfaceError">class <strong>InterfaceError</strong></a>(<a href="sqlite3.html#Error">Error</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#InterfaceError">InterfaceError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="InterfaceError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#InterfaceError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="InterfaceError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InterfaceError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="InterfaceError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InterfaceError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#InterfaceError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InternalError">class <strong>InternalError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#InternalError">InternalError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="InternalError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#InternalError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="InternalError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InternalError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="InternalError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InternalError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#InternalError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NotSupportedError">class <strong>NotSupportedError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#NotSupportedError">NotSupportedError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="NotSupportedError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#NotSupportedError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="NotSupportedError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotSupportedError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="NotSupportedError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotSupportedError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#NotSupportedError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OperationalError">class <strong>OperationalError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#OperationalError">OperationalError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="OperationalError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#OperationalError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="OperationalError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OperationalError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OperationalError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OperationalError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#OperationalError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PrepareProtocol">class <strong>PrepareProtocol</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PrepareProtocol-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#PrepareProtocol-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b99328&gt;<dd><tt>T.<a href="#PrepareProtocol-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ProgrammingError">class <strong>ProgrammingError</strong></a>(<a href="sqlite3.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#ProgrammingError">ProgrammingError</a></dd>
+<dd><a href="sqlite3.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="sqlite3.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors inherited from <a href="sqlite3.html#Error">Error</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="ProgrammingError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#ProgrammingError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ProgrammingError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProgrammingError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ProgrammingError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProgrammingError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#ProgrammingError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Row">class <strong>Row</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Row-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Row-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Row-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Row-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="Row-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Row-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b99530&gt;<dd><tt>T.<a href="#Row-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Statement">class <strong>Statement</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b9972c&gt;<dd><tt>T.<a href="#Statement-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Warning">class <strong>Warning</strong></a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="sqlite3.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><a name="Warning-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#StandardError">exceptions.StandardError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8b094&gt;<dd><tt>T.<a href="#Warning-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Warning-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Warning-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Warning-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Warning-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Warning-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Warning-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Warning-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Warning-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>XMLParserType</strong> = <a name="XMLParserType">class xmlparser</a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>XML&nbsp;parser<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"></td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error</strong> = <a name="error">class ExpatError</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd>ExpatError</dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="ExpatError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ExpatError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ExpatError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ExpatError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ExpatError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ErrorString"><strong>ErrorString</strong></a>(...)</dt><dd><tt><a href="#-ErrorString">ErrorString</a>(errno)&nbsp;-&gt;&nbsp;string<br>
+Returns&nbsp;string&nbsp;<a href="#error">error</a>&nbsp;for&nbsp;given&nbsp;number.</tt></dd></dl>
+ <dl><dt><a name="-ParserCreate"><strong>ParserCreate</strong></a>(...)</dt><dd><tt><a href="#-ParserCreate">ParserCreate</a>([encoding[,&nbsp;namespace_separator]])&nbsp;-&gt;&nbsp;parser<br>
+Return&nbsp;a&nbsp;new&nbsp;XML&nbsp;parser&nbsp;<a href="__builtin__.html#object">object</a>.</tt></dd></dl>
+ <dl><dt><a name="-adapt"><strong>adapt</strong></a>(...)</dt><dd><tt><a href="#-adapt">adapt</a>(obj,&nbsp;protocol,&nbsp;alternate)&nbsp;-&gt;&nbsp;adapt&nbsp;obj&nbsp;to&nbsp;given&nbsp;protocol.&nbsp;Non-standard.</tt></dd></dl>
+ <dl><dt><a name="-complete_statement"><strong>complete_statement</strong></a>(...)</dt><dd><tt>Checks&nbsp;if&nbsp;a&nbsp;string&nbsp;contains&nbsp;a&nbsp;complete&nbsp;SQL&nbsp;statement.&nbsp;Non-standard.</tt></dd></dl>
+ <dl><dt><a name="-connect"><strong>connect</strong></a>(...)</dt><dd><tt>Creates&nbsp;a&nbsp;connection.</tt></dd></dl>
+ <dl><dt><a name="-enable_callback_tracebacks"><strong>enable_callback_tracebacks</strong></a>(...)</dt><dd><tt>Enable&nbsp;or&nbsp;disable&nbsp;callback&nbsp;functions&nbsp;throwing&nbsp;errors&nbsp;to&nbsp;stderr.</tt></dd></dl>
+ <dl><dt><a name="-enable_shared_cache"><strong>enable_shared_cache</strong></a>(...)</dt><dd><tt>Enable&nbsp;or&nbsp;disable&nbsp;shared&nbsp;cache&nbsp;mode&nbsp;for&nbsp;the&nbsp;calling&nbsp;thread.&nbsp;Experimental/Non-standard.</tt></dd></dl>
+ <dl><dt><a name="-register_adapter"><strong>register_adapter</strong></a>(...)</dt><dd><tt>Registers&nbsp;an&nbsp;adapter&nbsp;with&nbsp;pysqlite's&nbsp;adapter&nbsp;registry.&nbsp;Non-standard.</tt></dd></dl>
+ <dl><dt><a name="-register_converter"><strong>register_converter</strong></a>(...)</dt><dd><tt>Registers&nbsp;a&nbsp;converter&nbsp;with&nbsp;pysqlite.&nbsp;Non-standard.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>EXPAT_VERSION</strong> = 'expat_2.0.0'<br>
+<strong>PARSE_COLNAMES</strong> = 2<br>
+<strong>PARSE_DECLTYPES</strong> = 1<br>
+<strong>SQLITE_ALTER_TABLE</strong> = 26<br>
+<strong>SQLITE_ANALYZE</strong> = 28<br>
+<strong>SQLITE_ATTACH</strong> = 24<br>
+<strong>SQLITE_CREATE_INDEX</strong> = 1<br>
+<strong>SQLITE_CREATE_TABLE</strong> = 2<br>
+<strong>SQLITE_CREATE_TEMP_INDEX</strong> = 3<br>
+<strong>SQLITE_CREATE_TEMP_TABLE</strong> = 4<br>
+<strong>SQLITE_CREATE_TEMP_TRIGGER</strong> = 5<br>
+<strong>SQLITE_CREATE_TEMP_VIEW</strong> = 6<br>
+<strong>SQLITE_CREATE_TRIGGER</strong> = 7<br>
+<strong>SQLITE_CREATE_VIEW</strong> = 8<br>
+<strong>SQLITE_DELETE</strong> = 9<br>
+<strong>SQLITE_DENY</strong> = 1<br>
+<strong>SQLITE_DETACH</strong> = 25<br>
+<strong>SQLITE_DROP_INDEX</strong> = 10<br>
+<strong>SQLITE_DROP_TABLE</strong> = 11<br>
+<strong>SQLITE_DROP_TEMP_INDEX</strong> = 12<br>
+<strong>SQLITE_DROP_TEMP_TABLE</strong> = 13<br>
+<strong>SQLITE_DROP_TEMP_TRIGGER</strong> = 14<br>
+<strong>SQLITE_DROP_TEMP_VIEW</strong> = 15<br>
+<strong>SQLITE_DROP_TRIGGER</strong> = 16<br>
+<strong>SQLITE_DROP_VIEW</strong> = 17<br>
+<strong>SQLITE_IGNORE</strong> = 2<br>
+<strong>SQLITE_INSERT</strong> = 18<br>
+<strong>SQLITE_OK</strong> = 0<br>
+<strong>SQLITE_PRAGMA</strong> = 19<br>
+<strong>SQLITE_READ</strong> = 20<br>
+<strong>SQLITE_REINDEX</strong> = 27<br>
+<strong>SQLITE_SELECT</strong> = 21<br>
+<strong>SQLITE_TRANSACTION</strong> = 22<br>
+<strong>SQLITE_UPDATE</strong> = 23<br>
+<strong>XML_PARAM_ENTITY_PARSING_ALWAYS</strong> = 2<br>
+<strong>XML_PARAM_ENTITY_PARSING_NEVER</strong> = 0<br>
+<strong>XML_PARAM_ENTITY_PARSING_UNLESS_STANDALONE</strong> = 1<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__version__</strong> = '50634'<br>
+<strong>adapters</strong> = {(&lt;type 'datetime.date'&gt;, &lt;type 'sqlite3.PrepareProtocol'&gt;): &lt;function adapt_date at 0x95afb70&gt;, (&lt;type 'datetime.datetime'&gt;, &lt;type 'sqlite3.PrepareProtocol'&gt;): &lt;function adapt_datetime at 0x95afbb0&gt;}<br>
+<strong>apilevel</strong> = '2.0'<br>
+<strong>converters</strong> = {'DATE': &lt;function convert_date at 0x95afbf0&gt;, 'TIMESTAMP': &lt;function convert_timestamp at 0x95afc30&gt;}<br>
+<strong>expat_CAPI</strong> = &lt;PyCObject object at 0x91b0788&gt;<br>
+<strong>features</strong> = [('sizeof(XML_Char)', 1), ('sizeof(XML_LChar)', 1)]<br>
+<strong>native_encoding</strong> = 'UTF-8'<br>
+<strong>paramstyle</strong> = 'qmark'<br>
+<strong>sqlite_version</strong> = '3.3.17'<br>
+<strong>sqlite_version_info</strong> = (3, 3, 17)<br>
+<strong>threadsafety</strong> = 1<br>
+<strong>version</strong> = '2.3.2'<br>
+<strong>version_info</strong> = (2, 0, 0)<br>
+<strong>x</strong> = '17'</td></tr></table>

@@ -1,0 +1,209 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>sre_parse</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sre_parse.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/sre_parse.py</a></font></td></tr></table>
+    <p><tt>Internal&nbsp;support&nbsp;module&nbsp;for&nbsp;sre</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="sre_parse.html#Pattern">Pattern</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sre_parse.html#SubPattern">SubPattern</a>
+</font></dt><dt><font face="helvetica, arial"><a href="sre_parse.html#Tokenizer">Tokenizer</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pattern">class <strong>Pattern</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Pattern-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>#&nbsp;master&nbsp;pattern&nbsp;object.&nbsp;&nbsp;keeps&nbsp;track&nbsp;of&nbsp;global&nbsp;attributes</tt></dd></dl>
+
+<dl><dt><a name="Pattern-checkgroup"><strong>checkgroup</strong></a>(self, gid)</dt></dl>
+
+<dl><dt><a name="Pattern-closegroup"><strong>closegroup</strong></a>(self, gid)</dt></dl>
+
+<dl><dt><a name="Pattern-opengroup"><strong>opengroup</strong></a>(self, name<font color="#909090">=None</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SubPattern">class <strong>SubPattern</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SubPattern-__delitem__"><strong>__delitem__</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="SubPattern-__getitem__"><strong>__getitem__</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="SubPattern-__getslice__"><strong>__getslice__</strong></a>(self, start, stop)</dt></dl>
+
+<dl><dt><a name="SubPattern-__init__"><strong>__init__</strong></a>(self, pattern, data<font color="#909090">=None</font>)</dt><dd><tt>#&nbsp;a&nbsp;subpattern,&nbsp;in&nbsp;intermediate&nbsp;form</tt></dd></dl>
+
+<dl><dt><a name="SubPattern-__len__"><strong>__len__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SubPattern-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SubPattern-__setitem__"><strong>__setitem__</strong></a>(self, index, code)</dt></dl>
+
+<dl><dt><a name="SubPattern-append"><strong>append</strong></a>(self, code)</dt></dl>
+
+<dl><dt><a name="SubPattern-dump"><strong>dump</strong></a>(self, level<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="SubPattern-getwidth"><strong>getwidth</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SubPattern-insert"><strong>insert</strong></a>(self, index, code)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Tokenizer">class <strong>Tokenizer</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Tokenizer-__init__"><strong>__init__</strong></a>(self, string)</dt></dl>
+
+<dl><dt><a name="Tokenizer-get"><strong>get</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Tokenizer-match"><strong>match</strong></a>(self, char, skip<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="Tokenizer-seek"><strong>seek</strong></a>(self, index)</dt></dl>
+
+<dl><dt><a name="Tokenizer-tell"><strong>tell</strong></a>(self)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-expand_template"><strong>expand_template</strong></a>(template, match)</dt></dl>
+ <dl><dt><a name="-isdigit"><strong>isdigit</strong></a>(char)</dt></dl>
+ <dl><dt><a name="-isident"><strong>isident</strong></a>(char)</dt></dl>
+ <dl><dt><a name="-isname"><strong>isname</strong></a>(name)</dt></dl>
+ <dl><dt><a name="-parse"><strong>parse</strong></a>(str, flags<font color="#909090">=0</font>, pattern<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-parse_template"><strong>parse_template</strong></a>(source, pattern)</dt></dl>
+ <dl><dt><a name="-set"><strong>set</strong></a>(seq)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ANY</strong> = 'any'<br>
+<strong>ANY_ALL</strong> = 'any_all'<br>
+<strong>ASSERT</strong> = 'assert'<br>
+<strong>ASSERT_NOT</strong> = 'assert_not'<br>
+<strong>AT</strong> = 'at'<br>
+<strong>ATCODES</strong> = {'at_beginning': 0, 'at_beginning_line': 1, 'at_beginning_string': 2, 'at_boundary': 3, 'at_end': 5, 'at_end_line': 6, 'at_end_string': 7, 'at_loc_boundary': 8, 'at_loc_non_boundary': 9, 'at_non_boundary': 4, ...}<br>
+<strong>AT_BEGINNING</strong> = 'at_beginning'<br>
+<strong>AT_BEGINNING_LINE</strong> = 'at_beginning_line'<br>
+<strong>AT_BEGINNING_STRING</strong> = 'at_beginning_string'<br>
+<strong>AT_BOUNDARY</strong> = 'at_boundary'<br>
+<strong>AT_END</strong> = 'at_end'<br>
+<strong>AT_END_LINE</strong> = 'at_end_line'<br>
+<strong>AT_END_STRING</strong> = 'at_end_string'<br>
+<strong>AT_LOCALE</strong> = {'at_boundary': 'at_loc_boundary', 'at_non_boundary': 'at_loc_non_boundary'}<br>
+<strong>AT_LOC_BOUNDARY</strong> = 'at_loc_boundary'<br>
+<strong>AT_LOC_NON_BOUNDARY</strong> = 'at_loc_non_boundary'<br>
+<strong>AT_MULTILINE</strong> = {'at_beginning': 'at_beginning_line', 'at_end': 'at_end_line'}<br>
+<strong>AT_NON_BOUNDARY</strong> = 'at_non_boundary'<br>
+<strong>AT_UNICODE</strong> = {'at_boundary': 'at_uni_boundary', 'at_non_boundary': 'at_uni_non_boundary'}<br>
+<strong>AT_UNI_BOUNDARY</strong> = 'at_uni_boundary'<br>
+<strong>AT_UNI_NON_BOUNDARY</strong> = 'at_uni_non_boundary'<br>
+<strong>BIGCHARSET</strong> = 'bigcharset'<br>
+<strong>BRANCH</strong> = 'branch'<br>
+<strong>CALL</strong> = 'call'<br>
+<strong>CATEGORIES</strong> = {r'\A': ('at', 'at_beginning_string'), r'\B': ('at', 'at_non_boundary'), r'\D': ('in', [('category', 'category_not_digit')]), r'\S': ('in', [('category', 'category_not_space')]), r'\W': ('in', [('category', 'category_not_word')]), r'\Z': ('at', 'at_end_string'), r'\b': ('at', 'at_boundary'), r'\d': ('in', [('category', 'category_digit')]), r'\s': ('in', [('category', 'category_space')]), r'\w': ('in', [('category', 'category_word')])}<br>
+<strong>CATEGORY</strong> = 'category'<br>
+<strong>CATEGORY_DIGIT</strong> = 'category_digit'<br>
+<strong>CATEGORY_LINEBREAK</strong> = 'category_linebreak'<br>
+<strong>CATEGORY_LOC_NOT_WORD</strong> = 'category_loc_not_word'<br>
+<strong>CATEGORY_LOC_WORD</strong> = 'category_loc_word'<br>
+<strong>CATEGORY_NOT_DIGIT</strong> = 'category_not_digit'<br>
+<strong>CATEGORY_NOT_LINEBREAK</strong> = 'category_not_linebreak'<br>
+<strong>CATEGORY_NOT_SPACE</strong> = 'category_not_space'<br>
+<strong>CATEGORY_NOT_WORD</strong> = 'category_not_word'<br>
+<strong>CATEGORY_SPACE</strong> = 'category_space'<br>
+<strong>CATEGORY_UNI_DIGIT</strong> = 'category_uni_digit'<br>
+<strong>CATEGORY_UNI_LINEBREAK</strong> = 'category_uni_linebreak'<br>
+<strong>CATEGORY_UNI_NOT_DIGIT</strong> = 'category_uni_not_digit'<br>
+<strong>CATEGORY_UNI_NOT_LINEBREAK</strong> = 'category_uni_not_linebreak'<br>
+<strong>CATEGORY_UNI_NOT_SPACE</strong> = 'category_uni_not_space'<br>
+<strong>CATEGORY_UNI_NOT_WORD</strong> = 'category_uni_not_word'<br>
+<strong>CATEGORY_UNI_SPACE</strong> = 'category_uni_space'<br>
+<strong>CATEGORY_UNI_WORD</strong> = 'category_uni_word'<br>
+<strong>CATEGORY_WORD</strong> = 'category_word'<br>
+<strong>CHARSET</strong> = 'charset'<br>
+<strong>CHCODES</strong> = {'category_digit': 0, 'category_linebreak': 6, 'category_loc_not_word': 9, 'category_loc_word': 8, 'category_not_digit': 1, 'category_not_linebreak': 7, 'category_not_space': 3, 'category_not_word': 5, 'category_space': 2, 'category_uni_digit': 10, ...}<br>
+<strong>CH_LOCALE</strong> = {'category_digit': 'category_digit', 'category_linebreak': 'category_linebreak', 'category_not_digit': 'category_not_digit', 'category_not_linebreak': 'category_not_linebreak', 'category_not_space': 'category_not_space', 'category_not_word': 'category_loc_not_word', 'category_space': 'category_space', 'category_word': 'category_loc_word'}<br>
+<strong>CH_UNICODE</strong> = {'category_digit': 'category_uni_digit', 'category_linebreak': 'category_uni_linebreak', 'category_not_digit': 'category_uni_not_digit', 'category_not_linebreak': 'category_uni_not_linebreak', 'category_not_space': 'category_uni_not_space', 'category_not_word': 'category_uni_not_word', 'category_space': 'category_uni_space', 'category_word': 'category_uni_word'}<br>
+<strong>DIGITS</strong> = {'0': 1, '1': 1, '2': 1, '3': 1, '4': 1, '5': 1, '6': 1, '7': 1, '8': 1, '9': 1}<br>
+<strong>ESCAPES</strong> = {r'\\': ('literal', 92), r'\a': ('literal', 7), r'\b': ('literal', 8), r'\f': ('literal', 12), r'\n': ('literal', 10), r'\r': ('literal', 13), r'\t': ('literal', 9), r'\v': ('literal', 11)}<br>
+<strong>FAILURE</strong> = 'failure'<br>
+<strong>FLAGS</strong> = {'L': 4, 'i': 2, 'm': 8, 's': 16, 't': 1, 'u': 32, 'x': 64}<br>
+<strong>GROUPREF</strong> = 'groupref'<br>
+<strong>GROUPREF_EXISTS</strong> = 'groupref_exists'<br>
+<strong>GROUPREF_IGNORE</strong> = 'groupref_ignore'<br>
+<strong>HEXDIGITS</strong> = {'0': 1, '1': 1, '2': 1, '3': 1, '4': 1, '5': 1, '6': 1, '7': 1, '8': 1, '9': 1, ...}<br>
+<strong>IN</strong> = 'in'<br>
+<strong>INFO</strong> = 'info'<br>
+<strong>IN_IGNORE</strong> = 'in_ignore'<br>
+<strong>JUMP</strong> = 'jump'<br>
+<strong>LITERAL</strong> = 'literal'<br>
+<strong>LITERAL_IGNORE</strong> = 'literal_ignore'<br>
+<strong>MAGIC</strong> = 20031017<br>
+<strong>MARK</strong> = 'mark'<br>
+<strong>MAXREPEAT</strong> = 65535<br>
+<strong>MAX_REPEAT</strong> = 'max_repeat'<br>
+<strong>MAX_UNTIL</strong> = 'max_until'<br>
+<strong>MIN_REPEAT</strong> = 'min_repeat'<br>
+<strong>MIN_REPEAT_ONE</strong> = 'min_repeat_one'<br>
+<strong>MIN_UNTIL</strong> = 'min_until'<br>
+<strong>NEGATE</strong> = 'negate'<br>
+<strong>NOT_LITERAL</strong> = 'not_literal'<br>
+<strong>NOT_LITERAL_IGNORE</strong> = 'not_literal_ignore'<br>
+<strong>OCTDIGITS</strong> = {'0': 1, '1': 1, '2': 1, '3': 1, '4': 1, '5': 1, '6': 1, '7': 1}<br>
+<strong>OPCODES</strong> = {'any': 2, 'any_all': 3, 'assert': 4, 'assert_not': 5, 'at': 6, 'bigcharset': 11, 'branch': 7, 'call': 8, 'category': 9, 'charset': 10, ...}<br>
+<strong>OP_IGNORE</strong> = {'groupref': 'groupref_ignore', 'in': 'in_ignore', 'literal': 'literal_ignore', 'not_literal': 'not_literal_ignore'}<br>
+<strong>RANGE</strong> = 'range'<br>
+<strong>REPEAT</strong> = 'repeat'<br>
+<strong>REPEAT_CHARS</strong> = '*+?{'<br>
+<strong>REPEAT_ONE</strong> = 'repeat_one'<br>
+<strong>SPECIAL_CHARS</strong> = r'.\[{()*+?^$|'<br>
+<strong>SRE_FLAG_DEBUG</strong> = 128<br>
+<strong>SRE_FLAG_DOTALL</strong> = 16<br>
+<strong>SRE_FLAG_IGNORECASE</strong> = 2<br>
+<strong>SRE_FLAG_LOCALE</strong> = 4<br>
+<strong>SRE_FLAG_MULTILINE</strong> = 8<br>
+<strong>SRE_FLAG_TEMPLATE</strong> = 1<br>
+<strong>SRE_FLAG_UNICODE</strong> = 32<br>
+<strong>SRE_FLAG_VERBOSE</strong> = 64<br>
+<strong>SRE_INFO_CHARSET</strong> = 4<br>
+<strong>SRE_INFO_LITERAL</strong> = 2<br>
+<strong>SRE_INFO_PREFIX</strong> = 1<br>
+<strong>SUBPATTERN</strong> = 'subpattern'<br>
+<strong>SUCCESS</strong> = 'success'<br>
+<strong>WHITESPACE</strong> = {'<font color="#c040c0">\t</font>': 1, '<font color="#c040c0">\n</font>': 1, '<font color="#c040c0">\x0b</font>': 1, '<font color="#c040c0">\x0c</font>': 1, '<font color="#c040c0">\r</font>': 1, ' ': 1}<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

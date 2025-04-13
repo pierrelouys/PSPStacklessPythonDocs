@@ -1,0 +1,117 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>site</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/site.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/site.py</a></font></td></tr></table>
+    <p><tt>Append&nbsp;module&nbsp;search&nbsp;paths&nbsp;for&nbsp;third-party&nbsp;packages&nbsp;to&nbsp;sys.path.<br>
+&nbsp;<br>
+****************************************************************<br>
+*&nbsp;This&nbsp;module&nbsp;is&nbsp;automatically&nbsp;imported&nbsp;during&nbsp;initialization.&nbsp;*<br>
+****************************************************************<br>
+&nbsp;<br>
+In&nbsp;earlier&nbsp;versions&nbsp;of&nbsp;Python&nbsp;(up&nbsp;to&nbsp;1.5a3),&nbsp;scripts&nbsp;or&nbsp;modules&nbsp;that<br>
+needed&nbsp;to&nbsp;use&nbsp;site-specific&nbsp;modules&nbsp;would&nbsp;place&nbsp;``import&nbsp;site''<br>
+somewhere&nbsp;near&nbsp;the&nbsp;top&nbsp;of&nbsp;their&nbsp;code.&nbsp;&nbsp;Because&nbsp;of&nbsp;the&nbsp;automatic<br>
+import,&nbsp;this&nbsp;is&nbsp;no&nbsp;longer&nbsp;necessary&nbsp;(but&nbsp;code&nbsp;that&nbsp;does&nbsp;it&nbsp;still<br>
+works).<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;append&nbsp;site-specific&nbsp;paths&nbsp;to&nbsp;the&nbsp;module&nbsp;search&nbsp;path.&nbsp;&nbsp;On<br>
+Unix&nbsp;(including&nbsp;Mac&nbsp;OSX),&nbsp;it&nbsp;starts&nbsp;with&nbsp;sys.prefix&nbsp;and<br>
+sys.exec_prefix&nbsp;(if&nbsp;different)&nbsp;and&nbsp;appends<br>
+lib/python&lt;version&gt;/site-packages&nbsp;as&nbsp;well&nbsp;as&nbsp;lib/site-python.<br>
+On&nbsp;other&nbsp;platforms&nbsp;(such&nbsp;as&nbsp;Windows),&nbsp;it&nbsp;tries&nbsp;each&nbsp;of&nbsp;the<br>
+prefixes&nbsp;directly,&nbsp;as&nbsp;well&nbsp;as&nbsp;with&nbsp;lib/site-packages&nbsp;appended.&nbsp;&nbsp;The<br>
+resulting&nbsp;directories,&nbsp;if&nbsp;they&nbsp;exist,&nbsp;are&nbsp;appended&nbsp;to&nbsp;sys.path,&nbsp;and<br>
+also&nbsp;inspected&nbsp;for&nbsp;path&nbsp;configuration&nbsp;files.<br>
+&nbsp;<br>
+A&nbsp;path&nbsp;configuration&nbsp;file&nbsp;is&nbsp;a&nbsp;file&nbsp;whose&nbsp;name&nbsp;has&nbsp;the&nbsp;form<br>
+&lt;package&gt;.pth;&nbsp;its&nbsp;contents&nbsp;are&nbsp;additional&nbsp;directories&nbsp;(one&nbsp;per&nbsp;line)<br>
+to&nbsp;be&nbsp;added&nbsp;to&nbsp;sys.path.&nbsp;&nbsp;Non-existing&nbsp;directories&nbsp;(or<br>
+non-directories)&nbsp;are&nbsp;never&nbsp;added&nbsp;to&nbsp;sys.path;&nbsp;no&nbsp;directory&nbsp;is&nbsp;added&nbsp;to<br>
+sys.path&nbsp;more&nbsp;than&nbsp;once.&nbsp;&nbsp;Blank&nbsp;lines&nbsp;and&nbsp;lines&nbsp;beginning&nbsp;with<br>
+'#'&nbsp;are&nbsp;skipped.&nbsp;Lines&nbsp;starting&nbsp;with&nbsp;'import'&nbsp;are&nbsp;executed.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;suppose&nbsp;sys.prefix&nbsp;and&nbsp;sys.exec_prefix&nbsp;are&nbsp;set&nbsp;to<br>
+/usr/local&nbsp;and&nbsp;there&nbsp;is&nbsp;a&nbsp;directory&nbsp;/usr/local/lib/python2.5/site-packages<br>
+with&nbsp;three&nbsp;subdirectories,&nbsp;foo,&nbsp;bar&nbsp;and&nbsp;spam,&nbsp;and&nbsp;two&nbsp;path<br>
+configuration&nbsp;files,&nbsp;foo.pth&nbsp;and&nbsp;bar.pth.&nbsp;&nbsp;Assume&nbsp;foo.pth&nbsp;contains&nbsp;the<br>
+following:<br>
+&nbsp;<br>
+&nbsp;&nbsp;#&nbsp;foo&nbsp;package&nbsp;configuration<br>
+&nbsp;&nbsp;foo<br>
+&nbsp;&nbsp;bar<br>
+&nbsp;&nbsp;bletch<br>
+&nbsp;<br>
+and&nbsp;bar.pth&nbsp;contains:<br>
+&nbsp;<br>
+&nbsp;&nbsp;#&nbsp;bar&nbsp;package&nbsp;configuration<br>
+&nbsp;&nbsp;bar<br>
+&nbsp;<br>
+Then&nbsp;the&nbsp;following&nbsp;directories&nbsp;are&nbsp;added&nbsp;to&nbsp;sys.path,&nbsp;in&nbsp;this&nbsp;order:<br>
+&nbsp;<br>
+&nbsp;&nbsp;/usr/local/lib/python2.5/site-packages/bar<br>
+&nbsp;&nbsp;/usr/local/lib/python2.5/site-packages/foo<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;bletch&nbsp;is&nbsp;omitted&nbsp;because&nbsp;it&nbsp;doesn't&nbsp;exist;&nbsp;bar&nbsp;precedes&nbsp;foo<br>
+because&nbsp;bar.pth&nbsp;comes&nbsp;alphabetically&nbsp;before&nbsp;foo.pth;&nbsp;and&nbsp;spam&nbsp;is<br>
+omitted&nbsp;because&nbsp;it&nbsp;is&nbsp;not&nbsp;mentioned&nbsp;in&nbsp;either&nbsp;path&nbsp;configuration&nbsp;file.<br>
+&nbsp;<br>
+After&nbsp;these&nbsp;path&nbsp;manipulations,&nbsp;an&nbsp;attempt&nbsp;is&nbsp;made&nbsp;to&nbsp;import&nbsp;a&nbsp;module<br>
+named&nbsp;sitecustomize,&nbsp;which&nbsp;can&nbsp;perform&nbsp;arbitrary&nbsp;additional<br>
+site-specific&nbsp;customizations.&nbsp;&nbsp;If&nbsp;this&nbsp;import&nbsp;fails&nbsp;with&nbsp;an<br>
+ImportError&nbsp;exception,&nbsp;it&nbsp;is&nbsp;silently&nbsp;ignored.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="__builtin__.html">__builtin__</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-abs__file__"><strong>abs__file__</strong></a>()</dt><dd><tt>Set&nbsp;all&nbsp;module'&nbsp;__file__&nbsp;attribute&nbsp;to&nbsp;an&nbsp;absolute&nbsp;path</tt></dd></dl>
+ <dl><dt><a name="-addbuilddir"><strong>addbuilddir</strong></a>()</dt><dd><tt>Append&nbsp;./build/lib.&lt;platform&gt;&nbsp;in&nbsp;case&nbsp;we're&nbsp;running&nbsp;in&nbsp;the&nbsp;build&nbsp;dir<br>
+(especially&nbsp;for&nbsp;Guido&nbsp;:-)</tt></dd></dl>
+ <dl><dt><a name="-addpackage"><strong>addpackage</strong></a>(sitedir, name, known_paths)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;path&nbsp;to&nbsp;known_paths&nbsp;by&nbsp;combining&nbsp;sitedir&nbsp;and&nbsp;'name'&nbsp;or&nbsp;execute<br>
+sitedir&nbsp;if&nbsp;it&nbsp;starts&nbsp;with&nbsp;'import'</tt></dd></dl>
+ <dl><dt><a name="-addsitedir"><strong>addsitedir</strong></a>(sitedir, known_paths<font color="#909090">=None</font>)</dt><dd><tt>Add&nbsp;'sitedir'&nbsp;argument&nbsp;to&nbsp;sys.path&nbsp;if&nbsp;missing&nbsp;and&nbsp;handle&nbsp;.pth&nbsp;files&nbsp;in<br>
+'sitedir'</tt></dd></dl>
+ <dl><dt><a name="-addsitepackages"><strong>addsitepackages</strong></a>(known_paths)</dt><dd><tt>Add&nbsp;site-packages&nbsp;(and&nbsp;possibly&nbsp;site-python)&nbsp;to&nbsp;sys.path</tt></dd></dl>
+ <dl><dt><a name="-aliasmbcs"><strong>aliasmbcs</strong></a>()</dt><dd><tt>On&nbsp;Windows,&nbsp;some&nbsp;default&nbsp;encodings&nbsp;are&nbsp;not&nbsp;provided&nbsp;by&nbsp;Python,<br>
+while&nbsp;they&nbsp;are&nbsp;always&nbsp;available&nbsp;as&nbsp;"mbcs"&nbsp;in&nbsp;each&nbsp;locale.&nbsp;Make<br>
+them&nbsp;usable&nbsp;by&nbsp;aliasing&nbsp;to&nbsp;"mbcs"&nbsp;in&nbsp;such&nbsp;a&nbsp;case.</tt></dd></dl>
+ <dl><dt><a name="-execsitecustomize"><strong>execsitecustomize</strong></a>()</dt><dd><tt>Run&nbsp;custom&nbsp;site&nbsp;specific&nbsp;code,&nbsp;if&nbsp;available.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+ <dl><dt><a name="-makepath"><strong>makepath</strong></a>(*paths)</dt></dl>
+ <dl><dt><a name="-removeduppaths"><strong>removeduppaths</strong></a>()</dt><dd><tt>Remove&nbsp;duplicate&nbsp;entries&nbsp;from&nbsp;sys.path&nbsp;along&nbsp;with&nbsp;making&nbsp;them<br>
+absolute</tt></dd></dl>
+ <dl><dt><a name="-setBEGINLIBPATH"><strong>setBEGINLIBPATH</strong></a>()</dt><dd><tt>The&nbsp;OS/2&nbsp;EMX&nbsp;port&nbsp;has&nbsp;optional&nbsp;extension&nbsp;modules&nbsp;that&nbsp;do&nbsp;double&nbsp;duty<br>
+as&nbsp;DLLs&nbsp;(and&nbsp;must&nbsp;use&nbsp;the&nbsp;.DLL&nbsp;file&nbsp;extension)&nbsp;for&nbsp;other&nbsp;extensions.<br>
+The&nbsp;library&nbsp;search&nbsp;path&nbsp;needs&nbsp;to&nbsp;be&nbsp;amended&nbsp;so&nbsp;these&nbsp;will&nbsp;be&nbsp;found<br>
+during&nbsp;module&nbsp;import.&nbsp;&nbsp;Use&nbsp;BEGINLIBPATH&nbsp;so&nbsp;that&nbsp;these&nbsp;are&nbsp;at&nbsp;the&nbsp;start<br>
+of&nbsp;the&nbsp;library&nbsp;search&nbsp;path.</tt></dd></dl>
+ <dl><dt><a name="-setcopyright"><strong>setcopyright</strong></a>()</dt><dd><tt>Set&nbsp;'copyright'&nbsp;and&nbsp;'credits'&nbsp;in&nbsp;__builtin__</tt></dd></dl>
+ <dl><dt><a name="-setencoding"><strong>setencoding</strong></a>()</dt><dd><tt>Set&nbsp;the&nbsp;string&nbsp;encoding&nbsp;used&nbsp;by&nbsp;the&nbsp;Unicode&nbsp;implementation.&nbsp;&nbsp;The<br>
+default&nbsp;is&nbsp;'ascii',&nbsp;but&nbsp;if&nbsp;you're&nbsp;willing&nbsp;to&nbsp;experiment,&nbsp;you&nbsp;can<br>
+change&nbsp;this.</tt></dd></dl>
+ <dl><dt><a name="-sethelper"><strong>sethelper</strong></a>()</dt></dl>
+ <dl><dt><a name="-setquit"><strong>setquit</strong></a>()</dt><dd><tt>Define&nbsp;new&nbsp;built-ins&nbsp;'quit'&nbsp;and&nbsp;'exit'.<br>
+These&nbsp;are&nbsp;simply&nbsp;strings&nbsp;that&nbsp;display&nbsp;a&nbsp;hint&nbsp;on&nbsp;how&nbsp;to&nbsp;exit.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "python.zip"&gt;</td></tr></table>

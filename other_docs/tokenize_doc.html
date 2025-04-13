@@ -1,0 +1,168 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>tokenize</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/tokenize.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/tokenize.py</a></font></td></tr></table>
+    <p><tt>Tokenization&nbsp;help&nbsp;for&nbsp;Python&nbsp;programs.<br>
+&nbsp;<br>
+<a href="#-generate_tokens">generate_tokens</a>(readline)&nbsp;is&nbsp;a&nbsp;generator&nbsp;that&nbsp;breaks&nbsp;a&nbsp;stream&nbsp;of<br>
+text&nbsp;into&nbsp;Python&nbsp;tokens.&nbsp;&nbsp;It&nbsp;accepts&nbsp;a&nbsp;readline-like&nbsp;method&nbsp;which&nbsp;is&nbsp;called<br>
+repeatedly&nbsp;to&nbsp;get&nbsp;the&nbsp;next&nbsp;line&nbsp;of&nbsp;input&nbsp;(or&nbsp;""&nbsp;for&nbsp;EOF).&nbsp;&nbsp;It&nbsp;generates<br>
+5-tuples&nbsp;with&nbsp;these&nbsp;members:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;token&nbsp;type&nbsp;(see&nbsp;token.py)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;token&nbsp;(a&nbsp;string)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;starting&nbsp;(row,&nbsp;column)&nbsp;indices&nbsp;of&nbsp;the&nbsp;token&nbsp;(a&nbsp;2-tuple&nbsp;of&nbsp;ints)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;ending&nbsp;(row,&nbsp;column)&nbsp;indices&nbsp;of&nbsp;the&nbsp;token&nbsp;(a&nbsp;2-tuple&nbsp;of&nbsp;ints)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;original&nbsp;line&nbsp;(string)<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;designed&nbsp;to&nbsp;match&nbsp;the&nbsp;working&nbsp;of&nbsp;the&nbsp;Python&nbsp;tokenizer&nbsp;exactly,&nbsp;except<br>
+that&nbsp;it&nbsp;produces&nbsp;COMMENT&nbsp;tokens&nbsp;for&nbsp;comments&nbsp;and&nbsp;gives&nbsp;type&nbsp;OP&nbsp;for&nbsp;all<br>
+operators<br>
+&nbsp;<br>
+Older&nbsp;entry&nbsp;points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tokenize_loop(readline,&nbsp;tokeneater)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-tokenize">tokenize</a>(readline,&nbsp;tokeneater=printtoken)<br>
+are&nbsp;the&nbsp;same,&nbsp;except&nbsp;instead&nbsp;of&nbsp;generating&nbsp;tokens,&nbsp;tokeneater&nbsp;is&nbsp;a&nbsp;callback<br>
+function&nbsp;to&nbsp;which&nbsp;the&nbsp;5&nbsp;fields&nbsp;described&nbsp;above&nbsp;are&nbsp;passed&nbsp;as&nbsp;5&nbsp;arguments,<br>
+each&nbsp;time&nbsp;a&nbsp;new&nbsp;token&nbsp;is&nbsp;found.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="string.html">string</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ISEOF"><strong>ISEOF</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-ISNONTERMINAL"><strong>ISNONTERMINAL</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-ISTERMINAL"><strong>ISTERMINAL</strong></a>(x)</dt></dl>
+ <dl><dt><a name="-generate_tokens"><strong>generate_tokens</strong></a>(readline)</dt><dd><tt>The&nbsp;<a href="#-generate_tokens">generate_tokens</a>()&nbsp;generator&nbsp;requires&nbsp;one&nbsp;argment,&nbsp;readline,&nbsp;which<br>
+must&nbsp;be&nbsp;a&nbsp;callable&nbsp;object&nbsp;which&nbsp;provides&nbsp;the&nbsp;same&nbsp;interface&nbsp;as&nbsp;the<br>
+readline()&nbsp;method&nbsp;of&nbsp;built-in&nbsp;file&nbsp;objects.&nbsp;Each&nbsp;call&nbsp;to&nbsp;the&nbsp;function<br>
+should&nbsp;return&nbsp;one&nbsp;line&nbsp;of&nbsp;input&nbsp;as&nbsp;a&nbsp;string.&nbsp;&nbsp;Alternately,&nbsp;readline<br>
+can&nbsp;be&nbsp;a&nbsp;callable&nbsp;function&nbsp;terminating&nbsp;with&nbsp;StopIteration:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;readline&nbsp;=&nbsp;open(myfile).next&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Example&nbsp;of&nbsp;alternate&nbsp;readline<br>
+&nbsp;<br>
+The&nbsp;generator&nbsp;produces&nbsp;5-tuples&nbsp;with&nbsp;these&nbsp;members:&nbsp;the&nbsp;token&nbsp;type;&nbsp;the<br>
+token&nbsp;string;&nbsp;a&nbsp;2-tuple&nbsp;(srow,&nbsp;scol)&nbsp;of&nbsp;ints&nbsp;specifying&nbsp;the&nbsp;row&nbsp;and<br>
+column&nbsp;where&nbsp;the&nbsp;token&nbsp;begins&nbsp;in&nbsp;the&nbsp;source;&nbsp;a&nbsp;2-tuple&nbsp;(erow,&nbsp;ecol)&nbsp;of<br>
+ints&nbsp;specifying&nbsp;the&nbsp;row&nbsp;and&nbsp;column&nbsp;where&nbsp;the&nbsp;token&nbsp;ends&nbsp;in&nbsp;the&nbsp;source;<br>
+and&nbsp;the&nbsp;line&nbsp;on&nbsp;which&nbsp;the&nbsp;token&nbsp;was&nbsp;found.&nbsp;The&nbsp;line&nbsp;passed&nbsp;is&nbsp;the<br>
+logical&nbsp;line;&nbsp;continuation&nbsp;lines&nbsp;are&nbsp;included.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+ <dl><dt><a name="-tokenize"><strong>tokenize</strong></a>(readline, tokeneater<font color="#909090">=&lt;function printtoken at 0x9811b30&gt;</font>)</dt><dd><tt>The&nbsp;<a href="#-tokenize">tokenize</a>()&nbsp;function&nbsp;accepts&nbsp;two&nbsp;parameters:&nbsp;one&nbsp;representing&nbsp;the<br>
+input&nbsp;stream,&nbsp;and&nbsp;one&nbsp;providing&nbsp;an&nbsp;output&nbsp;mechanism&nbsp;for&nbsp;<a href="#-tokenize">tokenize</a>().<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;parameter,&nbsp;readline,&nbsp;must&nbsp;be&nbsp;a&nbsp;callable&nbsp;object&nbsp;which&nbsp;provides<br>
+the&nbsp;same&nbsp;interface&nbsp;as&nbsp;the&nbsp;readline()&nbsp;method&nbsp;of&nbsp;built-in&nbsp;file&nbsp;objects.<br>
+Each&nbsp;call&nbsp;to&nbsp;the&nbsp;function&nbsp;should&nbsp;return&nbsp;one&nbsp;line&nbsp;of&nbsp;input&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+The&nbsp;second&nbsp;parameter,&nbsp;tokeneater,&nbsp;must&nbsp;also&nbsp;be&nbsp;a&nbsp;callable&nbsp;object.&nbsp;It&nbsp;is<br>
+called&nbsp;once&nbsp;for&nbsp;each&nbsp;token,&nbsp;with&nbsp;five&nbsp;arguments,&nbsp;corresponding&nbsp;to&nbsp;the<br>
+tuples&nbsp;generated&nbsp;by&nbsp;<a href="#-generate_tokens">generate_tokens</a>().</tt></dd></dl>
+ <dl><dt><a name="-untokenize"><strong>untokenize</strong></a>(iterable)</dt><dd><tt>Transform&nbsp;tokens&nbsp;back&nbsp;into&nbsp;Python&nbsp;source&nbsp;code.<br>
+&nbsp;<br>
+Each&nbsp;element&nbsp;returned&nbsp;by&nbsp;the&nbsp;iterable&nbsp;must&nbsp;be&nbsp;a&nbsp;token&nbsp;sequence<br>
+with&nbsp;at&nbsp;least&nbsp;two&nbsp;elements,&nbsp;a&nbsp;token&nbsp;number&nbsp;and&nbsp;token&nbsp;value.<br>
+&nbsp;<br>
+Round-trip&nbsp;invariant:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Output&nbsp;text&nbsp;will&nbsp;tokenize&nbsp;the&nbsp;back&nbsp;to&nbsp;the&nbsp;input<br>
+&nbsp;&nbsp;&nbsp;&nbsp;t1&nbsp;=&nbsp;[tok[:2]&nbsp;for&nbsp;tok&nbsp;in&nbsp;<a href="#-generate_tokens">generate_tokens</a>(f.readline)]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;newcode&nbsp;=&nbsp;<a href="#-untokenize">untokenize</a>(t1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;readline&nbsp;=&nbsp;iter(newcode.splitlines(1)).next<br>
+&nbsp;&nbsp;&nbsp;&nbsp;t2&nbsp;=&nbsp;[tok[:2]&nbsp;for&nbsp;tokin&nbsp;<a href="#-generate_tokens">generate_tokens</a>(readline)]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assert&nbsp;t1&nbsp;==&nbsp;t2</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AMPER</strong> = 19<br>
+<strong>AMPEREQUAL</strong> = 42<br>
+<strong>AT</strong> = 50<br>
+<strong>BACKQUOTE</strong> = 25<br>
+<strong>CIRCUMFLEX</strong> = 33<br>
+<strong>CIRCUMFLEXEQUAL</strong> = 44<br>
+<strong>COLON</strong> = 11<br>
+<strong>COMMA</strong> = 12<br>
+<strong>COMMENT</strong> = 53<br>
+<strong>DEDENT</strong> = 6<br>
+<strong>DOT</strong> = 23<br>
+<strong>DOUBLESLASH</strong> = 48<br>
+<strong>DOUBLESLASHEQUAL</strong> = 49<br>
+<strong>DOUBLESTAR</strong> = 36<br>
+<strong>DOUBLESTAREQUAL</strong> = 47<br>
+<strong>ENDMARKER</strong> = 0<br>
+<strong>EQEQUAL</strong> = 28<br>
+<strong>EQUAL</strong> = 22<br>
+<strong>ERRORTOKEN</strong> = 52<br>
+<strong>GREATER</strong> = 21<br>
+<strong>GREATEREQUAL</strong> = 31<br>
+<strong>INDENT</strong> = 5<br>
+<strong>LBRACE</strong> = 26<br>
+<strong>LEFTSHIFT</strong> = 34<br>
+<strong>LEFTSHIFTEQUAL</strong> = 45<br>
+<strong>LESS</strong> = 20<br>
+<strong>LESSEQUAL</strong> = 30<br>
+<strong>LPAR</strong> = 7<br>
+<strong>LSQB</strong> = 9<br>
+<strong>MINEQUAL</strong> = 38<br>
+<strong>MINUS</strong> = 15<br>
+<strong>NAME</strong> = 1<br>
+<strong>NEWLINE</strong> = 4<br>
+<strong>NL</strong> = 54<br>
+<strong>NOTEQUAL</strong> = 29<br>
+<strong>NT_OFFSET</strong> = 256<br>
+<strong>NUMBER</strong> = 2<br>
+<strong>N_TOKENS</strong> = 55<br>
+<strong>OP</strong> = 51<br>
+<strong>PERCENT</strong> = 24<br>
+<strong>PERCENTEQUAL</strong> = 41<br>
+<strong>PLUS</strong> = 14<br>
+<strong>PLUSEQUAL</strong> = 37<br>
+<strong>RBRACE</strong> = 27<br>
+<strong>RIGHTSHIFT</strong> = 35<br>
+<strong>RIGHTSHIFTEQUAL</strong> = 46<br>
+<strong>RPAR</strong> = 8<br>
+<strong>RSQB</strong> = 10<br>
+<strong>SEMI</strong> = 13<br>
+<strong>SLASH</strong> = 17<br>
+<strong>SLASHEQUAL</strong> = 40<br>
+<strong>STAR</strong> = 16<br>
+<strong>STAREQUAL</strong> = 39<br>
+<strong>STRING</strong> = 3<br>
+<strong>TILDE</strong> = 32<br>
+<strong>VBAR</strong> = 18<br>
+<strong>VBAREQUAL</strong> = 43<br>
+<strong>__all__</strong> = ['AMPER', 'AMPEREQUAL', 'AT', 'BACKQUOTE', 'CIRCUMFLEX', 'CIRCUMFLEXEQUAL', 'COLON', 'COMMA', 'DEDENT', 'DOT', 'DOUBLESLASH', 'DOUBLESLASHEQUAL', 'DOUBLESTAR', 'DOUBLESTAREQUAL', 'ENDMARKER', 'EQEQUAL', 'EQUAL', 'ERRORTOKEN', 'GREATER', 'GREATEREQUAL', ...]<br>
+<strong>__author__</strong> = 'Ka-Ping Yee &lt;ping@lfw.org&gt;'<br>
+<strong>__credits__</strong> = 'GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>tok_name</strong> = {0: 'ENDMARKER', 1: 'NAME', 2: 'NUMBER', 3: 'STRING', 4: 'NEWLINE', 5: 'INDENT', 6: 'DEDENT', 7: 'LPAR', 8: 'RPAR', 9: 'LSQB', ...}</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Ka-Ping&nbsp;Yee&nbsp;&lt;ping@lfw.org&gt;</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Credits</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">GvR,&nbsp;ESR,&nbsp;Tim&nbsp;Peters,&nbsp;Thomas&nbsp;Wouters,&nbsp;Fred&nbsp;Drake,&nbsp;Skip&nbsp;Montanaro</td></tr></table>

@@ -1,0 +1,53 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>compiler</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/compiler/__init__.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/compiler/__init__.py</a></font></td></tr></table>
+    <p><tt>Package&nbsp;for&nbsp;parsing&nbsp;and&nbsp;compiling&nbsp;Python&nbsp;source&nbsp;code<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;several&nbsp;functions&nbsp;defined&nbsp;at&nbsp;the&nbsp;top&nbsp;level&nbsp;that&nbsp;are&nbsp;imported<br>
+from&nbsp;modules&nbsp;contained&nbsp;in&nbsp;the&nbsp;package.<br>
+&nbsp;<br>
+parse(buf,&nbsp;mode="exec")&nbsp;-&gt;&nbsp;AST<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Converts&nbsp;a&nbsp;string&nbsp;containing&nbsp;Python&nbsp;source&nbsp;code&nbsp;to&nbsp;an&nbsp;abstract<br>
+&nbsp;&nbsp;&nbsp;&nbsp;syntax&nbsp;tree&nbsp;(AST).&nbsp;&nbsp;The&nbsp;AST&nbsp;is&nbsp;defined&nbsp;in&nbsp;compiler.ast.<br>
+&nbsp;<br>
+parseFile(path)&nbsp;-&gt;&nbsp;AST<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;same&nbsp;as&nbsp;parse(open(path))<br>
+&nbsp;<br>
+walk(ast,&nbsp;visitor,&nbsp;verbose=None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Does&nbsp;a&nbsp;pre-order&nbsp;walk&nbsp;over&nbsp;the&nbsp;ast&nbsp;using&nbsp;the&nbsp;visitor&nbsp;instance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;compiler.visitor&nbsp;for&nbsp;details.<br>
+&nbsp;<br>
+compile(source,&nbsp;filename,&nbsp;mode,&nbsp;flags=None,&nbsp;dont_inherit=None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;a&nbsp;code&nbsp;object.&nbsp;&nbsp;A&nbsp;replacement&nbsp;for&nbsp;the&nbsp;builtin&nbsp;compile()&nbsp;function.<br>
+&nbsp;<br>
+compileFile(filename)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Generates&nbsp;a&nbsp;.pyc&nbsp;file&nbsp;by&nbsp;compiling&nbsp;filename.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="compiler.ast.html">ast</a><br>
+<a href="compiler.consts.html">consts</a><br>
+<a href="compiler.future.html">future</a><br>
+</td><td width="25%" valign=top><a href="compiler.misc.html">misc</a><br>
+<a href="compiler.pyassem.html">pyassem</a><br>
+<a href="compiler.pycodegen.html">pycodegen</a><br>
+</td><td width="25%" valign=top><a href="compiler.symbols.html">symbols</a><br>
+<a href="compiler.syntax.html">syntax</a><br>
+<a href="compiler.transformer.html">transformer</a><br>
+</td><td width="25%" valign=top><a href="compiler.visitor.html">visitor</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

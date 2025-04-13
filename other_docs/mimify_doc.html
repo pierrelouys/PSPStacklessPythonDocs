@@ -1,0 +1,55 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>mimify</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/mimify.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/mimify.py</a></font></td></tr></table>
+    <p><tt>Mimification&nbsp;and&nbsp;unmimification&nbsp;of&nbsp;mail&nbsp;messages.<br>
+&nbsp;<br>
+Decode&nbsp;quoted-printable&nbsp;parts&nbsp;of&nbsp;a&nbsp;mail&nbsp;message&nbsp;or&nbsp;encode&nbsp;using<br>
+quoted-printable.<br>
+&nbsp;<br>
+Usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-mimify">mimify</a>(input,&nbsp;output)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-unmimify">unmimify</a>(input,&nbsp;output,&nbsp;decode_base64&nbsp;=&nbsp;0)<br>
+to&nbsp;encode&nbsp;and&nbsp;decode&nbsp;respectively.&nbsp;&nbsp;Input&nbsp;and&nbsp;output&nbsp;may&nbsp;be&nbsp;the&nbsp;name<br>
+of&nbsp;a&nbsp;file&nbsp;or&nbsp;an&nbsp;open&nbsp;file&nbsp;object.&nbsp;&nbsp;Only&nbsp;a&nbsp;readline()&nbsp;method&nbsp;is&nbsp;used<br>
+on&nbsp;the&nbsp;input&nbsp;file,&nbsp;only&nbsp;a&nbsp;write()&nbsp;method&nbsp;is&nbsp;used&nbsp;on&nbsp;the&nbsp;output&nbsp;file.<br>
+When&nbsp;using&nbsp;file&nbsp;names,&nbsp;the&nbsp;input&nbsp;and&nbsp;output&nbsp;file&nbsp;names&nbsp;may&nbsp;be&nbsp;the<br>
+same.<br>
+&nbsp;<br>
+Interactive&nbsp;usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mimify.py&nbsp;-e&nbsp;[infile&nbsp;[outfile]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mimify.py&nbsp;-d&nbsp;[infile&nbsp;[outfile]]<br>
+to&nbsp;encode&nbsp;and&nbsp;decode&nbsp;respectively.&nbsp;&nbsp;Infile&nbsp;defaults&nbsp;to&nbsp;standard<br>
+input&nbsp;and&nbsp;outfile&nbsp;to&nbsp;standard&nbsp;output.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-mime_decode_header"><strong>mime_decode_header</strong></a>(line)</dt><dd><tt>Decode&nbsp;a&nbsp;header&nbsp;line&nbsp;to&nbsp;8bit.</tt></dd></dl>
+ <dl><dt><a name="-mime_encode_header"><strong>mime_encode_header</strong></a>(line)</dt><dd><tt>Code&nbsp;a&nbsp;single&nbsp;header&nbsp;line&nbsp;as&nbsp;quoted-printable.</tt></dd></dl>
+ <dl><dt><a name="-mimify"><strong>mimify</strong></a>(infile, outfile)</dt><dd><tt>Convert&nbsp;8bit&nbsp;parts&nbsp;of&nbsp;a&nbsp;MIME&nbsp;mail&nbsp;message&nbsp;to&nbsp;quoted-printable.</tt></dd></dl>
+ <dl><dt><a name="-unmimify"><strong>unmimify</strong></a>(infile, outfile, decode_base64<font color="#909090">=0</font>)</dt><dd><tt>Convert&nbsp;quoted-printable&nbsp;parts&nbsp;of&nbsp;a&nbsp;MIME&nbsp;mail&nbsp;message&nbsp;to&nbsp;8bit.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['mimify', 'unmimify', 'mime_encode_header', 'mime_decode_header']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

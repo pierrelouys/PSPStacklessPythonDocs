@@ -1,0 +1,198 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_threading_local</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_threading_local.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_threading_local.py</a></font></td></tr></table>
+    <p><tt>Thread-<a href="#local">local</a>&nbsp;objects.<br>
+&nbsp;<br>
+(Note&nbsp;that&nbsp;this&nbsp;module&nbsp;provides&nbsp;a&nbsp;Python&nbsp;version&nbsp;of&nbsp;the&nbsp;threading.<a href="#local">local</a><br>
+&nbsp;class.&nbsp;&nbsp;Depending&nbsp;on&nbsp;the&nbsp;version&nbsp;of&nbsp;Python&nbsp;you're&nbsp;using,&nbsp;there&nbsp;may&nbsp;be&nbsp;a<br>
+&nbsp;faster&nbsp;one&nbsp;available.&nbsp;&nbsp;You&nbsp;should&nbsp;always&nbsp;import&nbsp;the&nbsp;`<a href="#local">local</a>`&nbsp;class&nbsp;from<br>
+&nbsp;`threading`.)<br>
+&nbsp;<br>
+Thread-<a href="#local">local</a>&nbsp;objects&nbsp;support&nbsp;the&nbsp;management&nbsp;of&nbsp;thread-<a href="#local">local</a>&nbsp;data.<br>
+If&nbsp;you&nbsp;have&nbsp;data&nbsp;that&nbsp;you&nbsp;want&nbsp;to&nbsp;be&nbsp;<a href="#local">local</a>&nbsp;to&nbsp;a&nbsp;thread,&nbsp;simply&nbsp;create<br>
+a&nbsp;thread-<a href="#local">local</a>&nbsp;object&nbsp;and&nbsp;use&nbsp;its&nbsp;attributes:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata&nbsp;=&nbsp;<a href="#local">local</a>()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number&nbsp;=&nbsp;42<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number<br>
+&nbsp;&nbsp;42<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;also&nbsp;access&nbsp;the&nbsp;<a href="#local">local</a>-object's&nbsp;dictionary:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.__dict__<br>
+&nbsp;&nbsp;{'number':&nbsp;42}<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.__dict__.setdefault('widgets',&nbsp;[])<br>
+&nbsp;&nbsp;[]<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.widgets<br>
+&nbsp;&nbsp;[]<br>
+&nbsp;<br>
+What's&nbsp;important&nbsp;about&nbsp;thread-<a href="#local">local</a>&nbsp;objects&nbsp;is&nbsp;that&nbsp;their&nbsp;data&nbsp;are<br>
+<a href="#local">local</a>&nbsp;to&nbsp;a&nbsp;thread.&nbsp;If&nbsp;we&nbsp;access&nbsp;the&nbsp;data&nbsp;in&nbsp;a&nbsp;different&nbsp;thread:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;log&nbsp;=&nbsp;[]<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;def&nbsp;f():<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;=&nbsp;mydata.__dict__.items()<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items.sort()<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.append(items)<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mydata.number&nbsp;=&nbsp;11<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.append(mydata.number)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;threading<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread&nbsp;=&nbsp;threading.Thread(target=f)<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.start()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.join()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;log<br>
+&nbsp;&nbsp;[[],&nbsp;11]<br>
+&nbsp;<br>
+we&nbsp;get&nbsp;different&nbsp;data.&nbsp;&nbsp;Furthermore,&nbsp;changes&nbsp;made&nbsp;in&nbsp;the&nbsp;other&nbsp;thread<br>
+don't&nbsp;affect&nbsp;data&nbsp;seen&nbsp;in&nbsp;this&nbsp;thread:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number<br>
+&nbsp;&nbsp;42<br>
+&nbsp;<br>
+Of&nbsp;course,&nbsp;values&nbsp;you&nbsp;get&nbsp;from&nbsp;a&nbsp;<a href="#local">local</a>&nbsp;object,&nbsp;including&nbsp;a&nbsp;__dict__<br>
+attribute,&nbsp;are&nbsp;for&nbsp;whatever&nbsp;thread&nbsp;was&nbsp;current&nbsp;at&nbsp;the&nbsp;time&nbsp;the<br>
+attribute&nbsp;was&nbsp;read.&nbsp;&nbsp;For&nbsp;that&nbsp;reason,&nbsp;you&nbsp;generally&nbsp;don't&nbsp;want&nbsp;to&nbsp;save<br>
+these&nbsp;values&nbsp;across&nbsp;threads,&nbsp;as&nbsp;they&nbsp;apply&nbsp;only&nbsp;to&nbsp;the&nbsp;thread&nbsp;they<br>
+came&nbsp;from.<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;create&nbsp;custom&nbsp;<a href="#local">local</a>&nbsp;objects&nbsp;by&nbsp;subclassing&nbsp;the&nbsp;<a href="#local">local</a>&nbsp;class:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;class&nbsp;MyLocal(<a href="#local">local</a>):<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;=&nbsp;2<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initialized&nbsp;=&nbsp;False<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;__init__(self,&nbsp;**kw):<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.<strong>initialized</strong>:<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise&nbsp;SystemError('__init__&nbsp;called&nbsp;too&nbsp;many&nbsp;times')<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.<strong>initialized</strong>&nbsp;=&nbsp;True<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.<strong>__dict__</strong>.update(kw)<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;squared(self):<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self.<strong>number</strong>&nbsp;**&nbsp;2<br>
+&nbsp;<br>
+This&nbsp;can&nbsp;be&nbsp;useful&nbsp;to&nbsp;support&nbsp;default&nbsp;values,&nbsp;methods&nbsp;and<br>
+initialization.&nbsp;&nbsp;Note&nbsp;that&nbsp;if&nbsp;you&nbsp;define&nbsp;an&nbsp;__init__&nbsp;method,&nbsp;it&nbsp;will&nbsp;be<br>
+called&nbsp;each&nbsp;time&nbsp;the&nbsp;<a href="#local">local</a>&nbsp;object&nbsp;is&nbsp;used&nbsp;in&nbsp;a&nbsp;separate&nbsp;thread.&nbsp;&nbsp;This<br>
+is&nbsp;necessary&nbsp;to&nbsp;initialize&nbsp;each&nbsp;thread's&nbsp;dictionary.<br>
+&nbsp;<br>
+Now&nbsp;if&nbsp;we&nbsp;create&nbsp;a&nbsp;<a href="#local">local</a>&nbsp;object:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata&nbsp;=&nbsp;MyLocal(color='red')<br>
+&nbsp;<br>
+Now&nbsp;we&nbsp;have&nbsp;a&nbsp;default&nbsp;number:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number<br>
+&nbsp;&nbsp;2<br>
+&nbsp;<br>
+an&nbsp;initial&nbsp;color:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.color<br>
+&nbsp;&nbsp;'red'<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;del&nbsp;mydata.color<br>
+&nbsp;<br>
+And&nbsp;a&nbsp;method&nbsp;that&nbsp;operates&nbsp;on&nbsp;the&nbsp;data:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.squared()<br>
+&nbsp;&nbsp;4<br>
+&nbsp;<br>
+As&nbsp;before,&nbsp;we&nbsp;can&nbsp;access&nbsp;the&nbsp;data&nbsp;in&nbsp;a&nbsp;separate&nbsp;thread:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;log&nbsp;=&nbsp;[]<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread&nbsp;=&nbsp;threading.Thread(target=f)<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.start()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.join()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;log<br>
+&nbsp;&nbsp;[[('color',&nbsp;'red'),&nbsp;('initialized',&nbsp;True)],&nbsp;11]<br>
+&nbsp;<br>
+without&nbsp;affecting&nbsp;this&nbsp;thread's&nbsp;data:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number<br>
+&nbsp;&nbsp;2<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.color<br>
+&nbsp;&nbsp;Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;AttributeError:&nbsp;'MyLocal'&nbsp;object&nbsp;has&nbsp;no&nbsp;attribute&nbsp;'color'<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;subclasses&nbsp;can&nbsp;define&nbsp;slots,&nbsp;but&nbsp;they&nbsp;are&nbsp;not&nbsp;thread<br>
+<a href="#local">local</a>.&nbsp;They&nbsp;are&nbsp;shared&nbsp;across&nbsp;threads:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;class&nbsp;MyLocal(<a href="#local">local</a>):<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__slots__&nbsp;=&nbsp;'number'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata&nbsp;=&nbsp;MyLocal()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number&nbsp;=&nbsp;42<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.color&nbsp;=&nbsp;'red'<br>
+&nbsp;<br>
+So,&nbsp;the&nbsp;separate&nbsp;thread:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread&nbsp;=&nbsp;threading.Thread(target=f)<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.start()<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;thread.join()<br>
+&nbsp;<br>
+affects&nbsp;what&nbsp;we&nbsp;see:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;mydata.number<br>
+&nbsp;&nbsp;11<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;del&nbsp;mydata</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="_threading_local.html#_localbase">_localbase</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_threading_local.html#local">local</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="local">class <strong>local</strong></a>(<a href="_threading_local.html#_localbase">_localbase</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_threading_local.html#local">local</a></dd>
+<dd><a href="_threading_local.html#_localbase">_localbase</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="local-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="local-__delattr__"><strong>__delattr__</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="local-__getattribute__"><strong>__getattribute__</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="local-__setattr__"><strong>__setattr__</strong></a>(self, name, value)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="_threading_local.html#_localbase">_localbase</a>:<br>
+<dl><dt><a name="local-__new__"><strong>__new__</strong></a>(cls, *args, **kw)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['local']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

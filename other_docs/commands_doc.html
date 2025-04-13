@@ -1,0 +1,45 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>commands</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/commands.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/commands.py</a></font></td></tr></table>
+    <p><tt>Execute&nbsp;shell&nbsp;commands&nbsp;via&nbsp;os.popen()&nbsp;and&nbsp;return&nbsp;status,&nbsp;output.<br>
+&nbsp;<br>
+Interface&nbsp;summary:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;commands<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outtext&nbsp;=&nbsp;commands.<a href="#-getoutput">getoutput</a>(cmd)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(exitstatus,&nbsp;outtext)&nbsp;=&nbsp;commands.<a href="#-getstatusoutput">getstatusoutput</a>(cmd)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outtext&nbsp;=&nbsp;commands.<a href="#-getstatus">getstatus</a>(file)&nbsp;&nbsp;#&nbsp;returns&nbsp;output&nbsp;of&nbsp;"ls&nbsp;-ld&nbsp;file"<br>
+&nbsp;<br>
+A&nbsp;trailing&nbsp;newline&nbsp;is&nbsp;removed&nbsp;from&nbsp;the&nbsp;output&nbsp;string.<br>
+&nbsp;<br>
+Encapsulates&nbsp;the&nbsp;basic&nbsp;operation:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pipe&nbsp;=&nbsp;os.popen('{&nbsp;'&nbsp;+&nbsp;cmd&nbsp;+&nbsp;';&nbsp;}&nbsp;2&gt;&amp;1',&nbsp;'r')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;=&nbsp;pipe.read()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sts&nbsp;=&nbsp;pipe.close()<br>
+&nbsp;<br>
+&nbsp;[Note:&nbsp;&nbsp;it&nbsp;would&nbsp;be&nbsp;nice&nbsp;to&nbsp;add&nbsp;functions&nbsp;to&nbsp;interpret&nbsp;the&nbsp;exit&nbsp;status.]</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-getoutput"><strong>getoutput</strong></a>(cmd)</dt><dd><tt>Return&nbsp;output&nbsp;(stdout&nbsp;or&nbsp;stderr)&nbsp;of&nbsp;executing&nbsp;cmd&nbsp;in&nbsp;a&nbsp;shell.</tt></dd></dl>
+ <dl><dt><a name="-getstatus"><strong>getstatus</strong></a>(file)</dt><dd><tt>Return&nbsp;output&nbsp;of&nbsp;"ls&nbsp;-ld&nbsp;&lt;file&gt;"&nbsp;in&nbsp;a&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-getstatusoutput"><strong>getstatusoutput</strong></a>(cmd)</dt><dd><tt>Return&nbsp;(status,&nbsp;output)&nbsp;of&nbsp;executing&nbsp;cmd&nbsp;in&nbsp;a&nbsp;shell.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['getstatusoutput', 'getoutput', 'getstatus']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

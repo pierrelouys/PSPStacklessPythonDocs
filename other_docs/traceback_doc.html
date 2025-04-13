@@ -1,0 +1,109 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>traceback</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/traceback.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/traceback.py</a></font></td></tr></table>
+    <p><tt>Extract,&nbsp;format&nbsp;and&nbsp;print&nbsp;information&nbsp;about&nbsp;Python&nbsp;stack&nbsp;traces.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="linecache.html">linecache</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="types.html">types</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-extract_stack"><strong>extract_stack</strong></a>(f<font color="#909090">=None</font>, limit<font color="#909090">=None</font>)</dt><dd><tt>Extract&nbsp;the&nbsp;raw&nbsp;traceback&nbsp;from&nbsp;the&nbsp;current&nbsp;stack&nbsp;frame.<br>
+&nbsp;<br>
+The&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;same&nbsp;format&nbsp;as&nbsp;for&nbsp;<a href="#-extract_tb">extract_tb</a>().&nbsp;&nbsp;The<br>
+optional&nbsp;'f'&nbsp;and&nbsp;'limit'&nbsp;arguments&nbsp;have&nbsp;the&nbsp;same&nbsp;meaning&nbsp;as&nbsp;for<br>
+<a href="#-print_stack">print_stack</a>().&nbsp;&nbsp;Each&nbsp;item&nbsp;in&nbsp;the&nbsp;list&nbsp;is&nbsp;a&nbsp;quadruple&nbsp;(filename,<br>
+line&nbsp;number,&nbsp;function&nbsp;name,&nbsp;text),&nbsp;and&nbsp;the&nbsp;entries&nbsp;are&nbsp;in&nbsp;order<br>
+from&nbsp;oldest&nbsp;to&nbsp;newest&nbsp;stack&nbsp;frame.</tt></dd></dl>
+ <dl><dt><a name="-extract_tb"><strong>extract_tb</strong></a>(tb, limit<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;list&nbsp;of&nbsp;up&nbsp;to&nbsp;limit&nbsp;pre-processed&nbsp;entries&nbsp;from&nbsp;traceback.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;useful&nbsp;for&nbsp;alternate&nbsp;formatting&nbsp;of&nbsp;stack&nbsp;traces.&nbsp;&nbsp;If<br>
+'limit'&nbsp;is&nbsp;omitted&nbsp;or&nbsp;None,&nbsp;all&nbsp;entries&nbsp;are&nbsp;extracted.&nbsp;&nbsp;A<br>
+pre-processed&nbsp;stack&nbsp;trace&nbsp;entry&nbsp;is&nbsp;a&nbsp;quadruple&nbsp;(filename,&nbsp;line<br>
+number,&nbsp;function&nbsp;name,&nbsp;text)&nbsp;representing&nbsp;the&nbsp;information&nbsp;that&nbsp;is<br>
+usually&nbsp;printed&nbsp;for&nbsp;a&nbsp;stack&nbsp;trace.&nbsp;&nbsp;The&nbsp;text&nbsp;is&nbsp;a&nbsp;string&nbsp;with<br>
+leading&nbsp;and&nbsp;trailing&nbsp;whitespace&nbsp;stripped;&nbsp;if&nbsp;the&nbsp;source&nbsp;is&nbsp;not<br>
+available&nbsp;it&nbsp;is&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-format_exc"><strong>format_exc</strong></a>(limit<font color="#909090">=None</font>)</dt><dd><tt>Like&nbsp;<a href="#-print_exc">print_exc</a>()&nbsp;but&nbsp;return&nbsp;a&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-format_exception"><strong>format_exception</strong></a>(etype, value, tb, limit<font color="#909090">=None</font>)</dt><dd><tt>Format&nbsp;a&nbsp;stack&nbsp;trace&nbsp;and&nbsp;the&nbsp;exception&nbsp;information.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;have&nbsp;the&nbsp;same&nbsp;meaning&nbsp;as&nbsp;the&nbsp;corresponding&nbsp;arguments<br>
+to&nbsp;<a href="#-print_exception">print_exception</a>().&nbsp;&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;strings,&nbsp;each<br>
+ending&nbsp;in&nbsp;a&nbsp;newline&nbsp;and&nbsp;some&nbsp;containing&nbsp;internal&nbsp;newlines.&nbsp;&nbsp;When<br>
+these&nbsp;lines&nbsp;are&nbsp;concatenated&nbsp;and&nbsp;printed,&nbsp;exactly&nbsp;the&nbsp;same&nbsp;text&nbsp;is<br>
+printed&nbsp;as&nbsp;does&nbsp;<a href="#-print_exception">print_exception</a>().</tt></dd></dl>
+ <dl><dt><a name="-format_exception_only"><strong>format_exception_only</strong></a>(etype, value)</dt><dd><tt>Format&nbsp;the&nbsp;exception&nbsp;part&nbsp;of&nbsp;a&nbsp;traceback.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;are&nbsp;the&nbsp;exception&nbsp;type&nbsp;and&nbsp;value&nbsp;such&nbsp;as&nbsp;given&nbsp;by<br>
+sys.last_type&nbsp;and&nbsp;sys.last_value.&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;a&nbsp;list&nbsp;of<br>
+strings,&nbsp;each&nbsp;ending&nbsp;in&nbsp;a&nbsp;newline.<br>
+&nbsp;<br>
+Normally,&nbsp;the&nbsp;list&nbsp;contains&nbsp;a&nbsp;single&nbsp;string;&nbsp;however,&nbsp;for<br>
+SyntaxError&nbsp;exceptions,&nbsp;it&nbsp;contains&nbsp;several&nbsp;lines&nbsp;that&nbsp;(when<br>
+printed)&nbsp;display&nbsp;detailed&nbsp;information&nbsp;about&nbsp;where&nbsp;the&nbsp;syntax<br>
+error&nbsp;occurred.<br>
+&nbsp;<br>
+The&nbsp;message&nbsp;indicating&nbsp;which&nbsp;exception&nbsp;occurred&nbsp;is&nbsp;always&nbsp;the&nbsp;last<br>
+string&nbsp;in&nbsp;the&nbsp;list.</tt></dd></dl>
+ <dl><dt><a name="-format_list"><strong>format_list</strong></a>(extracted_list)</dt><dd><tt>Format&nbsp;a&nbsp;list&nbsp;of&nbsp;traceback&nbsp;entry&nbsp;tuples&nbsp;for&nbsp;printing.<br>
+&nbsp;<br>
+Given&nbsp;a&nbsp;list&nbsp;of&nbsp;tuples&nbsp;as&nbsp;returned&nbsp;by&nbsp;<a href="#-extract_tb">extract_tb</a>()&nbsp;or<br>
+<a href="#-extract_stack">extract_stack</a>(),&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;ready&nbsp;for&nbsp;printing.<br>
+Each&nbsp;string&nbsp;in&nbsp;the&nbsp;resulting&nbsp;list&nbsp;corresponds&nbsp;to&nbsp;the&nbsp;item&nbsp;with&nbsp;the<br>
+same&nbsp;index&nbsp;in&nbsp;the&nbsp;argument&nbsp;list.&nbsp;&nbsp;Each&nbsp;string&nbsp;ends&nbsp;in&nbsp;a&nbsp;newline;<br>
+the&nbsp;strings&nbsp;may&nbsp;contain&nbsp;internal&nbsp;newlines&nbsp;as&nbsp;well,&nbsp;for&nbsp;those&nbsp;items<br>
+whose&nbsp;source&nbsp;text&nbsp;line&nbsp;is&nbsp;not&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-format_stack"><strong>format_stack</strong></a>(f<font color="#909090">=None</font>, limit<font color="#909090">=None</font>)</dt><dd><tt>Shorthand&nbsp;for&nbsp;'<a href="#-format_list">format_list</a>(<a href="#-extract_stack">extract_stack</a>(f,&nbsp;limit))'.</tt></dd></dl>
+ <dl><dt><a name="-format_tb"><strong>format_tb</strong></a>(tb, limit<font color="#909090">=None</font>)</dt><dd><tt>A&nbsp;shorthand&nbsp;for&nbsp;'<a href="#-format_list">format_list</a>(<a href="#-extract_stack">extract_stack</a>(f,&nbsp;limit)).</tt></dd></dl>
+ <dl><dt><a name="-print_exc"><strong>print_exc</strong></a>(limit<font color="#909090">=None</font>, file<font color="#909090">=None</font>)</dt><dd><tt>Shorthand&nbsp;for&nbsp;'<a href="#-print_exception">print_exception</a>(sys.exc_type,&nbsp;sys.exc_value,&nbsp;sys.exc_traceback,&nbsp;limit,&nbsp;file)'.<br>
+(In&nbsp;fact,&nbsp;it&nbsp;uses&nbsp;sys.exc_info()&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;same&nbsp;information<br>
+in&nbsp;a&nbsp;thread-safe&nbsp;way.)</tt></dd></dl>
+ <dl><dt><a name="-print_exception"><strong>print_exception</strong></a>(etype, value, tb, limit<font color="#909090">=None</font>, file<font color="#909090">=None</font>)</dt><dd><tt>Print&nbsp;exception&nbsp;up&nbsp;to&nbsp;'limit'&nbsp;stack&nbsp;trace&nbsp;entries&nbsp;from&nbsp;'tb'&nbsp;to&nbsp;'file'.<br>
+&nbsp;<br>
+This&nbsp;differs&nbsp;from&nbsp;<a href="#-print_tb">print_tb</a>()&nbsp;in&nbsp;the&nbsp;following&nbsp;ways:&nbsp;(1)&nbsp;if<br>
+traceback&nbsp;is&nbsp;not&nbsp;None,&nbsp;it&nbsp;prints&nbsp;a&nbsp;header&nbsp;"Traceback&nbsp;(most&nbsp;recent<br>
+call&nbsp;last):";&nbsp;(2)&nbsp;it&nbsp;prints&nbsp;the&nbsp;exception&nbsp;type&nbsp;and&nbsp;value&nbsp;after&nbsp;the<br>
+stack&nbsp;trace;&nbsp;(3)&nbsp;if&nbsp;type&nbsp;is&nbsp;SyntaxError&nbsp;and&nbsp;value&nbsp;has&nbsp;the<br>
+appropriate&nbsp;format,&nbsp;it&nbsp;prints&nbsp;the&nbsp;line&nbsp;where&nbsp;the&nbsp;syntax&nbsp;error<br>
+occurred&nbsp;with&nbsp;a&nbsp;caret&nbsp;on&nbsp;the&nbsp;next&nbsp;line&nbsp;indicating&nbsp;the&nbsp;approximate<br>
+position&nbsp;of&nbsp;the&nbsp;error.</tt></dd></dl>
+ <dl><dt><a name="-print_last"><strong>print_last</strong></a>(limit<font color="#909090">=None</font>, file<font color="#909090">=None</font>)</dt><dd><tt>This&nbsp;is&nbsp;a&nbsp;shorthand&nbsp;for&nbsp;'<a href="#-print_exception">print_exception</a>(sys.last_type,<br>
+sys.last_value,&nbsp;sys.last_traceback,&nbsp;limit,&nbsp;file)'.</tt></dd></dl>
+ <dl><dt><a name="-print_stack"><strong>print_stack</strong></a>(f<font color="#909090">=None</font>, limit<font color="#909090">=None</font>, file<font color="#909090">=None</font>)</dt><dd><tt>Print&nbsp;a&nbsp;stack&nbsp;trace&nbsp;from&nbsp;its&nbsp;invocation&nbsp;point.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;'f'&nbsp;argument&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;specify&nbsp;an&nbsp;alternate<br>
+stack&nbsp;frame&nbsp;at&nbsp;which&nbsp;to&nbsp;start.&nbsp;The&nbsp;optional&nbsp;'limit'&nbsp;and&nbsp;'file'<br>
+arguments&nbsp;have&nbsp;the&nbsp;same&nbsp;meaning&nbsp;as&nbsp;for&nbsp;<a href="#-print_exception">print_exception</a>().</tt></dd></dl>
+ <dl><dt><a name="-print_tb"><strong>print_tb</strong></a>(tb, limit<font color="#909090">=None</font>, file<font color="#909090">=None</font>)</dt><dd><tt>Print&nbsp;up&nbsp;to&nbsp;'limit'&nbsp;stack&nbsp;trace&nbsp;entries&nbsp;from&nbsp;the&nbsp;traceback&nbsp;'tb'.<br>
+&nbsp;<br>
+If&nbsp;'limit'&nbsp;is&nbsp;omitted&nbsp;or&nbsp;None,&nbsp;all&nbsp;entries&nbsp;are&nbsp;printed.&nbsp;&nbsp;If&nbsp;'file'<br>
+is&nbsp;omitted&nbsp;or&nbsp;None,&nbsp;the&nbsp;output&nbsp;goes&nbsp;to&nbsp;sys.stderr;&nbsp;otherwise<br>
+'file'&nbsp;should&nbsp;be&nbsp;an&nbsp;open&nbsp;file&nbsp;or&nbsp;file-like&nbsp;object&nbsp;with&nbsp;a&nbsp;write()<br>
+method.</tt></dd></dl>
+ <dl><dt><a name="-tb_lineno"><strong>tb_lineno</strong></a>(tb)</dt><dd><tt>Calculate&nbsp;correct&nbsp;line&nbsp;number&nbsp;of&nbsp;traceback&nbsp;given&nbsp;in&nbsp;tb.<br>
+&nbsp;<br>
+Obsolete&nbsp;in&nbsp;2.3.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['extract_stack', 'extract_tb', 'format_exception', 'format_exception_only', 'format_list', 'format_stack', 'format_tb', 'print_exc', 'format_exc', 'print_exception', 'print_last', 'print_stack', 'print_tb', 'tb_lineno']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

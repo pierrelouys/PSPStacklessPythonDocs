@@ -1,0 +1,102 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ntpath</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/ntpath.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/ntpath.py</a></font></td></tr></table>
+    <p><tt>Common&nbsp;pathname&nbsp;manipulations,&nbsp;WindowsNT/95&nbsp;version.<br>
+&nbsp;<br>
+Instead&nbsp;of&nbsp;importing&nbsp;this&nbsp;module&nbsp;directly,&nbsp;import&nbsp;os&nbsp;and&nbsp;refer&nbsp;to&nbsp;this<br>
+module&nbsp;as&nbsp;os.path.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="stat.html">stat</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-abspath"><strong>abspath</strong></a>(path)</dt><dd><tt>Return&nbsp;the&nbsp;absolute&nbsp;version&nbsp;of&nbsp;a&nbsp;path.</tt></dd></dl>
+ <dl><dt><a name="-basename"><strong>basename</strong></a>(p)</dt><dd><tt>Returns&nbsp;the&nbsp;final&nbsp;component&nbsp;of&nbsp;a&nbsp;pathname</tt></dd></dl>
+ <dl><dt><a name="-commonprefix"><strong>commonprefix</strong></a>(m)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;pathnames,&nbsp;returns&nbsp;the&nbsp;longest&nbsp;common&nbsp;leading&nbsp;component</tt></dd></dl>
+ <dl><dt><a name="-dirname"><strong>dirname</strong></a>(p)</dt><dd><tt>Returns&nbsp;the&nbsp;directory&nbsp;component&nbsp;of&nbsp;a&nbsp;pathname</tt></dd></dl>
+ <dl><dt><a name="-exists"><strong>exists</strong></a>(path)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;exists</tt></dd></dl>
+ <dl><dt><a name="-expanduser"><strong>expanduser</strong></a>(path)</dt><dd><tt>Expand&nbsp;~&nbsp;and&nbsp;~user&nbsp;constructs.<br>
+&nbsp;<br>
+If&nbsp;user&nbsp;or&nbsp;$HOME&nbsp;is&nbsp;unknown,&nbsp;do&nbsp;nothing.</tt></dd></dl>
+ <dl><dt><a name="-expandvars"><strong>expandvars</strong></a>(path)</dt><dd><tt>Expand&nbsp;shell&nbsp;variables&nbsp;of&nbsp;form&nbsp;$var&nbsp;and&nbsp;${var}.<br>
+&nbsp;<br>
+Unknown&nbsp;variables&nbsp;are&nbsp;left&nbsp;unchanged.</tt></dd></dl>
+ <dl><dt><a name="-getatime"><strong>getatime</strong></a>(filename)</dt><dd><tt>Return&nbsp;the&nbsp;last&nbsp;access&nbsp;time&nbsp;of&nbsp;a&nbsp;file,&nbsp;reported&nbsp;by&nbsp;os.stat()</tt></dd></dl>
+ <dl><dt><a name="-getctime"><strong>getctime</strong></a>(filename)</dt><dd><tt>Return&nbsp;the&nbsp;creation&nbsp;time&nbsp;of&nbsp;a&nbsp;file,&nbsp;reported&nbsp;by&nbsp;os.stat().</tt></dd></dl>
+ <dl><dt><a name="-getmtime"><strong>getmtime</strong></a>(filename)</dt><dd><tt>Return&nbsp;the&nbsp;last&nbsp;modification&nbsp;time&nbsp;of&nbsp;a&nbsp;file,&nbsp;reported&nbsp;by&nbsp;os.stat()</tt></dd></dl>
+ <dl><dt><a name="-getsize"><strong>getsize</strong></a>(filename)</dt><dd><tt>Return&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;file,&nbsp;reported&nbsp;by&nbsp;os.stat()</tt></dd></dl>
+ <dl><dt><a name="-isabs"><strong>isabs</strong></a>(s)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;is&nbsp;absolute</tt></dd></dl>
+ <dl><dt><a name="-isdir"><strong>isdir</strong></a>(path)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;is&nbsp;a&nbsp;directory</tt></dd></dl>
+ <dl><dt><a name="-isfile"><strong>isfile</strong></a>(path)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;is&nbsp;a&nbsp;regular&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-islink"><strong>islink</strong></a>(path)</dt><dd><tt>Test&nbsp;for&nbsp;symbolic&nbsp;link.&nbsp;&nbsp;On&nbsp;WindowsNT/95&nbsp;always&nbsp;returns&nbsp;false</tt></dd></dl>
+ <dl><dt><a name="-ismount"><strong>ismount</strong></a>(path)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;is&nbsp;a&nbsp;mount&nbsp;point&nbsp;(defined&nbsp;as&nbsp;root&nbsp;of&nbsp;drive)</tt></dd></dl>
+ <dl><dt><a name="-join"><strong>join</strong></a>(a, *p)</dt><dd><tt>Join&nbsp;two&nbsp;or&nbsp;more&nbsp;pathname&nbsp;components,&nbsp;inserting&nbsp;"\"&nbsp;as&nbsp;needed</tt></dd></dl>
+ <dl><dt><a name="-lexists"><strong>lexists</strong></a> = exists(path)</dt><dd><tt>Test&nbsp;whether&nbsp;a&nbsp;path&nbsp;exists</tt></dd></dl>
+ <dl><dt><a name="-normcase"><strong>normcase</strong></a>(s)</dt><dd><tt>Normalize&nbsp;case&nbsp;of&nbsp;pathname.<br>
+&nbsp;<br>
+Makes&nbsp;all&nbsp;characters&nbsp;lowercase&nbsp;and&nbsp;all&nbsp;slashes&nbsp;into&nbsp;backslashes.</tt></dd></dl>
+ <dl><dt><a name="-normpath"><strong>normpath</strong></a>(path)</dt><dd><tt>Normalize&nbsp;path,&nbsp;eliminating&nbsp;double&nbsp;slashes,&nbsp;etc.</tt></dd></dl>
+ <dl><dt><a name="-realpath"><strong>realpath</strong></a> = abspath(path)</dt><dd><tt>Return&nbsp;the&nbsp;absolute&nbsp;version&nbsp;of&nbsp;a&nbsp;path.</tt></dd></dl>
+ <dl><dt><a name="-split"><strong>split</strong></a>(p)</dt><dd><tt>Split&nbsp;a&nbsp;pathname.<br>
+&nbsp;<br>
+Return&nbsp;tuple&nbsp;(head,&nbsp;tail)&nbsp;where&nbsp;tail&nbsp;is&nbsp;everything&nbsp;after&nbsp;the&nbsp;final&nbsp;slash.<br>
+Either&nbsp;part&nbsp;may&nbsp;be&nbsp;empty.</tt></dd></dl>
+ <dl><dt><a name="-splitdrive"><strong>splitdrive</strong></a>(p)</dt><dd><tt>Split&nbsp;a&nbsp;pathname&nbsp;into&nbsp;drive&nbsp;and&nbsp;path&nbsp;specifiers.&nbsp;Returns&nbsp;a&nbsp;2-tuple<br>
+"(drive,path)";&nbsp;&nbsp;either&nbsp;part&nbsp;may&nbsp;be&nbsp;empty</tt></dd></dl>
+ <dl><dt><a name="-splitext"><strong>splitext</strong></a>(p)</dt><dd><tt>Split&nbsp;the&nbsp;extension&nbsp;from&nbsp;a&nbsp;pathname.<br>
+&nbsp;<br>
+Extension&nbsp;is&nbsp;everything&nbsp;from&nbsp;the&nbsp;last&nbsp;dot&nbsp;to&nbsp;the&nbsp;end.<br>
+Return&nbsp;(root,&nbsp;ext),&nbsp;either&nbsp;part&nbsp;may&nbsp;be&nbsp;empty.</tt></dd></dl>
+ <dl><dt><a name="-splitunc"><strong>splitunc</strong></a>(p)</dt><dd><tt>Split&nbsp;a&nbsp;pathname&nbsp;into&nbsp;UNC&nbsp;mount&nbsp;point&nbsp;and&nbsp;relative&nbsp;path&nbsp;specifiers.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;2-tuple&nbsp;(unc,&nbsp;rest);&nbsp;either&nbsp;part&nbsp;may&nbsp;be&nbsp;empty.<br>
+If&nbsp;unc&nbsp;is&nbsp;not&nbsp;empty,&nbsp;it&nbsp;has&nbsp;the&nbsp;form&nbsp;'//host/mount'&nbsp;(or&nbsp;similar<br>
+using&nbsp;backslashes).&nbsp;&nbsp;unc+rest&nbsp;is&nbsp;always&nbsp;the&nbsp;input&nbsp;path.<br>
+Paths&nbsp;containing&nbsp;drive&nbsp;letters&nbsp;never&nbsp;have&nbsp;an&nbsp;UNC&nbsp;part.</tt></dd></dl>
+ <dl><dt><a name="-walk"><strong>walk</strong></a>(top, func, arg)</dt><dd><tt>Directory&nbsp;tree&nbsp;walk&nbsp;with&nbsp;callback&nbsp;function.<br>
+&nbsp;<br>
+For&nbsp;each&nbsp;directory&nbsp;in&nbsp;the&nbsp;directory&nbsp;tree&nbsp;rooted&nbsp;at&nbsp;top&nbsp;(including&nbsp;top<br>
+itself,&nbsp;but&nbsp;excluding&nbsp;'.'&nbsp;and&nbsp;'..'),&nbsp;call&nbsp;func(arg,&nbsp;dirname,&nbsp;fnames).<br>
+dirname&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;directory,&nbsp;and&nbsp;fnames&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;names&nbsp;of<br>
+the&nbsp;files&nbsp;and&nbsp;subdirectories&nbsp;in&nbsp;dirname&nbsp;(excluding&nbsp;'.'&nbsp;and&nbsp;'..').&nbsp;&nbsp;func<br>
+may&nbsp;modify&nbsp;the&nbsp;fnames&nbsp;list&nbsp;in-place&nbsp;(e.g.&nbsp;via&nbsp;del&nbsp;or&nbsp;slice&nbsp;assignment),<br>
+and&nbsp;walk&nbsp;will&nbsp;only&nbsp;recurse&nbsp;into&nbsp;the&nbsp;subdirectories&nbsp;whose&nbsp;names&nbsp;remain&nbsp;in<br>
+fnames;&nbsp;this&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;implement&nbsp;a&nbsp;filter,&nbsp;or&nbsp;to&nbsp;impose&nbsp;a&nbsp;specific<br>
+order&nbsp;of&nbsp;visiting.&nbsp;&nbsp;No&nbsp;semantics&nbsp;are&nbsp;defined&nbsp;for,&nbsp;or&nbsp;required&nbsp;of,&nbsp;arg,<br>
+beyond&nbsp;that&nbsp;arg&nbsp;is&nbsp;always&nbsp;passed&nbsp;to&nbsp;func.&nbsp;&nbsp;It&nbsp;can&nbsp;be&nbsp;used,&nbsp;e.g.,&nbsp;to&nbsp;pass<br>
+a&nbsp;filename&nbsp;pattern,&nbsp;or&nbsp;a&nbsp;mutable&nbsp;object&nbsp;designed&nbsp;to&nbsp;accumulate<br>
+statistics.&nbsp;&nbsp;Passing&nbsp;None&nbsp;for&nbsp;arg&nbsp;is&nbsp;common.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['normcase', 'isabs', 'join', 'splitdrive', 'split', 'splitext', 'basename', 'dirname', 'commonprefix', 'getsize', 'getmtime', 'getatime', 'getctime', 'islink', 'exists', 'lexists', 'isdir', 'isfile', 'ismount', 'walk', ...]<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>altsep</strong> = '/'<br>
+<strong>curdir</strong> = '.'<br>
+<strong>defpath</strong> = r'.;C:\bin'<br>
+<strong>devnull</strong> = 'nul'<br>
+<strong>extsep</strong> = '.'<br>
+<strong>pardir</strong> = '..'<br>
+<strong>pathsep</strong> = ';'<br>
+<strong>sep</strong> = r'\'<br>
+<strong>supports_unicode_filenames</strong> = False</td></tr></table>

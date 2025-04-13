@@ -1,0 +1,133 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>struct</strong></big></big> (version 0.1)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/struct.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/struct.py</a></font></td></tr></table>
+    <p><tt>Functions&nbsp;to&nbsp;convert&nbsp;between&nbsp;Python&nbsp;values&nbsp;and&nbsp;C&nbsp;structs.<br>
+Python&nbsp;strings&nbsp;are&nbsp;used&nbsp;to&nbsp;hold&nbsp;the&nbsp;data&nbsp;representing&nbsp;the&nbsp;C&nbsp;struct<br>
+and&nbsp;also&nbsp;as&nbsp;format&nbsp;strings&nbsp;to&nbsp;describe&nbsp;the&nbsp;layout&nbsp;of&nbsp;data&nbsp;in&nbsp;the&nbsp;C&nbsp;struct.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;first&nbsp;format&nbsp;char&nbsp;indicates&nbsp;byte&nbsp;order,&nbsp;size&nbsp;and&nbsp;alignment:<br>
+&nbsp;@:&nbsp;native&nbsp;order,&nbsp;size&nbsp;&amp;&nbsp;alignment&nbsp;(default)<br>
+&nbsp;=:&nbsp;native&nbsp;order,&nbsp;std.&nbsp;size&nbsp;&amp;&nbsp;alignment<br>
+&nbsp;&lt;:&nbsp;little-endian,&nbsp;std.&nbsp;size&nbsp;&amp;&nbsp;alignment<br>
+&nbsp;&gt;:&nbsp;big-endian,&nbsp;std.&nbsp;size&nbsp;&amp;&nbsp;alignment<br>
+&nbsp;!:&nbsp;same&nbsp;as&nbsp;&gt;<br>
+&nbsp;<br>
+The&nbsp;remaining&nbsp;chars&nbsp;indicate&nbsp;types&nbsp;of&nbsp;args&nbsp;and&nbsp;must&nbsp;match&nbsp;exactly;<br>
+these&nbsp;can&nbsp;be&nbsp;preceded&nbsp;by&nbsp;a&nbsp;decimal&nbsp;repeat&nbsp;count:<br>
+&nbsp;x:&nbsp;pad&nbsp;byte&nbsp;(no&nbsp;data);&nbsp;c:char;&nbsp;b:signed&nbsp;byte;&nbsp;B:unsigned&nbsp;byte;<br>
+&nbsp;h:short;&nbsp;H:unsigned&nbsp;short;&nbsp;i:int;&nbsp;I:unsigned&nbsp;int;<br>
+&nbsp;l:long;&nbsp;L:unsigned&nbsp;long;&nbsp;f:float;&nbsp;d:double.<br>
+Special&nbsp;cases&nbsp;(preceding&nbsp;decimal&nbsp;count&nbsp;indicates&nbsp;length):<br>
+&nbsp;s:string&nbsp;(array&nbsp;of&nbsp;char);&nbsp;p:&nbsp;pascal&nbsp;string&nbsp;(with&nbsp;count&nbsp;byte).<br>
+Special&nbsp;case&nbsp;(only&nbsp;available&nbsp;in&nbsp;native&nbsp;format):<br>
+&nbsp;P:an&nbsp;integer&nbsp;type&nbsp;that&nbsp;is&nbsp;wide&nbsp;enough&nbsp;to&nbsp;hold&nbsp;a&nbsp;pointer.<br>
+Special&nbsp;case&nbsp;(not&nbsp;in&nbsp;native&nbsp;mode&nbsp;unless&nbsp;'long&nbsp;long'&nbsp;in&nbsp;platform&nbsp;C):<br>
+&nbsp;q:long&nbsp;long;&nbsp;Q:unsigned&nbsp;long&nbsp;long<br>
+Whitespace&nbsp;between&nbsp;formats&nbsp;is&nbsp;ignored.<br>
+&nbsp;<br>
+The&nbsp;variable&nbsp;struct.<a href="#error">error</a>&nbsp;is&nbsp;an&nbsp;exception&nbsp;raised&nbsp;on&nbsp;errors.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="struct.html#error">error</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="error">class <strong>error</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="struct.html#error">error</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="error-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="error-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="error-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="error-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="error-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="error-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-calcsize"><strong>calcsize</strong></a>(fmt)</dt><dd><tt>Return&nbsp;size&nbsp;of&nbsp;C&nbsp;struct&nbsp;described&nbsp;by&nbsp;format&nbsp;string&nbsp;fmt.<br>
+See&nbsp;struct.__doc__&nbsp;for&nbsp;more&nbsp;on&nbsp;format&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-pack"><strong>pack</strong></a>(fmt, *args)</dt><dd><tt>Return&nbsp;string&nbsp;containing&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;packed&nbsp;according&nbsp;to&nbsp;fmt.<br>
+See&nbsp;struct.__doc__&nbsp;for&nbsp;more&nbsp;on&nbsp;format&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-pack_into"><strong>pack_into</strong></a>(fmt, buf, offset, *args)</dt><dd><tt>Pack&nbsp;the&nbsp;values&nbsp;v1,&nbsp;v2,&nbsp;...&nbsp;according&nbsp;to&nbsp;fmt,&nbsp;write<br>
+the&nbsp;packed&nbsp;bytes&nbsp;into&nbsp;the&nbsp;writable&nbsp;buffer&nbsp;buf&nbsp;starting&nbsp;at&nbsp;offset.<br>
+See&nbsp;struct.__doc__&nbsp;for&nbsp;more&nbsp;on&nbsp;format&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-unpack"><strong>unpack</strong></a>(fmt, s)</dt><dd><tt>Unpack&nbsp;the&nbsp;string,&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according<br>
+to&nbsp;fmt.&nbsp;&nbsp;Requires&nbsp;len(string)==<a href="#-calcsize">calcsize</a>(fmt).<br>
+See&nbsp;struct.__doc__&nbsp;for&nbsp;more&nbsp;on&nbsp;format&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-unpack_from"><strong>unpack_from</strong></a>(fmt, buf, offset<font color="#909090">=0</font>)</dt><dd><tt>Unpack&nbsp;the&nbsp;buffer,&nbsp;containing&nbsp;packed&nbsp;C&nbsp;structure&nbsp;data,&nbsp;according&nbsp;to<br>
+fmt&nbsp;starting&nbsp;at&nbsp;offset.&nbsp;Requires&nbsp;len(buffer[offset:])&nbsp;&gt;=&nbsp;<a href="#-calcsize">calcsize</a>(fmt).<br>
+See&nbsp;struct.__doc__&nbsp;for&nbsp;more&nbsp;on&nbsp;format&nbsp;strings.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__version__</strong> = '0.1'</td></tr></table>

@@ -1,0 +1,144 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>filecmp</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/filecmp.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/filecmp.py</a></font></td></tr></table>
+    <p><tt>Utilities&nbsp;for&nbsp;comparing&nbsp;files&nbsp;and&nbsp;directories.<br>
+&nbsp;<br>
+Classes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#dircmp">dircmp</a><br>
+&nbsp;<br>
+Functions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-cmp">cmp</a>(f1,&nbsp;f2,&nbsp;shallow=1)&nbsp;-&gt;&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#-cmpfiles">cmpfiles</a>(a,&nbsp;b,&nbsp;common)&nbsp;-&gt;&nbsp;([],&nbsp;[],&nbsp;[])</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="stat.html">stat</a><br>
+</td><td width="25%" valign=top><a href="warnings.html">warnings</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="filecmp.html#dircmp">dircmp</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="dircmp">class <strong>dircmp</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;that&nbsp;manages&nbsp;the&nbsp;comparison&nbsp;of&nbsp;2&nbsp;directories.<br>
+&nbsp;<br>
+<a href="#dircmp">dircmp</a>(a,b,ignore=None,hide=None)<br>
+&nbsp;&nbsp;A&nbsp;and&nbsp;B&nbsp;are&nbsp;directories.<br>
+&nbsp;&nbsp;IGNORE&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;names&nbsp;to&nbsp;ignore,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;to&nbsp;['RCS',&nbsp;'CVS',&nbsp;'tags'].<br>
+&nbsp;&nbsp;HIDE&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;names&nbsp;to&nbsp;hide,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;to&nbsp;[os.curdir,&nbsp;os.pardir].<br>
+&nbsp;<br>
+High&nbsp;level&nbsp;usage:<br>
+&nbsp;&nbsp;x&nbsp;=&nbsp;<a href="#dircmp">dircmp</a>(dir1,&nbsp;dir2)<br>
+&nbsp;&nbsp;x.<a href="#dircmp-report">report</a>()&nbsp;-&gt;&nbsp;prints&nbsp;a&nbsp;report&nbsp;on&nbsp;the&nbsp;differences&nbsp;between&nbsp;dir1&nbsp;and&nbsp;dir2<br>
+&nbsp;&nbsp;&nbsp;or<br>
+&nbsp;&nbsp;x.<a href="#dircmp-report_partial_closure">report_partial_closure</a>()&nbsp;-&gt;&nbsp;prints&nbsp;report&nbsp;on&nbsp;differences&nbsp;between&nbsp;dir1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;dir2,&nbsp;and&nbsp;reports&nbsp;on&nbsp;common&nbsp;immediate&nbsp;subdirectories.<br>
+&nbsp;&nbsp;x.<a href="#dircmp-report_full_closure">report_full_closure</a>()&nbsp;-&gt;&nbsp;like&nbsp;report_partial_closure,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;but&nbsp;fully&nbsp;recursive.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;left_list,&nbsp;right_list:&nbsp;The&nbsp;files&nbsp;in&nbsp;dir1&nbsp;and&nbsp;dir2,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filtered&nbsp;by&nbsp;hide&nbsp;and&nbsp;ignore.<br>
+&nbsp;common:&nbsp;a&nbsp;list&nbsp;of&nbsp;names&nbsp;in&nbsp;both&nbsp;dir1&nbsp;and&nbsp;dir2.<br>
+&nbsp;left_only,&nbsp;right_only:&nbsp;names&nbsp;only&nbsp;in&nbsp;dir1,&nbsp;dir2.<br>
+&nbsp;common_dirs:&nbsp;subdirectories&nbsp;in&nbsp;both&nbsp;dir1&nbsp;and&nbsp;dir2.<br>
+&nbsp;common_files:&nbsp;files&nbsp;in&nbsp;both&nbsp;dir1&nbsp;and&nbsp;dir2.<br>
+&nbsp;common_funny:&nbsp;names&nbsp;in&nbsp;both&nbsp;dir1&nbsp;and&nbsp;dir2&nbsp;where&nbsp;the&nbsp;type&nbsp;differs&nbsp;between<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dir1&nbsp;and&nbsp;dir2,&nbsp;or&nbsp;the&nbsp;name&nbsp;is&nbsp;not&nbsp;stat-able.<br>
+&nbsp;same_files:&nbsp;list&nbsp;of&nbsp;identical&nbsp;files.<br>
+&nbsp;diff_files:&nbsp;list&nbsp;of&nbsp;filenames&nbsp;which&nbsp;differ.<br>
+&nbsp;funny_files:&nbsp;list&nbsp;of&nbsp;files&nbsp;which&nbsp;could&nbsp;not&nbsp;be&nbsp;compared.<br>
+&nbsp;subdirs:&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;<a href="#dircmp">dircmp</a>&nbsp;objects,&nbsp;keyed&nbsp;by&nbsp;names&nbsp;in&nbsp;common_dirs.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="dircmp-__getattr__"><strong>__getattr__</strong></a>(self, attr)</dt></dl>
+
+<dl><dt><a name="dircmp-__init__"><strong>__init__</strong></a>(self, a, b, ignore<font color="#909090">=None</font>, hide<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="dircmp-phase0"><strong>phase0</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-phase1"><strong>phase1</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-phase2"><strong>phase2</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-phase3"><strong>phase3</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-phase4"><strong>phase4</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-phase4_closure"><strong>phase4_closure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-report"><strong>report</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-report_full_closure"><strong>report_full_closure</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="dircmp-report_partial_closure"><strong>report_partial_closure</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>methodmap</strong> = {'common': &lt;function phase1 at 0x9eafe30&gt;, 'common_dirs': &lt;function phase2 at 0x9eafef0&gt;, 'common_files': &lt;function phase2 at 0x9eafef0&gt;, 'common_funny': &lt;function phase2 at 0x9eafef0&gt;, 'diff_files': &lt;function phase3 at 0x9eaffb0&gt;, 'funny_files': &lt;function phase3 at 0x9eaffb0&gt;, 'left_list': &lt;function phase0 at 0x9eafd70&gt;, 'left_only': &lt;function phase1 at 0x9eafe30&gt;, 'right_list': &lt;function phase0 at 0x9eafd70&gt;, 'right_only': &lt;function phase1 at 0x9eafe30&gt;, ...}</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-cmp"><strong>cmp</strong></a>(f1, f2, shallow<font color="#909090">=1</font>)</dt><dd><tt>Compare&nbsp;two&nbsp;files.<br>
+&nbsp;<br>
+Arguments:<br>
+&nbsp;<br>
+f1&nbsp;--&nbsp;First&nbsp;file&nbsp;name<br>
+&nbsp;<br>
+f2&nbsp;--&nbsp;Second&nbsp;file&nbsp;name<br>
+&nbsp;<br>
+shallow&nbsp;--&nbsp;Just&nbsp;check&nbsp;stat&nbsp;signature&nbsp;(do&nbsp;not&nbsp;read&nbsp;the&nbsp;files).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;to&nbsp;1.<br>
+&nbsp;<br>
+Return&nbsp;value:<br>
+&nbsp;<br>
+True&nbsp;if&nbsp;the&nbsp;files&nbsp;are&nbsp;the&nbsp;same,&nbsp;False&nbsp;otherwise.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;uses&nbsp;a&nbsp;cache&nbsp;for&nbsp;past&nbsp;comparisons&nbsp;and&nbsp;the&nbsp;results,<br>
+with&nbsp;a&nbsp;cache&nbsp;invalidation&nbsp;mechanism&nbsp;relying&nbsp;on&nbsp;stale&nbsp;signatures.</tt></dd></dl>
+ <dl><dt><a name="-cmpfiles"><strong>cmpfiles</strong></a>(a, b, common, shallow<font color="#909090">=1</font>)</dt><dd><tt>Compare&nbsp;common&nbsp;files&nbsp;in&nbsp;two&nbsp;directories.<br>
+&nbsp;<br>
+a,&nbsp;b&nbsp;--&nbsp;directory&nbsp;names<br>
+common&nbsp;--&nbsp;list&nbsp;of&nbsp;file&nbsp;names&nbsp;found&nbsp;in&nbsp;both&nbsp;directories<br>
+shallow&nbsp;--&nbsp;if&nbsp;true,&nbsp;do&nbsp;comparison&nbsp;based&nbsp;solely&nbsp;on&nbsp;stat()&nbsp;information<br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;three&nbsp;lists:<br>
+&nbsp;&nbsp;files&nbsp;that&nbsp;compare&nbsp;equal<br>
+&nbsp;&nbsp;files&nbsp;that&nbsp;are&nbsp;different<br>
+&nbsp;&nbsp;filenames&nbsp;that&nbsp;aren't&nbsp;regular&nbsp;files.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['cmp', 'dircmp', 'cmpfiles']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

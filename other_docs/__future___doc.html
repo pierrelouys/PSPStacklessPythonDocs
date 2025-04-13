@@ -1,0 +1,69 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>__future__</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/__future__.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/__future__.py</a></font></td></tr></table>
+    <p><tt>Record&nbsp;of&nbsp;phased-in&nbsp;incompatible&nbsp;language&nbsp;changes.<br>
+&nbsp;<br>
+Each&nbsp;line&nbsp;is&nbsp;of&nbsp;the&nbsp;form:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;FeatureName&nbsp;=&nbsp;"_Feature("&nbsp;OptionalRelease&nbsp;","&nbsp;MandatoryRelease&nbsp;","<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CompilerFlag&nbsp;")"<br>
+&nbsp;<br>
+where,&nbsp;normally,&nbsp;OptionalRelease&nbsp;&lt;&nbsp;MandatoryRelease,&nbsp;and&nbsp;both&nbsp;are&nbsp;5-tuples<br>
+of&nbsp;the&nbsp;same&nbsp;form&nbsp;as&nbsp;sys.version_info:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(PY_MAJOR_VERSION,&nbsp;#&nbsp;the&nbsp;2&nbsp;in&nbsp;2.1.0a3;&nbsp;an&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PY_MINOR_VERSION,&nbsp;#&nbsp;the&nbsp;1;&nbsp;an&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PY_MICRO_VERSION,&nbsp;#&nbsp;the&nbsp;0;&nbsp;an&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PY_RELEASE_LEVEL,&nbsp;#&nbsp;"alpha",&nbsp;"beta",&nbsp;"candidate"&nbsp;or&nbsp;"final";&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PY_RELEASE_SERIAL&nbsp;#&nbsp;the&nbsp;3;&nbsp;an&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+&nbsp;<br>
+OptionalRelease&nbsp;records&nbsp;the&nbsp;first&nbsp;release&nbsp;in&nbsp;which<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;__future__&nbsp;import&nbsp;FeatureName<br>
+&nbsp;<br>
+was&nbsp;accepted.<br>
+&nbsp;<br>
+In&nbsp;the&nbsp;case&nbsp;of&nbsp;MandatoryReleases&nbsp;that&nbsp;have&nbsp;not&nbsp;yet&nbsp;occurred,<br>
+MandatoryRelease&nbsp;predicts&nbsp;the&nbsp;release&nbsp;in&nbsp;which&nbsp;the&nbsp;feature&nbsp;will&nbsp;become&nbsp;part<br>
+of&nbsp;the&nbsp;language.<br>
+&nbsp;<br>
+Else&nbsp;MandatoryRelease&nbsp;records&nbsp;when&nbsp;the&nbsp;feature&nbsp;became&nbsp;part&nbsp;of&nbsp;the&nbsp;language;<br>
+in&nbsp;releases&nbsp;at&nbsp;or&nbsp;after&nbsp;that,&nbsp;modules&nbsp;no&nbsp;longer&nbsp;need<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;__future__&nbsp;import&nbsp;FeatureName<br>
+&nbsp;<br>
+to&nbsp;use&nbsp;the&nbsp;feature&nbsp;in&nbsp;question,&nbsp;but&nbsp;may&nbsp;continue&nbsp;to&nbsp;use&nbsp;such&nbsp;imports.<br>
+&nbsp;<br>
+MandatoryRelease&nbsp;may&nbsp;also&nbsp;be&nbsp;None,&nbsp;meaning&nbsp;that&nbsp;a&nbsp;planned&nbsp;feature&nbsp;got<br>
+dropped.<br>
+&nbsp;<br>
+Instances&nbsp;of&nbsp;class&nbsp;_Feature&nbsp;have&nbsp;two&nbsp;corresponding&nbsp;methods,<br>
+.getOptionalRelease()&nbsp;and&nbsp;.getMandatoryRelease().<br>
+&nbsp;<br>
+CompilerFlag&nbsp;is&nbsp;the&nbsp;(bitfield)&nbsp;flag&nbsp;that&nbsp;should&nbsp;be&nbsp;passed&nbsp;in&nbsp;the&nbsp;fourth<br>
+argument&nbsp;to&nbsp;the&nbsp;builtin&nbsp;function&nbsp;compile()&nbsp;to&nbsp;enable&nbsp;the&nbsp;feature&nbsp;in<br>
+dynamically&nbsp;compiled&nbsp;code.&nbsp;&nbsp;This&nbsp;flag&nbsp;is&nbsp;stored&nbsp;in&nbsp;the&nbsp;.compiler_flag<br>
+attribute&nbsp;on&nbsp;_Future&nbsp;instances.&nbsp;&nbsp;These&nbsp;values&nbsp;must&nbsp;match&nbsp;the&nbsp;appropriate<br>
+#defines&nbsp;of&nbsp;CO_xxx&nbsp;flags&nbsp;in&nbsp;Include/compile.h.<br>
+&nbsp;<br>
+No&nbsp;feature&nbsp;line&nbsp;is&nbsp;ever&nbsp;to&nbsp;be&nbsp;deleted&nbsp;from&nbsp;this&nbsp;file.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['all_feature_names', 'nested_scopes', 'generators', 'division', 'absolute_import', 'with_statement']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>absolute_import</strong> = _Feature((2, 5, 0, 'alpha', 1), (2, 7, 0, 'alpha', 0), 16384)<br>
+<strong>all_feature_names</strong> = ['nested_scopes', 'generators', 'division', 'absolute_import', 'with_statement']<br>
+<strong>division</strong> = _Feature((2, 2, 0, 'alpha', 2), (3, 0, 0, 'alpha', 0), 8192)<br>
+<strong>generators</strong> = _Feature((2, 2, 0, 'alpha', 1), (2, 3, 0, 'final', 0), 0)<br>
+<strong>nested_scopes</strong> = _Feature((2, 1, 0, 'beta', 1), (2, 2, 0, 'alpha', 0), 16)<br>
+<strong>with_statement</strong> = _Feature((2, 5, 0, 'alpha', 1), (2, 6, 0, 'alpha', 0), 32768)</td></tr></table>

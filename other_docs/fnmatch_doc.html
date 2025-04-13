@@ -1,0 +1,62 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>fnmatch</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/fnmatch.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/fnmatch.py</a></font></td></tr></table>
+    <p><tt>Filename&nbsp;matching&nbsp;with&nbsp;shell&nbsp;patterns.<br>
+&nbsp;<br>
+<a href="#-fnmatch">fnmatch</a>(FILENAME,&nbsp;PATTERN)&nbsp;matches&nbsp;according&nbsp;to&nbsp;the&nbsp;local&nbsp;convention.<br>
+<a href="#-fnmatchcase">fnmatchcase</a>(FILENAME,&nbsp;PATTERN)&nbsp;always&nbsp;takes&nbsp;case&nbsp;in&nbsp;account.<br>
+&nbsp;<br>
+The&nbsp;functions&nbsp;operate&nbsp;by&nbsp;translating&nbsp;the&nbsp;pattern&nbsp;into&nbsp;a&nbsp;regular<br>
+expression.&nbsp;&nbsp;They&nbsp;cache&nbsp;the&nbsp;compiled&nbsp;regular&nbsp;expressions&nbsp;for&nbsp;speed.<br>
+&nbsp;<br>
+The&nbsp;function&nbsp;<a href="#-translate">translate</a>(PATTERN)&nbsp;returns&nbsp;a&nbsp;regular&nbsp;expression<br>
+corresponding&nbsp;to&nbsp;PATTERN.&nbsp;&nbsp;(It&nbsp;does&nbsp;not&nbsp;compile&nbsp;it.)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-filter"><strong>filter</strong></a>(names, pat)</dt><dd><tt>Return&nbsp;the&nbsp;subset&nbsp;of&nbsp;the&nbsp;list&nbsp;NAMES&nbsp;that&nbsp;match&nbsp;PAT</tt></dd></dl>
+ <dl><dt><a name="-fnmatch"><strong>fnmatch</strong></a>(name, pat)</dt><dd><tt>Test&nbsp;whether&nbsp;FILENAME&nbsp;matches&nbsp;PATTERN.<br>
+&nbsp;<br>
+Patterns&nbsp;are&nbsp;Unix&nbsp;shell&nbsp;style:<br>
+&nbsp;<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matches&nbsp;everything<br>
+?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matches&nbsp;any&nbsp;single&nbsp;character<br>
+[seq]&nbsp;&nbsp;&nbsp;matches&nbsp;any&nbsp;character&nbsp;in&nbsp;seq<br>
+[!seq]&nbsp;&nbsp;matches&nbsp;any&nbsp;char&nbsp;not&nbsp;in&nbsp;seq<br>
+&nbsp;<br>
+An&nbsp;initial&nbsp;period&nbsp;in&nbsp;FILENAME&nbsp;is&nbsp;not&nbsp;special.<br>
+Both&nbsp;FILENAME&nbsp;and&nbsp;PATTERN&nbsp;are&nbsp;first&nbsp;case-normalized<br>
+if&nbsp;the&nbsp;operating&nbsp;system&nbsp;requires&nbsp;it.<br>
+If&nbsp;you&nbsp;don't&nbsp;want&nbsp;this,&nbsp;use&nbsp;<a href="#-fnmatchcase">fnmatchcase</a>(FILENAME,&nbsp;PATTERN).</tt></dd></dl>
+ <dl><dt><a name="-fnmatchcase"><strong>fnmatchcase</strong></a>(name, pat)</dt><dd><tt>Test&nbsp;whether&nbsp;FILENAME&nbsp;matches&nbsp;PATTERN,&nbsp;including&nbsp;case.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;version&nbsp;of&nbsp;<a href="#-fnmatch">fnmatch</a>()&nbsp;which&nbsp;doesn't&nbsp;case-normalize<br>
+its&nbsp;arguments.</tt></dd></dl>
+ <dl><dt><a name="-translate"><strong>translate</strong></a>(pat)</dt><dd><tt>Translate&nbsp;a&nbsp;shell&nbsp;PATTERN&nbsp;to&nbsp;a&nbsp;regular&nbsp;expression.<br>
+&nbsp;<br>
+There&nbsp;is&nbsp;no&nbsp;way&nbsp;to&nbsp;quote&nbsp;meta-characters.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['filter', 'fnmatch', 'fnmatchcase', 'translate']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

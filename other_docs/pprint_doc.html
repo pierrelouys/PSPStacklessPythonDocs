@@ -1,0 +1,105 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pprint</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pprint.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pprint.py</a></font></td></tr></table>
+    <p><tt>Support&nbsp;to&nbsp;pretty-print&nbsp;lists,&nbsp;tuples,&nbsp;&amp;&nbsp;dictionaries&nbsp;recursively.<br>
+&nbsp;<br>
+Very&nbsp;simple,&nbsp;but&nbsp;useful,&nbsp;especially&nbsp;in&nbsp;debugging&nbsp;data&nbsp;structures.<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+&nbsp;<br>
+<a href="#PrettyPrinter">PrettyPrinter</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Handle&nbsp;pretty-printing&nbsp;operations&nbsp;onto&nbsp;a&nbsp;stream&nbsp;using&nbsp;a&nbsp;configured<br>
+&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;of&nbsp;formatting&nbsp;parameters.<br>
+&nbsp;<br>
+Functions<br>
+---------<br>
+&nbsp;<br>
+<a href="#-pformat">pformat</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Format&nbsp;a&nbsp;Python&nbsp;object&nbsp;into&nbsp;a&nbsp;pretty-printed&nbsp;representation.<br>
+&nbsp;<br>
+<a href="#-pprint">pprint</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Pretty-print&nbsp;a&nbsp;Python&nbsp;object&nbsp;to&nbsp;a&nbsp;stream&nbsp;[default&nbsp;is&nbsp;sys.stdout].<br>
+&nbsp;<br>
+<a href="#-saferepr">saferepr</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Generate&nbsp;a&nbsp;'standard'&nbsp;repr()-like&nbsp;value,&nbsp;but&nbsp;protect&nbsp;against&nbsp;recursive<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;structures.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pprint.html#PrettyPrinter">PrettyPrinter</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PrettyPrinter">class <strong>PrettyPrinter</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PrettyPrinter-__init__"><strong>__init__</strong></a>(self, indent<font color="#909090">=1</font>, width<font color="#909090">=80</font>, depth<font color="#909090">=None</font>, stream<font color="#909090">=None</font>)</dt><dd><tt>Handle&nbsp;pretty&nbsp;printing&nbsp;operations&nbsp;onto&nbsp;a&nbsp;stream&nbsp;using&nbsp;a&nbsp;set&nbsp;of<br>
+configured&nbsp;parameters.<br>
+&nbsp;<br>
+indent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;spaces&nbsp;to&nbsp;indent&nbsp;for&nbsp;each&nbsp;level&nbsp;of&nbsp;nesting.<br>
+&nbsp;<br>
+width<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Attempted&nbsp;maximum&nbsp;number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;output.<br>
+&nbsp;<br>
+depth<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;maximum&nbsp;depth&nbsp;to&nbsp;print&nbsp;out&nbsp;nested&nbsp;structures.<br>
+&nbsp;<br>
+stream<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;desired&nbsp;output&nbsp;stream.&nbsp;&nbsp;If&nbsp;omitted&nbsp;(or&nbsp;false),&nbsp;the&nbsp;standard<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;stream&nbsp;available&nbsp;at&nbsp;construction&nbsp;will&nbsp;be&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="PrettyPrinter-format"><strong>format</strong></a>(self, object, context, maxlevels, level)</dt><dd><tt>Format&nbsp;object&nbsp;for&nbsp;a&nbsp;specific&nbsp;context,&nbsp;returning&nbsp;a&nbsp;string<br>
+and&nbsp;flags&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;representation&nbsp;is&nbsp;'readable'<br>
+and&nbsp;whether&nbsp;the&nbsp;object&nbsp;represents&nbsp;a&nbsp;recursive&nbsp;construct.</tt></dd></dl>
+
+<dl><dt><a name="PrettyPrinter-isreadable"><strong>isreadable</strong></a>(self, object)</dt></dl>
+
+<dl><dt><a name="PrettyPrinter-isrecursive"><strong>isrecursive</strong></a>(self, object)</dt></dl>
+
+<dl><dt><a name="PrettyPrinter-pformat"><strong>pformat</strong></a>(self, object)</dt></dl>
+
+<dl><dt><a name="PrettyPrinter-pprint"><strong>pprint</strong></a>(self, object)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-isreadable"><strong>isreadable</strong></a>(object)</dt><dd><tt>Determine&nbsp;if&nbsp;<a href="#-saferepr">saferepr</a>(object)&nbsp;is&nbsp;readable&nbsp;by&nbsp;eval().</tt></dd></dl>
+ <dl><dt><a name="-isrecursive"><strong>isrecursive</strong></a>(object)</dt><dd><tt>Determine&nbsp;if&nbsp;object&nbsp;requires&nbsp;a&nbsp;recursive&nbsp;representation.</tt></dd></dl>
+ <dl><dt><a name="-pformat"><strong>pformat</strong></a>(object, indent<font color="#909090">=1</font>, width<font color="#909090">=80</font>, depth<font color="#909090">=None</font>)</dt><dd><tt>Format&nbsp;a&nbsp;Python&nbsp;object&nbsp;into&nbsp;a&nbsp;pretty-printed&nbsp;representation.</tt></dd></dl>
+ <dl><dt><a name="-pprint"><strong>pprint</strong></a>(object, stream<font color="#909090">=None</font>, indent<font color="#909090">=1</font>, width<font color="#909090">=80</font>, depth<font color="#909090">=None</font>)</dt><dd><tt>Pretty-print&nbsp;a&nbsp;Python&nbsp;object&nbsp;to&nbsp;a&nbsp;stream&nbsp;[default&nbsp;is&nbsp;sys.stdout].</tt></dd></dl>
+ <dl><dt><a name="-saferepr"><strong>saferepr</strong></a>(object)</dt><dd><tt>Version&nbsp;of&nbsp;repr()&nbsp;which&nbsp;can&nbsp;handle&nbsp;recursive&nbsp;data&nbsp;structures.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['pprint', 'pformat', 'isreadable', 'isrecursive', 'saferepr', 'PrettyPrinter']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

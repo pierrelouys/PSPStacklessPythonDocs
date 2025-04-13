@@ -1,0 +1,59 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>mutex</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/mutex.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/mutex.py</a></font></td></tr></table>
+    <p><tt>Mutual&nbsp;exclusion&nbsp;--&nbsp;for&nbsp;use&nbsp;with&nbsp;module&nbsp;sched<br>
+&nbsp;<br>
+A&nbsp;<a href="#mutex">mutex</a>&nbsp;has&nbsp;two&nbsp;pieces&nbsp;of&nbsp;state&nbsp;--&nbsp;a&nbsp;'locked'&nbsp;bit&nbsp;and&nbsp;a&nbsp;queue.<br>
+When&nbsp;the&nbsp;<a href="#mutex">mutex</a>&nbsp;is&nbsp;not&nbsp;locked,&nbsp;the&nbsp;queue&nbsp;is&nbsp;empty.<br>
+Otherwise,&nbsp;the&nbsp;queue&nbsp;contains&nbsp;0&nbsp;or&nbsp;more&nbsp;(function,&nbsp;argument)&nbsp;pairs<br>
+representing&nbsp;functions&nbsp;(or&nbsp;methods)&nbsp;waiting&nbsp;to&nbsp;acquire&nbsp;the&nbsp;lock.<br>
+When&nbsp;the&nbsp;<a href="#mutex">mutex</a>&nbsp;is&nbsp;unlocked&nbsp;while&nbsp;the&nbsp;queue&nbsp;is&nbsp;not&nbsp;empty,<br>
+the&nbsp;first&nbsp;queue&nbsp;entry&nbsp;is&nbsp;removed&nbsp;and&nbsp;its&nbsp;function(argument)&nbsp;pair&nbsp;called,<br>
+implying&nbsp;it&nbsp;now&nbsp;has&nbsp;the&nbsp;lock.<br>
+&nbsp;<br>
+Of&nbsp;course,&nbsp;no&nbsp;multi-threading&nbsp;is&nbsp;implied&nbsp;--&nbsp;hence&nbsp;the&nbsp;funny&nbsp;interface<br>
+for&nbsp;lock,&nbsp;where&nbsp;a&nbsp;function&nbsp;is&nbsp;called&nbsp;once&nbsp;the&nbsp;lock&nbsp;is&nbsp;aquired.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="mutex.html#mutex">mutex</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="mutex">class <strong>mutex</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="mutex-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;<a href="#mutex">mutex</a>&nbsp;--&nbsp;initially&nbsp;unlocked.</tt></dd></dl>
+
+<dl><dt><a name="mutex-lock"><strong>lock</strong></a>(self, function, argument)</dt><dd><tt>Lock&nbsp;a&nbsp;<a href="#mutex">mutex</a>,&nbsp;call&nbsp;the&nbsp;function&nbsp;with&nbsp;supplied&nbsp;argument<br>
+when&nbsp;it&nbsp;is&nbsp;acquired.&nbsp;&nbsp;If&nbsp;the&nbsp;<a href="#mutex">mutex</a>&nbsp;is&nbsp;already&nbsp;locked,&nbsp;place<br>
+function&nbsp;and&nbsp;argument&nbsp;in&nbsp;the&nbsp;queue.</tt></dd></dl>
+
+<dl><dt><a name="mutex-test"><strong>test</strong></a>(self)</dt><dd><tt>Test&nbsp;the&nbsp;locked&nbsp;bit&nbsp;of&nbsp;the&nbsp;<a href="#mutex">mutex</a>.</tt></dd></dl>
+
+<dl><dt><a name="mutex-testandset"><strong>testandset</strong></a>(self)</dt><dd><tt>Atomic&nbsp;test-and-set&nbsp;--&nbsp;grab&nbsp;the&nbsp;lock&nbsp;if&nbsp;it&nbsp;is&nbsp;not&nbsp;set,<br>
+return&nbsp;True&nbsp;if&nbsp;it&nbsp;succeeded.</tt></dd></dl>
+
+<dl><dt><a name="mutex-unlock"><strong>unlock</strong></a>(self)</dt><dd><tt>Unlock&nbsp;a&nbsp;<a href="#mutex">mutex</a>.&nbsp;&nbsp;If&nbsp;the&nbsp;queue&nbsp;is&nbsp;not&nbsp;empty,&nbsp;call&nbsp;the&nbsp;next<br>
+function&nbsp;with&nbsp;its&nbsp;argument.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

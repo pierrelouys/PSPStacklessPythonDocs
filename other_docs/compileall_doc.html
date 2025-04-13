@@ -1,0 +1,62 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>compileall</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/compileall.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/compileall.py</a></font></td></tr></table>
+    <p><tt>Module/script&nbsp;to&nbsp;"compile"&nbsp;all&nbsp;.py&nbsp;files&nbsp;to&nbsp;.pyc&nbsp;(or&nbsp;.pyo)&nbsp;file.<br>
+&nbsp;<br>
+When&nbsp;called&nbsp;as&nbsp;a&nbsp;script&nbsp;with&nbsp;arguments,&nbsp;this&nbsp;compiles&nbsp;the&nbsp;directories<br>
+given&nbsp;as&nbsp;arguments&nbsp;recursively;&nbsp;the&nbsp;-l&nbsp;option&nbsp;prevents&nbsp;it&nbsp;from<br>
+recursing&nbsp;into&nbsp;directories.<br>
+&nbsp;<br>
+Without&nbsp;arguments,&nbsp;if&nbsp;compiles&nbsp;all&nbsp;modules&nbsp;on&nbsp;sys.path,&nbsp;without<br>
+recursing&nbsp;into&nbsp;subdirectories.&nbsp;&nbsp;(Even&nbsp;though&nbsp;it&nbsp;should&nbsp;do&nbsp;so&nbsp;for<br>
+packages&nbsp;--&nbsp;for&nbsp;now,&nbsp;you'll&nbsp;have&nbsp;to&nbsp;deal&nbsp;with&nbsp;packages&nbsp;separately.)<br>
+&nbsp;<br>
+See&nbsp;module&nbsp;py_compile&nbsp;for&nbsp;details&nbsp;of&nbsp;the&nbsp;actual&nbsp;byte-compilation.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="py_compile.html">py_compile</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-compile_dir"><strong>compile_dir</strong></a>(dir, maxlevels<font color="#909090">=10</font>, ddir<font color="#909090">=None</font>, force<font color="#909090">=0</font>, rx<font color="#909090">=None</font>, quiet<font color="#909090">=0</font>)</dt><dd><tt>Byte-compile&nbsp;all&nbsp;modules&nbsp;in&nbsp;the&nbsp;given&nbsp;directory&nbsp;tree.<br>
+&nbsp;<br>
+Arguments&nbsp;(only&nbsp;dir&nbsp;is&nbsp;required):<br>
+&nbsp;<br>
+dir:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;directory&nbsp;to&nbsp;byte-compile<br>
+maxlevels:&nbsp;maximum&nbsp;recursion&nbsp;level&nbsp;(default&nbsp;10)<br>
+ddir:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;given,&nbsp;purported&nbsp;directory&nbsp;name&nbsp;(this&nbsp;is&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directory&nbsp;name&nbsp;that&nbsp;will&nbsp;show&nbsp;up&nbsp;in&nbsp;error&nbsp;messages)<br>
+force:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;1,&nbsp;force&nbsp;compilation,&nbsp;even&nbsp;if&nbsp;timestamps&nbsp;are&nbsp;up-to-date<br>
+quiet:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;1,&nbsp;be&nbsp;quiet&nbsp;during&nbsp;compilation</tt></dd></dl>
+ <dl><dt><a name="-compile_path"><strong>compile_path</strong></a>(skip_curdir<font color="#909090">=1</font>, maxlevels<font color="#909090">=0</font>, force<font color="#909090">=0</font>, quiet<font color="#909090">=0</font>)</dt><dd><tt>Byte-compile&nbsp;all&nbsp;module&nbsp;on&nbsp;sys.path.<br>
+&nbsp;<br>
+Arguments&nbsp;(all&nbsp;optional):<br>
+&nbsp;<br>
+skip_curdir:&nbsp;if&nbsp;true,&nbsp;skip&nbsp;current&nbsp;directory&nbsp;(default&nbsp;true)<br>
+maxlevels:&nbsp;&nbsp;&nbsp;max&nbsp;recursion&nbsp;level&nbsp;(default&nbsp;0)<br>
+force:&nbsp;as&nbsp;for&nbsp;<a href="#-compile_dir">compile_dir</a>()&nbsp;(default&nbsp;0)<br>
+quiet:&nbsp;as&nbsp;for&nbsp;<a href="#-compile_dir">compile_dir</a>()&nbsp;(default&nbsp;0)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['compile_dir', 'compile_path']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,193 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>fileinput</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/fileinput.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/fileinput.py</a></font></td></tr></table>
+    <p><tt>Helper&nbsp;class&nbsp;to&nbsp;quickly&nbsp;write&nbsp;a&nbsp;loop&nbsp;over&nbsp;all&nbsp;standard&nbsp;input&nbsp;files.<br>
+&nbsp;<br>
+Typical&nbsp;use&nbsp;is:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;fileinput<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;line&nbsp;in&nbsp;fileinput.<a href="#-input">input</a>():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process(line)<br>
+&nbsp;<br>
+This&nbsp;iterates&nbsp;over&nbsp;the&nbsp;lines&nbsp;of&nbsp;all&nbsp;files&nbsp;listed&nbsp;in&nbsp;sys.argv[1:],<br>
+defaulting&nbsp;to&nbsp;sys.stdin&nbsp;if&nbsp;the&nbsp;list&nbsp;is&nbsp;empty.&nbsp;&nbsp;If&nbsp;a&nbsp;filename&nbsp;is&nbsp;'-'&nbsp;it<br>
+is&nbsp;also&nbsp;replaced&nbsp;by&nbsp;sys.stdin.&nbsp;&nbsp;To&nbsp;specify&nbsp;an&nbsp;alternative&nbsp;list&nbsp;of<br>
+filenames,&nbsp;pass&nbsp;it&nbsp;as&nbsp;the&nbsp;argument&nbsp;to&nbsp;<a href="#-input">input</a>().&nbsp;&nbsp;A&nbsp;single&nbsp;file&nbsp;name&nbsp;is<br>
+also&nbsp;allowed.<br>
+&nbsp;<br>
+Functions&nbsp;<a href="#-filename">filename</a>(),&nbsp;<a href="#-lineno">lineno</a>()&nbsp;return&nbsp;the&nbsp;filename&nbsp;and&nbsp;cumulative&nbsp;line<br>
+number&nbsp;of&nbsp;the&nbsp;line&nbsp;that&nbsp;has&nbsp;just&nbsp;been&nbsp;read;&nbsp;<a href="#-filelineno">filelineno</a>()&nbsp;returns&nbsp;its<br>
+line&nbsp;number&nbsp;in&nbsp;the&nbsp;current&nbsp;file;&nbsp;<a href="#-isfirstline">isfirstline</a>()&nbsp;returns&nbsp;true&nbsp;iff&nbsp;the<br>
+line&nbsp;just&nbsp;read&nbsp;is&nbsp;the&nbsp;first&nbsp;line&nbsp;of&nbsp;its&nbsp;file;&nbsp;<a href="#-isstdin">isstdin</a>()&nbsp;returns&nbsp;true<br>
+iff&nbsp;the&nbsp;line&nbsp;was&nbsp;read&nbsp;from&nbsp;sys.stdin.&nbsp;&nbsp;Function&nbsp;<a href="#-nextfile">nextfile</a>()&nbsp;closes&nbsp;the<br>
+current&nbsp;file&nbsp;so&nbsp;that&nbsp;the&nbsp;next&nbsp;iteration&nbsp;will&nbsp;read&nbsp;the&nbsp;first&nbsp;line&nbsp;from<br>
+the&nbsp;next&nbsp;file&nbsp;(if&nbsp;any);&nbsp;lines&nbsp;not&nbsp;read&nbsp;from&nbsp;the&nbsp;file&nbsp;will&nbsp;not&nbsp;count<br>
+towards&nbsp;the&nbsp;cumulative&nbsp;line&nbsp;count;&nbsp;the&nbsp;filename&nbsp;is&nbsp;not&nbsp;changed&nbsp;until<br>
+after&nbsp;the&nbsp;first&nbsp;line&nbsp;of&nbsp;the&nbsp;next&nbsp;file&nbsp;has&nbsp;been&nbsp;read.&nbsp;&nbsp;Function&nbsp;<a href="#-close">close</a>()<br>
+closes&nbsp;the&nbsp;sequence.<br>
+&nbsp;<br>
+Before&nbsp;any&nbsp;lines&nbsp;have&nbsp;been&nbsp;read,&nbsp;<a href="#-filename">filename</a>()&nbsp;returns&nbsp;None&nbsp;and&nbsp;both&nbsp;line<br>
+numbers&nbsp;are&nbsp;zero;&nbsp;<a href="#-nextfile">nextfile</a>()&nbsp;has&nbsp;no&nbsp;effect.&nbsp;&nbsp;After&nbsp;all&nbsp;lines&nbsp;have&nbsp;been<br>
+read,&nbsp;<a href="#-filename">filename</a>()&nbsp;and&nbsp;the&nbsp;line&nbsp;number&nbsp;functions&nbsp;return&nbsp;the&nbsp;values<br>
+pertaining&nbsp;to&nbsp;the&nbsp;last&nbsp;line&nbsp;read;&nbsp;<a href="#-nextfile">nextfile</a>()&nbsp;has&nbsp;no&nbsp;effect.<br>
+&nbsp;<br>
+All&nbsp;files&nbsp;are&nbsp;opened&nbsp;in&nbsp;text&nbsp;mode&nbsp;by&nbsp;default,&nbsp;you&nbsp;can&nbsp;override&nbsp;this&nbsp;by<br>
+setting&nbsp;the&nbsp;mode&nbsp;parameter&nbsp;to&nbsp;<a href="#-input">input</a>()&nbsp;or&nbsp;<a href="#FileInput">FileInput</a>.__init__().<br>
+If&nbsp;an&nbsp;I/O&nbsp;error&nbsp;occurs&nbsp;during&nbsp;opening&nbsp;or&nbsp;reading&nbsp;a&nbsp;file,&nbsp;the&nbsp;IOError<br>
+exception&nbsp;is&nbsp;raised.<br>
+&nbsp;<br>
+If&nbsp;sys.stdin&nbsp;is&nbsp;used&nbsp;more&nbsp;than&nbsp;once,&nbsp;the&nbsp;second&nbsp;and&nbsp;further&nbsp;use&nbsp;will<br>
+return&nbsp;no&nbsp;lines,&nbsp;except&nbsp;perhaps&nbsp;for&nbsp;interactive&nbsp;use,&nbsp;or&nbsp;if&nbsp;it&nbsp;has&nbsp;been<br>
+explicitly&nbsp;reset&nbsp;(e.g.&nbsp;using&nbsp;sys.stdin.seek(0)).<br>
+&nbsp;<br>
+Empty&nbsp;files&nbsp;are&nbsp;opened&nbsp;and&nbsp;immediately&nbsp;closed;&nbsp;the&nbsp;only&nbsp;time&nbsp;their<br>
+presence&nbsp;in&nbsp;the&nbsp;list&nbsp;of&nbsp;filenames&nbsp;is&nbsp;noticeable&nbsp;at&nbsp;all&nbsp;is&nbsp;when&nbsp;the<br>
+last&nbsp;file&nbsp;opened&nbsp;is&nbsp;empty.<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;possible&nbsp;that&nbsp;the&nbsp;last&nbsp;line&nbsp;of&nbsp;a&nbsp;file&nbsp;doesn't&nbsp;end&nbsp;in&nbsp;a&nbsp;newline<br>
+character;&nbsp;otherwise&nbsp;lines&nbsp;are&nbsp;returned&nbsp;including&nbsp;the&nbsp;trailing<br>
+newline.<br>
+&nbsp;<br>
+Class&nbsp;<a href="#FileInput">FileInput</a>&nbsp;is&nbsp;the&nbsp;implementation;&nbsp;its&nbsp;methods&nbsp;<a href="#-filename">filename</a>(),<br>
+<a href="#-lineno">lineno</a>(),&nbsp;fileline(),&nbsp;<a href="#-isfirstline">isfirstline</a>(),&nbsp;<a href="#-isstdin">isstdin</a>(),&nbsp;<a href="#-nextfile">nextfile</a>()&nbsp;and&nbsp;<a href="#-close">close</a>()<br>
+correspond&nbsp;to&nbsp;the&nbsp;functions&nbsp;in&nbsp;the&nbsp;module.&nbsp;&nbsp;In&nbsp;addition&nbsp;it&nbsp;has&nbsp;a<br>
+readline()&nbsp;method&nbsp;which&nbsp;returns&nbsp;the&nbsp;next&nbsp;input&nbsp;line,&nbsp;and&nbsp;a<br>
+__getitem__()&nbsp;method&nbsp;which&nbsp;implements&nbsp;the&nbsp;sequence&nbsp;behavior.&nbsp;&nbsp;The<br>
+sequence&nbsp;must&nbsp;be&nbsp;accessed&nbsp;in&nbsp;strictly&nbsp;sequential&nbsp;order;&nbsp;sequence<br>
+access&nbsp;and&nbsp;readline()&nbsp;cannot&nbsp;be&nbsp;mixed.<br>
+&nbsp;<br>
+Optional&nbsp;in-place&nbsp;filtering:&nbsp;if&nbsp;the&nbsp;keyword&nbsp;argument&nbsp;inplace=1&nbsp;is<br>
+passed&nbsp;to&nbsp;<a href="#-input">input</a>()&nbsp;or&nbsp;to&nbsp;the&nbsp;<a href="#FileInput">FileInput</a>&nbsp;constructor,&nbsp;the&nbsp;file&nbsp;is&nbsp;moved<br>
+to&nbsp;a&nbsp;backup&nbsp;file&nbsp;and&nbsp;standard&nbsp;output&nbsp;is&nbsp;directed&nbsp;to&nbsp;the&nbsp;input&nbsp;file.<br>
+This&nbsp;makes&nbsp;it&nbsp;possible&nbsp;to&nbsp;write&nbsp;a&nbsp;filter&nbsp;that&nbsp;rewrites&nbsp;its&nbsp;input&nbsp;file<br>
+in&nbsp;place.&nbsp;&nbsp;If&nbsp;the&nbsp;keyword&nbsp;argument&nbsp;backup=".&lt;some&nbsp;extension&gt;"&nbsp;is&nbsp;also<br>
+given,&nbsp;it&nbsp;specifies&nbsp;the&nbsp;extension&nbsp;for&nbsp;the&nbsp;backup&nbsp;file,&nbsp;and&nbsp;the&nbsp;backup<br>
+file&nbsp;remains&nbsp;around;&nbsp;by&nbsp;default,&nbsp;the&nbsp;extension&nbsp;is&nbsp;".bak"&nbsp;and&nbsp;it&nbsp;is<br>
+deleted&nbsp;when&nbsp;the&nbsp;output&nbsp;file&nbsp;is&nbsp;closed.&nbsp;&nbsp;In-place&nbsp;filtering&nbsp;is<br>
+disabled&nbsp;when&nbsp;standard&nbsp;input&nbsp;is&nbsp;read.&nbsp;&nbsp;XXX&nbsp;The&nbsp;current&nbsp;implementation<br>
+does&nbsp;not&nbsp;work&nbsp;for&nbsp;MS-DOS&nbsp;8+3&nbsp;filesystems.<br>
+&nbsp;<br>
+Performance:&nbsp;this&nbsp;module&nbsp;is&nbsp;unfortunately&nbsp;one&nbsp;of&nbsp;the&nbsp;slower&nbsp;ways&nbsp;of<br>
+processing&nbsp;large&nbsp;numbers&nbsp;of&nbsp;input&nbsp;lines.&nbsp;&nbsp;Nevertheless,&nbsp;a&nbsp;significant<br>
+speed-up&nbsp;has&nbsp;been&nbsp;obtained&nbsp;by&nbsp;using&nbsp;readlines(bufsize)&nbsp;instead&nbsp;of<br>
+readline().&nbsp;&nbsp;A&nbsp;new&nbsp;keyword&nbsp;argument,&nbsp;bufsize=N,&nbsp;is&nbsp;present&nbsp;on&nbsp;the<br>
+<a href="#-input">input</a>()&nbsp;function&nbsp;and&nbsp;the&nbsp;<a href="#FileInput">FileInput</a>()&nbsp;class&nbsp;to&nbsp;override&nbsp;the&nbsp;default<br>
+buffer&nbsp;size.<br>
+&nbsp;<br>
+XXX&nbsp;Possible&nbsp;additions:<br>
+&nbsp;<br>
+-&nbsp;optional&nbsp;getopt&nbsp;argument&nbsp;processing<br>
+-&nbsp;isatty()<br>
+-&nbsp;read(),&nbsp;read(size),&nbsp;even&nbsp;readlines()</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="fileinput.html#FileInput">FileInput</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FileInput">class <strong>FileInput</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>class&nbsp;<a href="#FileInput">FileInput</a>([files[,&nbsp;inplace[,&nbsp;backup[,&nbsp;mode[,&nbsp;openhook]]]]])<br>
+&nbsp;<br>
+Class&nbsp;<a href="#FileInput">FileInput</a>&nbsp;is&nbsp;the&nbsp;implementation&nbsp;of&nbsp;the&nbsp;module;&nbsp;its&nbsp;methods<br>
+<a href="#FileInput-filename">filename</a>(),&nbsp;<a href="#FileInput-lineno">lineno</a>(),&nbsp;fileline(),&nbsp;<a href="#FileInput-isfirstline">isfirstline</a>(),&nbsp;<a href="#FileInput-isstdin">isstdin</a>(),&nbsp;<a href="#FileInput-fileno">fileno</a>(),<br>
+<a href="#FileInput-nextfile">nextfile</a>()&nbsp;and&nbsp;<a href="#FileInput-close">close</a>()&nbsp;correspond&nbsp;to&nbsp;the&nbsp;functions&nbsp;of&nbsp;the&nbsp;same&nbsp;name<br>
+in&nbsp;the&nbsp;module.<br>
+In&nbsp;addition&nbsp;it&nbsp;has&nbsp;a&nbsp;<a href="#FileInput-readline">readline</a>()&nbsp;method&nbsp;which&nbsp;returns&nbsp;the&nbsp;next<br>
+input&nbsp;line,&nbsp;and&nbsp;a&nbsp;<a href="#FileInput-__getitem__">__getitem__</a>()&nbsp;method&nbsp;which&nbsp;implements&nbsp;the<br>
+sequence&nbsp;behavior.&nbsp;The&nbsp;sequence&nbsp;must&nbsp;be&nbsp;accessed&nbsp;in&nbsp;strictly<br>
+sequential&nbsp;order;&nbsp;random&nbsp;access&nbsp;and&nbsp;<a href="#FileInput-readline">readline</a>()&nbsp;cannot&nbsp;be&nbsp;mixed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FileInput-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-__getitem__"><strong>__getitem__</strong></a>(self, i)</dt></dl>
+
+<dl><dt><a name="FileInput-__init__"><strong>__init__</strong></a>(self, files<font color="#909090">=None</font>, inplace<font color="#909090">=0</font>, backup<font color="#909090">=''</font>, bufsize<font color="#909090">=0</font>, mode<font color="#909090">='r'</font>, openhook<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="FileInput-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-filelineno"><strong>filelineno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-filename"><strong>filename</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-fileno"><strong>fileno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-isfirstline"><strong>isfirstline</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-isstdin"><strong>isstdin</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-lineno"><strong>lineno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-nextfile"><strong>nextfile</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FileInput-readline"><strong>readline</strong></a>(self)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-close"><strong>close</strong></a>()</dt><dd><tt>Close&nbsp;the&nbsp;sequence.</tt></dd></dl>
+ <dl><dt><a name="-filelineno"><strong>filelineno</strong></a>()</dt><dd><tt>Return&nbsp;the&nbsp;line&nbsp;number&nbsp;in&nbsp;the&nbsp;current&nbsp;file.&nbsp;Before&nbsp;the&nbsp;first&nbsp;line<br>
+has&nbsp;been&nbsp;read,&nbsp;returns&nbsp;0.&nbsp;After&nbsp;the&nbsp;last&nbsp;line&nbsp;of&nbsp;the&nbsp;last&nbsp;file&nbsp;has<br>
+been&nbsp;read,&nbsp;returns&nbsp;the&nbsp;line&nbsp;number&nbsp;of&nbsp;that&nbsp;line&nbsp;within&nbsp;the&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-filename"><strong>filename</strong></a>()</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;currently&nbsp;being&nbsp;read.<br>
+Before&nbsp;the&nbsp;first&nbsp;line&nbsp;has&nbsp;been&nbsp;read,&nbsp;returns&nbsp;None.</tt></dd></dl>
+ <dl><dt><a name="-input"><strong>input</strong></a>(files<font color="#909090">=None</font>, inplace<font color="#909090">=0</font>, backup<font color="#909090">=''</font>, bufsize<font color="#909090">=0</font>, mode<font color="#909090">='r'</font>, openhook<font color="#909090">=None</font>)</dt><dd><tt><a href="#-input">input</a>([files[,&nbsp;inplace[,&nbsp;backup[,&nbsp;mode[,&nbsp;openhook]]]]])<br>
+&nbsp;<br>
+Create&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href="#FileInput">FileInput</a>&nbsp;class.&nbsp;The&nbsp;instance&nbsp;will&nbsp;be&nbsp;used<br>
+as&nbsp;global&nbsp;state&nbsp;for&nbsp;the&nbsp;functions&nbsp;of&nbsp;this&nbsp;module,&nbsp;and&nbsp;is&nbsp;also&nbsp;returned<br>
+to&nbsp;use&nbsp;during&nbsp;iteration.&nbsp;The&nbsp;parameters&nbsp;to&nbsp;this&nbsp;function&nbsp;will&nbsp;be&nbsp;passed<br>
+along&nbsp;to&nbsp;the&nbsp;constructor&nbsp;of&nbsp;the&nbsp;<a href="#FileInput">FileInput</a>&nbsp;class.</tt></dd></dl>
+ <dl><dt><a name="-isfirstline"><strong>isfirstline</strong></a>()</dt><dd><tt>Returns&nbsp;true&nbsp;the&nbsp;line&nbsp;just&nbsp;read&nbsp;is&nbsp;the&nbsp;first&nbsp;line&nbsp;of&nbsp;its&nbsp;file,<br>
+otherwise&nbsp;returns&nbsp;false.</tt></dd></dl>
+ <dl><dt><a name="-isstdin"><strong>isstdin</strong></a>()</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;last&nbsp;line&nbsp;was&nbsp;read&nbsp;from&nbsp;sys.stdin,<br>
+otherwise&nbsp;returns&nbsp;false.</tt></dd></dl>
+ <dl><dt><a name="-lineno"><strong>lineno</strong></a>()</dt><dd><tt>Return&nbsp;the&nbsp;cumulative&nbsp;line&nbsp;number&nbsp;of&nbsp;the&nbsp;line&nbsp;that&nbsp;has&nbsp;just&nbsp;been&nbsp;read.<br>
+Before&nbsp;the&nbsp;first&nbsp;line&nbsp;has&nbsp;been&nbsp;read,&nbsp;returns&nbsp;0.&nbsp;After&nbsp;the&nbsp;last&nbsp;line<br>
+of&nbsp;the&nbsp;last&nbsp;file&nbsp;has&nbsp;been&nbsp;read,&nbsp;returns&nbsp;the&nbsp;line&nbsp;number&nbsp;of&nbsp;that&nbsp;line.</tt></dd></dl>
+ <dl><dt><a name="-nextfile"><strong>nextfile</strong></a>()</dt><dd><tt>Close&nbsp;the&nbsp;current&nbsp;file&nbsp;so&nbsp;that&nbsp;the&nbsp;next&nbsp;iteration&nbsp;will&nbsp;read&nbsp;the&nbsp;first<br>
+line&nbsp;from&nbsp;the&nbsp;next&nbsp;file&nbsp;(if&nbsp;any);&nbsp;lines&nbsp;not&nbsp;read&nbsp;from&nbsp;the&nbsp;file&nbsp;will<br>
+not&nbsp;count&nbsp;towards&nbsp;the&nbsp;cumulative&nbsp;line&nbsp;count.&nbsp;The&nbsp;filename&nbsp;is&nbsp;not<br>
+changed&nbsp;until&nbsp;after&nbsp;the&nbsp;first&nbsp;line&nbsp;of&nbsp;the&nbsp;next&nbsp;file&nbsp;has&nbsp;been&nbsp;read.<br>
+Before&nbsp;the&nbsp;first&nbsp;line&nbsp;has&nbsp;been&nbsp;read,&nbsp;this&nbsp;function&nbsp;has&nbsp;no&nbsp;effect;<br>
+it&nbsp;cannot&nbsp;be&nbsp;used&nbsp;to&nbsp;skip&nbsp;the&nbsp;first&nbsp;file.&nbsp;After&nbsp;the&nbsp;last&nbsp;line&nbsp;of&nbsp;the<br>
+last&nbsp;file&nbsp;has&nbsp;been&nbsp;read,&nbsp;this&nbsp;function&nbsp;has&nbsp;no&nbsp;effect.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['input', 'close', 'nextfile', 'filename', 'lineno', 'filelineno', 'isfirstline', 'isstdin', 'FileInput']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,146 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>gettext</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/gettext.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/gettext.py</a></font></td></tr></table>
+    <p><tt>Internationalization&nbsp;and&nbsp;localization&nbsp;support.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;provides&nbsp;internationalization&nbsp;(I18N)&nbsp;and&nbsp;localization&nbsp;(L10N)<br>
+support&nbsp;for&nbsp;your&nbsp;Python&nbsp;programs&nbsp;by&nbsp;providing&nbsp;an&nbsp;interface&nbsp;to&nbsp;the&nbsp;GNU&nbsp;gettext<br>
+message&nbsp;catalog&nbsp;library.<br>
+&nbsp;<br>
+I18N&nbsp;refers&nbsp;to&nbsp;the&nbsp;operation&nbsp;by&nbsp;which&nbsp;a&nbsp;program&nbsp;is&nbsp;made&nbsp;aware&nbsp;of&nbsp;multiple<br>
+languages.&nbsp;&nbsp;L10N&nbsp;refers&nbsp;to&nbsp;the&nbsp;adaptation&nbsp;of&nbsp;your&nbsp;program,&nbsp;once<br>
+internationalized,&nbsp;to&nbsp;the&nbsp;local&nbsp;language&nbsp;and&nbsp;cultural&nbsp;habits.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+<a href="locale.html">locale</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="struct.html">struct</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="gettext.html#NullTranslations">NullTranslations</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="gettext.html#GNUTranslations">GNUTranslations</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GNUTranslations">class <strong>GNUTranslations</strong></a>(<a href="gettext.html#NullTranslations">NullTranslations</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="GNUTranslations-gettext"><strong>gettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-lgettext"><strong>lgettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-lngettext"><strong>lngettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-ngettext"><strong>ngettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-ugettext"><strong>ugettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-ungettext"><strong>ungettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>BE_MAGIC</strong> = 3725722773L</dl>
+
+<dl><dt><strong>LE_MAGIC</strong> = 2500072158L</dl>
+
+<hr>
+Methods inherited from <a href="gettext.html#NullTranslations">NullTranslations</a>:<br>
+<dl><dt><a name="GNUTranslations-__init__"><strong>__init__</strong></a>(self, fp<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-add_fallback"><strong>add_fallback</strong></a>(self, fallback)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-charset"><strong>charset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-info"><strong>info</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-install"><strong>install</strong></a>(self, unicode<font color="#909090">=False</font>, names<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-output_charset"><strong>output_charset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GNUTranslations-set_output_charset"><strong>set_output_charset</strong></a>(self, charset)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NullTranslations">class <strong>NullTranslations</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NullTranslations-__init__"><strong>__init__</strong></a>(self, fp<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="NullTranslations-add_fallback"><strong>add_fallback</strong></a>(self, fallback)</dt></dl>
+
+<dl><dt><a name="NullTranslations-charset"><strong>charset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullTranslations-gettext"><strong>gettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="NullTranslations-info"><strong>info</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullTranslations-install"><strong>install</strong></a>(self, unicode<font color="#909090">=False</font>, names<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="NullTranslations-lgettext"><strong>lgettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="NullTranslations-lngettext"><strong>lngettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+<dl><dt><a name="NullTranslations-ngettext"><strong>ngettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+<dl><dt><a name="NullTranslations-output_charset"><strong>output_charset</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="NullTranslations-set_output_charset"><strong>set_output_charset</strong></a>(self, charset)</dt></dl>
+
+<dl><dt><a name="NullTranslations-ugettext"><strong>ugettext</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="NullTranslations-ungettext"><strong>ungettext</strong></a>(self, msgid1, msgid2, n)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Catalog"><strong>Catalog</strong></a> = translation(domain, localedir<font color="#909090">=None</font>, languages<font color="#909090">=None</font>, class_<font color="#909090">=None</font>, fallback<font color="#909090">=False</font>, codeset<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-bindtextdomain"><strong>bindtextdomain</strong></a>(domain, localedir<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-dgettext"><strong>dgettext</strong></a>(domain, message)</dt></dl>
+ <dl><dt><a name="-dngettext"><strong>dngettext</strong></a>(domain, msgid1, msgid2, n)</dt></dl>
+ <dl><dt><a name="-find"><strong>find</strong></a>(domain, localedir<font color="#909090">=None</font>, languages<font color="#909090">=None</font>, all<font color="#909090">=0</font>)</dt><dd><tt>#&nbsp;Locate&nbsp;a&nbsp;.mo&nbsp;file&nbsp;using&nbsp;the&nbsp;gettext&nbsp;strategy</tt></dd></dl>
+ <dl><dt><a name="-gettext"><strong>gettext</strong></a>(message)</dt></dl>
+ <dl><dt><a name="-install"><strong>install</strong></a>(domain, localedir<font color="#909090">=None</font>, unicode<font color="#909090">=False</font>, codeset<font color="#909090">=None</font>, names<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-ngettext"><strong>ngettext</strong></a>(msgid1, msgid2, n)</dt></dl>
+ <dl><dt><a name="-textdomain"><strong>textdomain</strong></a>(domain<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-translation"><strong>translation</strong></a>(domain, localedir<font color="#909090">=None</font>, languages<font color="#909090">=None</font>, class_<font color="#909090">=None</font>, fallback<font color="#909090">=False</font>, codeset<font color="#909090">=None</font>)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['NullTranslations', 'GNUTranslations', 'Catalog', 'find', 'translation', 'install', 'textdomain', 'bindtextdomain', 'dgettext', 'dngettext', 'gettext', 'ngettext']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

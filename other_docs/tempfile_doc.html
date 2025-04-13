@@ -1,0 +1,120 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>tempfile</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/tempfile.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/tempfile.py</a></font></td></tr></table>
+    <p><tt>Temporary&nbsp;files.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;provides&nbsp;generic,&nbsp;low-&nbsp;and&nbsp;high-level&nbsp;interfaces&nbsp;for<br>
+creating&nbsp;temporary&nbsp;files&nbsp;and&nbsp;directories.&nbsp;&nbsp;The&nbsp;interfaces&nbsp;listed<br>
+as&nbsp;"safe"&nbsp;just&nbsp;below&nbsp;can&nbsp;be&nbsp;used&nbsp;without&nbsp;fear&nbsp;of&nbsp;race&nbsp;conditions.<br>
+Those&nbsp;listed&nbsp;as&nbsp;"unsafe"&nbsp;cannot,&nbsp;and&nbsp;are&nbsp;provided&nbsp;for&nbsp;backward<br>
+compatibility&nbsp;only.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;also&nbsp;provides&nbsp;some&nbsp;data&nbsp;items&nbsp;to&nbsp;the&nbsp;user:<br>
+&nbsp;<br>
+&nbsp;&nbsp;TMP_MAX&nbsp;&nbsp;-&nbsp;maximum&nbsp;number&nbsp;of&nbsp;names&nbsp;that&nbsp;will&nbsp;be&nbsp;tried&nbsp;before<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;giving&nbsp;up.<br>
+&nbsp;&nbsp;template&nbsp;-&nbsp;the&nbsp;default&nbsp;prefix&nbsp;for&nbsp;all&nbsp;temporary&nbsp;names.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;may&nbsp;change&nbsp;this&nbsp;to&nbsp;control&nbsp;the&nbsp;default&nbsp;prefix.<br>
+&nbsp;&nbsp;tempdir&nbsp;&nbsp;-&nbsp;If&nbsp;this&nbsp;is&nbsp;set&nbsp;to&nbsp;a&nbsp;string&nbsp;before&nbsp;the&nbsp;first&nbsp;use&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;routine&nbsp;from&nbsp;this&nbsp;module,&nbsp;it&nbsp;will&nbsp;be&nbsp;considered&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;another&nbsp;candidate&nbsp;location&nbsp;to&nbsp;store&nbsp;temporary&nbsp;files.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="errno.html">errno</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="thread.html">thread</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-NamedTemporaryFile"><strong>NamedTemporaryFile</strong></a>(mode<font color="#909090">='w+b'</font>, bufsize<font color="#909090">=-1</font>, suffix<font color="#909090">=''</font>, prefix<font color="#909090">='tmp'</font>, dir<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;temporary&nbsp;file.<br>
+Arguments:<br>
+'prefix',&nbsp;'suffix',&nbsp;'dir'&nbsp;--&nbsp;as&nbsp;for&nbsp;mkstemp.<br>
+'mode'&nbsp;--&nbsp;the&nbsp;mode&nbsp;argument&nbsp;to&nbsp;os.fdopen&nbsp;(default&nbsp;"w+b").<br>
+'bufsize'&nbsp;--&nbsp;the&nbsp;buffer&nbsp;size&nbsp;argument&nbsp;to&nbsp;os.fdopen&nbsp;(default&nbsp;-1).<br>
+The&nbsp;file&nbsp;is&nbsp;created&nbsp;as&nbsp;<a href="#-mkstemp">mkstemp</a>()&nbsp;would&nbsp;do&nbsp;it.<br>
+&nbsp;<br>
+Returns&nbsp;an&nbsp;object&nbsp;with&nbsp;a&nbsp;file-like&nbsp;interface;&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file<br>
+is&nbsp;accessible&nbsp;as&nbsp;file.name.&nbsp;&nbsp;The&nbsp;file&nbsp;will&nbsp;be&nbsp;automatically&nbsp;deleted<br>
+when&nbsp;it&nbsp;is&nbsp;closed.</tt></dd></dl>
+ <dl><dt><a name="-TemporaryFile"><strong>TemporaryFile</strong></a> = NamedTemporaryFile(mode<font color="#909090">='w+b'</font>, bufsize<font color="#909090">=-1</font>, suffix<font color="#909090">=''</font>, prefix<font color="#909090">='tmp'</font>, dir<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;temporary&nbsp;file.<br>
+Arguments:<br>
+'prefix',&nbsp;'suffix',&nbsp;'dir'&nbsp;--&nbsp;as&nbsp;for&nbsp;mkstemp.<br>
+'mode'&nbsp;--&nbsp;the&nbsp;mode&nbsp;argument&nbsp;to&nbsp;os.fdopen&nbsp;(default&nbsp;"w+b").<br>
+'bufsize'&nbsp;--&nbsp;the&nbsp;buffer&nbsp;size&nbsp;argument&nbsp;to&nbsp;os.fdopen&nbsp;(default&nbsp;-1).<br>
+The&nbsp;file&nbsp;is&nbsp;created&nbsp;as&nbsp;<a href="#-mkstemp">mkstemp</a>()&nbsp;would&nbsp;do&nbsp;it.<br>
+&nbsp;<br>
+Returns&nbsp;an&nbsp;object&nbsp;with&nbsp;a&nbsp;file-like&nbsp;interface;&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file<br>
+is&nbsp;accessible&nbsp;as&nbsp;file.name.&nbsp;&nbsp;The&nbsp;file&nbsp;will&nbsp;be&nbsp;automatically&nbsp;deleted<br>
+when&nbsp;it&nbsp;is&nbsp;closed.</tt></dd></dl>
+ <dl><dt><a name="-gettempdir"><strong>gettempdir</strong></a>()</dt><dd><tt>Accessor&nbsp;for&nbsp;tempdir.tempdir.</tt></dd></dl>
+ <dl><dt><a name="-gettempprefix"><strong>gettempprefix</strong></a>()</dt><dd><tt>Accessor&nbsp;for&nbsp;tempdir.template.</tt></dd></dl>
+ <dl><dt><a name="-mkdtemp"><strong>mkdtemp</strong></a>(suffix<font color="#909090">=''</font>, prefix<font color="#909090">='tmp'</font>, dir<font color="#909090">=None</font>)</dt><dd><tt><a href="#-mkdtemp">mkdtemp</a>([suffix,&nbsp;[prefix,&nbsp;[dir]]])<br>
+User-callable&nbsp;function&nbsp;to&nbsp;create&nbsp;and&nbsp;return&nbsp;a&nbsp;unique&nbsp;temporary<br>
+directory.&nbsp;&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;the&nbsp;pathname&nbsp;of&nbsp;the&nbsp;directory.<br>
+&nbsp;<br>
+Arguments&nbsp;are&nbsp;as&nbsp;for&nbsp;mkstemp,&nbsp;except&nbsp;that&nbsp;the&nbsp;'text'&nbsp;argument&nbsp;is<br>
+not&nbsp;accepted.<br>
+&nbsp;<br>
+The&nbsp;directory&nbsp;is&nbsp;readable,&nbsp;writable,&nbsp;and&nbsp;searchable&nbsp;only&nbsp;by&nbsp;the<br>
+creating&nbsp;user.<br>
+&nbsp;<br>
+Caller&nbsp;is&nbsp;responsible&nbsp;for&nbsp;deleting&nbsp;the&nbsp;directory&nbsp;when&nbsp;done&nbsp;with&nbsp;it.</tt></dd></dl>
+ <dl><dt><a name="-mkstemp"><strong>mkstemp</strong></a>(suffix<font color="#909090">=''</font>, prefix<font color="#909090">='tmp'</font>, dir<font color="#909090">=None</font>, text<font color="#909090">=False</font>)</dt><dd><tt><a href="#-mkstemp">mkstemp</a>([suffix,&nbsp;[prefix,&nbsp;[dir,&nbsp;[text]]]])<br>
+User-callable&nbsp;function&nbsp;to&nbsp;create&nbsp;and&nbsp;return&nbsp;a&nbsp;unique&nbsp;temporary<br>
+file.&nbsp;&nbsp;The&nbsp;return&nbsp;value&nbsp;is&nbsp;a&nbsp;pair&nbsp;(fd,&nbsp;name)&nbsp;where&nbsp;fd&nbsp;is&nbsp;the<br>
+file&nbsp;descriptor&nbsp;returned&nbsp;by&nbsp;os.open,&nbsp;and&nbsp;name&nbsp;is&nbsp;the&nbsp;filename.<br>
+&nbsp;<br>
+If&nbsp;'suffix'&nbsp;is&nbsp;specified,&nbsp;the&nbsp;file&nbsp;name&nbsp;will&nbsp;end&nbsp;with&nbsp;that&nbsp;suffix,<br>
+otherwise&nbsp;there&nbsp;will&nbsp;be&nbsp;no&nbsp;suffix.<br>
+&nbsp;<br>
+If&nbsp;'prefix'&nbsp;is&nbsp;specified,&nbsp;the&nbsp;file&nbsp;name&nbsp;will&nbsp;begin&nbsp;with&nbsp;that&nbsp;prefix,<br>
+otherwise&nbsp;a&nbsp;default&nbsp;prefix&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+If&nbsp;'dir'&nbsp;is&nbsp;specified,&nbsp;the&nbsp;file&nbsp;will&nbsp;be&nbsp;created&nbsp;in&nbsp;that&nbsp;directory,<br>
+otherwise&nbsp;a&nbsp;default&nbsp;directory&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+If&nbsp;'text'&nbsp;is&nbsp;specified&nbsp;and&nbsp;true,&nbsp;the&nbsp;file&nbsp;is&nbsp;opened&nbsp;in&nbsp;text<br>
+mode.&nbsp;&nbsp;Else&nbsp;(the&nbsp;default)&nbsp;the&nbsp;file&nbsp;is&nbsp;opened&nbsp;in&nbsp;binary&nbsp;mode.&nbsp;&nbsp;On<br>
+some&nbsp;operating&nbsp;systems,&nbsp;this&nbsp;makes&nbsp;no&nbsp;difference.<br>
+&nbsp;<br>
+The&nbsp;file&nbsp;is&nbsp;readable&nbsp;and&nbsp;writable&nbsp;only&nbsp;by&nbsp;the&nbsp;creating&nbsp;user&nbsp;ID.<br>
+If&nbsp;the&nbsp;operating&nbsp;system&nbsp;uses&nbsp;permission&nbsp;bits&nbsp;to&nbsp;indicate&nbsp;whether&nbsp;a<br>
+file&nbsp;is&nbsp;executable,&nbsp;the&nbsp;file&nbsp;is&nbsp;executable&nbsp;by&nbsp;no&nbsp;one.&nbsp;The&nbsp;file<br>
+descriptor&nbsp;is&nbsp;not&nbsp;inherited&nbsp;by&nbsp;children&nbsp;of&nbsp;this&nbsp;process.<br>
+&nbsp;<br>
+Caller&nbsp;is&nbsp;responsible&nbsp;for&nbsp;deleting&nbsp;the&nbsp;file&nbsp;when&nbsp;done&nbsp;with&nbsp;it.</tt></dd></dl>
+ <dl><dt><a name="-mktemp"><strong>mktemp</strong></a>(suffix<font color="#909090">=''</font>, prefix<font color="#909090">='tmp'</font>, dir<font color="#909090">=None</font>)</dt><dd><tt><a href="#-mktemp">mktemp</a>([suffix,&nbsp;[prefix,&nbsp;[dir]]])<br>
+User-callable&nbsp;function&nbsp;to&nbsp;return&nbsp;a&nbsp;unique&nbsp;temporary&nbsp;file&nbsp;name.&nbsp;&nbsp;The<br>
+file&nbsp;is&nbsp;not&nbsp;created.<br>
+&nbsp;<br>
+Arguments&nbsp;are&nbsp;as&nbsp;for&nbsp;mkstemp,&nbsp;except&nbsp;that&nbsp;the&nbsp;'text'&nbsp;argument&nbsp;is<br>
+not&nbsp;accepted.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;is&nbsp;unsafe&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;used.&nbsp;&nbsp;The&nbsp;file&nbsp;name<br>
+refers&nbsp;to&nbsp;a&nbsp;file&nbsp;that&nbsp;did&nbsp;not&nbsp;exist&nbsp;at&nbsp;some&nbsp;point,&nbsp;but&nbsp;by&nbsp;the&nbsp;time<br>
+you&nbsp;get&nbsp;around&nbsp;to&nbsp;creating&nbsp;it,&nbsp;someone&nbsp;else&nbsp;may&nbsp;have&nbsp;beaten&nbsp;you&nbsp;to<br>
+the&nbsp;punch.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>TMP_MAX</strong> = 10000<br>
+<strong>__all__</strong> = ['NamedTemporaryFile', 'TemporaryFile', 'mkstemp', 'mkdtemp', 'mktemp', 'TMP_MAX', 'gettempprefix', 'tempdir', 'gettempdir']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>tempdir</strong> = None</td></tr></table>

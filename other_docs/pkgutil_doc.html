@@ -1,0 +1,214 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pkgutil</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pkgutil.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/pkgutil.py</a></font></td></tr></table>
+    <p><tt>Utilities&nbsp;to&nbsp;support&nbsp;packages.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="imp.html">imp</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="zipimport.html">zipimport</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pkgutil.html#ImpImporter">ImpImporter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pkgutil.html#ImpLoader">ImpLoader</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ImpImporter">class <strong>ImpImporter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;Importer&nbsp;that&nbsp;wraps&nbsp;Python's&nbsp;"classic"&nbsp;import&nbsp;algorithm<br>
+&nbsp;<br>
+<a href="#ImpImporter">ImpImporter</a>(dirname)&nbsp;produces&nbsp;a&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;importer&nbsp;that&nbsp;searches&nbsp;that<br>
+directory.&nbsp;&nbsp;<a href="#ImpImporter">ImpImporter</a>(None)&nbsp;produces&nbsp;a&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;importer&nbsp;that&nbsp;searches<br>
+the&nbsp;current&nbsp;sys.path,&nbsp;plus&nbsp;any&nbsp;modules&nbsp;that&nbsp;are&nbsp;frozen&nbsp;or&nbsp;built-in.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;<a href="#ImpImporter">ImpImporter</a>&nbsp;does&nbsp;not&nbsp;currently&nbsp;support&nbsp;being&nbsp;used&nbsp;by&nbsp;placement<br>
+on&nbsp;sys.meta_path.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ImpImporter-__init__"><strong>__init__</strong></a>(self, path<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImpImporter-find_module"><strong>find_module</strong></a>(self, fullname, path<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImpImporter-iter_modules"><strong>iter_modules</strong></a>(self, prefix<font color="#909090">=''</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ImpLoader">class <strong>ImpLoader</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;Loader&nbsp;that&nbsp;wraps&nbsp;Python's&nbsp;"classic"&nbsp;import&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ImpLoader-__init__"><strong>__init__</strong></a>(self, fullname, file, filename, etc)</dt></dl>
+
+<dl><dt><a name="ImpLoader-get_code"><strong>get_code</strong></a>(self, fullname<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImpLoader-get_data"><strong>get_data</strong></a>(self, pathname)</dt></dl>
+
+<dl><dt><a name="ImpLoader-get_filename"><strong>get_filename</strong></a>(self, fullname<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImpLoader-get_source"><strong>get_source</strong></a>(self, fullname<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImpLoader-is_package"><strong>is_package</strong></a>(self, fullname)</dt></dl>
+
+<dl><dt><a name="ImpLoader-load_module"><strong>load_module</strong></a>(self, fullname)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>code</strong> = None</dl>
+
+<dl><dt><strong>source</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-extend_path"><strong>extend_path</strong></a>(path, name)</dt><dd><tt>Extend&nbsp;a&nbsp;package's&nbsp;path.<br>
+&nbsp;<br>
+Intended&nbsp;use&nbsp;is&nbsp;to&nbsp;place&nbsp;the&nbsp;following&nbsp;code&nbsp;in&nbsp;a&nbsp;package's&nbsp;__init__.py:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;pkgutil&nbsp;import&nbsp;extend_path<br>
+&nbsp;&nbsp;&nbsp;&nbsp;__path__&nbsp;=&nbsp;<a href="#-extend_path">extend_path</a>(__path__,&nbsp;__name__)<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;add&nbsp;to&nbsp;the&nbsp;package's&nbsp;__path__&nbsp;all&nbsp;subdirectories&nbsp;of<br>
+directories&nbsp;on&nbsp;sys.path&nbsp;named&nbsp;after&nbsp;the&nbsp;package.&nbsp;&nbsp;This&nbsp;is&nbsp;useful<br>
+if&nbsp;one&nbsp;wants&nbsp;to&nbsp;distribute&nbsp;different&nbsp;parts&nbsp;of&nbsp;a&nbsp;single&nbsp;logical<br>
+package&nbsp;as&nbsp;multiple&nbsp;directories.<br>
+&nbsp;<br>
+It&nbsp;also&nbsp;looks&nbsp;for&nbsp;*.pkg&nbsp;files&nbsp;beginning&nbsp;where&nbsp;*&nbsp;matches&nbsp;the&nbsp;name<br>
+argument.&nbsp;&nbsp;This&nbsp;feature&nbsp;is&nbsp;similar&nbsp;to&nbsp;*.pth&nbsp;files&nbsp;(see&nbsp;site.py),<br>
+except&nbsp;that&nbsp;it&nbsp;doesn't&nbsp;special-case&nbsp;lines&nbsp;starting&nbsp;with&nbsp;'import'.<br>
+A&nbsp;*.pkg&nbsp;file&nbsp;is&nbsp;trusted&nbsp;at&nbsp;face&nbsp;value:&nbsp;apart&nbsp;from&nbsp;checking&nbsp;for<br>
+duplicates,&nbsp;all&nbsp;entries&nbsp;found&nbsp;in&nbsp;a&nbsp;*.pkg&nbsp;file&nbsp;are&nbsp;added&nbsp;to&nbsp;the<br>
+path,&nbsp;regardless&nbsp;of&nbsp;whether&nbsp;they&nbsp;are&nbsp;exist&nbsp;the&nbsp;filesystem.&nbsp;&nbsp;(This<br>
+is&nbsp;a&nbsp;feature.)<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;input&nbsp;path&nbsp;is&nbsp;not&nbsp;a&nbsp;list&nbsp;(as&nbsp;is&nbsp;the&nbsp;case&nbsp;for&nbsp;frozen<br>
+packages)&nbsp;it&nbsp;is&nbsp;returned&nbsp;unchanged.&nbsp;&nbsp;The&nbsp;input&nbsp;path&nbsp;is&nbsp;not<br>
+modified;&nbsp;an&nbsp;extended&nbsp;copy&nbsp;is&nbsp;returned.&nbsp;&nbsp;Items&nbsp;are&nbsp;only&nbsp;appended<br>
+to&nbsp;the&nbsp;copy&nbsp;at&nbsp;the&nbsp;end.<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;assumed&nbsp;that&nbsp;sys.path&nbsp;is&nbsp;a&nbsp;sequence.&nbsp;&nbsp;Items&nbsp;of&nbsp;sys.path&nbsp;that<br>
+are&nbsp;not&nbsp;(unicode&nbsp;or&nbsp;8-bit)&nbsp;strings&nbsp;referring&nbsp;to&nbsp;existing<br>
+directories&nbsp;are&nbsp;ignored.&nbsp;&nbsp;Unicode&nbsp;items&nbsp;of&nbsp;sys.path&nbsp;that&nbsp;cause<br>
+errors&nbsp;when&nbsp;used&nbsp;as&nbsp;filenames&nbsp;may&nbsp;cause&nbsp;this&nbsp;function&nbsp;to&nbsp;raise&nbsp;an<br>
+exception&nbsp;(in&nbsp;line&nbsp;with&nbsp;os.path.isdir()&nbsp;behavior).</tt></dd></dl>
+ <dl><dt><a name="-find_loader"><strong>find_loader</strong></a>(fullname)</dt><dd><tt>Find&nbsp;a&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;"loader"&nbsp;object&nbsp;for&nbsp;fullname<br>
+&nbsp;<br>
+If&nbsp;fullname&nbsp;contains&nbsp;dots,&nbsp;path&nbsp;must&nbsp;be&nbsp;the&nbsp;containing&nbsp;package's&nbsp;__path__.<br>
+Returns&nbsp;None&nbsp;if&nbsp;the&nbsp;module&nbsp;cannot&nbsp;be&nbsp;found&nbsp;or&nbsp;imported.&nbsp;This&nbsp;function&nbsp;uses<br>
+<a href="#-iter_importers">iter_importers</a>(),&nbsp;and&nbsp;is&nbsp;thus&nbsp;subject&nbsp;to&nbsp;the&nbsp;same&nbsp;limitations&nbsp;regarding<br>
+platform-specific&nbsp;special&nbsp;import&nbsp;locations&nbsp;such&nbsp;as&nbsp;the&nbsp;Windows&nbsp;registry.</tt></dd></dl>
+ <dl><dt><a name="-get_importer"><strong>get_importer</strong></a>(path_item)</dt><dd><tt>Retrieve&nbsp;a&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;importer&nbsp;for&nbsp;the&nbsp;given&nbsp;path&nbsp;item<br>
+&nbsp;<br>
+The&nbsp;returned&nbsp;importer&nbsp;is&nbsp;cached&nbsp;in&nbsp;sys.path_importer_cache<br>
+if&nbsp;it&nbsp;was&nbsp;newly&nbsp;created&nbsp;by&nbsp;a&nbsp;path&nbsp;hook.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;no&nbsp;importer,&nbsp;a&nbsp;wrapper&nbsp;around&nbsp;the&nbsp;basic&nbsp;import<br>
+machinery&nbsp;is&nbsp;returned.&nbsp;This&nbsp;wrapper&nbsp;is&nbsp;never&nbsp;inserted&nbsp;into<br>
+the&nbsp;importer&nbsp;cache&nbsp;(None&nbsp;is&nbsp;inserted&nbsp;instead).<br>
+&nbsp;<br>
+The&nbsp;cache&nbsp;(or&nbsp;part&nbsp;of&nbsp;it)&nbsp;can&nbsp;be&nbsp;cleared&nbsp;manually&nbsp;if&nbsp;a<br>
+rescan&nbsp;of&nbsp;sys.path_hooks&nbsp;is&nbsp;necessary.</tt></dd></dl>
+ <dl><dt><a name="-get_loader"><strong>get_loader</strong></a>(module_or_name)</dt><dd><tt>Get&nbsp;a&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;"loader"&nbsp;object&nbsp;for&nbsp;module_or_name<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;module&nbsp;or&nbsp;package&nbsp;is&nbsp;accessible&nbsp;via&nbsp;the&nbsp;normal&nbsp;import<br>
+mechanism,&nbsp;a&nbsp;wrapper&nbsp;around&nbsp;the&nbsp;relevant&nbsp;part&nbsp;of&nbsp;that&nbsp;machinery<br>
+is&nbsp;returned.&nbsp;&nbsp;Returns&nbsp;None&nbsp;if&nbsp;the&nbsp;module&nbsp;cannot&nbsp;be&nbsp;found&nbsp;or&nbsp;imported.<br>
+If&nbsp;the&nbsp;named&nbsp;module&nbsp;is&nbsp;not&nbsp;already&nbsp;imported,&nbsp;its&nbsp;containing&nbsp;package<br>
+(if&nbsp;any)&nbsp;is&nbsp;imported,&nbsp;in&nbsp;order&nbsp;to&nbsp;establish&nbsp;the&nbsp;package&nbsp;__path__.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;uses&nbsp;<a href="#-iter_importers">iter_importers</a>(),&nbsp;and&nbsp;is&nbsp;thus&nbsp;subject&nbsp;to&nbsp;the&nbsp;same<br>
+limitations&nbsp;regarding&nbsp;platform-specific&nbsp;special&nbsp;import&nbsp;locations&nbsp;such<br>
+as&nbsp;the&nbsp;Windows&nbsp;registry.</tt></dd></dl>
+ <dl><dt><a name="-iter_importers"><strong>iter_importers</strong></a>(fullname<font color="#909090">=''</font>)</dt><dd><tt>Yield&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;importers&nbsp;for&nbsp;the&nbsp;given&nbsp;module&nbsp;name<br>
+&nbsp;<br>
+If&nbsp;fullname&nbsp;contains&nbsp;a&nbsp;'.',&nbsp;the&nbsp;importers&nbsp;will&nbsp;be&nbsp;for&nbsp;the&nbsp;package<br>
+containing&nbsp;fullname,&nbsp;otherwise&nbsp;they&nbsp;will&nbsp;be&nbsp;importers&nbsp;for&nbsp;sys.meta_path,<br>
+sys.path,&nbsp;and&nbsp;Python's&nbsp;"classic"&nbsp;import&nbsp;machinery,&nbsp;in&nbsp;that&nbsp;order.&nbsp;&nbsp;If<br>
+the&nbsp;named&nbsp;module&nbsp;is&nbsp;in&nbsp;a&nbsp;package,&nbsp;that&nbsp;package&nbsp;is&nbsp;imported&nbsp;as&nbsp;a&nbsp;side<br>
+effect&nbsp;of&nbsp;invoking&nbsp;this&nbsp;function.<br>
+&nbsp;<br>
+Non&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;mechanisms&nbsp;(e.g.&nbsp;the&nbsp;Windows&nbsp;registry)&nbsp;used&nbsp;by&nbsp;the<br>
+standard&nbsp;import&nbsp;machinery&nbsp;to&nbsp;find&nbsp;files&nbsp;in&nbsp;alternative&nbsp;locations<br>
+are&nbsp;partially&nbsp;supported,&nbsp;but&nbsp;are&nbsp;searched&nbsp;AFTER&nbsp;sys.path.&nbsp;Normally,<br>
+these&nbsp;locations&nbsp;are&nbsp;searched&nbsp;BEFORE&nbsp;sys.path,&nbsp;preventing&nbsp;sys.path<br>
+entries&nbsp;from&nbsp;shadowing&nbsp;them.<br>
+&nbsp;<br>
+For&nbsp;this&nbsp;to&nbsp;cause&nbsp;a&nbsp;visible&nbsp;difference&nbsp;in&nbsp;behaviour,&nbsp;there&nbsp;must<br>
+be&nbsp;a&nbsp;module&nbsp;or&nbsp;package&nbsp;name&nbsp;that&nbsp;is&nbsp;accessible&nbsp;via&nbsp;both&nbsp;sys.path<br>
+and&nbsp;one&nbsp;of&nbsp;the&nbsp;non&nbsp;<a href="http://www.python.org/peps/pep-0302.html">PEP&nbsp;302</a>&nbsp;file&nbsp;system&nbsp;mechanisms.&nbsp;In&nbsp;this&nbsp;case,<br>
+the&nbsp;emulation&nbsp;will&nbsp;find&nbsp;the&nbsp;former&nbsp;version,&nbsp;while&nbsp;the&nbsp;builtin<br>
+import&nbsp;mechanism&nbsp;will&nbsp;find&nbsp;the&nbsp;latter.<br>
+&nbsp;<br>
+Items&nbsp;of&nbsp;the&nbsp;following&nbsp;types&nbsp;can&nbsp;be&nbsp;affected&nbsp;by&nbsp;this&nbsp;discrepancy:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;imp.C_EXTENSION,&nbsp;imp.PY_SOURCE,&nbsp;imp.PY_COMPILED,&nbsp;imp.PKG_DIRECTORY</tt></dd></dl>
+ <dl><dt><a name="-iter_modules"><strong>iter_modules</strong></a>(path<font color="#909090">=None</font>, prefix<font color="#909090">=''</font>)</dt><dd><tt>Yields&nbsp;(module_loader,&nbsp;name,&nbsp;ispkg)&nbsp;for&nbsp;all&nbsp;submodules&nbsp;on&nbsp;path,<br>
+or,&nbsp;if&nbsp;path&nbsp;is&nbsp;None,&nbsp;all&nbsp;top-level&nbsp;modules&nbsp;on&nbsp;sys.path.<br>
+&nbsp;<br>
+'path'&nbsp;should&nbsp;be&nbsp;either&nbsp;None&nbsp;or&nbsp;a&nbsp;list&nbsp;of&nbsp;paths&nbsp;to&nbsp;look&nbsp;for<br>
+modules&nbsp;in.<br>
+&nbsp;<br>
+'prefix'&nbsp;is&nbsp;a&nbsp;string&nbsp;to&nbsp;output&nbsp;on&nbsp;the&nbsp;front&nbsp;of&nbsp;every&nbsp;module&nbsp;name<br>
+on&nbsp;output.</tt></dd></dl>
+ <dl><dt><a name="-read_code"><strong>read_code</strong></a>(stream)</dt></dl>
+ <dl><dt><a name="-walk_packages"><strong>walk_packages</strong></a>(path<font color="#909090">=None</font>, prefix<font color="#909090">=''</font>, onerror<font color="#909090">=None</font>)</dt><dd><tt>Yields&nbsp;(module_loader,&nbsp;name,&nbsp;ispkg)&nbsp;for&nbsp;all&nbsp;modules&nbsp;recursively<br>
+on&nbsp;path,&nbsp;or,&nbsp;if&nbsp;path&nbsp;is&nbsp;None,&nbsp;all&nbsp;accessible&nbsp;modules.<br>
+&nbsp;<br>
+'path'&nbsp;should&nbsp;be&nbsp;either&nbsp;None&nbsp;or&nbsp;a&nbsp;list&nbsp;of&nbsp;paths&nbsp;to&nbsp;look&nbsp;for<br>
+modules&nbsp;in.<br>
+&nbsp;<br>
+'prefix'&nbsp;is&nbsp;a&nbsp;string&nbsp;to&nbsp;output&nbsp;on&nbsp;the&nbsp;front&nbsp;of&nbsp;every&nbsp;module&nbsp;name<br>
+on&nbsp;output.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;function&nbsp;must&nbsp;import&nbsp;all&nbsp;*packages*&nbsp;(NOT&nbsp;all<br>
+modules!)&nbsp;on&nbsp;the&nbsp;given&nbsp;path,&nbsp;in&nbsp;order&nbsp;to&nbsp;access&nbsp;the&nbsp;__path__<br>
+attribute&nbsp;to&nbsp;find&nbsp;submodules.<br>
+&nbsp;<br>
+'onerror'&nbsp;is&nbsp;a&nbsp;function&nbsp;which&nbsp;gets&nbsp;called&nbsp;with&nbsp;one&nbsp;argument&nbsp;(the<br>
+name&nbsp;of&nbsp;the&nbsp;package&nbsp;which&nbsp;was&nbsp;being&nbsp;imported)&nbsp;if&nbsp;any&nbsp;exception<br>
+occurs&nbsp;while&nbsp;trying&nbsp;to&nbsp;import&nbsp;a&nbsp;package.&nbsp;&nbsp;If&nbsp;no&nbsp;onerror&nbsp;function&nbsp;is<br>
+supplied,&nbsp;ImportErrors&nbsp;are&nbsp;caught&nbsp;and&nbsp;ignored,&nbsp;while&nbsp;all&nbsp;other<br>
+exceptions&nbsp;are&nbsp;propagated,&nbsp;terminating&nbsp;the&nbsp;search.<br>
+&nbsp;<br>
+Examples:<br>
+&nbsp;<br>
+#&nbsp;list&nbsp;all&nbsp;modules&nbsp;python&nbsp;can&nbsp;access<br>
+<a href="#-walk_packages">walk_packages</a>()<br>
+&nbsp;<br>
+#&nbsp;list&nbsp;all&nbsp;submodules&nbsp;of&nbsp;ctypes<br>
+<a href="#-walk_packages">walk_packages</a>(ctypes.__path__,&nbsp;ctypes.__name__+'.')</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['get_importer', 'iter_importers', 'get_loader', 'find_loader', 'walk_packages', 'iter_modules', 'ImpImporter', 'ImpLoader', 'read_code', 'extend_path']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

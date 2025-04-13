@@ -1,0 +1,161 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_MozillaCookieJar</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_MozillaCookieJar.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_MozillaCookieJar.py</a></font></td></tr></table>
+    <p><tt>Mozilla&nbsp;/&nbsp;Netscape&nbsp;cookie&nbsp;loading&nbsp;/&nbsp;saving.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>(<a href="cookielib.html#CookieJar">cookielib.CookieJar</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_MozillaCookieJar.html#MozillaCookieJar">MozillaCookieJar</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MozillaCookieJar">class <strong>MozillaCookieJar</strong></a>(<a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>WARNING:&nbsp;you&nbsp;may&nbsp;want&nbsp;to&nbsp;backup&nbsp;your&nbsp;browser's&nbsp;cookies&nbsp;file&nbsp;if&nbsp;you&nbsp;use<br>
+this&nbsp;class&nbsp;to&nbsp;save&nbsp;cookies.&nbsp;&nbsp;I&nbsp;*think*&nbsp;it&nbsp;works,&nbsp;but&nbsp;there&nbsp;have&nbsp;been<br>
+bugs&nbsp;in&nbsp;the&nbsp;past!<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;differs&nbsp;from&nbsp;CookieJar&nbsp;only&nbsp;in&nbsp;the&nbsp;format&nbsp;it&nbsp;uses&nbsp;to&nbsp;save&nbsp;and<br>
+load&nbsp;cookies&nbsp;to&nbsp;and&nbsp;from&nbsp;a&nbsp;file.&nbsp;&nbsp;This&nbsp;class&nbsp;uses&nbsp;the&nbsp;Mozilla/Netscape<br>
+`cookies.txt'&nbsp;format.&nbsp;&nbsp;lynx&nbsp;uses&nbsp;this&nbsp;file&nbsp;format,&nbsp;too.<br>
+&nbsp;<br>
+Don't&nbsp;expect&nbsp;cookies&nbsp;saved&nbsp;while&nbsp;the&nbsp;browser&nbsp;is&nbsp;running&nbsp;to&nbsp;be&nbsp;noticed&nbsp;by<br>
+the&nbsp;browser&nbsp;(in&nbsp;fact,&nbsp;Mozilla&nbsp;on&nbsp;unix&nbsp;will&nbsp;overwrite&nbsp;your&nbsp;saved&nbsp;cookies&nbsp;if<br>
+you&nbsp;change&nbsp;them&nbsp;on&nbsp;disk&nbsp;while&nbsp;it's&nbsp;running;&nbsp;on&nbsp;Windows,&nbsp;you&nbsp;probably&nbsp;can't<br>
+save&nbsp;at&nbsp;all&nbsp;while&nbsp;the&nbsp;browser&nbsp;is&nbsp;running).<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;Mozilla/Netscape&nbsp;format&nbsp;will&nbsp;downgrade&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2965.txt">RFC2965</a>&nbsp;cookies&nbsp;to<br>
+Netscape&nbsp;cookies&nbsp;on&nbsp;saving.<br>
+&nbsp;<br>
+In&nbsp;particular,&nbsp;the&nbsp;cookie&nbsp;version&nbsp;and&nbsp;port&nbsp;number&nbsp;information&nbsp;is&nbsp;lost,<br>
+together&nbsp;with&nbsp;information&nbsp;about&nbsp;whether&nbsp;or&nbsp;not&nbsp;Path,&nbsp;Port&nbsp;and&nbsp;Discard&nbsp;were<br>
+specified&nbsp;by&nbsp;the&nbsp;Set-Cookie2&nbsp;(or&nbsp;Set-Cookie)&nbsp;header,&nbsp;and&nbsp;whether&nbsp;or&nbsp;not&nbsp;the<br>
+domain&nbsp;as&nbsp;set&nbsp;in&nbsp;the&nbsp;HTTP&nbsp;header&nbsp;started&nbsp;with&nbsp;a&nbsp;dot&nbsp;(yes,&nbsp;I'm&nbsp;aware&nbsp;some<br>
+domains&nbsp;in&nbsp;Netscape&nbsp;files&nbsp;start&nbsp;with&nbsp;a&nbsp;dot&nbsp;and&nbsp;some&nbsp;don't&nbsp;--&nbsp;trust&nbsp;me,&nbsp;you<br>
+really&nbsp;don't&nbsp;want&nbsp;to&nbsp;know&nbsp;any&nbsp;more&nbsp;about&nbsp;this).<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;though&nbsp;Mozilla&nbsp;and&nbsp;Netscape&nbsp;use&nbsp;the&nbsp;same&nbsp;format,&nbsp;they&nbsp;use<br>
+slightly&nbsp;different&nbsp;headers.&nbsp;&nbsp;The&nbsp;class&nbsp;saves&nbsp;cookies&nbsp;using&nbsp;the&nbsp;Netscape<br>
+header&nbsp;by&nbsp;default&nbsp;(Mozilla&nbsp;can&nbsp;cope&nbsp;with&nbsp;that).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_MozillaCookieJar.html#MozillaCookieJar">MozillaCookieJar</a></dd>
+<dd><a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a></dd>
+<dd><a href="cookielib.html#CookieJar">cookielib.CookieJar</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MozillaCookieJar-save"><strong>save</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>header</strong> = '    # Netscape HTTP Cookie File<font color="#c040c0">\n</font>    # http://www...l<font color="#c040c0">\n</font>    # This is a generated file!  Do not edit.<font color="#c040c0">\n\n</font>'</dl>
+
+<dl><dt><strong>magic_re</strong> = '#( Netscape)? HTTP Cookie File'</dl>
+
+<hr>
+Methods inherited from <a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>:<br>
+<dl><dt><a name="MozillaCookieJar-__init__"><strong>__init__</strong></a>(self, filename<font color="#909090">=None</font>, delayload<font color="#909090">=False</font>, policy<font color="#909090">=None</font>)</dt><dd><tt>Cookies&nbsp;are&nbsp;NOT&nbsp;loaded&nbsp;from&nbsp;the&nbsp;named&nbsp;file&nbsp;until&nbsp;either&nbsp;the&nbsp;.<a href="#MozillaCookieJar-load">load</a>()&nbsp;or<br>
+.<a href="#MozillaCookieJar-revert">revert</a>()&nbsp;method&nbsp;is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-load"><strong>load</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-revert"><strong>revert</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt><dd><tt>Clear&nbsp;all&nbsp;cookies&nbsp;and&nbsp;reload&nbsp;cookies&nbsp;from&nbsp;a&nbsp;saved&nbsp;file.<br>
+&nbsp;<br>
+Raises&nbsp;LoadError&nbsp;(or&nbsp;IOError)&nbsp;if&nbsp;reversion&nbsp;is&nbsp;not&nbsp;successful;&nbsp;the<br>
+object's&nbsp;state&nbsp;will&nbsp;not&nbsp;be&nbsp;altered&nbsp;if&nbsp;this&nbsp;happens.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="cookielib.html#CookieJar">cookielib.CookieJar</a>:<br>
+<dl><dt><a name="MozillaCookieJar-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MozillaCookieJar-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Return&nbsp;number&nbsp;of&nbsp;contained&nbsp;cookies.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MozillaCookieJar-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MozillaCookieJar-add_cookie_header"><strong>add_cookie_header</strong></a>(self, request)</dt><dd><tt>Add&nbsp;correct&nbsp;Cookie:&nbsp;header&nbsp;to&nbsp;request&nbsp;(urllib2.Request&nbsp;object).<br>
+&nbsp;<br>
+The&nbsp;Cookie2&nbsp;header&nbsp;is&nbsp;also&nbsp;added&nbsp;unless&nbsp;policy.hide_cookie2&nbsp;is&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-clear"><strong>clear</strong></a>(self, domain<font color="#909090">=None</font>, path<font color="#909090">=None</font>, name<font color="#909090">=None</font>)</dt><dd><tt>Clear&nbsp;some&nbsp;cookies.<br>
+&nbsp;<br>
+Invoking&nbsp;this&nbsp;method&nbsp;without&nbsp;arguments&nbsp;will&nbsp;clear&nbsp;all&nbsp;cookies.&nbsp;&nbsp;If<br>
+given&nbsp;a&nbsp;single&nbsp;argument,&nbsp;only&nbsp;cookies&nbsp;belonging&nbsp;to&nbsp;that&nbsp;domain&nbsp;will&nbsp;be<br>
+removed.&nbsp;&nbsp;If&nbsp;given&nbsp;two&nbsp;arguments,&nbsp;cookies&nbsp;belonging&nbsp;to&nbsp;the&nbsp;specified<br>
+path&nbsp;within&nbsp;that&nbsp;domain&nbsp;are&nbsp;removed.&nbsp;&nbsp;If&nbsp;given&nbsp;three&nbsp;arguments,&nbsp;then<br>
+the&nbsp;cookie&nbsp;with&nbsp;the&nbsp;specified&nbsp;name,&nbsp;path&nbsp;and&nbsp;domain&nbsp;is&nbsp;removed.<br>
+&nbsp;<br>
+Raises&nbsp;KeyError&nbsp;if&nbsp;no&nbsp;matching&nbsp;cookie&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-clear_expired_cookies"><strong>clear_expired_cookies</strong></a>(self)</dt><dd><tt>Discard&nbsp;all&nbsp;expired&nbsp;cookies.<br>
+&nbsp;<br>
+You&nbsp;probably&nbsp;don't&nbsp;need&nbsp;to&nbsp;call&nbsp;this&nbsp;method:&nbsp;expired&nbsp;cookies&nbsp;are&nbsp;never<br>
+sent&nbsp;back&nbsp;to&nbsp;the&nbsp;server&nbsp;(provided&nbsp;you're&nbsp;using&nbsp;DefaultCookiePolicy),<br>
+this&nbsp;method&nbsp;is&nbsp;called&nbsp;by&nbsp;CookieJar&nbsp;itself&nbsp;every&nbsp;so&nbsp;often,&nbsp;and&nbsp;the<br>
+.<a href="#MozillaCookieJar-save">save</a>()&nbsp;method&nbsp;won't&nbsp;save&nbsp;expired&nbsp;cookies&nbsp;anyway&nbsp;(unless&nbsp;you&nbsp;ask<br>
+otherwise&nbsp;by&nbsp;passing&nbsp;a&nbsp;true&nbsp;ignore_expires&nbsp;argument).</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-clear_session_cookies"><strong>clear_session_cookies</strong></a>(self)</dt><dd><tt>Discard&nbsp;all&nbsp;session&nbsp;cookies.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;.<a href="#MozillaCookieJar-save">save</a>()&nbsp;method&nbsp;won't&nbsp;save&nbsp;session&nbsp;cookies&nbsp;anyway,&nbsp;unless<br>
+you&nbsp;ask&nbsp;otherwise&nbsp;by&nbsp;passing&nbsp;a&nbsp;true&nbsp;ignore_discard&nbsp;argument.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-extract_cookies"><strong>extract_cookies</strong></a>(self, response, request)</dt><dd><tt>Extract&nbsp;cookies&nbsp;from&nbsp;response,&nbsp;where&nbsp;allowable&nbsp;given&nbsp;the&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-make_cookies"><strong>make_cookies</strong></a>(self, response, request)</dt><dd><tt>Return&nbsp;sequence&nbsp;of&nbsp;Cookie&nbsp;objects&nbsp;extracted&nbsp;from&nbsp;response&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-set_cookie"><strong>set_cookie</strong></a>(self, cookie)</dt><dd><tt>Set&nbsp;a&nbsp;cookie,&nbsp;without&nbsp;checking&nbsp;whether&nbsp;or&nbsp;not&nbsp;it&nbsp;should&nbsp;be&nbsp;set.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-set_cookie_if_ok"><strong>set_cookie_if_ok</strong></a>(self, cookie, request)</dt><dd><tt>Set&nbsp;a&nbsp;cookie&nbsp;if&nbsp;policy&nbsp;says&nbsp;it's&nbsp;OK&nbsp;to&nbsp;do&nbsp;so.</tt></dd></dl>
+
+<dl><dt><a name="MozillaCookieJar-set_policy"><strong>set_policy</strong></a>(self, policy)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="cookielib.html#CookieJar">cookielib.CookieJar</a>:<br>
+<dl><dt><strong>domain_re</strong> = &lt;_sre.SRE_Pattern object at 0x9a1f160&gt;</dl>
+
+<dl><dt><strong>dots_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa070&gt;</dl>
+
+<dl><dt><strong>non_word_re</strong> = &lt;_sre.SRE_Pattern object at 0x99f1d58&gt;</dl>
+
+<dl><dt><strong>quote_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa6b0&gt;</dl>
+
+<dl><dt><strong>strict_domain_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa700&gt;</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>MISSING_FILENAME_TEXT</strong> = 'a filename was not supplied (nor was the CookieJar instance initialised with one)'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

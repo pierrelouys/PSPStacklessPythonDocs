@@ -1,0 +1,152 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>multifile</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/multifile.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/multifile.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;readline()-style&nbsp;interface&nbsp;to&nbsp;the&nbsp;parts&nbsp;of&nbsp;a&nbsp;multipart&nbsp;message.<br>
+&nbsp;<br>
+The&nbsp;<a href="#MultiFile">MultiFile</a>&nbsp;class&nbsp;makes&nbsp;each&nbsp;part&nbsp;of&nbsp;a&nbsp;multipart&nbsp;message&nbsp;"feel"&nbsp;like<br>
+an&nbsp;ordinary&nbsp;file,&nbsp;as&nbsp;long&nbsp;as&nbsp;you&nbsp;use&nbsp;fp.readline().&nbsp;&nbsp;Allows&nbsp;recursive<br>
+use,&nbsp;for&nbsp;nested&nbsp;multipart&nbsp;messages.&nbsp;&nbsp;Probably&nbsp;best&nbsp;used&nbsp;together<br>
+with&nbsp;module&nbsp;mimetools.<br>
+&nbsp;<br>
+Suggested&nbsp;use:<br>
+&nbsp;<br>
+real_fp&nbsp;=&nbsp;open(...)<br>
+fp&nbsp;=&nbsp;<a href="#MultiFile">MultiFile</a>(real_fp)<br>
+&nbsp;<br>
+"read&nbsp;some&nbsp;lines&nbsp;from&nbsp;fp"<br>
+fp.push(separator)<br>
+while&nbsp;1:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"read&nbsp;lines&nbsp;from&nbsp;fp&nbsp;until&nbsp;it&nbsp;returns&nbsp;an&nbsp;empty&nbsp;string"&nbsp;(A)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;fp.next():&nbsp;break<br>
+fp.pop()<br>
+"read&nbsp;remaining&nbsp;lines&nbsp;from&nbsp;fp&nbsp;until&nbsp;it&nbsp;returns&nbsp;an&nbsp;empty&nbsp;string"<br>
+&nbsp;<br>
+The&nbsp;latter&nbsp;sequence&nbsp;may&nbsp;be&nbsp;used&nbsp;recursively&nbsp;at&nbsp;(A).<br>
+It&nbsp;is&nbsp;also&nbsp;allowed&nbsp;to&nbsp;use&nbsp;multiple&nbsp;push()...pop()&nbsp;sequences.<br>
+&nbsp;<br>
+If&nbsp;seekable&nbsp;is&nbsp;given&nbsp;as&nbsp;0,&nbsp;the&nbsp;class&nbsp;code&nbsp;will&nbsp;not&nbsp;do&nbsp;the&nbsp;bookkeeping<br>
+it&nbsp;normally&nbsp;attempts&nbsp;in&nbsp;order&nbsp;to&nbsp;make&nbsp;seeks&nbsp;relative&nbsp;to&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the<br>
+current&nbsp;file&nbsp;part.&nbsp;&nbsp;This&nbsp;may&nbsp;be&nbsp;useful&nbsp;when&nbsp;using&nbsp;<a href="#MultiFile">MultiFile</a>&nbsp;with&nbsp;a&nbsp;non-<br>
+seekable&nbsp;stream&nbsp;object.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="multifile.html#Error">Error</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="multifile.html#MultiFile">MultiFile</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Error">class <strong>Error</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="multifile.html#Error">Error</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="Error-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#Error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Error-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Error-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Error-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Error-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Error-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Error-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MultiFile">class <strong>MultiFile</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MultiFile-__init__"><strong>__init__</strong></a>(self, fp, seekable<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="MultiFile-end_marker"><strong>end_marker</strong></a>(self, str)</dt></dl>
+
+<dl><dt><a name="MultiFile-is_data"><strong>is_data</strong></a>(self, line)</dt></dl>
+
+<dl><dt><a name="MultiFile-next"><strong>next</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MultiFile-pop"><strong>pop</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MultiFile-push"><strong>push</strong></a>(self, sep)</dt></dl>
+
+<dl><dt><a name="MultiFile-read"><strong>read</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MultiFile-readline"><strong>readline</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MultiFile-readlines"><strong>readlines</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MultiFile-section_divider"><strong>section_divider</strong></a>(self, str)</dt></dl>
+
+<dl><dt><a name="MultiFile-seek"><strong>seek</strong></a>(self, pos, whence<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="MultiFile-tell"><strong>tell</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>seekable</strong> = 0</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['MultiFile', 'Error']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

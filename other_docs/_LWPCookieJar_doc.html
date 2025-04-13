@@ -1,0 +1,163 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_LWPCookieJar</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_LWPCookieJar.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/_LWPCookieJar.py</a></font></td></tr></table>
+    <p><tt>Load&nbsp;/&nbsp;save&nbsp;to&nbsp;libwww-perl&nbsp;(LWP)&nbsp;format&nbsp;files.<br>
+&nbsp;<br>
+Actually,&nbsp;the&nbsp;format&nbsp;is&nbsp;slightly&nbsp;extended&nbsp;from&nbsp;that&nbsp;used&nbsp;by&nbsp;LWP's<br>
+(libwww-perl's)&nbsp;HTTP::Cookies,&nbsp;to&nbsp;avoid&nbsp;losing&nbsp;some&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2965.txt">RFC&nbsp;2965</a>&nbsp;information<br>
+not&nbsp;recorded&nbsp;by&nbsp;LWP.<br>
+&nbsp;<br>
+It&nbsp;uses&nbsp;the&nbsp;version&nbsp;string&nbsp;"2.0",&nbsp;though&nbsp;really&nbsp;there&nbsp;isn't&nbsp;an&nbsp;LWP&nbsp;Cookies<br>
+2.0&nbsp;format.&nbsp;&nbsp;This&nbsp;indicates&nbsp;that&nbsp;there&nbsp;is&nbsp;extra&nbsp;information&nbsp;in&nbsp;here<br>
+(domain_dot&nbsp;and&nbsp;#&nbsp;port_spec)&nbsp;while&nbsp;still&nbsp;being&nbsp;compatible&nbsp;with<br>
+libwww-perl,&nbsp;I&nbsp;hope.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>(<a href="cookielib.html#CookieJar">cookielib.CookieJar</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_LWPCookieJar.html#LWPCookieJar">LWPCookieJar</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LWPCookieJar">class <strong>LWPCookieJar</strong></a>(<a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;<a href="#LWPCookieJar">LWPCookieJar</a>&nbsp;saves&nbsp;a&nbsp;sequence&nbsp;of"Set-Cookie3"&nbsp;lines.<br>
+"Set-Cookie3"&nbsp;is&nbsp;the&nbsp;format&nbsp;used&nbsp;by&nbsp;the&nbsp;libwww-perl&nbsp;libary,&nbsp;not&nbsp;known<br>
+to&nbsp;be&nbsp;compatible&nbsp;with&nbsp;any&nbsp;browser,&nbsp;but&nbsp;which&nbsp;is&nbsp;easy&nbsp;to&nbsp;read&nbsp;and<br>
+doesn't&nbsp;lose&nbsp;information&nbsp;about&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2965.txt">RFC&nbsp;2965</a>&nbsp;cookies.<br>
+&nbsp;<br>
+Additional&nbsp;methods<br>
+&nbsp;<br>
+<a href="#LWPCookieJar-as_lwp_str">as_lwp_str</a>(ignore_discard=True,&nbsp;ignore_expired=True)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_LWPCookieJar.html#LWPCookieJar">LWPCookieJar</a></dd>
+<dd><a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a></dd>
+<dd><a href="cookielib.html#CookieJar">cookielib.CookieJar</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LWPCookieJar-as_lwp_str"><strong>as_lwp_str</strong></a>(self, ignore_discard<font color="#909090">=True</font>, ignore_expires<font color="#909090">=True</font>)</dt><dd><tt>Return&nbsp;cookies&nbsp;as&nbsp;a&nbsp;string&nbsp;of&nbsp;"<br>
+"-separated&nbsp;"Set-Cookie3"&nbsp;headers.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ignore_discard&nbsp;and&nbsp;ignore_expires:&nbsp;see&nbsp;docstring&nbsp;for&nbsp;<a href="cookielib.html#FileCookieJar">FileCookieJar</a>.save</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-save"><strong>save</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt></dl>
+
+<hr>
+Methods inherited from <a href="cookielib.html#FileCookieJar">cookielib.FileCookieJar</a>:<br>
+<dl><dt><a name="LWPCookieJar-__init__"><strong>__init__</strong></a>(self, filename<font color="#909090">=None</font>, delayload<font color="#909090">=False</font>, policy<font color="#909090">=None</font>)</dt><dd><tt>Cookies&nbsp;are&nbsp;NOT&nbsp;loaded&nbsp;from&nbsp;the&nbsp;named&nbsp;file&nbsp;until&nbsp;either&nbsp;the&nbsp;.<a href="#LWPCookieJar-load">load</a>()&nbsp;or<br>
+.<a href="#LWPCookieJar-revert">revert</a>()&nbsp;method&nbsp;is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-load"><strong>load</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-revert"><strong>revert</strong></a>(self, filename<font color="#909090">=None</font>, ignore_discard<font color="#909090">=False</font>, ignore_expires<font color="#909090">=False</font>)</dt><dd><tt>Clear&nbsp;all&nbsp;cookies&nbsp;and&nbsp;reload&nbsp;cookies&nbsp;from&nbsp;a&nbsp;saved&nbsp;file.<br>
+&nbsp;<br>
+Raises&nbsp;LoadError&nbsp;(or&nbsp;IOError)&nbsp;if&nbsp;reversion&nbsp;is&nbsp;not&nbsp;successful;&nbsp;the<br>
+object's&nbsp;state&nbsp;will&nbsp;not&nbsp;be&nbsp;altered&nbsp;if&nbsp;this&nbsp;happens.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="cookielib.html#CookieJar">cookielib.CookieJar</a>:<br>
+<dl><dt><a name="LWPCookieJar-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LWPCookieJar-__len__"><strong>__len__</strong></a>(self)</dt><dd><tt>Return&nbsp;number&nbsp;of&nbsp;contained&nbsp;cookies.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LWPCookieJar-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LWPCookieJar-add_cookie_header"><strong>add_cookie_header</strong></a>(self, request)</dt><dd><tt>Add&nbsp;correct&nbsp;Cookie:&nbsp;header&nbsp;to&nbsp;request&nbsp;(urllib2.Request&nbsp;object).<br>
+&nbsp;<br>
+The&nbsp;Cookie2&nbsp;header&nbsp;is&nbsp;also&nbsp;added&nbsp;unless&nbsp;policy.hide_cookie2&nbsp;is&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-clear"><strong>clear</strong></a>(self, domain<font color="#909090">=None</font>, path<font color="#909090">=None</font>, name<font color="#909090">=None</font>)</dt><dd><tt>Clear&nbsp;some&nbsp;cookies.<br>
+&nbsp;<br>
+Invoking&nbsp;this&nbsp;method&nbsp;without&nbsp;arguments&nbsp;will&nbsp;clear&nbsp;all&nbsp;cookies.&nbsp;&nbsp;If<br>
+given&nbsp;a&nbsp;single&nbsp;argument,&nbsp;only&nbsp;cookies&nbsp;belonging&nbsp;to&nbsp;that&nbsp;domain&nbsp;will&nbsp;be<br>
+removed.&nbsp;&nbsp;If&nbsp;given&nbsp;two&nbsp;arguments,&nbsp;cookies&nbsp;belonging&nbsp;to&nbsp;the&nbsp;specified<br>
+path&nbsp;within&nbsp;that&nbsp;domain&nbsp;are&nbsp;removed.&nbsp;&nbsp;If&nbsp;given&nbsp;three&nbsp;arguments,&nbsp;then<br>
+the&nbsp;cookie&nbsp;with&nbsp;the&nbsp;specified&nbsp;name,&nbsp;path&nbsp;and&nbsp;domain&nbsp;is&nbsp;removed.<br>
+&nbsp;<br>
+Raises&nbsp;KeyError&nbsp;if&nbsp;no&nbsp;matching&nbsp;cookie&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-clear_expired_cookies"><strong>clear_expired_cookies</strong></a>(self)</dt><dd><tt>Discard&nbsp;all&nbsp;expired&nbsp;cookies.<br>
+&nbsp;<br>
+You&nbsp;probably&nbsp;don't&nbsp;need&nbsp;to&nbsp;call&nbsp;this&nbsp;method:&nbsp;expired&nbsp;cookies&nbsp;are&nbsp;never<br>
+sent&nbsp;back&nbsp;to&nbsp;the&nbsp;server&nbsp;(provided&nbsp;you're&nbsp;using&nbsp;DefaultCookiePolicy),<br>
+this&nbsp;method&nbsp;is&nbsp;called&nbsp;by&nbsp;CookieJar&nbsp;itself&nbsp;every&nbsp;so&nbsp;often,&nbsp;and&nbsp;the<br>
+.<a href="#LWPCookieJar-save">save</a>()&nbsp;method&nbsp;won't&nbsp;save&nbsp;expired&nbsp;cookies&nbsp;anyway&nbsp;(unless&nbsp;you&nbsp;ask<br>
+otherwise&nbsp;by&nbsp;passing&nbsp;a&nbsp;true&nbsp;ignore_expires&nbsp;argument).</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-clear_session_cookies"><strong>clear_session_cookies</strong></a>(self)</dt><dd><tt>Discard&nbsp;all&nbsp;session&nbsp;cookies.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;.<a href="#LWPCookieJar-save">save</a>()&nbsp;method&nbsp;won't&nbsp;save&nbsp;session&nbsp;cookies&nbsp;anyway,&nbsp;unless<br>
+you&nbsp;ask&nbsp;otherwise&nbsp;by&nbsp;passing&nbsp;a&nbsp;true&nbsp;ignore_discard&nbsp;argument.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-extract_cookies"><strong>extract_cookies</strong></a>(self, response, request)</dt><dd><tt>Extract&nbsp;cookies&nbsp;from&nbsp;response,&nbsp;where&nbsp;allowable&nbsp;given&nbsp;the&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-make_cookies"><strong>make_cookies</strong></a>(self, response, request)</dt><dd><tt>Return&nbsp;sequence&nbsp;of&nbsp;Cookie&nbsp;objects&nbsp;extracted&nbsp;from&nbsp;response&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-set_cookie"><strong>set_cookie</strong></a>(self, cookie)</dt><dd><tt>Set&nbsp;a&nbsp;cookie,&nbsp;without&nbsp;checking&nbsp;whether&nbsp;or&nbsp;not&nbsp;it&nbsp;should&nbsp;be&nbsp;set.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-set_cookie_if_ok"><strong>set_cookie_if_ok</strong></a>(self, cookie, request)</dt><dd><tt>Set&nbsp;a&nbsp;cookie&nbsp;if&nbsp;policy&nbsp;says&nbsp;it's&nbsp;OK&nbsp;to&nbsp;do&nbsp;so.</tt></dd></dl>
+
+<dl><dt><a name="LWPCookieJar-set_policy"><strong>set_policy</strong></a>(self, policy)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="cookielib.html#CookieJar">cookielib.CookieJar</a>:<br>
+<dl><dt><strong>domain_re</strong> = &lt;_sre.SRE_Pattern object at 0x9a1f160&gt;</dl>
+
+<dl><dt><strong>dots_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa070&gt;</dl>
+
+<dl><dt><strong>magic_re</strong> = r'^\#LWP-Cookies-(\d+\.\d+)'</dl>
+
+<dl><dt><strong>non_word_re</strong> = &lt;_sre.SRE_Pattern object at 0x99f1d58&gt;</dl>
+
+<dl><dt><strong>quote_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa6b0&gt;</dl>
+
+<dl><dt><strong>strict_domain_re</strong> = &lt;_sre.SRE_Pattern object at 0x99fa700&gt;</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-lwp_cookie_str"><strong>lwp_cookie_str</strong></a>(cookie)</dt><dd><tt>Return&nbsp;string&nbsp;representation&nbsp;of&nbsp;Cookie&nbsp;in&nbsp;an&nbsp;the&nbsp;LWP&nbsp;cookie&nbsp;file&nbsp;format.<br>
+&nbsp;<br>
+Actually,&nbsp;the&nbsp;format&nbsp;is&nbsp;extended&nbsp;a&nbsp;bit&nbsp;--&nbsp;see&nbsp;module&nbsp;docstring.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>MISSING_FILENAME_TEXT</strong> = 'a filename was not supplied (nor was the CookieJar instance initialised with one)'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

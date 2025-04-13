@@ -1,0 +1,1068 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>doctest</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/doctest.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/doctest.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;doctest&nbsp;--&nbsp;a&nbsp;framework&nbsp;for&nbsp;running&nbsp;examples&nbsp;in&nbsp;docstrings.<br>
+&nbsp;<br>
+In&nbsp;simplest&nbsp;use,&nbsp;end&nbsp;each&nbsp;module&nbsp;M&nbsp;to&nbsp;be&nbsp;tested&nbsp;with:<br>
+&nbsp;<br>
+def&nbsp;_test():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;doctest<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doctest.<a href="#-testmod">testmod</a>()<br>
+&nbsp;<br>
+if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_test()<br>
+&nbsp;<br>
+Then&nbsp;running&nbsp;the&nbsp;module&nbsp;as&nbsp;a&nbsp;script&nbsp;will&nbsp;cause&nbsp;the&nbsp;examples&nbsp;in&nbsp;the<br>
+docstrings&nbsp;to&nbsp;get&nbsp;executed&nbsp;and&nbsp;verified:<br>
+&nbsp;<br>
+python&nbsp;M.py<br>
+&nbsp;<br>
+This&nbsp;won't&nbsp;display&nbsp;anything&nbsp;unless&nbsp;an&nbsp;example&nbsp;fails,&nbsp;in&nbsp;which&nbsp;case&nbsp;the<br>
+failing&nbsp;example(s)&nbsp;and&nbsp;the&nbsp;cause(s)&nbsp;of&nbsp;the&nbsp;failure(s)&nbsp;are&nbsp;printed&nbsp;to&nbsp;stdout<br>
+(why&nbsp;not&nbsp;stderr?&nbsp;because&nbsp;stderr&nbsp;is&nbsp;a&nbsp;lame&nbsp;hack&nbsp;&lt;0.2&nbsp;wink&gt;),&nbsp;and&nbsp;the&nbsp;final<br>
+line&nbsp;of&nbsp;output&nbsp;is&nbsp;"Test&nbsp;failed.".<br>
+&nbsp;<br>
+Run&nbsp;it&nbsp;with&nbsp;the&nbsp;-v&nbsp;switch&nbsp;instead:<br>
+&nbsp;<br>
+python&nbsp;M.py&nbsp;-v<br>
+&nbsp;<br>
+and&nbsp;a&nbsp;detailed&nbsp;report&nbsp;of&nbsp;all&nbsp;examples&nbsp;tried&nbsp;is&nbsp;printed&nbsp;to&nbsp;stdout,&nbsp;along<br>
+with&nbsp;assorted&nbsp;summaries&nbsp;at&nbsp;the&nbsp;end.<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;force&nbsp;verbose&nbsp;mode&nbsp;by&nbsp;passing&nbsp;"verbose=True"&nbsp;to&nbsp;testmod,&nbsp;or&nbsp;prohibit<br>
+it&nbsp;by&nbsp;passing&nbsp;"verbose=False".&nbsp;&nbsp;In&nbsp;either&nbsp;of&nbsp;those&nbsp;cases,&nbsp;sys.argv&nbsp;is&nbsp;not<br>
+examined&nbsp;by&nbsp;testmod.<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;a&nbsp;variety&nbsp;of&nbsp;other&nbsp;ways&nbsp;to&nbsp;run&nbsp;doctests,&nbsp;including&nbsp;integration<br>
+with&nbsp;the&nbsp;unittest&nbsp;framework,&nbsp;and&nbsp;support&nbsp;for&nbsp;running&nbsp;non-Python&nbsp;text<br>
+files&nbsp;containing&nbsp;doctests.&nbsp;&nbsp;There&nbsp;are&nbsp;also&nbsp;many&nbsp;ways&nbsp;to&nbsp;override&nbsp;parts<br>
+of&nbsp;doctest's&nbsp;default&nbsp;behaviors.&nbsp;&nbsp;See&nbsp;the&nbsp;Library&nbsp;Reference&nbsp;Manual&nbsp;for<br>
+details.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="__future__.html">__future__</a><br>
+<a href="difflib.html">difflib</a><br>
+<a href="inspect.html">inspect</a><br>
+</td><td width="25%" valign=top><a href="linecache.html">linecache</a><br>
+<a href="os.html">os</a><br>
+<a href="pdb.html">pdb</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="sys.html">sys</a><br>
+<a href="tempfile.html">tempfile</a><br>
+</td><td width="25%" valign=top><a href="traceback.html">traceback</a><br>
+<a href="unittest.html">unittest</a><br>
+<a href="warnings.html">warnings</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="doctest.html#DocTest">DocTest</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#DocTestFinder">DocTestFinder</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#DocTestParser">DocTestParser</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#DocTestRunner">DocTestRunner</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="doctest.html#DebugRunner">DebugRunner</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="doctest.html#Example">Example</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#OutputChecker">OutputChecker</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#Tester">Tester</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="doctest.html#DocTestFailure">DocTestFailure</a>
+</font></dt><dt><font face="helvetica, arial"><a href="doctest.html#UnexpectedException">UnexpectedException</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DebugRunner">class <strong>DebugRunner</strong></a>(<a href="doctest.html#DocTestRunner">DocTestRunner</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Run&nbsp;doc&nbsp;tests&nbsp;but&nbsp;raise&nbsp;an&nbsp;exception&nbsp;as&nbsp;soon&nbsp;as&nbsp;there&nbsp;is&nbsp;a&nbsp;failure.<br>
+&nbsp;<br>
+If&nbsp;an&nbsp;unexpected&nbsp;exception&nbsp;occurs,&nbsp;an&nbsp;<a href="#UnexpectedException">UnexpectedException</a>&nbsp;is&nbsp;raised.<br>
+It&nbsp;contains&nbsp;the&nbsp;test,&nbsp;the&nbsp;example,&nbsp;and&nbsp;the&nbsp;original&nbsp;exception:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner&nbsp;=&nbsp;<a href="#DebugRunner">DebugRunner</a>(verbose=False)<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test&nbsp;=&nbsp;<a href="#DocTestParser">DocTestParser</a>().get_doctest('&gt;&gt;&gt;&nbsp;raise&nbsp;KeyError\n42',<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{},&nbsp;'foo',&nbsp;'foo.py',&nbsp;0)<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;try:<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runner.<a href="#DebugRunner-run">run</a>(test)<br>
+&nbsp;&nbsp;...&nbsp;except&nbsp;<a href="#UnexpectedException">UnexpectedException</a>,&nbsp;failure:<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;failure.test&nbsp;is&nbsp;test<br>
+&nbsp;&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;failure.example.want<br>
+&nbsp;&nbsp;'42\n'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;exc_info&nbsp;=&nbsp;failure.exc_info<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;raise&nbsp;exc_info[0],&nbsp;exc_info[1],&nbsp;exc_info[2]<br>
+&nbsp;&nbsp;Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;KeyError<br>
+&nbsp;<br>
+We&nbsp;wrap&nbsp;the&nbsp;original&nbsp;exception&nbsp;to&nbsp;give&nbsp;the&nbsp;calling&nbsp;application<br>
+access&nbsp;to&nbsp;the&nbsp;test&nbsp;and&nbsp;example&nbsp;information.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;output&nbsp;doesn't&nbsp;match,&nbsp;then&nbsp;a&nbsp;<a href="#DocTestFailure">DocTestFailure</a>&nbsp;is&nbsp;raised:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test&nbsp;=&nbsp;<a href="#DocTestParser">DocTestParser</a>().get_doctest('''<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;x&nbsp;=&nbsp;1<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;x<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''',&nbsp;{},&nbsp;'foo',&nbsp;'foo.py',&nbsp;0)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;try:<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;runner.<a href="#DebugRunner-run">run</a>(test)<br>
+&nbsp;&nbsp;...&nbsp;except&nbsp;<a href="#DocTestFailure">DocTestFailure</a>,&nbsp;failure:<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+&nbsp;<br>
+<a href="#DocTestFailure">DocTestFailure</a>&nbsp;objects&nbsp;provide&nbsp;access&nbsp;to&nbsp;the&nbsp;test:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;failure.test&nbsp;is&nbsp;test<br>
+&nbsp;&nbsp;True<br>
+&nbsp;<br>
+As&nbsp;well&nbsp;as&nbsp;to&nbsp;the&nbsp;example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;failure.example.want<br>
+&nbsp;&nbsp;'2\n'<br>
+&nbsp;<br>
+and&nbsp;the&nbsp;actual&nbsp;output:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;failure.got<br>
+&nbsp;&nbsp;'1\n'<br>
+&nbsp;<br>
+If&nbsp;a&nbsp;failure&nbsp;or&nbsp;error&nbsp;occurs,&nbsp;the&nbsp;globals&nbsp;are&nbsp;left&nbsp;intact:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;del&nbsp;test.globs['__builtins__']<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test.globs<br>
+&nbsp;&nbsp;{'x':&nbsp;1}<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test&nbsp;=&nbsp;<a href="#DocTestParser">DocTestParser</a>().get_doctest('''<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;x&nbsp;=&nbsp;2<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;raise&nbsp;KeyError<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''',&nbsp;{},&nbsp;'foo',&nbsp;'foo.py',&nbsp;0)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner.<a href="#DebugRunner-run">run</a>(test)<br>
+&nbsp;&nbsp;Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;<a href="#UnexpectedException">UnexpectedException</a>:&nbsp;&lt;<a href="#DocTest">DocTest</a>&nbsp;foo&nbsp;from&nbsp;foo.py:0&nbsp;(2&nbsp;examples)&gt;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;del&nbsp;test.globs['__builtins__']<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test.globs<br>
+&nbsp;&nbsp;{'x':&nbsp;2}<br>
+&nbsp;<br>
+But&nbsp;the&nbsp;globals&nbsp;are&nbsp;cleared&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;error:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test&nbsp;=&nbsp;<a href="#DocTestParser">DocTestParser</a>().get_doctest('''<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;x&nbsp;=&nbsp;2<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''',&nbsp;{},&nbsp;'foo',&nbsp;'foo.py',&nbsp;0)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner.<a href="#DebugRunner-run">run</a>(test)<br>
+&nbsp;&nbsp;(0,&nbsp;1)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;test.globs<br>
+&nbsp;&nbsp;{}<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DebugRunner-report_failure"><strong>report_failure</strong></a>(self, out, test, example, got)</dt></dl>
+
+<dl><dt><a name="DebugRunner-report_unexpected_exception"><strong>report_unexpected_exception</strong></a>(self, out, test, example, exc_info)</dt></dl>
+
+<dl><dt><a name="DebugRunner-run"><strong>run</strong></a>(self, test, compileflags<font color="#909090">=None</font>, out<font color="#909090">=None</font>, clear_globs<font color="#909090">=True</font>)</dt></dl>
+
+<hr>
+Methods inherited from <a href="doctest.html#DocTestRunner">DocTestRunner</a>:<br>
+<dl><dt><a name="DebugRunner-__init__"><strong>__init__</strong></a>(self, checker<font color="#909090">=None</font>, verbose<font color="#909090">=None</font>, optionflags<font color="#909090">=0</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;test&nbsp;runner.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;`checker`&nbsp;is&nbsp;the&nbsp;`<a href="#OutputChecker">OutputChecker</a>`&nbsp;that<br>
+should&nbsp;be&nbsp;used&nbsp;to&nbsp;compare&nbsp;the&nbsp;expected&nbsp;outputs&nbsp;and&nbsp;actual<br>
+outputs&nbsp;of&nbsp;doctest&nbsp;examples.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;'verbose'&nbsp;prints&nbsp;lots&nbsp;of&nbsp;stuff&nbsp;if&nbsp;true,<br>
+only&nbsp;failures&nbsp;if&nbsp;false;&nbsp;by&nbsp;default,&nbsp;it's&nbsp;true&nbsp;iff&nbsp;'-v'&nbsp;is&nbsp;in<br>
+sys.argv.<br>
+&nbsp;<br>
+Optional&nbsp;argument&nbsp;`optionflags`&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;control&nbsp;how&nbsp;the<br>
+test&nbsp;runner&nbsp;compares&nbsp;expected&nbsp;output&nbsp;to&nbsp;actual&nbsp;output,&nbsp;and&nbsp;how<br>
+it&nbsp;displays&nbsp;failures.&nbsp;&nbsp;See&nbsp;the&nbsp;documentation&nbsp;for&nbsp;`testmod`&nbsp;for<br>
+more&nbsp;information.</tt></dd></dl>
+
+<dl><dt><a name="DebugRunner-merge"><strong>merge</strong></a>(self, other)</dt><dd><tt>#/////////////////////////////////////////////////////////////////<br>
+#&nbsp;Backward&nbsp;compatibility&nbsp;cruft&nbsp;to&nbsp;maintain&nbsp;doctest.master.<br>
+#/////////////////////////////////////////////////////////////////</tt></dd></dl>
+
+<dl><dt><a name="DebugRunner-report_start"><strong>report_start</strong></a>(self, out, test, example)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;test&nbsp;runner&nbsp;is&nbsp;about&nbsp;to&nbsp;process&nbsp;the&nbsp;given<br>
+example.&nbsp;&nbsp;(Only&nbsp;displays&nbsp;a&nbsp;message&nbsp;if&nbsp;verbose=True)</tt></dd></dl>
+
+<dl><dt><a name="DebugRunner-report_success"><strong>report_success</strong></a>(self, out, test, example, got)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;given&nbsp;example&nbsp;ran&nbsp;successfully.&nbsp;&nbsp;(Only<br>
+displays&nbsp;a&nbsp;message&nbsp;if&nbsp;verbose=True)</tt></dd></dl>
+
+<dl><dt><a name="DebugRunner-summarize"><strong>summarize</strong></a>(self, verbose<font color="#909090">=None</font>)</dt><dd><tt>Print&nbsp;a&nbsp;summary&nbsp;of&nbsp;all&nbsp;the&nbsp;test&nbsp;cases&nbsp;that&nbsp;have&nbsp;been&nbsp;run&nbsp;by<br>
+this&nbsp;<a href="#DocTestRunner">DocTestRunner</a>,&nbsp;and&nbsp;return&nbsp;a&nbsp;tuple&nbsp;`(f,&nbsp;t)`,&nbsp;where&nbsp;`f`&nbsp;is<br>
+the&nbsp;total&nbsp;number&nbsp;of&nbsp;failed&nbsp;examples,&nbsp;and&nbsp;`t`&nbsp;is&nbsp;the&nbsp;total<br>
+number&nbsp;of&nbsp;tried&nbsp;examples.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;`verbose`&nbsp;argument&nbsp;controls&nbsp;how&nbsp;detailed&nbsp;the<br>
+summary&nbsp;is.&nbsp;&nbsp;If&nbsp;the&nbsp;verbosity&nbsp;is&nbsp;not&nbsp;specified,&nbsp;then&nbsp;the<br>
+<a href="#DocTestRunner">DocTestRunner</a>'s&nbsp;verbosity&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="doctest.html#DocTestRunner">DocTestRunner</a>:<br>
+<dl><dt><strong>DIVIDER</strong> = '**********************************************************************'</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DocTest">class <strong>DocTest</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;collection&nbsp;of&nbsp;doctest&nbsp;examples&nbsp;that&nbsp;should&nbsp;be&nbsp;run&nbsp;in&nbsp;a&nbsp;single<br>
+namespace.&nbsp;&nbsp;Each&nbsp;`<a href="#DocTest">DocTest</a>`&nbsp;defines&nbsp;the&nbsp;following&nbsp;attributes:<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;examples:&nbsp;the&nbsp;list&nbsp;of&nbsp;examples.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;globs:&nbsp;The&nbsp;namespace&nbsp;(aka&nbsp;globals)&nbsp;that&nbsp;the&nbsp;examples&nbsp;should<br>
+&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;run&nbsp;in.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;name:&nbsp;A&nbsp;name&nbsp;identifying&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;(typically,&nbsp;the&nbsp;name&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;object&nbsp;whose&nbsp;docstring&nbsp;this&nbsp;<a href="#DocTest">DocTest</a>&nbsp;was&nbsp;extracted&nbsp;from).<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;filename:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;that&nbsp;this&nbsp;<a href="#DocTest">DocTest</a>&nbsp;was&nbsp;extracted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from,&nbsp;or&nbsp;`None`&nbsp;if&nbsp;the&nbsp;filename&nbsp;is&nbsp;unknown.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;lineno:&nbsp;The&nbsp;line&nbsp;number&nbsp;within&nbsp;filename&nbsp;where&nbsp;this&nbsp;<a href="#DocTest">DocTest</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;begins,&nbsp;or&nbsp;`None`&nbsp;if&nbsp;the&nbsp;line&nbsp;number&nbsp;is&nbsp;unavailable.&nbsp;&nbsp;This<br>
+&nbsp;&nbsp;&nbsp;&nbsp;line&nbsp;number&nbsp;is&nbsp;zero-based,&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;beginning&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;docstring:&nbsp;The&nbsp;string&nbsp;that&nbsp;the&nbsp;examples&nbsp;were&nbsp;extracted&nbsp;from,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;`None`&nbsp;if&nbsp;the&nbsp;string&nbsp;is&nbsp;unavailable.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DocTest-__cmp__"><strong>__cmp__</strong></a>(self, other)</dt><dd><tt>#&nbsp;This&nbsp;lets&nbsp;us&nbsp;sort&nbsp;tests&nbsp;by&nbsp;name:</tt></dd></dl>
+
+<dl><dt><a name="DocTest-__init__"><strong>__init__</strong></a>(self, examples, globs, name, filename, lineno, docstring)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;<a href="#DocTest">DocTest</a>&nbsp;containing&nbsp;the&nbsp;given&nbsp;examples.&nbsp;&nbsp;The<br>
+<a href="#DocTest">DocTest</a>'s&nbsp;globals&nbsp;are&nbsp;initialized&nbsp;with&nbsp;a&nbsp;copy&nbsp;of&nbsp;`globs`.</tt></dd></dl>
+
+<dl><dt><a name="DocTest-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DocTestFailure">class <strong>DocTestFailure</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#DocTest">DocTest</a>&nbsp;example&nbsp;has&nbsp;failed&nbsp;in&nbsp;debugging&nbsp;mode.<br>
+&nbsp;<br>
+The&nbsp;exception&nbsp;instance&nbsp;has&nbsp;variables:<br>
+&nbsp;<br>
+-&nbsp;test:&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;object&nbsp;being&nbsp;run<br>
+&nbsp;<br>
+-&nbsp;example:&nbsp;the&nbsp;<a href="#Example">Example</a>&nbsp;object&nbsp;that&nbsp;failed<br>
+&nbsp;<br>
+-&nbsp;got:&nbsp;the&nbsp;actual&nbsp;output<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="doctest.html#DocTestFailure">DocTestFailure</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DocTestFailure-__init__"><strong>__init__</strong></a>(self, test, example, got)</dt></dl>
+
+<dl><dt><a name="DocTestFailure-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#DocTestFailure-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="DocTestFailure-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DocTestFailure-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DocTestFailure-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="DocTestFailure-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DocTestFinder">class <strong>DocTestFinder</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;used&nbsp;to&nbsp;extract&nbsp;the&nbsp;DocTests&nbsp;that&nbsp;are&nbsp;relevant&nbsp;to&nbsp;a&nbsp;given<br>
+object,&nbsp;from&nbsp;its&nbsp;docstring&nbsp;and&nbsp;the&nbsp;docstrings&nbsp;of&nbsp;its&nbsp;contained<br>
+objects.&nbsp;&nbsp;Doctests&nbsp;can&nbsp;currently&nbsp;be&nbsp;extracted&nbsp;from&nbsp;the&nbsp;following<br>
+object&nbsp;types:&nbsp;modules,&nbsp;functions,&nbsp;classes,&nbsp;methods,&nbsp;staticmethods,<br>
+classmethods,&nbsp;and&nbsp;properties.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DocTestFinder-__init__"><strong>__init__</strong></a>(self, verbose<font color="#909090">=False</font>, parser<font color="#909090">=&lt;doctest.DocTestParser instance at 0x9dccbe8&gt;</font>, recurse<font color="#909090">=True</font>, exclude_empty<font color="#909090">=True</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;doctest&nbsp;finder.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;argument&nbsp;`parser`&nbsp;specifies&nbsp;a&nbsp;class&nbsp;or<br>
+function&nbsp;that&nbsp;should&nbsp;be&nbsp;used&nbsp;to&nbsp;create&nbsp;new&nbsp;<a href="#DocTest">DocTest</a>&nbsp;objects&nbsp;(or<br>
+objects&nbsp;that&nbsp;implement&nbsp;the&nbsp;same&nbsp;interface&nbsp;as&nbsp;<a href="#DocTest">DocTest</a>).&nbsp;&nbsp;The<br>
+signature&nbsp;for&nbsp;this&nbsp;factory&nbsp;function&nbsp;should&nbsp;match&nbsp;the&nbsp;signature<br>
+of&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;constructor.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;`recurse`&nbsp;is&nbsp;false,&nbsp;then&nbsp;`find`&nbsp;will<br>
+only&nbsp;examine&nbsp;the&nbsp;given&nbsp;object,&nbsp;and&nbsp;not&nbsp;any&nbsp;contained&nbsp;objects.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;`exclude_empty`&nbsp;is&nbsp;false,&nbsp;then&nbsp;`find`<br>
+will&nbsp;include&nbsp;tests&nbsp;for&nbsp;objects&nbsp;with&nbsp;empty&nbsp;docstrings.</tt></dd></dl>
+
+<dl><dt><a name="DocTestFinder-find"><strong>find</strong></a>(self, obj, name<font color="#909090">=None</font>, module<font color="#909090">=None</font>, globs<font color="#909090">=None</font>, extraglobs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;DocTests&nbsp;that&nbsp;are&nbsp;defined&nbsp;by&nbsp;the&nbsp;given<br>
+object's&nbsp;docstring,&nbsp;or&nbsp;by&nbsp;any&nbsp;of&nbsp;its&nbsp;contained&nbsp;objects'<br>
+docstrings.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;parameter&nbsp;`module`&nbsp;is&nbsp;the&nbsp;module&nbsp;that&nbsp;contains<br>
+the&nbsp;given&nbsp;object.&nbsp;&nbsp;If&nbsp;the&nbsp;module&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;then<br>
+the&nbsp;test&nbsp;finder&nbsp;will&nbsp;attempt&nbsp;to&nbsp;automatically&nbsp;determine&nbsp;the<br>
+correct&nbsp;module.&nbsp;&nbsp;The&nbsp;object's&nbsp;module&nbsp;is&nbsp;used:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;As&nbsp;a&nbsp;default&nbsp;namespace,&nbsp;if&nbsp;`globs`&nbsp;is&nbsp;not&nbsp;specified.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;To&nbsp;prevent&nbsp;the&nbsp;<a href="#DocTestFinder">DocTestFinder</a>&nbsp;from&nbsp;extracting&nbsp;DocTests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;objects&nbsp;that&nbsp;are&nbsp;imported&nbsp;from&nbsp;other&nbsp;modules.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;To&nbsp;find&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;containing&nbsp;the&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;To&nbsp;help&nbsp;find&nbsp;the&nbsp;line&nbsp;number&nbsp;of&nbsp;the&nbsp;object&nbsp;within&nbsp;its<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.<br>
+&nbsp;<br>
+Contained&nbsp;objects&nbsp;whose&nbsp;module&nbsp;does&nbsp;not&nbsp;match&nbsp;`module`&nbsp;are&nbsp;ignored.<br>
+&nbsp;<br>
+If&nbsp;`module`&nbsp;is&nbsp;False,&nbsp;no&nbsp;attempt&nbsp;to&nbsp;find&nbsp;the&nbsp;module&nbsp;will&nbsp;be&nbsp;made.<br>
+This&nbsp;is&nbsp;obscure,&nbsp;of&nbsp;use&nbsp;mostly&nbsp;in&nbsp;tests:&nbsp;&nbsp;if&nbsp;`module`&nbsp;is&nbsp;False,&nbsp;or<br>
+is&nbsp;None&nbsp;but&nbsp;cannot&nbsp;be&nbsp;found&nbsp;automatically,&nbsp;then&nbsp;all&nbsp;objects&nbsp;are<br>
+considered&nbsp;to&nbsp;belong&nbsp;to&nbsp;the&nbsp;(non-existent)&nbsp;module,&nbsp;so&nbsp;all&nbsp;contained<br>
+objects&nbsp;will&nbsp;(recursively)&nbsp;be&nbsp;searched&nbsp;for&nbsp;doctests.<br>
+&nbsp;<br>
+The&nbsp;globals&nbsp;for&nbsp;each&nbsp;<a href="#DocTest">DocTest</a>&nbsp;is&nbsp;formed&nbsp;by&nbsp;combining&nbsp;`globs`<br>
+and&nbsp;`extraglobs`&nbsp;(bindings&nbsp;in&nbsp;`extraglobs`&nbsp;override&nbsp;bindings<br>
+in&nbsp;`globs`).&nbsp;&nbsp;A&nbsp;new&nbsp;copy&nbsp;of&nbsp;the&nbsp;globals&nbsp;dictionary&nbsp;is&nbsp;created<br>
+for&nbsp;each&nbsp;<a href="#DocTest">DocTest</a>.&nbsp;&nbsp;If&nbsp;`globs`&nbsp;is&nbsp;not&nbsp;specified,&nbsp;then&nbsp;it<br>
+defaults&nbsp;to&nbsp;the&nbsp;module's&nbsp;`__dict__`,&nbsp;if&nbsp;specified,&nbsp;or&nbsp;{}<br>
+otherwise.&nbsp;&nbsp;If&nbsp;`extraglobs`&nbsp;is&nbsp;not&nbsp;specified,&nbsp;then&nbsp;it&nbsp;defaults<br>
+to&nbsp;{}.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DocTestParser">class <strong>DocTestParser</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;used&nbsp;to&nbsp;parse&nbsp;strings&nbsp;containing&nbsp;doctest&nbsp;examples.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DocTestParser-get_doctest"><strong>get_doctest</strong></a>(self, string, globs, name, filename, lineno)</dt><dd><tt>Extract&nbsp;all&nbsp;doctest&nbsp;examples&nbsp;from&nbsp;the&nbsp;given&nbsp;string,&nbsp;and<br>
+collect&nbsp;them&nbsp;into&nbsp;a&nbsp;`<a href="#DocTest">DocTest</a>`&nbsp;object.<br>
+&nbsp;<br>
+`globs`,&nbsp;`name`,&nbsp;`filename`,&nbsp;and&nbsp;`lineno`&nbsp;are&nbsp;attributes&nbsp;for<br>
+the&nbsp;new&nbsp;`<a href="#DocTest">DocTest</a>`&nbsp;object.&nbsp;&nbsp;See&nbsp;the&nbsp;documentation&nbsp;for&nbsp;`<a href="#DocTest">DocTest</a>`<br>
+for&nbsp;more&nbsp;information.</tt></dd></dl>
+
+<dl><dt><a name="DocTestParser-get_examples"><strong>get_examples</strong></a>(self, string, name<font color="#909090">='&lt;string&gt;'</font>)</dt><dd><tt>Extract&nbsp;all&nbsp;doctest&nbsp;examples&nbsp;from&nbsp;the&nbsp;given&nbsp;string,&nbsp;and&nbsp;return<br>
+them&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;`<a href="#Example">Example</a>`&nbsp;objects.&nbsp;&nbsp;Line&nbsp;numbers&nbsp;are<br>
+0-based,&nbsp;because&nbsp;it's&nbsp;most&nbsp;common&nbsp;in&nbsp;doctests&nbsp;that&nbsp;nothing<br>
+interesting&nbsp;appears&nbsp;on&nbsp;the&nbsp;same&nbsp;line&nbsp;as&nbsp;opening&nbsp;triple-quote,<br>
+and&nbsp;so&nbsp;the&nbsp;first&nbsp;interesting&nbsp;line&nbsp;is&nbsp;called&nbsp;"line&nbsp;1"&nbsp;then.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;argument&nbsp;`name`&nbsp;is&nbsp;a&nbsp;name&nbsp;identifying&nbsp;this<br>
+string,&nbsp;and&nbsp;is&nbsp;only&nbsp;used&nbsp;for&nbsp;error&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="DocTestParser-parse"><strong>parse</strong></a>(self, string, name<font color="#909090">='&lt;string&gt;'</font>)</dt><dd><tt>Divide&nbsp;the&nbsp;given&nbsp;string&nbsp;into&nbsp;examples&nbsp;and&nbsp;intervening&nbsp;text,<br>
+and&nbsp;return&nbsp;them&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;alternating&nbsp;Examples&nbsp;and&nbsp;strings.<br>
+Line&nbsp;numbers&nbsp;for&nbsp;the&nbsp;Examples&nbsp;are&nbsp;0-based.&nbsp;&nbsp;The&nbsp;optional<br>
+argument&nbsp;`name`&nbsp;is&nbsp;a&nbsp;name&nbsp;identifying&nbsp;this&nbsp;string,&nbsp;and&nbsp;is&nbsp;only<br>
+used&nbsp;for&nbsp;error&nbsp;messages.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DocTestRunner">class <strong>DocTestRunner</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;used&nbsp;to&nbsp;run&nbsp;<a href="#DocTest">DocTest</a>&nbsp;test&nbsp;cases,&nbsp;and&nbsp;accumulate&nbsp;statistics.<br>
+The&nbsp;`run`&nbsp;method&nbsp;is&nbsp;used&nbsp;to&nbsp;process&nbsp;a&nbsp;single&nbsp;<a href="#DocTest">DocTest</a>&nbsp;case.&nbsp;&nbsp;It<br>
+returns&nbsp;a&nbsp;tuple&nbsp;`(f,&nbsp;t)`,&nbsp;where&nbsp;`t`&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;test&nbsp;cases<br>
+tried,&nbsp;and&nbsp;`f`&nbsp;is&nbsp;the&nbsp;number&nbsp;of&nbsp;test&nbsp;cases&nbsp;that&nbsp;failed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;tests&nbsp;=&nbsp;<a href="#DocTestFinder">DocTestFinder</a>().find(_TestClass)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner&nbsp;=&nbsp;<a href="#DocTestRunner">DocTestRunner</a>(verbose=False)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;tests.sort(key&nbsp;=&nbsp;lambda&nbsp;test:&nbsp;test.name)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;for&nbsp;test&nbsp;in&nbsp;tests:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;test.name,&nbsp;'-&gt;',&nbsp;runner.<a href="#DocTestRunner-run">run</a>(test)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_TestClass&nbsp;-&gt;&nbsp;(0,&nbsp;2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_TestClass.__init__&nbsp;-&gt;&nbsp;(0,&nbsp;2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_TestClass.get&nbsp;-&gt;&nbsp;(0,&nbsp;2)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_TestClass.square&nbsp;-&gt;&nbsp;(0,&nbsp;1)<br>
+&nbsp;<br>
+The&nbsp;`summarize`&nbsp;method&nbsp;prints&nbsp;a&nbsp;summary&nbsp;of&nbsp;all&nbsp;the&nbsp;test&nbsp;cases&nbsp;that<br>
+have&nbsp;been&nbsp;run&nbsp;by&nbsp;the&nbsp;runner,&nbsp;and&nbsp;returns&nbsp;an&nbsp;aggregated&nbsp;`(f,&nbsp;t)`<br>
+tuple:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner.<a href="#DocTestRunner-summarize">summarize</a>(verbose=1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;items&nbsp;passed&nbsp;all&nbsp;tests:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;tests&nbsp;in&nbsp;_TestClass<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;tests&nbsp;in&nbsp;_TestClass.__init__<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;tests&nbsp;in&nbsp;_TestClass.get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;tests&nbsp;in&nbsp;_TestClass.square<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;tests&nbsp;in&nbsp;4&nbsp;items.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;passed&nbsp;and&nbsp;0&nbsp;failed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Test&nbsp;passed.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0,&nbsp;7)<br>
+&nbsp;<br>
+The&nbsp;aggregated&nbsp;number&nbsp;of&nbsp;tried&nbsp;examples&nbsp;and&nbsp;failed&nbsp;examples&nbsp;is<br>
+also&nbsp;available&nbsp;via&nbsp;the&nbsp;`tries`&nbsp;and&nbsp;`failures`&nbsp;attributes:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner.tries<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;runner.failures<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;<br>
+The&nbsp;comparison&nbsp;between&nbsp;expected&nbsp;outputs&nbsp;and&nbsp;actual&nbsp;outputs&nbsp;is&nbsp;done<br>
+by&nbsp;an&nbsp;`<a href="#OutputChecker">OutputChecker</a>`.&nbsp;&nbsp;This&nbsp;comparison&nbsp;may&nbsp;be&nbsp;customized&nbsp;with&nbsp;a<br>
+number&nbsp;of&nbsp;option&nbsp;flags;&nbsp;see&nbsp;the&nbsp;documentation&nbsp;for&nbsp;`testmod`&nbsp;for<br>
+more&nbsp;information.&nbsp;&nbsp;If&nbsp;the&nbsp;option&nbsp;flags&nbsp;are&nbsp;insufficient,&nbsp;then&nbsp;the<br>
+comparison&nbsp;may&nbsp;also&nbsp;be&nbsp;customized&nbsp;by&nbsp;passing&nbsp;a&nbsp;subclass&nbsp;of<br>
+`<a href="#OutputChecker">OutputChecker</a>`&nbsp;to&nbsp;the&nbsp;constructor.<br>
+&nbsp;<br>
+The&nbsp;test&nbsp;runner's&nbsp;display&nbsp;output&nbsp;can&nbsp;be&nbsp;controlled&nbsp;in&nbsp;two&nbsp;ways.<br>
+First,&nbsp;an&nbsp;output&nbsp;function&nbsp;(`out)&nbsp;can&nbsp;be&nbsp;passed&nbsp;to<br>
+`TestRunner.run`;&nbsp;this&nbsp;function&nbsp;will&nbsp;be&nbsp;called&nbsp;with&nbsp;strings&nbsp;that<br>
+should&nbsp;be&nbsp;displayed.&nbsp;&nbsp;It&nbsp;defaults&nbsp;to&nbsp;`sys.stdout.write`.&nbsp;&nbsp;If<br>
+capturing&nbsp;the&nbsp;output&nbsp;is&nbsp;not&nbsp;sufficient,&nbsp;then&nbsp;the&nbsp;display&nbsp;output<br>
+can&nbsp;be&nbsp;also&nbsp;customized&nbsp;by&nbsp;subclassing&nbsp;<a href="#DocTestRunner">DocTestRunner</a>,&nbsp;and<br>
+overriding&nbsp;the&nbsp;methods&nbsp;`report_start`,&nbsp;`report_success`,<br>
+`report_unexpected_exception`,&nbsp;and&nbsp;`report_failure`.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DocTestRunner-__init__"><strong>__init__</strong></a>(self, checker<font color="#909090">=None</font>, verbose<font color="#909090">=None</font>, optionflags<font color="#909090">=0</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;test&nbsp;runner.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;`checker`&nbsp;is&nbsp;the&nbsp;`<a href="#OutputChecker">OutputChecker</a>`&nbsp;that<br>
+should&nbsp;be&nbsp;used&nbsp;to&nbsp;compare&nbsp;the&nbsp;expected&nbsp;outputs&nbsp;and&nbsp;actual<br>
+outputs&nbsp;of&nbsp;doctest&nbsp;examples.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;'verbose'&nbsp;prints&nbsp;lots&nbsp;of&nbsp;stuff&nbsp;if&nbsp;true,<br>
+only&nbsp;failures&nbsp;if&nbsp;false;&nbsp;by&nbsp;default,&nbsp;it's&nbsp;true&nbsp;iff&nbsp;'-v'&nbsp;is&nbsp;in<br>
+sys.argv.<br>
+&nbsp;<br>
+Optional&nbsp;argument&nbsp;`optionflags`&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;control&nbsp;how&nbsp;the<br>
+test&nbsp;runner&nbsp;compares&nbsp;expected&nbsp;output&nbsp;to&nbsp;actual&nbsp;output,&nbsp;and&nbsp;how<br>
+it&nbsp;displays&nbsp;failures.&nbsp;&nbsp;See&nbsp;the&nbsp;documentation&nbsp;for&nbsp;`testmod`&nbsp;for<br>
+more&nbsp;information.</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-merge"><strong>merge</strong></a>(self, other)</dt><dd><tt>#/////////////////////////////////////////////////////////////////<br>
+#&nbsp;Backward&nbsp;compatibility&nbsp;cruft&nbsp;to&nbsp;maintain&nbsp;doctest.master.<br>
+#/////////////////////////////////////////////////////////////////</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-report_failure"><strong>report_failure</strong></a>(self, out, test, example, got)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;given&nbsp;example&nbsp;failed.</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-report_start"><strong>report_start</strong></a>(self, out, test, example)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;test&nbsp;runner&nbsp;is&nbsp;about&nbsp;to&nbsp;process&nbsp;the&nbsp;given<br>
+example.&nbsp;&nbsp;(Only&nbsp;displays&nbsp;a&nbsp;message&nbsp;if&nbsp;verbose=True)</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-report_success"><strong>report_success</strong></a>(self, out, test, example, got)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;given&nbsp;example&nbsp;ran&nbsp;successfully.&nbsp;&nbsp;(Only<br>
+displays&nbsp;a&nbsp;message&nbsp;if&nbsp;verbose=True)</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-report_unexpected_exception"><strong>report_unexpected_exception</strong></a>(self, out, test, example, exc_info)</dt><dd><tt>Report&nbsp;that&nbsp;the&nbsp;given&nbsp;example&nbsp;raised&nbsp;an&nbsp;unexpected&nbsp;exception.</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-run"><strong>run</strong></a>(self, test, compileflags<font color="#909090">=None</font>, out<font color="#909090">=None</font>, clear_globs<font color="#909090">=True</font>)</dt><dd><tt>Run&nbsp;the&nbsp;examples&nbsp;in&nbsp;`test`,&nbsp;and&nbsp;display&nbsp;the&nbsp;results&nbsp;using&nbsp;the<br>
+writer&nbsp;function&nbsp;`out`.<br>
+&nbsp;<br>
+The&nbsp;examples&nbsp;are&nbsp;run&nbsp;in&nbsp;the&nbsp;namespace&nbsp;`test.globs`.&nbsp;&nbsp;If<br>
+`clear_globs`&nbsp;is&nbsp;true&nbsp;(the&nbsp;default),&nbsp;then&nbsp;this&nbsp;namespace&nbsp;will<br>
+be&nbsp;cleared&nbsp;after&nbsp;the&nbsp;test&nbsp;runs,&nbsp;to&nbsp;help&nbsp;with&nbsp;garbage<br>
+collection.&nbsp;&nbsp;If&nbsp;you&nbsp;would&nbsp;like&nbsp;to&nbsp;examine&nbsp;the&nbsp;namespace&nbsp;after<br>
+the&nbsp;test&nbsp;completes,&nbsp;then&nbsp;use&nbsp;`clear_globs=False`.<br>
+&nbsp;<br>
+`compileflags`&nbsp;gives&nbsp;the&nbsp;set&nbsp;of&nbsp;flags&nbsp;that&nbsp;should&nbsp;be&nbsp;used&nbsp;by<br>
+the&nbsp;Python&nbsp;compiler&nbsp;when&nbsp;running&nbsp;the&nbsp;examples.&nbsp;&nbsp;If&nbsp;not<br>
+specified,&nbsp;then&nbsp;it&nbsp;will&nbsp;default&nbsp;to&nbsp;the&nbsp;set&nbsp;of&nbsp;future-import<br>
+flags&nbsp;that&nbsp;apply&nbsp;to&nbsp;`globs`.<br>
+&nbsp;<br>
+The&nbsp;output&nbsp;of&nbsp;each&nbsp;example&nbsp;is&nbsp;checked&nbsp;using<br>
+`<a href="#DocTestRunner">DocTestRunner</a>.check_output`,&nbsp;and&nbsp;the&nbsp;results&nbsp;are&nbsp;formatted&nbsp;by<br>
+the&nbsp;`<a href="#DocTestRunner">DocTestRunner</a>.report_*`&nbsp;methods.</tt></dd></dl>
+
+<dl><dt><a name="DocTestRunner-summarize"><strong>summarize</strong></a>(self, verbose<font color="#909090">=None</font>)</dt><dd><tt>Print&nbsp;a&nbsp;summary&nbsp;of&nbsp;all&nbsp;the&nbsp;test&nbsp;cases&nbsp;that&nbsp;have&nbsp;been&nbsp;run&nbsp;by<br>
+this&nbsp;<a href="#DocTestRunner">DocTestRunner</a>,&nbsp;and&nbsp;return&nbsp;a&nbsp;tuple&nbsp;`(f,&nbsp;t)`,&nbsp;where&nbsp;`f`&nbsp;is<br>
+the&nbsp;total&nbsp;number&nbsp;of&nbsp;failed&nbsp;examples,&nbsp;and&nbsp;`t`&nbsp;is&nbsp;the&nbsp;total<br>
+number&nbsp;of&nbsp;tried&nbsp;examples.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;`verbose`&nbsp;argument&nbsp;controls&nbsp;how&nbsp;detailed&nbsp;the<br>
+summary&nbsp;is.&nbsp;&nbsp;If&nbsp;the&nbsp;verbosity&nbsp;is&nbsp;not&nbsp;specified,&nbsp;then&nbsp;the<br>
+<a href="#DocTestRunner">DocTestRunner</a>'s&nbsp;verbosity&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>DIVIDER</strong> = '**********************************************************************'</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Example">class <strong>Example</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;single&nbsp;doctest&nbsp;example,&nbsp;consisting&nbsp;of&nbsp;source&nbsp;code&nbsp;and&nbsp;expected<br>
+output.&nbsp;&nbsp;`<a href="#Example">Example</a>`&nbsp;defines&nbsp;the&nbsp;following&nbsp;attributes:<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;source:&nbsp;A&nbsp;single&nbsp;Python&nbsp;statement,&nbsp;always&nbsp;ending&nbsp;with&nbsp;a&nbsp;newline.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;constructor&nbsp;adds&nbsp;a&nbsp;newline&nbsp;if&nbsp;needed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;want:&nbsp;The&nbsp;expected&nbsp;output&nbsp;from&nbsp;running&nbsp;the&nbsp;source&nbsp;code&nbsp;(either<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;stdout,&nbsp;or&nbsp;a&nbsp;traceback&nbsp;in&nbsp;case&nbsp;of&nbsp;exception).&nbsp;&nbsp;`want`&nbsp;ends<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;a&nbsp;newline&nbsp;unless&nbsp;it's&nbsp;empty,&nbsp;in&nbsp;which&nbsp;case&nbsp;it's&nbsp;an&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;string.&nbsp;&nbsp;The&nbsp;constructor&nbsp;adds&nbsp;a&nbsp;newline&nbsp;if&nbsp;needed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;exc_msg:&nbsp;The&nbsp;exception&nbsp;message&nbsp;generated&nbsp;by&nbsp;the&nbsp;example,&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;example&nbsp;is&nbsp;expected&nbsp;to&nbsp;generate&nbsp;an&nbsp;exception;&nbsp;or&nbsp;`None`&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;is&nbsp;not&nbsp;expected&nbsp;to&nbsp;generate&nbsp;an&nbsp;exception.&nbsp;&nbsp;This&nbsp;exception<br>
+&nbsp;&nbsp;&nbsp;&nbsp;message&nbsp;is&nbsp;compared&nbsp;against&nbsp;the&nbsp;return&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`traceback.format_exception_only()`.&nbsp;&nbsp;`exc_msg`&nbsp;ends&nbsp;with&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;newline&nbsp;unless&nbsp;it's&nbsp;`None`.&nbsp;&nbsp;The&nbsp;constructor&nbsp;adds&nbsp;a&nbsp;newline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;needed.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;lineno:&nbsp;The&nbsp;line&nbsp;number&nbsp;within&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;string&nbsp;containing<br>
+&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;<a href="#Example">Example</a>&nbsp;where&nbsp;the&nbsp;<a href="#Example">Example</a>&nbsp;begins.&nbsp;&nbsp;This&nbsp;line&nbsp;number&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;zero-based,&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;indent:&nbsp;The&nbsp;example's&nbsp;indentation&nbsp;in&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;string.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I.e.,&nbsp;the&nbsp;number&nbsp;of&nbsp;space&nbsp;characters&nbsp;that&nbsp;preceed&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;example's&nbsp;first&nbsp;prompt.<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;options:&nbsp;A&nbsp;dictionary&nbsp;mapping&nbsp;from&nbsp;option&nbsp;flags&nbsp;to&nbsp;True&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;False,&nbsp;which&nbsp;is&nbsp;used&nbsp;to&nbsp;override&nbsp;default&nbsp;options&nbsp;for&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;example.&nbsp;&nbsp;Any&nbsp;option&nbsp;flags&nbsp;not&nbsp;contained&nbsp;in&nbsp;this&nbsp;dictionary<br>
+&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;left&nbsp;at&nbsp;their&nbsp;default&nbsp;value&nbsp;(as&nbsp;specified&nbsp;by&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#DocTestRunner">DocTestRunner</a>'s&nbsp;optionflags).&nbsp;&nbsp;By&nbsp;default,&nbsp;no&nbsp;options&nbsp;are&nbsp;set.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Example-__init__"><strong>__init__</strong></a>(self, source, want, exc_msg<font color="#909090">=None</font>, lineno<font color="#909090">=0</font>, indent<font color="#909090">=0</font>, options<font color="#909090">=None</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OutputChecker">class <strong>OutputChecker</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;class&nbsp;used&nbsp;to&nbsp;check&nbsp;the&nbsp;whether&nbsp;the&nbsp;actual&nbsp;output&nbsp;from&nbsp;a&nbsp;doctest<br>
+example&nbsp;matches&nbsp;the&nbsp;expected&nbsp;output.&nbsp;&nbsp;`<a href="#OutputChecker">OutputChecker</a>`&nbsp;defines&nbsp;two<br>
+methods:&nbsp;`check_output`,&nbsp;which&nbsp;compares&nbsp;a&nbsp;given&nbsp;pair&nbsp;of&nbsp;outputs,<br>
+and&nbsp;returns&nbsp;true&nbsp;if&nbsp;they&nbsp;match;&nbsp;and&nbsp;`output_difference`,&nbsp;which<br>
+returns&nbsp;a&nbsp;string&nbsp;describing&nbsp;the&nbsp;differences&nbsp;between&nbsp;two&nbsp;outputs.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OutputChecker-check_output"><strong>check_output</strong></a>(self, want, got, optionflags)</dt><dd><tt>Return&nbsp;True&nbsp;iff&nbsp;the&nbsp;actual&nbsp;output&nbsp;from&nbsp;an&nbsp;example&nbsp;(`got`)<br>
+matches&nbsp;the&nbsp;expected&nbsp;output&nbsp;(`want`).&nbsp;&nbsp;These&nbsp;strings&nbsp;are<br>
+always&nbsp;considered&nbsp;to&nbsp;match&nbsp;if&nbsp;they&nbsp;are&nbsp;identical;&nbsp;but<br>
+depending&nbsp;on&nbsp;what&nbsp;option&nbsp;flags&nbsp;the&nbsp;test&nbsp;runner&nbsp;is&nbsp;using,<br>
+several&nbsp;non-exact&nbsp;match&nbsp;types&nbsp;are&nbsp;also&nbsp;possible.&nbsp;&nbsp;See&nbsp;the<br>
+documentation&nbsp;for&nbsp;`TestRunner`&nbsp;for&nbsp;more&nbsp;information&nbsp;about<br>
+option&nbsp;flags.</tt></dd></dl>
+
+<dl><dt><a name="OutputChecker-output_difference"><strong>output_difference</strong></a>(self, example, got, optionflags)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;describing&nbsp;the&nbsp;differences&nbsp;between&nbsp;the<br>
+expected&nbsp;output&nbsp;for&nbsp;a&nbsp;given&nbsp;example&nbsp;(`example`)&nbsp;and&nbsp;the&nbsp;actual<br>
+output&nbsp;(`got`).&nbsp;&nbsp;`optionflags`&nbsp;is&nbsp;the&nbsp;set&nbsp;of&nbsp;option&nbsp;flags&nbsp;used<br>
+to&nbsp;compare&nbsp;`want`&nbsp;and&nbsp;`got`.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Tester">class <strong>Tester</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Tester-__init__"><strong>__init__</strong></a>(self, mod<font color="#909090">=None</font>, globs<font color="#909090">=None</font>, verbose<font color="#909090">=None</font>, optionflags<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="Tester-merge"><strong>merge</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Tester-run__test__"><strong>run__test__</strong></a>(self, d, name)</dt></dl>
+
+<dl><dt><a name="Tester-rundict"><strong>rundict</strong></a>(self, d, name, module<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Tester-rundoc"><strong>rundoc</strong></a>(self, object, name<font color="#909090">=None</font>, module<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Tester-runstring"><strong>runstring</strong></a>(self, s, name)</dt></dl>
+
+<dl><dt><a name="Tester-summarize"><strong>summarize</strong></a>(self, verbose<font color="#909090">=None</font>)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnexpectedException">class <strong>UnexpectedException</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;<a href="#DocTest">DocTest</a>&nbsp;example&nbsp;has&nbsp;encountered&nbsp;an&nbsp;unexpected&nbsp;exception<br>
+&nbsp;<br>
+The&nbsp;exception&nbsp;instance&nbsp;has&nbsp;variables:<br>
+&nbsp;<br>
+-&nbsp;test:&nbsp;the&nbsp;<a href="#DocTest">DocTest</a>&nbsp;object&nbsp;being&nbsp;run<br>
+&nbsp;<br>
+-&nbsp;example:&nbsp;the&nbsp;<a href="#Example">Example</a>&nbsp;object&nbsp;that&nbsp;failed<br>
+&nbsp;<br>
+-&nbsp;exc_info:&nbsp;the&nbsp;exception&nbsp;info<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="doctest.html#UnexpectedException">UnexpectedException</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UnexpectedException-__init__"><strong>__init__</strong></a>(self, test, example, exc_info)</dt></dl>
+
+<dl><dt><a name="UnexpectedException-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#UnexpectedException-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="UnexpectedException-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnexpectedException-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#UnexpectedException-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="UnexpectedException-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-DocFileSuite"><strong>DocFileSuite</strong></a>(*paths, **kw)</dt><dd><tt>A&nbsp;unittest&nbsp;suite&nbsp;for&nbsp;one&nbsp;or&nbsp;more&nbsp;doctest&nbsp;files.<br>
+&nbsp;<br>
+The&nbsp;path&nbsp;to&nbsp;each&nbsp;doctest&nbsp;file&nbsp;is&nbsp;given&nbsp;as&nbsp;a&nbsp;string;&nbsp;the<br>
+interpretation&nbsp;of&nbsp;that&nbsp;string&nbsp;depends&nbsp;on&nbsp;the&nbsp;keyword&nbsp;argument<br>
+"module_relative".<br>
+&nbsp;<br>
+A&nbsp;number&nbsp;of&nbsp;options&nbsp;may&nbsp;be&nbsp;provided&nbsp;as&nbsp;keyword&nbsp;arguments:<br>
+&nbsp;<br>
+module_relative<br>
+&nbsp;&nbsp;If&nbsp;"module_relative"&nbsp;is&nbsp;True,&nbsp;then&nbsp;the&nbsp;given&nbsp;file&nbsp;paths&nbsp;are<br>
+&nbsp;&nbsp;interpreted&nbsp;as&nbsp;os-independent&nbsp;module-relative&nbsp;paths.&nbsp;&nbsp;By<br>
+&nbsp;&nbsp;default,&nbsp;these&nbsp;paths&nbsp;are&nbsp;relative&nbsp;to&nbsp;the&nbsp;calling&nbsp;module's<br>
+&nbsp;&nbsp;directory;&nbsp;but&nbsp;if&nbsp;the&nbsp;"package"&nbsp;argument&nbsp;is&nbsp;specified,&nbsp;then<br>
+&nbsp;&nbsp;they&nbsp;are&nbsp;relative&nbsp;to&nbsp;that&nbsp;package.&nbsp;&nbsp;To&nbsp;ensure&nbsp;os-independence,<br>
+&nbsp;&nbsp;"filename"&nbsp;should&nbsp;use&nbsp;"/"&nbsp;characters&nbsp;to&nbsp;separate&nbsp;path<br>
+&nbsp;&nbsp;segments,&nbsp;and&nbsp;may&nbsp;not&nbsp;be&nbsp;an&nbsp;absolute&nbsp;path&nbsp;(i.e.,&nbsp;it&nbsp;may&nbsp;not<br>
+&nbsp;&nbsp;begin&nbsp;with&nbsp;"/").<br>
+&nbsp;<br>
+&nbsp;&nbsp;If&nbsp;"module_relative"&nbsp;is&nbsp;False,&nbsp;then&nbsp;the&nbsp;given&nbsp;file&nbsp;paths&nbsp;are<br>
+&nbsp;&nbsp;interpreted&nbsp;as&nbsp;os-specific&nbsp;paths.&nbsp;&nbsp;These&nbsp;paths&nbsp;may&nbsp;be&nbsp;absolute<br>
+&nbsp;&nbsp;or&nbsp;relative&nbsp;(to&nbsp;the&nbsp;current&nbsp;working&nbsp;directory).<br>
+&nbsp;<br>
+package<br>
+&nbsp;&nbsp;A&nbsp;Python&nbsp;package&nbsp;or&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;Python&nbsp;package&nbsp;whose&nbsp;directory<br>
+&nbsp;&nbsp;should&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;base&nbsp;directory&nbsp;for&nbsp;module&nbsp;relative&nbsp;paths.<br>
+&nbsp;&nbsp;If&nbsp;"package"&nbsp;is&nbsp;not&nbsp;specified,&nbsp;then&nbsp;the&nbsp;calling&nbsp;module's<br>
+&nbsp;&nbsp;directory&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;base&nbsp;directory&nbsp;for&nbsp;module&nbsp;relative<br>
+&nbsp;&nbsp;filenames.&nbsp;&nbsp;It&nbsp;is&nbsp;an&nbsp;error&nbsp;to&nbsp;specify&nbsp;"package"&nbsp;if<br>
+&nbsp;&nbsp;"module_relative"&nbsp;is&nbsp;False.<br>
+&nbsp;<br>
+setUp<br>
+&nbsp;&nbsp;A&nbsp;set-up&nbsp;function.&nbsp;&nbsp;This&nbsp;is&nbsp;called&nbsp;before&nbsp;running&nbsp;the<br>
+&nbsp;&nbsp;tests&nbsp;in&nbsp;each&nbsp;file.&nbsp;The&nbsp;setUp&nbsp;function&nbsp;will&nbsp;be&nbsp;passed&nbsp;a&nbsp;<a href="#DocTest">DocTest</a><br>
+&nbsp;&nbsp;object.&nbsp;&nbsp;The&nbsp;setUp&nbsp;function&nbsp;can&nbsp;access&nbsp;the&nbsp;test&nbsp;globals&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;globs&nbsp;attribute&nbsp;of&nbsp;the&nbsp;test&nbsp;passed.<br>
+&nbsp;<br>
+tearDown<br>
+&nbsp;&nbsp;A&nbsp;tear-down&nbsp;function.&nbsp;&nbsp;This&nbsp;is&nbsp;called&nbsp;after&nbsp;running&nbsp;the<br>
+&nbsp;&nbsp;tests&nbsp;in&nbsp;each&nbsp;file.&nbsp;&nbsp;The&nbsp;tearDown&nbsp;function&nbsp;will&nbsp;be&nbsp;passed&nbsp;a&nbsp;<a href="#DocTest">DocTest</a><br>
+&nbsp;&nbsp;object.&nbsp;&nbsp;The&nbsp;tearDown&nbsp;function&nbsp;can&nbsp;access&nbsp;the&nbsp;test&nbsp;globals&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;globs&nbsp;attribute&nbsp;of&nbsp;the&nbsp;test&nbsp;passed.<br>
+&nbsp;<br>
+globs<br>
+&nbsp;&nbsp;A&nbsp;dictionary&nbsp;containing&nbsp;initial&nbsp;global&nbsp;variables&nbsp;for&nbsp;the&nbsp;tests.<br>
+&nbsp;<br>
+optionflags<br>
+&nbsp;&nbsp;A&nbsp;set&nbsp;of&nbsp;doctest&nbsp;option&nbsp;flags&nbsp;expressed&nbsp;as&nbsp;an&nbsp;integer.<br>
+&nbsp;<br>
+parser<br>
+&nbsp;&nbsp;A&nbsp;<a href="#DocTestParser">DocTestParser</a>&nbsp;(or&nbsp;subclass)&nbsp;that&nbsp;should&nbsp;be&nbsp;used&nbsp;to&nbsp;extract<br>
+&nbsp;&nbsp;tests&nbsp;from&nbsp;the&nbsp;files.<br>
+&nbsp;<br>
+encoding<br>
+&nbsp;&nbsp;An&nbsp;encoding&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;convert&nbsp;the&nbsp;files&nbsp;to&nbsp;unicode.</tt></dd></dl>
+ <dl><dt><a name="-DocTestSuite"><strong>DocTestSuite</strong></a>(module<font color="#909090">=None</font>, globs<font color="#909090">=None</font>, extraglobs<font color="#909090">=None</font>, test_finder<font color="#909090">=None</font>, **options)</dt><dd><tt>Convert&nbsp;doctest&nbsp;tests&nbsp;for&nbsp;a&nbsp;module&nbsp;to&nbsp;a&nbsp;unittest&nbsp;test&nbsp;suite.<br>
+&nbsp;<br>
+This&nbsp;converts&nbsp;each&nbsp;documentation&nbsp;string&nbsp;in&nbsp;a&nbsp;module&nbsp;that<br>
+contains&nbsp;doctest&nbsp;tests&nbsp;to&nbsp;a&nbsp;unittest&nbsp;test&nbsp;case.&nbsp;&nbsp;If&nbsp;any&nbsp;of&nbsp;the<br>
+tests&nbsp;in&nbsp;a&nbsp;doc&nbsp;string&nbsp;fail,&nbsp;then&nbsp;the&nbsp;test&nbsp;case&nbsp;fails.&nbsp;&nbsp;An&nbsp;exception<br>
+is&nbsp;raised&nbsp;showing&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;containing&nbsp;the&nbsp;test&nbsp;and&nbsp;a<br>
+(sometimes&nbsp;approximate)&nbsp;line&nbsp;number.<br>
+&nbsp;<br>
+The&nbsp;`module`&nbsp;argument&nbsp;provides&nbsp;the&nbsp;module&nbsp;to&nbsp;be&nbsp;tested.&nbsp;&nbsp;The&nbsp;argument<br>
+can&nbsp;be&nbsp;either&nbsp;a&nbsp;module&nbsp;or&nbsp;a&nbsp;module&nbsp;name.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;argument&nbsp;is&nbsp;given,&nbsp;the&nbsp;calling&nbsp;module&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+A&nbsp;number&nbsp;of&nbsp;options&nbsp;may&nbsp;be&nbsp;provided&nbsp;as&nbsp;keyword&nbsp;arguments:<br>
+&nbsp;<br>
+setUp<br>
+&nbsp;&nbsp;A&nbsp;set-up&nbsp;function.&nbsp;&nbsp;This&nbsp;is&nbsp;called&nbsp;before&nbsp;running&nbsp;the<br>
+&nbsp;&nbsp;tests&nbsp;in&nbsp;each&nbsp;file.&nbsp;The&nbsp;setUp&nbsp;function&nbsp;will&nbsp;be&nbsp;passed&nbsp;a&nbsp;<a href="#DocTest">DocTest</a><br>
+&nbsp;&nbsp;object.&nbsp;&nbsp;The&nbsp;setUp&nbsp;function&nbsp;can&nbsp;access&nbsp;the&nbsp;test&nbsp;globals&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;globs&nbsp;attribute&nbsp;of&nbsp;the&nbsp;test&nbsp;passed.<br>
+&nbsp;<br>
+tearDown<br>
+&nbsp;&nbsp;A&nbsp;tear-down&nbsp;function.&nbsp;&nbsp;This&nbsp;is&nbsp;called&nbsp;after&nbsp;running&nbsp;the<br>
+&nbsp;&nbsp;tests&nbsp;in&nbsp;each&nbsp;file.&nbsp;&nbsp;The&nbsp;tearDown&nbsp;function&nbsp;will&nbsp;be&nbsp;passed&nbsp;a&nbsp;<a href="#DocTest">DocTest</a><br>
+&nbsp;&nbsp;object.&nbsp;&nbsp;The&nbsp;tearDown&nbsp;function&nbsp;can&nbsp;access&nbsp;the&nbsp;test&nbsp;globals&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;globs&nbsp;attribute&nbsp;of&nbsp;the&nbsp;test&nbsp;passed.<br>
+&nbsp;<br>
+globs<br>
+&nbsp;&nbsp;A&nbsp;dictionary&nbsp;containing&nbsp;initial&nbsp;global&nbsp;variables&nbsp;for&nbsp;the&nbsp;tests.<br>
+&nbsp;<br>
+optionflags<br>
+&nbsp;&nbsp;&nbsp;A&nbsp;set&nbsp;of&nbsp;doctest&nbsp;option&nbsp;flags&nbsp;expressed&nbsp;as&nbsp;an&nbsp;integer.</tt></dd></dl>
+ <dl><dt><a name="-debug"><strong>debug</strong></a>(module, name, pm<font color="#909090">=False</font>)</dt><dd><tt>Debug&nbsp;a&nbsp;single&nbsp;doctest&nbsp;docstring.<br>
+&nbsp;<br>
+Provide&nbsp;the&nbsp;module&nbsp;(or&nbsp;dotted&nbsp;name&nbsp;of&nbsp;the&nbsp;module)&nbsp;containing&nbsp;the<br>
+test&nbsp;to&nbsp;be&nbsp;debugged&nbsp;and&nbsp;the&nbsp;name&nbsp;(within&nbsp;the&nbsp;module)&nbsp;of&nbsp;the&nbsp;object<br>
+with&nbsp;the&nbsp;docstring&nbsp;with&nbsp;tests&nbsp;to&nbsp;be&nbsp;debugged.</tt></dd></dl>
+ <dl><dt><a name="-debug_src"><strong>debug_src</strong></a>(src, pm<font color="#909090">=False</font>, globs<font color="#909090">=None</font>)</dt><dd><tt>Debug&nbsp;a&nbsp;single&nbsp;doctest&nbsp;docstring,&nbsp;in&nbsp;argument&nbsp;`src`'</tt></dd></dl>
+ <dl><dt><a name="-register_optionflag"><strong>register_optionflag</strong></a>(name)</dt></dl>
+ <dl><dt><a name="-run_docstring_examples"><strong>run_docstring_examples</strong></a>(f, globs, verbose<font color="#909090">=False</font>, name<font color="#909090">='NoName'</font>, compileflags<font color="#909090">=None</font>, optionflags<font color="#909090">=0</font>)</dt><dd><tt>Test&nbsp;examples&nbsp;in&nbsp;the&nbsp;given&nbsp;object's&nbsp;docstring&nbsp;(`f`),&nbsp;using&nbsp;`globs`<br>
+as&nbsp;globals.&nbsp;&nbsp;Optional&nbsp;argument&nbsp;`name`&nbsp;is&nbsp;used&nbsp;in&nbsp;failure&nbsp;messages.<br>
+If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;`verbose`&nbsp;is&nbsp;true,&nbsp;then&nbsp;generate&nbsp;output<br>
+even&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;failures.<br>
+&nbsp;<br>
+`compileflags`&nbsp;gives&nbsp;the&nbsp;set&nbsp;of&nbsp;flags&nbsp;that&nbsp;should&nbsp;be&nbsp;used&nbsp;by&nbsp;the<br>
+Python&nbsp;compiler&nbsp;when&nbsp;running&nbsp;the&nbsp;examples.&nbsp;&nbsp;If&nbsp;not&nbsp;specified,&nbsp;then<br>
+it&nbsp;will&nbsp;default&nbsp;to&nbsp;the&nbsp;set&nbsp;of&nbsp;future-import&nbsp;flags&nbsp;that&nbsp;apply&nbsp;to<br>
+`globs`.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;`optionflags`&nbsp;specifies&nbsp;options&nbsp;for&nbsp;the<br>
+testing&nbsp;and&nbsp;output.&nbsp;&nbsp;See&nbsp;the&nbsp;documentation&nbsp;for&nbsp;`testmod`&nbsp;for&nbsp;more<br>
+information.</tt></dd></dl>
+ <dl><dt><a name="-script_from_examples"><strong>script_from_examples</strong></a>(s)</dt><dd><tt>Extract&nbsp;script&nbsp;from&nbsp;text&nbsp;with&nbsp;examples.<br>
+&nbsp;<br>
+Converts&nbsp;text&nbsp;with&nbsp;examples&nbsp;to&nbsp;a&nbsp;Python&nbsp;script.&nbsp;&nbsp;<a href="#Example">Example</a>&nbsp;input&nbsp;is<br>
+converted&nbsp;to&nbsp;regular&nbsp;code.&nbsp;&nbsp;<a href="#Example">Example</a>&nbsp;output&nbsp;and&nbsp;all&nbsp;other&nbsp;words<br>
+are&nbsp;converted&nbsp;to&nbsp;comments:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;text&nbsp;=&nbsp;'''<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here&nbsp;are&nbsp;examples&nbsp;of&nbsp;simple&nbsp;math.<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python&nbsp;has&nbsp;super&nbsp;accurate&nbsp;integer&nbsp;addition<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;2&nbsp;+&nbsp;2<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And&nbsp;very&nbsp;friendly&nbsp;error&nbsp;messages:<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;1/0<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To&nbsp;Infinity<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beyond<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;can&nbsp;use&nbsp;logic&nbsp;if&nbsp;you&nbsp;want:<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;if&nbsp;0:<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;blah<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;blah<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+...<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ho&nbsp;hum<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'''<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;<a href="#-script_from_examples">script_from_examples</a>(text)<br>
+#&nbsp;Here&nbsp;are&nbsp;examples&nbsp;of&nbsp;simple&nbsp;math.<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python&nbsp;has&nbsp;super&nbsp;accurate&nbsp;integer&nbsp;addition<br>
+#<br>
+2&nbsp;+&nbsp;2<br>
+#&nbsp;Expected:<br>
+##&nbsp;5<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And&nbsp;very&nbsp;friendly&nbsp;error&nbsp;messages:<br>
+#<br>
+1/0<br>
+#&nbsp;Expected:<br>
+##&nbsp;To&nbsp;Infinity<br>
+##&nbsp;And<br>
+##&nbsp;Beyond<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;can&nbsp;use&nbsp;logic&nbsp;if&nbsp;you&nbsp;want:<br>
+#<br>
+if&nbsp;0:<br>
+&nbsp;&nbsp;&nbsp;blah<br>
+&nbsp;&nbsp;&nbsp;blah<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ho&nbsp;hum<br>
+&lt;BLANKLINE&gt;</tt></dd></dl>
+ <dl><dt><a name="-set_unittest_reportflags"><strong>set_unittest_reportflags</strong></a>(flags)</dt><dd><tt>Sets&nbsp;the&nbsp;unittest&nbsp;option&nbsp;flags.<br>
+&nbsp;<br>
+The&nbsp;old&nbsp;flag&nbsp;is&nbsp;returned&nbsp;so&nbsp;that&nbsp;a&nbsp;runner&nbsp;could&nbsp;restore&nbsp;the&nbsp;old<br>
+value&nbsp;if&nbsp;it&nbsp;wished&nbsp;to:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;doctest<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;old&nbsp;=&nbsp;doctest._unittest_reportflags<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;doctest.<a href="#-set_unittest_reportflags">set_unittest_reportflags</a>(REPORT_NDIFF&nbsp;|<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPORT_ONLY_FIRST_FAILURE)&nbsp;==&nbsp;old<br>
+&nbsp;&nbsp;True<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;doctest._unittest_reportflags&nbsp;==&nbsp;(REPORT_NDIFF&nbsp;|<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPORT_ONLY_FIRST_FAILURE)<br>
+&nbsp;&nbsp;True<br>
+&nbsp;<br>
+Only&nbsp;reporting&nbsp;flags&nbsp;can&nbsp;be&nbsp;set:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;doctest.<a href="#-set_unittest_reportflags">set_unittest_reportflags</a>(ELLIPSIS)<br>
+&nbsp;&nbsp;Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;ValueError:&nbsp;('Only&nbsp;reporting&nbsp;flags&nbsp;allowed',&nbsp;8)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;doctest.<a href="#-set_unittest_reportflags">set_unittest_reportflags</a>(old)&nbsp;==&nbsp;(REPORT_NDIFF&nbsp;|<br>
+&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REPORT_ONLY_FIRST_FAILURE)<br>
+&nbsp;&nbsp;True</tt></dd></dl>
+ <dl><dt><a name="-testfile"><strong>testfile</strong></a>(filename, module_relative<font color="#909090">=True</font>, name<font color="#909090">=None</font>, package<font color="#909090">=None</font>, globs<font color="#909090">=None</font>, verbose<font color="#909090">=None</font>, report<font color="#909090">=True</font>, optionflags<font color="#909090">=0</font>, extraglobs<font color="#909090">=None</font>, raise_on_error<font color="#909090">=False</font>, parser<font color="#909090">=&lt;doctest.DocTestParser instance at 0x9dccc10&gt;</font>, encoding<font color="#909090">=None</font>)</dt><dd><tt>Test&nbsp;examples&nbsp;in&nbsp;the&nbsp;given&nbsp;file.&nbsp;&nbsp;Return&nbsp;(#failures,&nbsp;#tests).<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"module_relative"&nbsp;specifies&nbsp;how&nbsp;filenames<br>
+should&nbsp;be&nbsp;interpreted:<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;If&nbsp;"module_relative"&nbsp;is&nbsp;True&nbsp;(the&nbsp;default),&nbsp;then&nbsp;"filename"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;specifies&nbsp;a&nbsp;module-relative&nbsp;path.&nbsp;&nbsp;By&nbsp;default,&nbsp;this&nbsp;path&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relative&nbsp;to&nbsp;the&nbsp;calling&nbsp;module's&nbsp;directory;&nbsp;but&nbsp;if&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"package"&nbsp;argument&nbsp;is&nbsp;specified,&nbsp;then&nbsp;it&nbsp;is&nbsp;relative&nbsp;to&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;package.&nbsp;&nbsp;To&nbsp;ensure&nbsp;os-independence,&nbsp;"filename"&nbsp;should&nbsp;use<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/"&nbsp;characters&nbsp;to&nbsp;separate&nbsp;path&nbsp;segments,&nbsp;and&nbsp;should&nbsp;not<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;an&nbsp;absolute&nbsp;path&nbsp;(i.e.,&nbsp;it&nbsp;may&nbsp;not&nbsp;begin&nbsp;with&nbsp;"/").<br>
+&nbsp;<br>
+&nbsp;&nbsp;-&nbsp;If&nbsp;"module_relative"&nbsp;is&nbsp;False,&nbsp;then&nbsp;"filename"&nbsp;specifies&nbsp;an<br>
+&nbsp;&nbsp;&nbsp;&nbsp;os-specific&nbsp;path.&nbsp;&nbsp;The&nbsp;path&nbsp;may&nbsp;be&nbsp;absolute&nbsp;or&nbsp;relative&nbsp;(to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;current&nbsp;working&nbsp;directory).<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"name"&nbsp;gives&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;test;&nbsp;by&nbsp;default<br>
+use&nbsp;the&nbsp;file's&nbsp;basename.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;argument&nbsp;"package"&nbsp;is&nbsp;a&nbsp;Python&nbsp;package&nbsp;or&nbsp;the<br>
+name&nbsp;of&nbsp;a&nbsp;Python&nbsp;package&nbsp;whose&nbsp;directory&nbsp;should&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+base&nbsp;directory&nbsp;for&nbsp;a&nbsp;module&nbsp;relative&nbsp;filename.&nbsp;&nbsp;If&nbsp;no&nbsp;package&nbsp;is<br>
+specified,&nbsp;then&nbsp;the&nbsp;calling&nbsp;module's&nbsp;directory&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;base<br>
+directory&nbsp;for&nbsp;module&nbsp;relative&nbsp;filenames.&nbsp;&nbsp;It&nbsp;is&nbsp;an&nbsp;error&nbsp;to<br>
+specify&nbsp;"package"&nbsp;if&nbsp;"module_relative"&nbsp;is&nbsp;False.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"globs"&nbsp;gives&nbsp;a&nbsp;dict&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;globals<br>
+when&nbsp;executing&nbsp;examples;&nbsp;by&nbsp;default,&nbsp;use&nbsp;{}.&nbsp;&nbsp;A&nbsp;copy&nbsp;of&nbsp;this&nbsp;dict<br>
+is&nbsp;actually&nbsp;used&nbsp;for&nbsp;each&nbsp;docstring,&nbsp;so&nbsp;that&nbsp;each&nbsp;docstring's<br>
+examples&nbsp;start&nbsp;with&nbsp;a&nbsp;clean&nbsp;slate.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"extraglobs"&nbsp;gives&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;should&nbsp;be<br>
+merged&nbsp;into&nbsp;the&nbsp;globals&nbsp;that&nbsp;are&nbsp;used&nbsp;to&nbsp;execute&nbsp;examples.&nbsp;&nbsp;By<br>
+default,&nbsp;no&nbsp;extra&nbsp;globals&nbsp;are&nbsp;used.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"verbose"&nbsp;prints&nbsp;lots&nbsp;of&nbsp;stuff&nbsp;if&nbsp;true,&nbsp;prints<br>
+only&nbsp;failures&nbsp;if&nbsp;false;&nbsp;by&nbsp;default,&nbsp;it's&nbsp;true&nbsp;iff&nbsp;"-v"&nbsp;is&nbsp;in&nbsp;sys.argv.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"report"&nbsp;prints&nbsp;a&nbsp;summary&nbsp;at&nbsp;the&nbsp;end&nbsp;when&nbsp;true,<br>
+else&nbsp;prints&nbsp;nothing&nbsp;at&nbsp;the&nbsp;end.&nbsp;&nbsp;In&nbsp;verbose&nbsp;mode,&nbsp;the&nbsp;summary&nbsp;is<br>
+detailed,&nbsp;else&nbsp;very&nbsp;brief&nbsp;(in&nbsp;fact,&nbsp;empty&nbsp;if&nbsp;all&nbsp;tests&nbsp;passed).<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"optionflags"&nbsp;or's&nbsp;together&nbsp;module&nbsp;constants,<br>
+and&nbsp;defaults&nbsp;to&nbsp;0.&nbsp;&nbsp;Possible&nbsp;values&nbsp;(see&nbsp;the&nbsp;docs&nbsp;for&nbsp;details):<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;DONT_ACCEPT_TRUE_FOR_1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;DONT_ACCEPT_BLANKLINE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NORMALIZE_WHITESPACE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ELLIPSIS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SKIP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IGNORE_EXCEPTION_DETAIL<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_UDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_CDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_NDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_ONLY_FIRST_FAILURE<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"raise_on_error"&nbsp;raises&nbsp;an&nbsp;exception&nbsp;on&nbsp;the<br>
+first&nbsp;unexpected&nbsp;exception&nbsp;or&nbsp;failure.&nbsp;This&nbsp;allows&nbsp;failures&nbsp;to&nbsp;be<br>
+post-mortem&nbsp;debugged.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"parser"&nbsp;specifies&nbsp;a&nbsp;<a href="#DocTestParser">DocTestParser</a>&nbsp;(or<br>
+subclass)&nbsp;that&nbsp;should&nbsp;be&nbsp;used&nbsp;to&nbsp;extract&nbsp;tests&nbsp;from&nbsp;the&nbsp;files.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"encoding"&nbsp;specifies&nbsp;an&nbsp;encoding&nbsp;that&nbsp;should<br>
+be&nbsp;used&nbsp;to&nbsp;convert&nbsp;the&nbsp;file&nbsp;to&nbsp;unicode.<br>
+&nbsp;<br>
+Advanced&nbsp;tomfoolery:&nbsp;&nbsp;testmod&nbsp;runs&nbsp;methods&nbsp;of&nbsp;a&nbsp;local&nbsp;instance&nbsp;of<br>
+class&nbsp;doctest.<a href="#Tester">Tester</a>,&nbsp;then&nbsp;merges&nbsp;the&nbsp;results&nbsp;into&nbsp;(or&nbsp;creates)<br>
+global&nbsp;<a href="#Tester">Tester</a>&nbsp;instance&nbsp;doctest.master.&nbsp;&nbsp;Methods&nbsp;of&nbsp;doctest.master<br>
+can&nbsp;be&nbsp;called&nbsp;directly&nbsp;too,&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;do&nbsp;something&nbsp;unusual.<br>
+Passing&nbsp;report=0&nbsp;to&nbsp;testmod&nbsp;is&nbsp;especially&nbsp;useful&nbsp;then,&nbsp;to&nbsp;delay<br>
+displaying&nbsp;a&nbsp;summary.&nbsp;&nbsp;Invoke&nbsp;doctest.master.summarize(verbose)<br>
+when&nbsp;you're&nbsp;done&nbsp;fiddling.</tt></dd></dl>
+ <dl><dt><a name="-testmod"><strong>testmod</strong></a>(m<font color="#909090">=None</font>, name<font color="#909090">=None</font>, globs<font color="#909090">=None</font>, verbose<font color="#909090">=None</font>, report<font color="#909090">=True</font>, optionflags<font color="#909090">=0</font>, extraglobs<font color="#909090">=None</font>, raise_on_error<font color="#909090">=False</font>, exclude_empty<font color="#909090">=False</font>)</dt><dd><tt>m=None,&nbsp;name=None,&nbsp;globs=None,&nbsp;verbose=None,&nbsp;report=True,<br>
+&nbsp;&nbsp;&nbsp;optionflags=0,&nbsp;extraglobs=None,&nbsp;raise_on_error=False,<br>
+&nbsp;&nbsp;&nbsp;exclude_empty=False<br>
+&nbsp;<br>
+Test&nbsp;examples&nbsp;in&nbsp;docstrings&nbsp;in&nbsp;functions&nbsp;and&nbsp;classes&nbsp;reachable<br>
+from&nbsp;module&nbsp;m&nbsp;(or&nbsp;the&nbsp;current&nbsp;module&nbsp;if&nbsp;m&nbsp;is&nbsp;not&nbsp;supplied),&nbsp;starting<br>
+with&nbsp;m.__doc__.<br>
+&nbsp;<br>
+Also&nbsp;test&nbsp;examples&nbsp;reachable&nbsp;from&nbsp;dict&nbsp;m.__test__&nbsp;if&nbsp;it&nbsp;exists&nbsp;and&nbsp;is<br>
+not&nbsp;None.&nbsp;&nbsp;m.__test__&nbsp;maps&nbsp;names&nbsp;to&nbsp;functions,&nbsp;classes&nbsp;and&nbsp;strings;<br>
+function&nbsp;and&nbsp;class&nbsp;docstrings&nbsp;are&nbsp;tested&nbsp;even&nbsp;if&nbsp;the&nbsp;name&nbsp;is&nbsp;private;<br>
+strings&nbsp;are&nbsp;tested&nbsp;directly,&nbsp;as&nbsp;if&nbsp;they&nbsp;were&nbsp;docstrings.<br>
+&nbsp;<br>
+Return&nbsp;(#failures,&nbsp;#tests).<br>
+&nbsp;<br>
+See&nbsp;doctest.__doc__&nbsp;for&nbsp;an&nbsp;overview.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"name"&nbsp;gives&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;module;&nbsp;by&nbsp;default<br>
+use&nbsp;m.__name__.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"globs"&nbsp;gives&nbsp;a&nbsp;dict&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;globals<br>
+when&nbsp;executing&nbsp;examples;&nbsp;by&nbsp;default,&nbsp;use&nbsp;m.__dict__.&nbsp;&nbsp;A&nbsp;copy&nbsp;of&nbsp;this<br>
+dict&nbsp;is&nbsp;actually&nbsp;used&nbsp;for&nbsp;each&nbsp;docstring,&nbsp;so&nbsp;that&nbsp;each&nbsp;docstring's<br>
+examples&nbsp;start&nbsp;with&nbsp;a&nbsp;clean&nbsp;slate.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"extraglobs"&nbsp;gives&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;should&nbsp;be<br>
+merged&nbsp;into&nbsp;the&nbsp;globals&nbsp;that&nbsp;are&nbsp;used&nbsp;to&nbsp;execute&nbsp;examples.&nbsp;&nbsp;By<br>
+default,&nbsp;no&nbsp;extra&nbsp;globals&nbsp;are&nbsp;used.&nbsp;&nbsp;This&nbsp;is&nbsp;new&nbsp;in&nbsp;2.4.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"verbose"&nbsp;prints&nbsp;lots&nbsp;of&nbsp;stuff&nbsp;if&nbsp;true,&nbsp;prints<br>
+only&nbsp;failures&nbsp;if&nbsp;false;&nbsp;by&nbsp;default,&nbsp;it's&nbsp;true&nbsp;iff&nbsp;"-v"&nbsp;is&nbsp;in&nbsp;sys.argv.<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"report"&nbsp;prints&nbsp;a&nbsp;summary&nbsp;at&nbsp;the&nbsp;end&nbsp;when&nbsp;true,<br>
+else&nbsp;prints&nbsp;nothing&nbsp;at&nbsp;the&nbsp;end.&nbsp;&nbsp;In&nbsp;verbose&nbsp;mode,&nbsp;the&nbsp;summary&nbsp;is<br>
+detailed,&nbsp;else&nbsp;very&nbsp;brief&nbsp;(in&nbsp;fact,&nbsp;empty&nbsp;if&nbsp;all&nbsp;tests&nbsp;passed).<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"optionflags"&nbsp;or's&nbsp;together&nbsp;module&nbsp;constants,<br>
+and&nbsp;defaults&nbsp;to&nbsp;0.&nbsp;&nbsp;This&nbsp;is&nbsp;new&nbsp;in&nbsp;2.3.&nbsp;&nbsp;Possible&nbsp;values&nbsp;(see&nbsp;the<br>
+docs&nbsp;for&nbsp;details):<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;DONT_ACCEPT_TRUE_FOR_1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;DONT_ACCEPT_BLANKLINE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NORMALIZE_WHITESPACE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ELLIPSIS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SKIP<br>
+&nbsp;&nbsp;&nbsp;&nbsp;IGNORE_EXCEPTION_DETAIL<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_UDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_CDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_NDIFF<br>
+&nbsp;&nbsp;&nbsp;&nbsp;REPORT_ONLY_FIRST_FAILURE<br>
+&nbsp;<br>
+Optional&nbsp;keyword&nbsp;arg&nbsp;"raise_on_error"&nbsp;raises&nbsp;an&nbsp;exception&nbsp;on&nbsp;the<br>
+first&nbsp;unexpected&nbsp;exception&nbsp;or&nbsp;failure.&nbsp;This&nbsp;allows&nbsp;failures&nbsp;to&nbsp;be<br>
+post-mortem&nbsp;debugged.<br>
+&nbsp;<br>
+Advanced&nbsp;tomfoolery:&nbsp;&nbsp;testmod&nbsp;runs&nbsp;methods&nbsp;of&nbsp;a&nbsp;local&nbsp;instance&nbsp;of<br>
+class&nbsp;doctest.<a href="#Tester">Tester</a>,&nbsp;then&nbsp;merges&nbsp;the&nbsp;results&nbsp;into&nbsp;(or&nbsp;creates)<br>
+global&nbsp;<a href="#Tester">Tester</a>&nbsp;instance&nbsp;doctest.master.&nbsp;&nbsp;Methods&nbsp;of&nbsp;doctest.master<br>
+can&nbsp;be&nbsp;called&nbsp;directly&nbsp;too,&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;do&nbsp;something&nbsp;unusual.<br>
+Passing&nbsp;report=0&nbsp;to&nbsp;testmod&nbsp;is&nbsp;especially&nbsp;useful&nbsp;then,&nbsp;to&nbsp;delay<br>
+displaying&nbsp;a&nbsp;summary.&nbsp;&nbsp;Invoke&nbsp;doctest.master.summarize(verbose)<br>
+when&nbsp;you're&nbsp;done&nbsp;fiddling.</tt></dd></dl>
+ <dl><dt><a name="-testsource"><strong>testsource</strong></a>(module, name)</dt><dd><tt>Extract&nbsp;the&nbsp;test&nbsp;sources&nbsp;from&nbsp;a&nbsp;doctest&nbsp;docstring&nbsp;as&nbsp;a&nbsp;script.<br>
+&nbsp;<br>
+Provide&nbsp;the&nbsp;module&nbsp;(or&nbsp;dotted&nbsp;name&nbsp;of&nbsp;the&nbsp;module)&nbsp;containing&nbsp;the<br>
+test&nbsp;to&nbsp;be&nbsp;debugged&nbsp;and&nbsp;the&nbsp;name&nbsp;(within&nbsp;the&nbsp;module)&nbsp;of&nbsp;the&nbsp;object<br>
+with&nbsp;the&nbsp;doc&nbsp;string&nbsp;with&nbsp;tests&nbsp;to&nbsp;be&nbsp;debugged.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>COMPARISON_FLAGS</strong> = 63<br>
+<strong>DONT_ACCEPT_BLANKLINE</strong> = 2<br>
+<strong>DONT_ACCEPT_TRUE_FOR_1</strong> = 1<br>
+<strong>ELLIPSIS</strong> = 8<br>
+<strong>IGNORE_EXCEPTION_DETAIL</strong> = 32<br>
+<strong>NORMALIZE_WHITESPACE</strong> = 4<br>
+<strong>REPORTING_FLAGS</strong> = 960<br>
+<strong>REPORT_CDIFF</strong> = 128<br>
+<strong>REPORT_NDIFF</strong> = 256<br>
+<strong>REPORT_ONLY_FIRST_FAILURE</strong> = 512<br>
+<strong>REPORT_UDIFF</strong> = 64<br>
+<strong>SKIP</strong> = 16<br>
+<strong>__all__</strong> = ['register_optionflag', 'DONT_ACCEPT_TRUE_FOR_1', 'DONT_ACCEPT_BLANKLINE', 'NORMALIZE_WHITESPACE', 'ELLIPSIS', 'SKIP', 'IGNORE_EXCEPTION_DETAIL', 'COMPARISON_FLAGS', 'REPORT_UDIFF', 'REPORT_CDIFF', 'REPORT_NDIFF', 'REPORT_ONLY_FIRST_FAILURE', 'REPORTING_FLAGS', 'Example', 'DocTest', 'DocTestParser', 'DocTestFinder', 'DocTestRunner', 'OutputChecker', 'DocTestFailure', ...]<br>
+<strong>__docformat__</strong> = 'reStructuredText en'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__test__</strong> = {'_TestClass': &lt;class doctest._TestClass at 0x9ac3510&gt;, 'blank lines': '<font color="#c040c0">\n</font>                Blank lines can be marked with ... bar<font color="#c040c0">\n</font>                    &lt;BLANKLINE&gt;<font color="#c040c0">\n</font>            ', 'bool-int equivalence': '<font color="#c040c0">\n</font>                                    In 2.2, boo...       False<font color="#c040c0">\n</font>                                    ', 'ellipsis': '<font color="#c040c0">\n</font>                If the ellipsis flag is used, t...                 [0, 1, 2, ..., 999]<font color="#c040c0">\n</font>            ', 'string': '<font color="#c040c0">\n</font>                      Example of a string objec...                    (3, 2)<font color="#c040c0">\n</font>                      ', 'whitespace normalization': '<font color="#c040c0">\n</font>                If the whitespace normalization...26,<font color="#c040c0">\n</font>                     27, 28, 29]<font color="#c040c0">\n</font>            '}</td></tr></table>

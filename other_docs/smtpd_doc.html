@@ -1,0 +1,467 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>smtpd</strong></big></big> (version Python SMTP proxy version 0.2)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/smtpd.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/smtpd.py</a></font></td></tr></table>
+    <p><tt>An&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2821.txt">RFC&nbsp;2821</a>&nbsp;smtp&nbsp;proxy.<br>
+&nbsp;<br>
+Usage:&nbsp;%(program)s&nbsp;[options]&nbsp;[localhost:localport&nbsp;[remotehost:remoteport]]<br>
+&nbsp;<br>
+Options:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--nosetuid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-n<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;program&nbsp;generally&nbsp;tries&nbsp;to&nbsp;setuid&nbsp;`nobody',&nbsp;unless&nbsp;this&nbsp;flag&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.&nbsp;&nbsp;The&nbsp;setuid&nbsp;call&nbsp;will&nbsp;fail&nbsp;if&nbsp;this&nbsp;program&nbsp;is&nbsp;not&nbsp;run&nbsp;as&nbsp;root&nbsp;(in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;case,&nbsp;use&nbsp;this&nbsp;flag).<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-V<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;the&nbsp;version&nbsp;number&nbsp;and&nbsp;exit.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--class&nbsp;classname<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-c&nbsp;classname<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;`classname'&nbsp;as&nbsp;the&nbsp;concrete&nbsp;SMTP&nbsp;proxy&nbsp;class.&nbsp;&nbsp;Uses&nbsp;`<a href="#PureProxy">PureProxy</a>'&nbsp;by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--debug<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-d<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Turn&nbsp;on&nbsp;debugging&nbsp;prints.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--help<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-h<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;this&nbsp;message&nbsp;and&nbsp;exit.<br>
+&nbsp;<br>
+Version:&nbsp;%(__version__)s<br>
+&nbsp;<br>
+If&nbsp;localhost&nbsp;is&nbsp;not&nbsp;given&nbsp;then&nbsp;`localhost'&nbsp;is&nbsp;used,&nbsp;and&nbsp;if&nbsp;localport&nbsp;is&nbsp;not<br>
+given&nbsp;then&nbsp;8025&nbsp;is&nbsp;used.&nbsp;&nbsp;If&nbsp;remotehost&nbsp;is&nbsp;not&nbsp;given&nbsp;then&nbsp;`localhost'&nbsp;is&nbsp;used,<br>
+and&nbsp;if&nbsp;remoteport&nbsp;is&nbsp;not&nbsp;given,&nbsp;then&nbsp;25&nbsp;is&nbsp;used.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="asynchat.html">asynchat</a><br>
+<a href="asyncore.html">asyncore</a><br>
+</td><td width="25%" valign=top><a href="errno.html">errno</a><br>
+<a href="getopt.html">getopt</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="asyncore.html#dispatcher">asyncore.dispatcher</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="smtpd.html#SMTPServer">SMTPServer</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="smtpd.html#DebuggingServer">DebuggingServer</a>
+</font></dt><dt><font face="helvetica, arial"><a href="smtpd.html#PureProxy">PureProxy</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="smtpd.html#MailmanProxy">MailmanProxy</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DebuggingServer">class <strong>DebuggingServer</strong></a>(<a href="smtpd.html#SMTPServer">SMTPServer</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="smtpd.html#DebuggingServer">DebuggingServer</a></dd>
+<dd><a href="smtpd.html#SMTPServer">SMTPServer</a></dd>
+<dd><a href="asyncore.html#dispatcher">asyncore.dispatcher</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DebuggingServer-process_message"><strong>process_message</strong></a>(self, peer, mailfrom, rcpttos, data)</dt><dd><tt>#&nbsp;Do&nbsp;something&nbsp;with&nbsp;the&nbsp;gathered&nbsp;message</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="smtpd.html#SMTPServer">SMTPServer</a>:<br>
+<dl><dt><a name="DebuggingServer-__init__"><strong>__init__</strong></a>(self, localaddr, remoteaddr)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_accept"><strong>handle_accept</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><a name="DebuggingServer-__getattr__"><strong>__getattr__</strong></a>(self, attr)</dt><dd><tt>#&nbsp;cheap&nbsp;inheritance,&nbsp;used&nbsp;to&nbsp;pass&nbsp;all&nbsp;other&nbsp;attribute<br>
+#&nbsp;references&nbsp;to&nbsp;the&nbsp;underlying&nbsp;socket&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="DebuggingServer-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-accept"><strong>accept</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-add_channel"><strong>add_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-bind"><strong>bind</strong></a>(self, addr)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-connect"><strong>connect</strong></a>(self, address)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-create_socket"><strong>create_socket</strong></a>(self, family, type)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-del_channel"><strong>del_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_close"><strong>handle_close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_connect"><strong>handle_connect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_error"><strong>handle_error</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_expt"><strong>handle_expt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_expt_event"><strong>handle_expt_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_read"><strong>handle_read</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_read_event"><strong>handle_read_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_write"><strong>handle_write</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-handle_write_event"><strong>handle_write_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-listen"><strong>listen</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-log"><strong>log</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-log_info"><strong>log_info</strong></a>(self, message, type<font color="#909090">='info'</font>)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-readable"><strong>readable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-recv"><strong>recv</strong></a>(self, buffer_size)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-send"><strong>send</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-set_reuse_addr"><strong>set_reuse_addr</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-set_socket"><strong>set_socket</strong></a>(self, sock, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="DebuggingServer-writable"><strong>writable</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><strong>accepting</strong> = False</dl>
+
+<dl><dt><strong>addr</strong> = None</dl>
+
+<dl><dt><strong>closing</strong> = False</dl>
+
+<dl><dt><strong>connected</strong> = False</dl>
+
+<dl><dt><strong>debug</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MailmanProxy">class <strong>MailmanProxy</strong></a>(<a href="smtpd.html#PureProxy">PureProxy</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="smtpd.html#MailmanProxy">MailmanProxy</a></dd>
+<dd><a href="smtpd.html#PureProxy">PureProxy</a></dd>
+<dd><a href="smtpd.html#SMTPServer">SMTPServer</a></dd>
+<dd><a href="asyncore.html#dispatcher">asyncore.dispatcher</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MailmanProxy-process_message"><strong>process_message</strong></a>(self, peer, mailfrom, rcpttos, data)</dt></dl>
+
+<hr>
+Methods inherited from <a href="smtpd.html#SMTPServer">SMTPServer</a>:<br>
+<dl><dt><a name="MailmanProxy-__init__"><strong>__init__</strong></a>(self, localaddr, remoteaddr)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_accept"><strong>handle_accept</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><a name="MailmanProxy-__getattr__"><strong>__getattr__</strong></a>(self, attr)</dt><dd><tt>#&nbsp;cheap&nbsp;inheritance,&nbsp;used&nbsp;to&nbsp;pass&nbsp;all&nbsp;other&nbsp;attribute<br>
+#&nbsp;references&nbsp;to&nbsp;the&nbsp;underlying&nbsp;socket&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="MailmanProxy-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-accept"><strong>accept</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-add_channel"><strong>add_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-bind"><strong>bind</strong></a>(self, addr)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-connect"><strong>connect</strong></a>(self, address)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-create_socket"><strong>create_socket</strong></a>(self, family, type)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-del_channel"><strong>del_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_close"><strong>handle_close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_connect"><strong>handle_connect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_error"><strong>handle_error</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_expt"><strong>handle_expt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_expt_event"><strong>handle_expt_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_read"><strong>handle_read</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_read_event"><strong>handle_read_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_write"><strong>handle_write</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-handle_write_event"><strong>handle_write_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-listen"><strong>listen</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-log"><strong>log</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-log_info"><strong>log_info</strong></a>(self, message, type<font color="#909090">='info'</font>)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-readable"><strong>readable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-recv"><strong>recv</strong></a>(self, buffer_size)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-send"><strong>send</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-set_reuse_addr"><strong>set_reuse_addr</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-set_socket"><strong>set_socket</strong></a>(self, sock, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="MailmanProxy-writable"><strong>writable</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><strong>accepting</strong> = False</dl>
+
+<dl><dt><strong>addr</strong> = None</dl>
+
+<dl><dt><strong>closing</strong> = False</dl>
+
+<dl><dt><strong>connected</strong> = False</dl>
+
+<dl><dt><strong>debug</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PureProxy">class <strong>PureProxy</strong></a>(<a href="smtpd.html#SMTPServer">SMTPServer</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="smtpd.html#PureProxy">PureProxy</a></dd>
+<dd><a href="smtpd.html#SMTPServer">SMTPServer</a></dd>
+<dd><a href="asyncore.html#dispatcher">asyncore.dispatcher</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PureProxy-process_message"><strong>process_message</strong></a>(self, peer, mailfrom, rcpttos, data)</dt></dl>
+
+<hr>
+Methods inherited from <a href="smtpd.html#SMTPServer">SMTPServer</a>:<br>
+<dl><dt><a name="PureProxy-__init__"><strong>__init__</strong></a>(self, localaddr, remoteaddr)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_accept"><strong>handle_accept</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><a name="PureProxy-__getattr__"><strong>__getattr__</strong></a>(self, attr)</dt><dd><tt>#&nbsp;cheap&nbsp;inheritance,&nbsp;used&nbsp;to&nbsp;pass&nbsp;all&nbsp;other&nbsp;attribute<br>
+#&nbsp;references&nbsp;to&nbsp;the&nbsp;underlying&nbsp;socket&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="PureProxy-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-accept"><strong>accept</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-add_channel"><strong>add_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="PureProxy-bind"><strong>bind</strong></a>(self, addr)</dt></dl>
+
+<dl><dt><a name="PureProxy-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-connect"><strong>connect</strong></a>(self, address)</dt></dl>
+
+<dl><dt><a name="PureProxy-create_socket"><strong>create_socket</strong></a>(self, family, type)</dt></dl>
+
+<dl><dt><a name="PureProxy-del_channel"><strong>del_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_close"><strong>handle_close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_connect"><strong>handle_connect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_error"><strong>handle_error</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_expt"><strong>handle_expt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_expt_event"><strong>handle_expt_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_read"><strong>handle_read</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_read_event"><strong>handle_read_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_write"><strong>handle_write</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-handle_write_event"><strong>handle_write_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-listen"><strong>listen</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="PureProxy-log"><strong>log</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="PureProxy-log_info"><strong>log_info</strong></a>(self, message, type<font color="#909090">='info'</font>)</dt></dl>
+
+<dl><dt><a name="PureProxy-readable"><strong>readable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-recv"><strong>recv</strong></a>(self, buffer_size)</dt></dl>
+
+<dl><dt><a name="PureProxy-send"><strong>send</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="PureProxy-set_reuse_addr"><strong>set_reuse_addr</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PureProxy-set_socket"><strong>set_socket</strong></a>(self, sock, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="PureProxy-writable"><strong>writable</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><strong>accepting</strong> = False</dl>
+
+<dl><dt><strong>addr</strong> = None</dl>
+
+<dl><dt><strong>closing</strong> = False</dl>
+
+<dl><dt><strong>connected</strong> = False</dl>
+
+<dl><dt><strong>debug</strong> = False</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SMTPServer">class <strong>SMTPServer</strong></a>(<a href="asyncore.html#dispatcher">asyncore.dispatcher</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SMTPServer-__init__"><strong>__init__</strong></a>(self, localaddr, remoteaddr)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_accept"><strong>handle_accept</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-process_message"><strong>process_message</strong></a>(self, peer, mailfrom, rcpttos, data)</dt><dd><tt>Override&nbsp;this&nbsp;abstract&nbsp;method&nbsp;to&nbsp;handle&nbsp;messages&nbsp;from&nbsp;the&nbsp;client.<br>
+&nbsp;<br>
+peer&nbsp;is&nbsp;a&nbsp;tuple&nbsp;containing&nbsp;(ipaddr,&nbsp;port)&nbsp;of&nbsp;the&nbsp;client&nbsp;that&nbsp;made&nbsp;the<br>
+socket&nbsp;connection&nbsp;to&nbsp;our&nbsp;smtp&nbsp;port.<br>
+&nbsp;<br>
+mailfrom&nbsp;is&nbsp;the&nbsp;raw&nbsp;address&nbsp;the&nbsp;client&nbsp;claims&nbsp;the&nbsp;message&nbsp;is&nbsp;coming<br>
+from.<br>
+&nbsp;<br>
+rcpttos&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;raw&nbsp;addresses&nbsp;the&nbsp;client&nbsp;wishes&nbsp;to&nbsp;deliver&nbsp;the<br>
+message&nbsp;to.<br>
+&nbsp;<br>
+data&nbsp;is&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;entire&nbsp;full&nbsp;text&nbsp;of&nbsp;the&nbsp;message,<br>
+headers&nbsp;(if&nbsp;supplied)&nbsp;and&nbsp;all.&nbsp;&nbsp;It&nbsp;has&nbsp;been&nbsp;`de-transparencied'<br>
+according&nbsp;to&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc821.txt">RFC&nbsp;821</a>,&nbsp;Section&nbsp;4.5.2.&nbsp;&nbsp;In&nbsp;other&nbsp;words,&nbsp;a&nbsp;line<br>
+containing&nbsp;a&nbsp;`.'&nbsp;followed&nbsp;by&nbsp;other&nbsp;text&nbsp;has&nbsp;had&nbsp;the&nbsp;leading&nbsp;dot<br>
+removed.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;should&nbsp;return&nbsp;None,&nbsp;for&nbsp;a&nbsp;normal&nbsp;`250&nbsp;Ok'&nbsp;response;<br>
+otherwise&nbsp;it&nbsp;returns&nbsp;the&nbsp;desired&nbsp;response&nbsp;string&nbsp;in&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc821.txt">RFC&nbsp;821</a>&nbsp;format.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><a name="SMTPServer-__getattr__"><strong>__getattr__</strong></a>(self, attr)</dt><dd><tt>#&nbsp;cheap&nbsp;inheritance,&nbsp;used&nbsp;to&nbsp;pass&nbsp;all&nbsp;other&nbsp;attribute<br>
+#&nbsp;references&nbsp;to&nbsp;the&nbsp;underlying&nbsp;socket&nbsp;object.</tt></dd></dl>
+
+<dl><dt><a name="SMTPServer-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-accept"><strong>accept</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-add_channel"><strong>add_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SMTPServer-bind"><strong>bind</strong></a>(self, addr)</dt></dl>
+
+<dl><dt><a name="SMTPServer-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-connect"><strong>connect</strong></a>(self, address)</dt></dl>
+
+<dl><dt><a name="SMTPServer-create_socket"><strong>create_socket</strong></a>(self, family, type)</dt></dl>
+
+<dl><dt><a name="SMTPServer-del_channel"><strong>del_channel</strong></a>(self, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_close"><strong>handle_close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_connect"><strong>handle_connect</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_error"><strong>handle_error</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_expt"><strong>handle_expt</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_expt_event"><strong>handle_expt_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_read"><strong>handle_read</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_read_event"><strong>handle_read_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_write"><strong>handle_write</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-handle_write_event"><strong>handle_write_event</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-listen"><strong>listen</strong></a>(self, num)</dt></dl>
+
+<dl><dt><a name="SMTPServer-log"><strong>log</strong></a>(self, message)</dt></dl>
+
+<dl><dt><a name="SMTPServer-log_info"><strong>log_info</strong></a>(self, message, type<font color="#909090">='info'</font>)</dt></dl>
+
+<dl><dt><a name="SMTPServer-readable"><strong>readable</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-recv"><strong>recv</strong></a>(self, buffer_size)</dt></dl>
+
+<dl><dt><a name="SMTPServer-send"><strong>send</strong></a>(self, data)</dt></dl>
+
+<dl><dt><a name="SMTPServer-set_reuse_addr"><strong>set_reuse_addr</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SMTPServer-set_socket"><strong>set_socket</strong></a>(self, sock, map<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SMTPServer-writable"><strong>writable</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="asyncore.html#dispatcher">asyncore.dispatcher</a>:<br>
+<dl><dt><strong>accepting</strong> = False</dl>
+
+<dl><dt><strong>addr</strong> = None</dl>
+
+<dl><dt><strong>closing</strong> = False</dl>
+
+<dl><dt><strong>connected</strong> = False</dl>
+
+<dl><dt><strong>debug</strong> = False</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['SMTPServer', 'DebuggingServer', 'PureProxy', 'MailmanProxy']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__version__</strong> = 'Python SMTP proxy version 0.2'</td></tr></table>

@@ -1,0 +1,162 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>MimeWriter</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/MimeWriter.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/MimeWriter.py</a></font></td></tr></table>
+    <p><tt>Generic&nbsp;MIME&nbsp;writer.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;defines&nbsp;the&nbsp;class&nbsp;<a href="#MimeWriter">MimeWriter</a>.&nbsp;&nbsp;The&nbsp;<a href="#MimeWriter">MimeWriter</a>&nbsp;class&nbsp;implements<br>
+a&nbsp;basic&nbsp;formatter&nbsp;for&nbsp;creating&nbsp;MIME&nbsp;multi-part&nbsp;files.&nbsp;&nbsp;It&nbsp;doesn't&nbsp;seek&nbsp;around<br>
+the&nbsp;output&nbsp;file&nbsp;nor&nbsp;does&nbsp;it&nbsp;use&nbsp;large&nbsp;amounts&nbsp;of&nbsp;buffer&nbsp;space.&nbsp;You&nbsp;must&nbsp;write<br>
+the&nbsp;parts&nbsp;out&nbsp;in&nbsp;the&nbsp;order&nbsp;that&nbsp;they&nbsp;should&nbsp;occur&nbsp;in&nbsp;the&nbsp;final&nbsp;file.<br>
+<a href="#MimeWriter">MimeWriter</a>&nbsp;does&nbsp;buffer&nbsp;the&nbsp;headers&nbsp;you&nbsp;add,&nbsp;allowing&nbsp;you&nbsp;to&nbsp;rearrange&nbsp;their<br>
+order.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mimetools.html">mimetools</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="MimeWriter.html#MimeWriter">MimeWriter</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MimeWriter">class <strong>MimeWriter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Generic&nbsp;MIME&nbsp;writer.<br>
+&nbsp;<br>
+Methods:<br>
+&nbsp;<br>
+<a href="#MimeWriter-__init__">__init__</a>()<br>
+<a href="#MimeWriter-addheader">addheader</a>()<br>
+<a href="#MimeWriter-flushheaders">flushheaders</a>()<br>
+<a href="#MimeWriter-startbody">startbody</a>()<br>
+<a href="#MimeWriter-startmultipartbody">startmultipartbody</a>()<br>
+<a href="#MimeWriter-nextpart">nextpart</a>()<br>
+<a href="#MimeWriter-lastpart">lastpart</a>()<br>
+&nbsp;<br>
+A&nbsp;MIME&nbsp;writer&nbsp;is&nbsp;much&nbsp;more&nbsp;primitive&nbsp;than&nbsp;a&nbsp;MIME&nbsp;parser.&nbsp;&nbsp;It<br>
+doesn't&nbsp;seek&nbsp;around&nbsp;on&nbsp;the&nbsp;output&nbsp;file,&nbsp;and&nbsp;it&nbsp;doesn't&nbsp;use&nbsp;large<br>
+amounts&nbsp;of&nbsp;buffer&nbsp;space,&nbsp;so&nbsp;you&nbsp;have&nbsp;to&nbsp;write&nbsp;the&nbsp;parts&nbsp;in&nbsp;the<br>
+order&nbsp;they&nbsp;should&nbsp;occur&nbsp;on&nbsp;the&nbsp;output&nbsp;file.&nbsp;&nbsp;It&nbsp;does&nbsp;buffer&nbsp;the<br>
+headers&nbsp;you&nbsp;add,&nbsp;allowing&nbsp;you&nbsp;to&nbsp;rearrange&nbsp;their&nbsp;order.<br>
+&nbsp;<br>
+General&nbsp;usage&nbsp;is:<br>
+&nbsp;<br>
+f&nbsp;=&nbsp;&lt;open&nbsp;the&nbsp;output&nbsp;file&gt;<br>
+w&nbsp;=&nbsp;<a href="#MimeWriter">MimeWriter</a>(f)<br>
+...call&nbsp;w.<a href="#MimeWriter-addheader">addheader</a>(key,&nbsp;value)&nbsp;0&nbsp;or&nbsp;more&nbsp;times...<br>
+&nbsp;<br>
+followed&nbsp;by&nbsp;either:<br>
+&nbsp;<br>
+f&nbsp;=&nbsp;w.<a href="#MimeWriter-startbody">startbody</a>(content_type)<br>
+...call&nbsp;f.write(data)&nbsp;for&nbsp;body&nbsp;data...<br>
+&nbsp;<br>
+or:<br>
+&nbsp;<br>
+w.<a href="#MimeWriter-startmultipartbody">startmultipartbody</a>(subtype)<br>
+for&nbsp;each&nbsp;part:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;subwriter&nbsp;=&nbsp;w.<a href="#MimeWriter-nextpart">nextpart</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;...use&nbsp;the&nbsp;subwriter's&nbsp;methods&nbsp;to&nbsp;create&nbsp;the&nbsp;subpart...<br>
+w.<a href="#MimeWriter-lastpart">lastpart</a>()<br>
+&nbsp;<br>
+The&nbsp;subwriter&nbsp;is&nbsp;another&nbsp;<a href="#MimeWriter">MimeWriter</a>&nbsp;instance,&nbsp;and&nbsp;should&nbsp;be<br>
+treated&nbsp;in&nbsp;the&nbsp;same&nbsp;way&nbsp;as&nbsp;the&nbsp;toplevel&nbsp;<a href="#MimeWriter">MimeWriter</a>.&nbsp;&nbsp;This&nbsp;way,<br>
+writing&nbsp;recursive&nbsp;body&nbsp;parts&nbsp;is&nbsp;easy.<br>
+&nbsp;<br>
+Warning:&nbsp;don't&nbsp;forget&nbsp;to&nbsp;call&nbsp;<a href="#MimeWriter-lastpart">lastpart</a>()!<br>
+&nbsp;<br>
+XXX&nbsp;There&nbsp;should&nbsp;be&nbsp;more&nbsp;state&nbsp;so&nbsp;calls&nbsp;made&nbsp;in&nbsp;the&nbsp;wrong&nbsp;order<br>
+are&nbsp;detected.<br>
+&nbsp;<br>
+Some&nbsp;special&nbsp;cases:<br>
+&nbsp;<br>
+-&nbsp;<a href="#MimeWriter-startbody">startbody</a>()&nbsp;just&nbsp;returns&nbsp;the&nbsp;file&nbsp;passed&nbsp;to&nbsp;the&nbsp;constructor;<br>
+&nbsp;&nbsp;but&nbsp;don't&nbsp;use&nbsp;this&nbsp;knowledge,&nbsp;as&nbsp;it&nbsp;may&nbsp;be&nbsp;changed.<br>
+&nbsp;<br>
+-&nbsp;<a href="#MimeWriter-startmultipartbody">startmultipartbody</a>()&nbsp;actually&nbsp;returns&nbsp;a&nbsp;file&nbsp;as&nbsp;well;<br>
+&nbsp;&nbsp;this&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;write&nbsp;the&nbsp;initial&nbsp;'if&nbsp;you&nbsp;can&nbsp;read&nbsp;this&nbsp;your<br>
+&nbsp;&nbsp;mailer&nbsp;is&nbsp;not&nbsp;MIME-aware'&nbsp;message.<br>
+&nbsp;<br>
+-&nbsp;If&nbsp;you&nbsp;call&nbsp;<a href="#MimeWriter-flushheaders">flushheaders</a>(),&nbsp;the&nbsp;headers&nbsp;accumulated&nbsp;so&nbsp;far&nbsp;are<br>
+&nbsp;&nbsp;written&nbsp;out&nbsp;(and&nbsp;forgotten);&nbsp;this&nbsp;is&nbsp;useful&nbsp;if&nbsp;you&nbsp;don't&nbsp;need&nbsp;a<br>
+&nbsp;&nbsp;body&nbsp;part&nbsp;at&nbsp;all,&nbsp;e.g.&nbsp;for&nbsp;a&nbsp;subpart&nbsp;of&nbsp;type&nbsp;message/rfc822<br>
+&nbsp;&nbsp;that's&nbsp;(mis)used&nbsp;to&nbsp;store&nbsp;some&nbsp;header-like&nbsp;information.<br>
+&nbsp;<br>
+-&nbsp;Passing&nbsp;a&nbsp;keyword&nbsp;argument&nbsp;'prefix=&lt;flag&gt;'&nbsp;to&nbsp;<a href="#MimeWriter-addheader">addheader</a>(),<br>
+&nbsp;&nbsp;start*body()&nbsp;affects&nbsp;where&nbsp;the&nbsp;header&nbsp;is&nbsp;inserted;&nbsp;0&nbsp;means<br>
+&nbsp;&nbsp;append&nbsp;at&nbsp;the&nbsp;end,&nbsp;1&nbsp;means&nbsp;insert&nbsp;at&nbsp;the&nbsp;start;&nbsp;default&nbsp;is<br>
+&nbsp;&nbsp;append&nbsp;for&nbsp;<a href="#MimeWriter-addheader">addheader</a>(),&nbsp;but&nbsp;insert&nbsp;for&nbsp;start*body(),&nbsp;which&nbsp;use<br>
+&nbsp;&nbsp;it&nbsp;to&nbsp;determine&nbsp;where&nbsp;the&nbsp;Content-Type&nbsp;header&nbsp;goes.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MimeWriter-__init__"><strong>__init__</strong></a>(self, fp)</dt></dl>
+
+<dl><dt><a name="MimeWriter-addheader"><strong>addheader</strong></a>(self, key, value, prefix<font color="#909090">=0</font>)</dt><dd><tt>Add&nbsp;a&nbsp;header&nbsp;line&nbsp;to&nbsp;the&nbsp;MIME&nbsp;message.<br>
+&nbsp;<br>
+The&nbsp;key&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;header,&nbsp;where&nbsp;the&nbsp;value&nbsp;obviously&nbsp;provides<br>
+the&nbsp;value&nbsp;of&nbsp;the&nbsp;header.&nbsp;The&nbsp;optional&nbsp;argument&nbsp;prefix&nbsp;determines<br>
+where&nbsp;the&nbsp;header&nbsp;is&nbsp;inserted;&nbsp;0&nbsp;means&nbsp;append&nbsp;at&nbsp;the&nbsp;end,&nbsp;1&nbsp;means<br>
+insert&nbsp;at&nbsp;the&nbsp;start.&nbsp;The&nbsp;default&nbsp;is&nbsp;to&nbsp;append.</tt></dd></dl>
+
+<dl><dt><a name="MimeWriter-flushheaders"><strong>flushheaders</strong></a>(self)</dt><dd><tt>Writes&nbsp;out&nbsp;and&nbsp;forgets&nbsp;all&nbsp;headers&nbsp;accumulated&nbsp;so&nbsp;far.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;useful&nbsp;if&nbsp;you&nbsp;don't&nbsp;need&nbsp;a&nbsp;body&nbsp;part&nbsp;at&nbsp;all;&nbsp;for&nbsp;example,<br>
+for&nbsp;a&nbsp;subpart&nbsp;of&nbsp;type&nbsp;message/rfc822&nbsp;that's&nbsp;(mis)used&nbsp;to&nbsp;store&nbsp;some<br>
+header-like&nbsp;information.</tt></dd></dl>
+
+<dl><dt><a name="MimeWriter-lastpart"><strong>lastpart</strong></a>(self)</dt><dd><tt>This&nbsp;is&nbsp;used&nbsp;to&nbsp;designate&nbsp;the&nbsp;last&nbsp;part&nbsp;of&nbsp;a&nbsp;multipart&nbsp;message.<br>
+&nbsp;<br>
+It&nbsp;should&nbsp;always&nbsp;be&nbsp;used&nbsp;when&nbsp;writing&nbsp;multipart&nbsp;messages.</tt></dd></dl>
+
+<dl><dt><a name="MimeWriter-nextpart"><strong>nextpart</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;<a href="#MimeWriter">MimeWriter</a>&nbsp;which&nbsp;represents&nbsp;an<br>
+individual&nbsp;part&nbsp;in&nbsp;a&nbsp;multipart&nbsp;message.<br>
+&nbsp;<br>
+This&nbsp;may&nbsp;be&nbsp;used&nbsp;to&nbsp;write&nbsp;the&nbsp;part&nbsp;as&nbsp;well&nbsp;as&nbsp;used&nbsp;for&nbsp;creating<br>
+recursively&nbsp;complex&nbsp;multipart&nbsp;messages.&nbsp;The&nbsp;message&nbsp;must&nbsp;first&nbsp;be<br>
+initialized&nbsp;with&nbsp;the&nbsp;<a href="#MimeWriter-startmultipartbody">startmultipartbody</a>()&nbsp;method&nbsp;before&nbsp;using&nbsp;the<br>
+<a href="#MimeWriter-nextpart">nextpart</a>()&nbsp;method.</tt></dd></dl>
+
+<dl><dt><a name="MimeWriter-startbody"><strong>startbody</strong></a>(self, ctype, plist<font color="#909090">=[]</font>, prefix<font color="#909090">=1</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;file-like&nbsp;object&nbsp;for&nbsp;writing&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;message.<br>
+&nbsp;<br>
+The&nbsp;content-type&nbsp;is&nbsp;set&nbsp;to&nbsp;the&nbsp;provided&nbsp;ctype,&nbsp;and&nbsp;the&nbsp;optional<br>
+parameter,&nbsp;plist,&nbsp;provides&nbsp;additional&nbsp;parameters&nbsp;for&nbsp;the<br>
+content-type&nbsp;declaration.&nbsp;&nbsp;The&nbsp;optional&nbsp;argument&nbsp;prefix&nbsp;determines<br>
+where&nbsp;the&nbsp;header&nbsp;is&nbsp;inserted;&nbsp;0&nbsp;means&nbsp;append&nbsp;at&nbsp;the&nbsp;end,&nbsp;1&nbsp;means<br>
+insert&nbsp;at&nbsp;the&nbsp;start.&nbsp;The&nbsp;default&nbsp;is&nbsp;to&nbsp;insert&nbsp;at&nbsp;the&nbsp;start.</tt></dd></dl>
+
+<dl><dt><a name="MimeWriter-startmultipartbody"><strong>startmultipartbody</strong></a>(self, subtype, boundary<font color="#909090">=None</font>, plist<font color="#909090">=[]</font>, prefix<font color="#909090">=1</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;file-like&nbsp;object&nbsp;for&nbsp;writing&nbsp;the&nbsp;body&nbsp;of&nbsp;the&nbsp;message.<br>
+&nbsp;<br>
+Additionally,&nbsp;this&nbsp;method&nbsp;initializes&nbsp;the&nbsp;multi-part&nbsp;code,&nbsp;where&nbsp;the<br>
+subtype&nbsp;parameter&nbsp;provides&nbsp;the&nbsp;multipart&nbsp;subtype,&nbsp;the&nbsp;boundary<br>
+parameter&nbsp;may&nbsp;provide&nbsp;a&nbsp;user-defined&nbsp;boundary&nbsp;specification,&nbsp;and&nbsp;the<br>
+plist&nbsp;parameter&nbsp;provides&nbsp;optional&nbsp;parameters&nbsp;for&nbsp;the&nbsp;subtype.&nbsp;&nbsp;The<br>
+optional&nbsp;argument,&nbsp;prefix,&nbsp;determines&nbsp;where&nbsp;the&nbsp;header&nbsp;is&nbsp;inserted;<br>
+0&nbsp;means&nbsp;append&nbsp;at&nbsp;the&nbsp;end,&nbsp;1&nbsp;means&nbsp;insert&nbsp;at&nbsp;the&nbsp;start.&nbsp;The&nbsp;default<br>
+is&nbsp;to&nbsp;insert&nbsp;at&nbsp;the&nbsp;start.&nbsp;&nbsp;Subparts&nbsp;should&nbsp;be&nbsp;created&nbsp;using&nbsp;the<br>
+<a href="#MimeWriter-nextpart">nextpart</a>()&nbsp;method.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['MimeWriter']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

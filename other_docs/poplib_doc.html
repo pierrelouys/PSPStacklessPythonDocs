@@ -1,0 +1,316 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>poplib</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/poplib.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/poplib.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;<a href="#POP3">POP3</a>&nbsp;client&nbsp;class.<br>
+&nbsp;<br>
+Based&nbsp;on&nbsp;the&nbsp;J.&nbsp;Myers&nbsp;<a href="#POP3">POP3</a>&nbsp;draft,&nbsp;Jan.&nbsp;96</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="poplib.html#error_proto">error_proto</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="poplib.html#POP3">POP3</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="poplib.html#POP3_SSL">POP3_SSL</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="POP3">class <strong>POP3</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;supports&nbsp;both&nbsp;the&nbsp;minimal&nbsp;and&nbsp;optional&nbsp;command&nbsp;sets.<br>
+Arguments&nbsp;can&nbsp;be&nbsp;strings&nbsp;or&nbsp;integers&nbsp;(where&nbsp;appropriate)<br>
+(e.g.:&nbsp;<a href="#POP3-retr">retr</a>(1)&nbsp;and&nbsp;<a href="#POP3-retr">retr</a>('1')&nbsp;both&nbsp;work&nbsp;equally&nbsp;well.<br>
+&nbsp;<br>
+Minimal&nbsp;Command&nbsp;Set:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USER&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-user">user</a>(name)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PASS&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-pass_">pass_</a>(string)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-stat">stat</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIST&nbsp;[msg]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-list">list</a>(msg&nbsp;=&nbsp;None)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RETR&nbsp;msg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-retr">retr</a>(msg)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DELE&nbsp;msg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-dele">dele</a>(msg)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOOP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-noop">noop</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RSET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-rset">rset</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QUIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-quit">quit</a>()<br>
+&nbsp;<br>
+Optional&nbsp;Commands&nbsp;(some&nbsp;servers&nbsp;support&nbsp;these):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPOP&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-rpop">rpop</a>(name)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APOP&nbsp;name&nbsp;digest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-apop">apop</a>(name,&nbsp;digest)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP&nbsp;msg&nbsp;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-top">top</a>(msg,&nbsp;n)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UIDL&nbsp;[msg]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3-uidl">uidl</a>(msg&nbsp;=&nbsp;None)<br>
+&nbsp;<br>
+Raises&nbsp;one&nbsp;exception:&nbsp;'<a href="#error_proto">error_proto</a>'.<br>
+&nbsp;<br>
+Instantiate&nbsp;with:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#POP3">POP3</a>(hostname,&nbsp;port=110)<br>
+&nbsp;<br>
+NB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;POP&nbsp;protocol&nbsp;locks&nbsp;the&nbsp;mailbox&nbsp;from&nbsp;user<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;authorization&nbsp;until&nbsp;QUIT,&nbsp;so&nbsp;be&nbsp;sure&nbsp;to&nbsp;get&nbsp;in,&nbsp;suck<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;messages,&nbsp;and&nbsp;quit,&nbsp;each&nbsp;time&nbsp;you&nbsp;access&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mailbox.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POP&nbsp;is&nbsp;a&nbsp;line-based&nbsp;protocol,&nbsp;which&nbsp;means&nbsp;large&nbsp;mail<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages&nbsp;consume&nbsp;lots&nbsp;of&nbsp;python&nbsp;cycles&nbsp;reading&nbsp;them<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-by-line.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;it's&nbsp;available&nbsp;on&nbsp;your&nbsp;mail&nbsp;server,&nbsp;use&nbsp;IMAP4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;instead,&nbsp;it&nbsp;doesn't&nbsp;suffer&nbsp;from&nbsp;the&nbsp;two&nbsp;problems<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;above.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="POP3-__init__"><strong>__init__</strong></a>(self, host, port<font color="#909090">=110</font>)</dt></dl>
+
+<dl><dt><a name="POP3-apop"><strong>apop</strong></a>(self, user, secret)</dt><dd><tt>Authorisation<br>
+&nbsp;<br>
+-&nbsp;only&nbsp;possible&nbsp;if&nbsp;server&nbsp;has&nbsp;supplied&nbsp;a&nbsp;timestamp&nbsp;in&nbsp;initial&nbsp;greeting.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;mailbox&nbsp;user;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secret&nbsp;&nbsp;-&nbsp;secret&nbsp;shared&nbsp;between&nbsp;client&nbsp;and&nbsp;server.<br>
+&nbsp;<br>
+NB:&nbsp;mailbox&nbsp;is&nbsp;locked&nbsp;by&nbsp;server&nbsp;from&nbsp;here&nbsp;to&nbsp;'<a href="#POP3-quit">quit</a>()'</tt></dd></dl>
+
+<dl><dt><a name="POP3-dele"><strong>dele</strong></a>(self, which)</dt><dd><tt>Delete&nbsp;message&nbsp;number&nbsp;'which'.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;'response'.</tt></dd></dl>
+
+<dl><dt><a name="POP3-getwelcome"><strong>getwelcome</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="POP3-list"><strong>list</strong></a>(self, which<font color="#909090">=None</font>)</dt><dd><tt>Request&nbsp;listing,&nbsp;return&nbsp;result.<br>
+&nbsp;<br>
+Result&nbsp;without&nbsp;a&nbsp;message&nbsp;number&nbsp;argument&nbsp;is&nbsp;in&nbsp;form<br>
+['response',&nbsp;['mesg_num&nbsp;octets',&nbsp;...],&nbsp;octets].<br>
+&nbsp;<br>
+Result&nbsp;when&nbsp;a&nbsp;message&nbsp;number&nbsp;argument&nbsp;is&nbsp;given&nbsp;is&nbsp;a<br>
+single&nbsp;response:&nbsp;the&nbsp;"scan&nbsp;listing"&nbsp;for&nbsp;that&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="POP3-noop"><strong>noop</strong></a>(self)</dt><dd><tt>Does&nbsp;nothing.<br>
+&nbsp;<br>
+One&nbsp;supposes&nbsp;the&nbsp;response&nbsp;indicates&nbsp;the&nbsp;server&nbsp;is&nbsp;alive.</tt></dd></dl>
+
+<dl><dt><a name="POP3-pass_"><strong>pass_</strong></a>(self, pswd)</dt><dd><tt>Send&nbsp;password,&nbsp;return&nbsp;response<br>
+&nbsp;<br>
+(response&nbsp;includes&nbsp;message&nbsp;count,&nbsp;mailbox&nbsp;size).<br>
+&nbsp;<br>
+NB:&nbsp;mailbox&nbsp;is&nbsp;locked&nbsp;by&nbsp;server&nbsp;from&nbsp;here&nbsp;to&nbsp;'<a href="#POP3-quit">quit</a>()'</tt></dd></dl>
+
+<dl><dt><a name="POP3-quit"><strong>quit</strong></a>(self)</dt><dd><tt>Signoff:&nbsp;commit&nbsp;changes&nbsp;on&nbsp;server,&nbsp;unlock&nbsp;mailbox,&nbsp;close&nbsp;connection.</tt></dd></dl>
+
+<dl><dt><a name="POP3-retr"><strong>retr</strong></a>(self, which)</dt><dd><tt>Retrieve&nbsp;whole&nbsp;message&nbsp;number&nbsp;'which'.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;in&nbsp;form&nbsp;['response',&nbsp;['line',&nbsp;...],&nbsp;octets].</tt></dd></dl>
+
+<dl><dt><a name="POP3-rpop"><strong>rpop</strong></a>(self, user)</dt><dd><tt>Not&nbsp;sure&nbsp;what&nbsp;this&nbsp;does.</tt></dd></dl>
+
+<dl><dt><a name="POP3-rset"><strong>rset</strong></a>(self)</dt><dd><tt>Not&nbsp;sure&nbsp;what&nbsp;this&nbsp;does.</tt></dd></dl>
+
+<dl><dt><a name="POP3-set_debuglevel"><strong>set_debuglevel</strong></a>(self, level)</dt></dl>
+
+<dl><dt><a name="POP3-stat"><strong>stat</strong></a>(self)</dt><dd><tt>Get&nbsp;mailbox&nbsp;status.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;tuple&nbsp;of&nbsp;2&nbsp;ints&nbsp;(message&nbsp;count,&nbsp;mailbox&nbsp;size)</tt></dd></dl>
+
+<dl><dt><a name="POP3-top"><strong>top</strong></a>(self, which, howmuch)</dt><dd><tt>Retrieve&nbsp;message&nbsp;header&nbsp;of&nbsp;message&nbsp;number&nbsp;'which'<br>
+and&nbsp;first&nbsp;'howmuch'&nbsp;lines&nbsp;of&nbsp;message&nbsp;body.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;in&nbsp;form&nbsp;['response',&nbsp;['line',&nbsp;...],&nbsp;octets].</tt></dd></dl>
+
+<dl><dt><a name="POP3-uidl"><strong>uidl</strong></a>(self, which<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;message&nbsp;digest&nbsp;(unique&nbsp;id)&nbsp;list.<br>
+&nbsp;<br>
+If&nbsp;'which',&nbsp;result&nbsp;contains&nbsp;unique&nbsp;id&nbsp;for&nbsp;that&nbsp;message<br>
+in&nbsp;the&nbsp;form&nbsp;'response&nbsp;mesgnum&nbsp;uid',&nbsp;otherwise&nbsp;result&nbsp;is<br>
+the&nbsp;list&nbsp;['response',&nbsp;['mesgnum&nbsp;uid',&nbsp;...],&nbsp;octets]</tt></dd></dl>
+
+<dl><dt><a name="POP3-user"><strong>user</strong></a>(self, user)</dt><dd><tt>Send&nbsp;user&nbsp;name,&nbsp;return&nbsp;response<br>
+&nbsp;<br>
+(should&nbsp;indicate&nbsp;password&nbsp;required).</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>timestamp</strong> = &lt;_sre.SRE_Pattern object at 0x9f48ba0&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="POP3_SSL">class <strong>POP3_SSL</strong></a>(<a href="poplib.html#POP3">POP3</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#POP3">POP3</a>&nbsp;client&nbsp;class&nbsp;over&nbsp;SSL&nbsp;connection<br>
+&nbsp;<br>
+Instantiate&nbsp;with:&nbsp;<a href="#POP3_SSL">POP3_SSL</a>(hostname,&nbsp;port=995,&nbsp;keyfile=None,&nbsp;certfile=None)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hostname&nbsp;-&nbsp;the&nbsp;hostname&nbsp;of&nbsp;the&nbsp;pop3&nbsp;over&nbsp;ssl&nbsp;server<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port&nbsp;-&nbsp;port&nbsp;number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keyfile&nbsp;-&nbsp;PEM&nbsp;formatted&nbsp;file&nbsp;that&nbsp;countains&nbsp;your&nbsp;private&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;certfile&nbsp;-&nbsp;PEM&nbsp;formatted&nbsp;certificate&nbsp;chain&nbsp;file<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;the&nbsp;methods&nbsp;of&nbsp;the&nbsp;parent&nbsp;class&nbsp;<a href="#POP3">POP3</a>&nbsp;for&nbsp;more&nbsp;documentation.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="POP3_SSL-__init__"><strong>__init__</strong></a>(self, host, port<font color="#909090">=995</font>, keyfile<font color="#909090">=None</font>, certfile<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="POP3_SSL-quit"><strong>quit</strong></a>(self)</dt><dd><tt>Signoff:&nbsp;commit&nbsp;changes&nbsp;on&nbsp;server,&nbsp;unlock&nbsp;mailbox,&nbsp;close&nbsp;connection.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="poplib.html#POP3">POP3</a>:<br>
+<dl><dt><a name="POP3_SSL-apop"><strong>apop</strong></a>(self, user, secret)</dt><dd><tt>Authorisation<br>
+&nbsp;<br>
+-&nbsp;only&nbsp;possible&nbsp;if&nbsp;server&nbsp;has&nbsp;supplied&nbsp;a&nbsp;timestamp&nbsp;in&nbsp;initial&nbsp;greeting.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;mailbox&nbsp;user;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secret&nbsp;&nbsp;-&nbsp;secret&nbsp;shared&nbsp;between&nbsp;client&nbsp;and&nbsp;server.<br>
+&nbsp;<br>
+NB:&nbsp;mailbox&nbsp;is&nbsp;locked&nbsp;by&nbsp;server&nbsp;from&nbsp;here&nbsp;to&nbsp;'<a href="#POP3_SSL-quit">quit</a>()'</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-dele"><strong>dele</strong></a>(self, which)</dt><dd><tt>Delete&nbsp;message&nbsp;number&nbsp;'which'.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;'response'.</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-getwelcome"><strong>getwelcome</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="POP3_SSL-list"><strong>list</strong></a>(self, which<font color="#909090">=None</font>)</dt><dd><tt>Request&nbsp;listing,&nbsp;return&nbsp;result.<br>
+&nbsp;<br>
+Result&nbsp;without&nbsp;a&nbsp;message&nbsp;number&nbsp;argument&nbsp;is&nbsp;in&nbsp;form<br>
+['response',&nbsp;['mesg_num&nbsp;octets',&nbsp;...],&nbsp;octets].<br>
+&nbsp;<br>
+Result&nbsp;when&nbsp;a&nbsp;message&nbsp;number&nbsp;argument&nbsp;is&nbsp;given&nbsp;is&nbsp;a<br>
+single&nbsp;response:&nbsp;the&nbsp;"scan&nbsp;listing"&nbsp;for&nbsp;that&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-noop"><strong>noop</strong></a>(self)</dt><dd><tt>Does&nbsp;nothing.<br>
+&nbsp;<br>
+One&nbsp;supposes&nbsp;the&nbsp;response&nbsp;indicates&nbsp;the&nbsp;server&nbsp;is&nbsp;alive.</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-pass_"><strong>pass_</strong></a>(self, pswd)</dt><dd><tt>Send&nbsp;password,&nbsp;return&nbsp;response<br>
+&nbsp;<br>
+(response&nbsp;includes&nbsp;message&nbsp;count,&nbsp;mailbox&nbsp;size).<br>
+&nbsp;<br>
+NB:&nbsp;mailbox&nbsp;is&nbsp;locked&nbsp;by&nbsp;server&nbsp;from&nbsp;here&nbsp;to&nbsp;'<a href="#POP3_SSL-quit">quit</a>()'</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-retr"><strong>retr</strong></a>(self, which)</dt><dd><tt>Retrieve&nbsp;whole&nbsp;message&nbsp;number&nbsp;'which'.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;in&nbsp;form&nbsp;['response',&nbsp;['line',&nbsp;...],&nbsp;octets].</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-rpop"><strong>rpop</strong></a>(self, user)</dt><dd><tt>Not&nbsp;sure&nbsp;what&nbsp;this&nbsp;does.</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-rset"><strong>rset</strong></a>(self)</dt><dd><tt>Not&nbsp;sure&nbsp;what&nbsp;this&nbsp;does.</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-set_debuglevel"><strong>set_debuglevel</strong></a>(self, level)</dt></dl>
+
+<dl><dt><a name="POP3_SSL-stat"><strong>stat</strong></a>(self)</dt><dd><tt>Get&nbsp;mailbox&nbsp;status.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;tuple&nbsp;of&nbsp;2&nbsp;ints&nbsp;(message&nbsp;count,&nbsp;mailbox&nbsp;size)</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-top"><strong>top</strong></a>(self, which, howmuch)</dt><dd><tt>Retrieve&nbsp;message&nbsp;header&nbsp;of&nbsp;message&nbsp;number&nbsp;'which'<br>
+and&nbsp;first&nbsp;'howmuch'&nbsp;lines&nbsp;of&nbsp;message&nbsp;body.<br>
+&nbsp;<br>
+Result&nbsp;is&nbsp;in&nbsp;form&nbsp;['response',&nbsp;['line',&nbsp;...],&nbsp;octets].</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-uidl"><strong>uidl</strong></a>(self, which<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;message&nbsp;digest&nbsp;(unique&nbsp;id)&nbsp;list.<br>
+&nbsp;<br>
+If&nbsp;'which',&nbsp;result&nbsp;contains&nbsp;unique&nbsp;id&nbsp;for&nbsp;that&nbsp;message<br>
+in&nbsp;the&nbsp;form&nbsp;'response&nbsp;mesgnum&nbsp;uid',&nbsp;otherwise&nbsp;result&nbsp;is<br>
+the&nbsp;list&nbsp;['response',&nbsp;['mesgnum&nbsp;uid',&nbsp;...],&nbsp;octets]</tt></dd></dl>
+
+<dl><dt><a name="POP3_SSL-user"><strong>user</strong></a>(self, user)</dt><dd><tt>Send&nbsp;user&nbsp;name,&nbsp;return&nbsp;response<br>
+&nbsp;<br>
+(should&nbsp;indicate&nbsp;password&nbsp;required).</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="poplib.html#POP3">POP3</a>:<br>
+<dl><dt><strong>timestamp</strong> = &lt;_sre.SRE_Pattern object at 0x9f48ba0&gt;</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="error_proto">class <strong>error_proto</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="poplib.html#error_proto">error_proto</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="error_proto-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#error_proto-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="error_proto-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error_proto-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="error_proto-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error_proto-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error_proto-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['POP3', 'error_proto', 'POP3_SSL']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

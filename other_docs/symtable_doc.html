@@ -1,0 +1,230 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>symtable</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/symtable.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/symtable.py</a></font></td></tr></table>
+    <p><tt>Interface&nbsp;to&nbsp;the&nbsp;compiler's&nbsp;internal&nbsp;symbol&nbsp;tables</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="_symtable.html">_symtable</a><br>
+</td><td width="25%" valign=top><a href="weakref.html">weakref</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="symtable.html#Symbol">Symbol</a>
+</font></dt><dt><font face="helvetica, arial"><a href="symtable.html#SymbolTable">SymbolTable</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="symtable.html#Class">Class</a>
+</font></dt><dt><font face="helvetica, arial"><a href="symtable.html#Function">Function</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Class">class <strong>Class</strong></a>(<a href="symtable.html#SymbolTable">SymbolTable</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Class-get_methods"><strong>get_methods</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="symtable.html#SymbolTable">SymbolTable</a>:<br>
+<dl><dt><a name="Class-__init__"><strong>__init__</strong></a>(self, raw_table, filename)</dt></dl>
+
+<dl><dt><a name="Class-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_children"><strong>get_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_id"><strong>get_id</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_identifiers"><strong>get_identifiers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_lineno"><strong>get_lineno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_symbols"><strong>get_symbols</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-has_children"><strong>has_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-has_exec"><strong>has_exec</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;exec</tt></dd></dl>
+
+<dl><dt><a name="Class-has_import_star"><strong>has_import_star</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;import&nbsp;*</tt></dd></dl>
+
+<dl><dt><a name="Class-is_nested"><strong>is_nested</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-is_optimized"><strong>is_optimized</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Class-lookup"><strong>lookup</strong></a>(self, name)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Function">class <strong>Function</strong></a>(<a href="symtable.html#SymbolTable">SymbolTable</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Function-get_frees"><strong>get_frees</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_globals"><strong>get_globals</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_locals"><strong>get_locals</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_parameters"><strong>get_parameters</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="symtable.html#SymbolTable">SymbolTable</a>:<br>
+<dl><dt><a name="Function-__init__"><strong>__init__</strong></a>(self, raw_table, filename)</dt></dl>
+
+<dl><dt><a name="Function-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_children"><strong>get_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_id"><strong>get_id</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_identifiers"><strong>get_identifiers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_lineno"><strong>get_lineno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_symbols"><strong>get_symbols</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-has_children"><strong>has_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-has_exec"><strong>has_exec</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;exec</tt></dd></dl>
+
+<dl><dt><a name="Function-has_import_star"><strong>has_import_star</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;import&nbsp;*</tt></dd></dl>
+
+<dl><dt><a name="Function-is_nested"><strong>is_nested</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-is_optimized"><strong>is_optimized</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Function-lookup"><strong>lookup</strong></a>(self, name)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Symbol">class <strong>Symbol</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Symbol-__init__"><strong>__init__</strong></a>(self, name, flags, namespaces<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Symbol-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-get_namespace"><strong>get_namespace</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;single&nbsp;namespace&nbsp;bound&nbsp;to&nbsp;this&nbsp;name.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;if&nbsp;the&nbsp;name&nbsp;is&nbsp;bound&nbsp;to&nbsp;multiple&nbsp;namespaces.</tt></dd></dl>
+
+<dl><dt><a name="Symbol-get_namespaces"><strong>get_namespaces</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;namespaces&nbsp;bound&nbsp;to&nbsp;this&nbsp;name</tt></dd></dl>
+
+<dl><dt><a name="Symbol-is_assigned"><strong>is_assigned</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_free"><strong>is_free</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_global"><strong>is_global</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_imported"><strong>is_imported</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_in_tuple"><strong>is_in_tuple</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_keywordarg"><strong>is_keywordarg</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_local"><strong>is_local</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_namespace"><strong>is_namespace</strong></a>(self)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;name&nbsp;binding&nbsp;introduces&nbsp;new&nbsp;namespace.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;name&nbsp;is&nbsp;used&nbsp;as&nbsp;the&nbsp;target&nbsp;of&nbsp;a&nbsp;function&nbsp;or&nbsp;class<br>
+statement,&nbsp;this&nbsp;will&nbsp;be&nbsp;true.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;a&nbsp;single&nbsp;name&nbsp;can&nbsp;be&nbsp;bound&nbsp;to&nbsp;multiple&nbsp;objects.&nbsp;&nbsp;If<br>
+<a href="#Symbol-is_namespace">is_namespace</a>()&nbsp;is&nbsp;true,&nbsp;the&nbsp;name&nbsp;may&nbsp;also&nbsp;be&nbsp;bound&nbsp;to&nbsp;other<br>
+objects,&nbsp;like&nbsp;an&nbsp;int&nbsp;or&nbsp;list,&nbsp;that&nbsp;does&nbsp;not&nbsp;introduce&nbsp;a&nbsp;new<br>
+namespace.</tt></dd></dl>
+
+<dl><dt><a name="Symbol-is_parameter"><strong>is_parameter</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_referenced"><strong>is_referenced</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Symbol-is_vararg"><strong>is_vararg</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SymbolTable">class <strong>SymbolTable</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SymbolTable-__init__"><strong>__init__</strong></a>(self, raw_table, filename)</dt></dl>
+
+<dl><dt><a name="SymbolTable-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_children"><strong>get_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_id"><strong>get_id</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_identifiers"><strong>get_identifiers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_lineno"><strong>get_lineno</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_name"><strong>get_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_symbols"><strong>get_symbols</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-get_type"><strong>get_type</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-has_children"><strong>has_children</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-has_exec"><strong>has_exec</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;exec</tt></dd></dl>
+
+<dl><dt><a name="SymbolTable-has_import_star"><strong>has_import_star</strong></a>(self)</dt><dd><tt>Return&nbsp;true&nbsp;if&nbsp;the&nbsp;scope&nbsp;uses&nbsp;import&nbsp;*</tt></dd></dl>
+
+<dl><dt><a name="SymbolTable-is_nested"><strong>is_nested</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-is_optimized"><strong>is_optimized</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SymbolTable-lookup"><strong>lookup</strong></a>(self, name)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-symtable"><strong>symtable</strong></a>(code, filename, compile_type)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['symtable', 'SymbolTable', 'newSymbolTable', 'Class', 'Function', 'Symbol']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>newSymbolTable</strong> = &lt;symtable.SymbolTableFactory instance at 0x9f42260&gt;</td></tr></table>

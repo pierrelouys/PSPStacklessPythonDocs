@@ -1,0 +1,45 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>colorsys</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/colorsys.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/colorsys.py</a></font></td></tr></table>
+    <p><tt>Conversion&nbsp;functions&nbsp;between&nbsp;RGB&nbsp;and&nbsp;other&nbsp;color&nbsp;systems.<br>
+&nbsp;<br>
+This&nbsp;modules&nbsp;provides&nbsp;two&nbsp;functions&nbsp;for&nbsp;each&nbsp;color&nbsp;system&nbsp;ABC:<br>
+&nbsp;<br>
+&nbsp;&nbsp;rgb_to_abc(r,&nbsp;g,&nbsp;b)&nbsp;--&gt;&nbsp;a,&nbsp;b,&nbsp;c<br>
+&nbsp;&nbsp;abc_to_rgb(a,&nbsp;b,&nbsp;c)&nbsp;--&gt;&nbsp;r,&nbsp;g,&nbsp;b<br>
+&nbsp;<br>
+All&nbsp;inputs&nbsp;and&nbsp;outputs&nbsp;are&nbsp;triples&nbsp;of&nbsp;floats&nbsp;in&nbsp;the&nbsp;range&nbsp;[0.0...1.0]<br>
+(with&nbsp;the&nbsp;exception&nbsp;of&nbsp;I&nbsp;and&nbsp;Q,&nbsp;which&nbsp;covers&nbsp;a&nbsp;slightly&nbsp;larger&nbsp;range).<br>
+Inputs&nbsp;outside&nbsp;the&nbsp;valid&nbsp;range&nbsp;may&nbsp;cause&nbsp;exceptions&nbsp;or&nbsp;invalid&nbsp;outputs.<br>
+&nbsp;<br>
+Supported&nbsp;color&nbsp;systems:<br>
+RGB:&nbsp;Red,&nbsp;Green,&nbsp;Blue&nbsp;components<br>
+YIQ:&nbsp;Luminance,&nbsp;Chrominance&nbsp;(used&nbsp;by&nbsp;composite&nbsp;video&nbsp;signals)<br>
+HLS:&nbsp;Hue,&nbsp;Luminance,&nbsp;Saturation<br>
+HSV:&nbsp;Hue,&nbsp;Saturation,&nbsp;Value</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-hls_to_rgb"><strong>hls_to_rgb</strong></a>(h, l, s)</dt></dl>
+ <dl><dt><a name="-hsv_to_rgb"><strong>hsv_to_rgb</strong></a>(h, s, v)</dt></dl>
+ <dl><dt><a name="-rgb_to_hls"><strong>rgb_to_hls</strong></a>(r, g, b)</dt></dl>
+ <dl><dt><a name="-rgb_to_hsv"><strong>rgb_to_hsv</strong></a>(r, g, b)</dt></dl>
+ <dl><dt><a name="-rgb_to_yiq"><strong>rgb_to_yiq</strong></a>(r, g, b)</dt></dl>
+ <dl><dt><a name="-yiq_to_rgb"><strong>yiq_to_rgb</strong></a>(y, i, q)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['rgb_to_yiq', 'yiq_to_rgb', 'rgb_to_hls', 'hls_to_rgb', 'rgb_to_hsv', 'hsv_to_rgb']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

@@ -1,0 +1,80 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>posixfile</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/posixfile.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/posixfile.py</a></font></td></tr></table>
+    <p><tt>Extended&nbsp;file&nbsp;operations&nbsp;available&nbsp;in&nbsp;POSIX.<br>
+&nbsp;<br>
+f&nbsp;=&nbsp;posixfile.<a href="#-open">open</a>(filename,&nbsp;[mode,&nbsp;[bufsize]])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;posixfile&nbsp;object<br>
+&nbsp;<br>
+f&nbsp;=&nbsp;posixfile.<a href="#-fileopen">fileopen</a>(fileobject)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;create&nbsp;a&nbsp;posixfile&nbsp;object&nbsp;from&nbsp;a&nbsp;builtin&nbsp;file&nbsp;object<br>
+&nbsp;<br>
+f.file()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;return&nbsp;the&nbsp;original&nbsp;builtin&nbsp;file&nbsp;object<br>
+&nbsp;<br>
+f.dup()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;return&nbsp;a&nbsp;new&nbsp;file&nbsp;object&nbsp;based&nbsp;on&nbsp;a&nbsp;new&nbsp;filedescriptor<br>
+&nbsp;<br>
+f.dup2(fd)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;return&nbsp;a&nbsp;new&nbsp;file&nbsp;object&nbsp;based&nbsp;on&nbsp;the&nbsp;given&nbsp;filedescriptor<br>
+&nbsp;<br>
+f.flags(mode)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;turn&nbsp;on&nbsp;the&nbsp;associated&nbsp;flag&nbsp;(merge)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;can&nbsp;contain&nbsp;the&nbsp;following&nbsp;characters:<br>
+&nbsp;<br>
+&nbsp;&nbsp;(character&nbsp;representing&nbsp;a&nbsp;flag)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;append&nbsp;only&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;close&nbsp;on&nbsp;exec&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no&nbsp;delay&nbsp;flag<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;synchronization&nbsp;flag<br>
+&nbsp;&nbsp;(modifiers)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn&nbsp;flags&nbsp;'off'&nbsp;instead&nbsp;of&nbsp;default&nbsp;'on'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy&nbsp;flags&nbsp;'as&nbsp;is'&nbsp;instead&nbsp;of&nbsp;default&nbsp;'merge'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;a&nbsp;string&nbsp;in&nbsp;which&nbsp;the&nbsp;characters&nbsp;represent&nbsp;the&nbsp;flags<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;that&nbsp;are&nbsp;set<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note:&nbsp;-&nbsp;the&nbsp;'!'&nbsp;and&nbsp;'='&nbsp;modifiers&nbsp;are&nbsp;mutually&nbsp;exclusive.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;'?'&nbsp;modifier&nbsp;will&nbsp;return&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;flags&nbsp;after&nbsp;they<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;been&nbsp;changed&nbsp;by&nbsp;other&nbsp;characters&nbsp;in&nbsp;the&nbsp;mode&nbsp;string<br>
+&nbsp;<br>
+f.lock(mode&nbsp;[,&nbsp;len&nbsp;[,&nbsp;start&nbsp;[,&nbsp;whence]]])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;(un)lock&nbsp;a&nbsp;region<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;can&nbsp;contain&nbsp;the&nbsp;following&nbsp;characters:<br>
+&nbsp;<br>
+&nbsp;&nbsp;(character&nbsp;representing&nbsp;type&nbsp;of&nbsp;lock)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unlock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;read&nbsp;lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;lock<br>
+&nbsp;&nbsp;(modifiers)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wait&nbsp;until&nbsp;the&nbsp;lock&nbsp;can&nbsp;be&nbsp;granted<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;the&nbsp;first&nbsp;lock&nbsp;conflicting&nbsp;with&nbsp;the&nbsp;requested&nbsp;lock<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;'None'&nbsp;if&nbsp;there&nbsp;is&nbsp;no&nbsp;conflict.&nbsp;The&nbsp;lock&nbsp;returned&nbsp;is&nbsp;in&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;(mode,&nbsp;len,&nbsp;start,&nbsp;whence,&nbsp;pid)&nbsp;where&nbsp;mode&nbsp;is&nbsp;a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;representing&nbsp;the&nbsp;type&nbsp;of&nbsp;lock&nbsp;('r'&nbsp;or&nbsp;'w')<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note:&nbsp;-&nbsp;the&nbsp;'?'&nbsp;modifier&nbsp;prevents&nbsp;a&nbsp;region&nbsp;from&nbsp;being&nbsp;locked;&nbsp;it&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query&nbsp;only</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-fileopen"><strong>fileopen</strong></a>(file)</dt><dd><tt>Public&nbsp;routine&nbsp;to&nbsp;get&nbsp;a&nbsp;posixfile&nbsp;object&nbsp;from&nbsp;a&nbsp;Python&nbsp;file&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-open"><strong>open</strong></a>(name, mode<font color="#909090">='r'</font>, bufsize<font color="#909090">=-1</font>)</dt><dd><tt>Public&nbsp;routine&nbsp;to&nbsp;open&nbsp;a&nbsp;file&nbsp;as&nbsp;a&nbsp;posixfile&nbsp;object.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>SEEK_CUR</strong> = 1<br>
+<strong>SEEK_END</strong> = 2<br>
+<strong>SEEK_SET</strong> = 0<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

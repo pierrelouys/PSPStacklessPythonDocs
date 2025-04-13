@@ -1,0 +1,898 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Cookie</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/Cookie.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/Cookie.py</a></font></td></tr></table>
+    <p><tt>Here's&nbsp;a&nbsp;sample&nbsp;session&nbsp;to&nbsp;show&nbsp;how&nbsp;to&nbsp;use&nbsp;this&nbsp;module.<br>
+At&nbsp;the&nbsp;moment,&nbsp;this&nbsp;is&nbsp;the&nbsp;only&nbsp;documentation.<br>
+&nbsp;<br>
+The&nbsp;Basics<br>
+----------<br>
+&nbsp;<br>
+Importing&nbsp;is&nbsp;easy..<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;import&nbsp;<a href="#Cookie">Cookie</a><br>
+&nbsp;<br>
+Most&nbsp;of&nbsp;the&nbsp;time&nbsp;you&nbsp;start&nbsp;by&nbsp;creating&nbsp;a&nbsp;cookie.&nbsp;&nbsp;Cookies&nbsp;come&nbsp;in<br>
+three&nbsp;flavors,&nbsp;each&nbsp;with&nbsp;slightly&nbsp;different&nbsp;encoding&nbsp;semantics,&nbsp;but<br>
+more&nbsp;on&nbsp;that&nbsp;later.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SimpleCookie">SimpleCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SerialCookie">SerialCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;<br>
+[Note:&nbsp;Long-time&nbsp;users&nbsp;of&nbsp;<a href="#Cookie">Cookie</a>.py&nbsp;will&nbsp;remember&nbsp;using<br>
+<a href="#Cookie">Cookie</a>.<a href="#Cookie">Cookie</a>()&nbsp;to&nbsp;create&nbsp;an&nbsp;<a href="#Cookie">Cookie</a>&nbsp;object.&nbsp;&nbsp;Although&nbsp;deprecated,&nbsp;it<br>
+is&nbsp;still&nbsp;supported&nbsp;by&nbsp;the&nbsp;code.&nbsp;&nbsp;See&nbsp;the&nbsp;Backward&nbsp;Compatibility&nbsp;notes<br>
+for&nbsp;more&nbsp;information.]<br>
+&nbsp;<br>
+Once&nbsp;you've&nbsp;created&nbsp;your&nbsp;<a href="#Cookie">Cookie</a>,&nbsp;you&nbsp;can&nbsp;add&nbsp;values&nbsp;just&nbsp;as&nbsp;if&nbsp;it&nbsp;were<br>
+a&nbsp;dictionary.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["fig"]&nbsp;=&nbsp;"newton"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["sugar"]&nbsp;=&nbsp;"wafer"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.output()<br>
+&nbsp;&nbsp;&nbsp;'Set-<a href="#Cookie">Cookie</a>:&nbsp;fig=newton\r\nSet-<a href="#Cookie">Cookie</a>:&nbsp;sugar=wafer'<br>
+&nbsp;<br>
+Notice&nbsp;that&nbsp;the&nbsp;printable&nbsp;representation&nbsp;of&nbsp;a&nbsp;<a href="#Cookie">Cookie</a>&nbsp;is&nbsp;the<br>
+appropriate&nbsp;format&nbsp;for&nbsp;a&nbsp;Set-<a href="#Cookie">Cookie</a>:&nbsp;header.&nbsp;&nbsp;This&nbsp;is&nbsp;the<br>
+default&nbsp;behavior.&nbsp;&nbsp;You&nbsp;can&nbsp;change&nbsp;the&nbsp;header&nbsp;and&nbsp;printed<br>
+attributes&nbsp;by&nbsp;using&nbsp;the&nbsp;.output()&nbsp;function<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["rocky"]&nbsp;=&nbsp;"road"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["rocky"]["path"]&nbsp;=&nbsp;"/cookie"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;print&nbsp;C.output(header="<a href="#Cookie">Cookie</a>:")<br>
+&nbsp;&nbsp;&nbsp;<a href="#Cookie">Cookie</a>:&nbsp;rocky=road;&nbsp;Path=/cookie<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;print&nbsp;C.output(attrs=[],&nbsp;header="<a href="#Cookie">Cookie</a>:")<br>
+&nbsp;&nbsp;&nbsp;<a href="#Cookie">Cookie</a>:&nbsp;rocky=road<br>
+&nbsp;<br>
+The&nbsp;load()&nbsp;method&nbsp;of&nbsp;a&nbsp;<a href="#Cookie">Cookie</a>&nbsp;extracts&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string.&nbsp;&nbsp;In&nbsp;a<br>
+CGI&nbsp;script,&nbsp;you&nbsp;would&nbsp;use&nbsp;this&nbsp;method&nbsp;to&nbsp;extract&nbsp;the&nbsp;cookies&nbsp;from&nbsp;the<br>
+HTTP_COOKIE&nbsp;environment&nbsp;variable.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.load("chips=ahoy;&nbsp;vienna=finger")<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.output()<br>
+&nbsp;&nbsp;&nbsp;'Set-<a href="#Cookie">Cookie</a>:&nbsp;chips=ahoy\r\nSet-<a href="#Cookie">Cookie</a>:&nbsp;vienna=finger'<br>
+&nbsp;<br>
+The&nbsp;load()&nbsp;method&nbsp;is&nbsp;darn-tootin&nbsp;smart&nbsp;about&nbsp;identifying&nbsp;cookies<br>
+within&nbsp;a&nbsp;string.&nbsp;&nbsp;Escaped&nbsp;quotation&nbsp;marks,&nbsp;nested&nbsp;semicolons,&nbsp;and&nbsp;other<br>
+such&nbsp;trickeries&nbsp;do&nbsp;not&nbsp;confuse&nbsp;it.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.load('keebler="E=everybody;&nbsp;L=\\"Loves\\";&nbsp;fudge=\\012;";')<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;print&nbsp;C<br>
+&nbsp;&nbsp;&nbsp;Set-<a href="#Cookie">Cookie</a>:&nbsp;keebler="E=everybody;&nbsp;L=\"Loves\";&nbsp;fudge=\012;"<br>
+&nbsp;<br>
+Each&nbsp;element&nbsp;of&nbsp;the&nbsp;<a href="#Cookie">Cookie</a>&nbsp;also&nbsp;supports&nbsp;all&nbsp;of&nbsp;the&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc2109.txt">RFC&nbsp;2109</a><br>
+<a href="#Cookie">Cookie</a>&nbsp;attributes.&nbsp;&nbsp;Here's&nbsp;an&nbsp;example&nbsp;which&nbsp;sets&nbsp;the&nbsp;Path<br>
+attribute.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["oreo"]&nbsp;=&nbsp;"doublestuff"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["oreo"]["path"]&nbsp;=&nbsp;"/"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;print&nbsp;C<br>
+&nbsp;&nbsp;&nbsp;Set-<a href="#Cookie">Cookie</a>:&nbsp;oreo=doublestuff;&nbsp;Path=/<br>
+&nbsp;<br>
+Each&nbsp;dictionary&nbsp;element&nbsp;has&nbsp;a&nbsp;'value'&nbsp;attribute,&nbsp;which&nbsp;gives&nbsp;you<br>
+back&nbsp;the&nbsp;value&nbsp;associated&nbsp;with&nbsp;the&nbsp;key.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["twix"]&nbsp;=&nbsp;"none&nbsp;for&nbsp;you"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["twix"].value<br>
+&nbsp;&nbsp;&nbsp;'none&nbsp;for&nbsp;you'<br>
+&nbsp;<br>
+&nbsp;<br>
+A&nbsp;Bit&nbsp;More&nbsp;Advanced<br>
+-------------------<br>
+&nbsp;<br>
+As&nbsp;mentioned&nbsp;before,&nbsp;there&nbsp;are&nbsp;three&nbsp;different&nbsp;flavors&nbsp;of&nbsp;<a href="#Cookie">Cookie</a><br>
+objects,&nbsp;each&nbsp;with&nbsp;different&nbsp;encoding/decoding&nbsp;semantics.&nbsp;&nbsp;This<br>
+section&nbsp;briefly&nbsp;discusses&nbsp;the&nbsp;differences.<br>
+&nbsp;<br>
+<a href="#SimpleCookie">SimpleCookie</a><br>
+&nbsp;<br>
+The&nbsp;<a href="#SimpleCookie">SimpleCookie</a>&nbsp;expects&nbsp;that&nbsp;all&nbsp;values&nbsp;should&nbsp;be&nbsp;standard&nbsp;strings.<br>
+Just&nbsp;to&nbsp;be&nbsp;sure,&nbsp;<a href="#SimpleCookie">SimpleCookie</a>&nbsp;invokes&nbsp;the&nbsp;str()&nbsp;builtin&nbsp;to&nbsp;convert<br>
+the&nbsp;value&nbsp;to&nbsp;a&nbsp;string,&nbsp;when&nbsp;the&nbsp;values&nbsp;are&nbsp;set&nbsp;dictionary-style.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SimpleCookie">SimpleCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"]&nbsp;=&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"]&nbsp;=&nbsp;"seven"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"].value<br>
+&nbsp;&nbsp;&nbsp;'7'<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"].value<br>
+&nbsp;&nbsp;&nbsp;'seven'<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.output()<br>
+&nbsp;&nbsp;&nbsp;'Set-<a href="#Cookie">Cookie</a>:&nbsp;number=7\r\nSet-<a href="#Cookie">Cookie</a>:&nbsp;string=seven'<br>
+&nbsp;<br>
+&nbsp;<br>
+<a href="#SerialCookie">SerialCookie</a><br>
+&nbsp;<br>
+The&nbsp;<a href="#SerialCookie">SerialCookie</a>&nbsp;expects&nbsp;that&nbsp;all&nbsp;values&nbsp;should&nbsp;be&nbsp;serialized&nbsp;using<br>
+cPickle&nbsp;(or&nbsp;pickle,&nbsp;if&nbsp;cPickle&nbsp;isn't&nbsp;available).&nbsp;&nbsp;As&nbsp;a&nbsp;result&nbsp;of<br>
+serializing,&nbsp;<a href="#SerialCookie">SerialCookie</a>&nbsp;can&nbsp;save&nbsp;almost&nbsp;any&nbsp;Python&nbsp;object&nbsp;to&nbsp;a<br>
+value,&nbsp;and&nbsp;recover&nbsp;the&nbsp;exact&nbsp;same&nbsp;object&nbsp;when&nbsp;the&nbsp;cookie&nbsp;has&nbsp;been<br>
+returned.&nbsp;&nbsp;(<a href="#SerialCookie">SerialCookie</a>&nbsp;can&nbsp;yield&nbsp;some&nbsp;strange-looking&nbsp;cookie<br>
+values,&nbsp;however.)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SerialCookie">SerialCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"]&nbsp;=&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"]&nbsp;=&nbsp;"seven"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"].value<br>
+&nbsp;&nbsp;&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"].value<br>
+&nbsp;&nbsp;&nbsp;'seven'<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.output()<br>
+&nbsp;&nbsp;&nbsp;'Set-<a href="#Cookie">Cookie</a>:&nbsp;number="I7\\012."\r\nSet-<a href="#Cookie">Cookie</a>:&nbsp;string="S\'seven\'\\012p1\\012."'<br>
+&nbsp;<br>
+Be&nbsp;warned,&nbsp;however,&nbsp;if&nbsp;<a href="#SerialCookie">SerialCookie</a>&nbsp;cannot&nbsp;de-serialize&nbsp;a&nbsp;value&nbsp;(because<br>
+it&nbsp;isn't&nbsp;a&nbsp;valid&nbsp;pickle'd&nbsp;object),&nbsp;IT&nbsp;WILL&nbsp;RAISE&nbsp;AN&nbsp;EXCEPTION.<br>
+&nbsp;<br>
+&nbsp;<br>
+<a href="#SmartCookie">SmartCookie</a><br>
+&nbsp;<br>
+The&nbsp;<a href="#SmartCookie">SmartCookie</a>&nbsp;combines&nbsp;aspects&nbsp;of&nbsp;each&nbsp;of&nbsp;the&nbsp;other&nbsp;two&nbsp;flavors.<br>
+When&nbsp;setting&nbsp;a&nbsp;value&nbsp;in&nbsp;a&nbsp;dictionary-fashion,&nbsp;the&nbsp;<a href="#SmartCookie">SmartCookie</a>&nbsp;will<br>
+serialize&nbsp;(ala&nbsp;cPickle)&nbsp;the&nbsp;value&nbsp;*if&nbsp;and&nbsp;only&nbsp;if*&nbsp;it&nbsp;isn't&nbsp;a<br>
+Python&nbsp;string.&nbsp;&nbsp;String&nbsp;objects&nbsp;are&nbsp;*not*&nbsp;serialized.&nbsp;&nbsp;Similarly,<br>
+when&nbsp;the&nbsp;load()&nbsp;method&nbsp;parses&nbsp;out&nbsp;values,&nbsp;it&nbsp;attempts&nbsp;to&nbsp;de-serialize<br>
+the&nbsp;value.&nbsp;&nbsp;If&nbsp;it&nbsp;fails,&nbsp;then&nbsp;it&nbsp;fallsback&nbsp;to&nbsp;treating&nbsp;the&nbsp;value<br>
+as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#SmartCookie">SmartCookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"]&nbsp;=&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"]&nbsp;=&nbsp;"seven"<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["number"].value<br>
+&nbsp;&nbsp;&nbsp;7<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C["string"].value<br>
+&nbsp;&nbsp;&nbsp;'seven'<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C.output()<br>
+&nbsp;&nbsp;&nbsp;'Set-<a href="#Cookie">Cookie</a>:&nbsp;number="I7\\012."\r\nSet-<a href="#Cookie">Cookie</a>:&nbsp;string=seven'<br>
+&nbsp;<br>
+&nbsp;<br>
+Backwards&nbsp;Compatibility<br>
+-----------------------<br>
+&nbsp;<br>
+In&nbsp;order&nbsp;to&nbsp;keep&nbsp;compatibilty&nbsp;with&nbsp;earlier&nbsp;versions&nbsp;of&nbsp;<a href="#Cookie">Cookie</a>.py,<br>
+it&nbsp;is&nbsp;still&nbsp;possible&nbsp;to&nbsp;use&nbsp;<a href="#Cookie">Cookie</a>.<a href="#Cookie">Cookie</a>()&nbsp;to&nbsp;create&nbsp;a&nbsp;<a href="#Cookie">Cookie</a>.&nbsp;&nbsp;In<br>
+fact,&nbsp;this&nbsp;simply&nbsp;returns&nbsp;a&nbsp;<a href="#SmartCookie">SmartCookie</a>.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;C&nbsp;=&nbsp;<a href="#Cookie">Cookie</a>.<a href="#Cookie">Cookie</a>()<br>
+&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;print&nbsp;C.__class__.__name__<br>
+&nbsp;&nbsp;&nbsp;<a href="#SmartCookie">SmartCookie</a><br>
+&nbsp;<br>
+&nbsp;<br>
+Finis.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="string.html">string</a><br>
+</td><td width="25%" valign=top><a href="warnings.html">warnings</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#dict">__builtin__.dict</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Cookie.html#BaseCookie">BaseCookie</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Cookie.html#SerialCookie">SerialCookie</a>
+</font></dt><dt><font face="helvetica, arial"><a href="Cookie.html#SimpleCookie">SimpleCookie</a>
+</font></dt><dt><font face="helvetica, arial"><a href="Cookie.html#SmartCookie">SmartCookie</a>
+</font></dt><dt><font face="helvetica, arial"><a href="Cookie.html#SmartCookie">SmartCookie</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="Cookie.html#CookieError">CookieError</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseCookie">class <strong>BaseCookie</strong></a>(<a href="__builtin__.html#dict">__builtin__.dict</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>#&nbsp;At&nbsp;long&nbsp;last,&nbsp;here&nbsp;is&nbsp;the&nbsp;cookie&nbsp;class.<br>
+#&nbsp;&nbsp;&nbsp;Using&nbsp;this&nbsp;class&nbsp;is&nbsp;almost&nbsp;just&nbsp;like&nbsp;using&nbsp;a&nbsp;dictionary.<br>
+#&nbsp;See&nbsp;this&nbsp;module's&nbsp;docstring&nbsp;for&nbsp;example&nbsp;usage.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#BaseCookie">BaseCookie</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BaseCookie-__init__"><strong>__init__</strong></a>(self, input<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="BaseCookie-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseCookie-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Dictionary&nbsp;style&nbsp;assignment.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__str__"><strong>__str__</strong></a> = <a href="#BaseCookie-output">output</a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt></dl>
+
+<dl><dt><a name="BaseCookie-js_output"><strong>js_output</strong></a>(self, attrs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;JavaScript.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-load"><strong>load</strong></a>(self, rawdata)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string&nbsp;(presumably&nbsp;HTTP_COOKIE)&nbsp;or<br>
+from&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;Loading&nbsp;cookies&nbsp;from&nbsp;a&nbsp;dictionary&nbsp;'d'<br>
+is&nbsp;equivalent&nbsp;to&nbsp;calling:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;map(<a href="#Cookie">Cookie</a>.__setitem__,&nbsp;d.<a href="#BaseCookie-keys">keys</a>(),&nbsp;d.<a href="#BaseCookie-values">values</a>())</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-output"><strong>output</strong></a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-value_decode"><strong>value_decode</strong></a>(self, val)</dt><dd><tt>real_value,&nbsp;coded_value&nbsp;=&nbsp;<a href="#BaseCookie-value_decode">value_decode</a>(STRING)<br>
+Called&nbsp;prior&nbsp;to&nbsp;setting&nbsp;a&nbsp;cookie's&nbsp;value&nbsp;from&nbsp;the&nbsp;network<br>
+representation.&nbsp;&nbsp;The&nbsp;VALUE&nbsp;is&nbsp;the&nbsp;value&nbsp;read&nbsp;from&nbsp;HTTP<br>
+header.<br>
+Override&nbsp;this&nbsp;function&nbsp;to&nbsp;modify&nbsp;the&nbsp;behavior&nbsp;of&nbsp;cookies.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-value_encode"><strong>value_encode</strong></a>(self, val)</dt><dd><tt>real_value,&nbsp;coded_value&nbsp;=&nbsp;<a href="#BaseCookie-value_encode">value_encode</a>(VALUE)<br>
+Called&nbsp;prior&nbsp;to&nbsp;setting&nbsp;a&nbsp;cookie's&nbsp;value&nbsp;from&nbsp;the&nbsp;dictionary<br>
+representation.&nbsp;&nbsp;The&nbsp;VALUE&nbsp;is&nbsp;the&nbsp;value&nbsp;being&nbsp;assigned.<br>
+Override&nbsp;this&nbsp;function&nbsp;to&nbsp;modify&nbsp;the&nbsp;behavior&nbsp;of&nbsp;cookies.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="BaseCookie-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#BaseCookie-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#BaseCookie-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-update">update</a>(E,&nbsp;**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;E&nbsp;and&nbsp;F:&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+(if&nbsp;E&nbsp;has&nbsp;keys&nbsp;else:&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v)&nbsp;then:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="BaseCookie-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#BaseCookie-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b83b98&gt;<dd><tt>T.<a href="#BaseCookie-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>fromkeys</strong> = &lt;built-in method fromkeys of type object at 0x98ec050&gt;<dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#BaseCookie-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>Cookie</strong> = <a name="Cookie">class SmartCookie</a>(<a href="Cookie.html#BaseCookie">BaseCookie</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SmartCookie">SmartCookie</a><br>
+<a href="#SmartCookie">SmartCookie</a>&nbsp;supports&nbsp;arbitrary&nbsp;objects&nbsp;as&nbsp;cookie&nbsp;values.&nbsp;&nbsp;If&nbsp;the<br>
+object&nbsp;is&nbsp;a&nbsp;string,&nbsp;then&nbsp;it&nbsp;is&nbsp;quoted.&nbsp;&nbsp;If&nbsp;the&nbsp;object&nbsp;is&nbsp;not&nbsp;a<br>
+string,&nbsp;however,&nbsp;then&nbsp;<a href="#SmartCookie">SmartCookie</a>&nbsp;will&nbsp;use&nbsp;cPickle&nbsp;to&nbsp;serialize<br>
+the&nbsp;object&nbsp;into&nbsp;a&nbsp;string&nbsp;representation.<br>
+&nbsp;<br>
+Note:&nbsp;Large&nbsp;cookie&nbsp;values&nbsp;add&nbsp;overhead&nbsp;because&nbsp;they&nbsp;must&nbsp;be<br>
+retransmitted&nbsp;on&nbsp;every&nbsp;HTTP&nbsp;transaction.<br>
+&nbsp;<br>
+Note:&nbsp;HTTP&nbsp;has&nbsp;a&nbsp;2k&nbsp;limit&nbsp;on&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;cookie.&nbsp;&nbsp;This&nbsp;class<br>
+does&nbsp;not&nbsp;check&nbsp;for&nbsp;this&nbsp;limit,&nbsp;so&nbsp;be&nbsp;careful!!!<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#SmartCookie">SmartCookie</a></dd>
+<dd><a href="Cookie.html#BaseCookie">BaseCookie</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SmartCookie-__init__"><strong>__init__</strong></a>(self, input<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SmartCookie-value_decode"><strong>value_decode</strong></a>(self, val)</dt><dd><tt>#&nbsp;end&nbsp;__init__</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-value_encode"><strong>value_encode</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><a name="SmartCookie-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SmartCookie-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Dictionary&nbsp;style&nbsp;assignment.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__str__"><strong>__str__</strong></a> = output(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-js_output"><strong>js_output</strong></a>(self, attrs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;JavaScript.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-load"><strong>load</strong></a>(self, rawdata)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string&nbsp;(presumably&nbsp;HTTP_COOKIE)&nbsp;or<br>
+from&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;Loading&nbsp;cookies&nbsp;from&nbsp;a&nbsp;dictionary&nbsp;'d'<br>
+is&nbsp;equivalent&nbsp;to&nbsp;calling:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;map(<a href="#Cookie">Cookie</a>.__setitem__,&nbsp;d.<a href="#Cookie-keys">keys</a>(),&nbsp;d.<a href="#Cookie-values">values</a>())</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-output"><strong>output</strong></a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="SmartCookie-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#Cookie-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#Cookie-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-update">update</a>(E,&nbsp;**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;E&nbsp;and&nbsp;F:&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+(if&nbsp;E&nbsp;has&nbsp;keys&nbsp;else:&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v)&nbsp;then:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#Cookie-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b83b98&gt;<dd><tt>T.<a href="#Cookie-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>fromkeys</strong> = &lt;built-in method fromkeys of type object at 0x98e41e0&gt;<dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#Cookie-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CookieError">class <strong>CookieError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>#&nbsp;Define&nbsp;an&nbsp;exception&nbsp;visible&nbsp;to&nbsp;External&nbsp;modules<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#CookieError">CookieError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="CookieError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#CookieError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="CookieError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CookieError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CookieError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CookieError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#CookieError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SerialCookie">class <strong>SerialCookie</strong></a>(<a href="Cookie.html#BaseCookie">BaseCookie</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SerialCookie">SerialCookie</a><br>
+<a href="#SerialCookie">SerialCookie</a>&nbsp;supports&nbsp;arbitrary&nbsp;objects&nbsp;as&nbsp;cookie&nbsp;values.&nbsp;All<br>
+values&nbsp;are&nbsp;serialized&nbsp;(using&nbsp;cPickle)&nbsp;before&nbsp;being&nbsp;sent&nbsp;to&nbsp;the<br>
+client.&nbsp;&nbsp;All&nbsp;incoming&nbsp;values&nbsp;are&nbsp;assumed&nbsp;to&nbsp;be&nbsp;valid&nbsp;Pickle<br>
+representations.&nbsp;&nbsp;IF&nbsp;AN&nbsp;INCOMING&nbsp;VALUE&nbsp;IS&nbsp;NOT&nbsp;IN&nbsp;A&nbsp;VALID&nbsp;PICKLE<br>
+FORMAT,&nbsp;THEN&nbsp;AN&nbsp;EXCEPTION&nbsp;WILL&nbsp;BE&nbsp;RAISED.<br>
+&nbsp;<br>
+Note:&nbsp;Large&nbsp;cookie&nbsp;values&nbsp;add&nbsp;overhead&nbsp;because&nbsp;they&nbsp;must&nbsp;be<br>
+retransmitted&nbsp;on&nbsp;every&nbsp;HTTP&nbsp;transaction.<br>
+&nbsp;<br>
+Note:&nbsp;HTTP&nbsp;has&nbsp;a&nbsp;2k&nbsp;limit&nbsp;on&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;cookie.&nbsp;&nbsp;This&nbsp;class<br>
+does&nbsp;not&nbsp;check&nbsp;for&nbsp;this&nbsp;limit,&nbsp;so&nbsp;be&nbsp;careful!!!<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#SerialCookie">SerialCookie</a></dd>
+<dd><a href="Cookie.html#BaseCookie">BaseCookie</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SerialCookie-__init__"><strong>__init__</strong></a>(self, input<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SerialCookie-value_decode"><strong>value_decode</strong></a>(self, val)</dt><dd><tt>#&nbsp;end&nbsp;__init__</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-value_encode"><strong>value_encode</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><a name="SerialCookie-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SerialCookie-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Dictionary&nbsp;style&nbsp;assignment.</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__str__"><strong>__str__</strong></a> = output(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-js_output"><strong>js_output</strong></a>(self, attrs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;JavaScript.</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-load"><strong>load</strong></a>(self, rawdata)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string&nbsp;(presumably&nbsp;HTTP_COOKIE)&nbsp;or<br>
+from&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;Loading&nbsp;cookies&nbsp;from&nbsp;a&nbsp;dictionary&nbsp;'d'<br>
+is&nbsp;equivalent&nbsp;to&nbsp;calling:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;map(<a href="#Cookie">Cookie</a>.__setitem__,&nbsp;d.<a href="#SerialCookie-keys">keys</a>(),&nbsp;d.<a href="#SerialCookie-values">values</a>())</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-output"><strong>output</strong></a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="SerialCookie-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#SerialCookie-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#SerialCookie-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-update">update</a>(E,&nbsp;**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;E&nbsp;and&nbsp;F:&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+(if&nbsp;E&nbsp;has&nbsp;keys&nbsp;else:&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v)&nbsp;then:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="SerialCookie-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#SerialCookie-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b83b98&gt;<dd><tt>T.<a href="#SerialCookie-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>fromkeys</strong> = &lt;built-in method fromkeys of type object at 0x98515b0&gt;<dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#SerialCookie-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SimpleCookie">class <strong>SimpleCookie</strong></a>(<a href="Cookie.html#BaseCookie">BaseCookie</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SimpleCookie">SimpleCookie</a><br>
+<a href="#SimpleCookie">SimpleCookie</a>&nbsp;supports&nbsp;strings&nbsp;as&nbsp;cookie&nbsp;values.&nbsp;&nbsp;When&nbsp;setting<br>
+the&nbsp;value&nbsp;using&nbsp;the&nbsp;dictionary&nbsp;assignment&nbsp;notation,&nbsp;<a href="#SimpleCookie">SimpleCookie</a><br>
+calls&nbsp;the&nbsp;builtin&nbsp;str()&nbsp;to&nbsp;convert&nbsp;the&nbsp;value&nbsp;to&nbsp;a&nbsp;string.&nbsp;&nbsp;Values<br>
+received&nbsp;from&nbsp;HTTP&nbsp;are&nbsp;kept&nbsp;as&nbsp;strings.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#SimpleCookie">SimpleCookie</a></dd>
+<dd><a href="Cookie.html#BaseCookie">BaseCookie</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SimpleCookie-value_decode"><strong>value_decode</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="SimpleCookie-value_encode"><strong>value_encode</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><a name="SimpleCookie-__init__"><strong>__init__</strong></a>(self, input<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SimpleCookie-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SimpleCookie-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Dictionary&nbsp;style&nbsp;assignment.</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__str__"><strong>__str__</strong></a> = output(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-js_output"><strong>js_output</strong></a>(self, attrs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;JavaScript.</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-load"><strong>load</strong></a>(self, rawdata)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string&nbsp;(presumably&nbsp;HTTP_COOKIE)&nbsp;or<br>
+from&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;Loading&nbsp;cookies&nbsp;from&nbsp;a&nbsp;dictionary&nbsp;'d'<br>
+is&nbsp;equivalent&nbsp;to&nbsp;calling:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;map(<a href="#Cookie">Cookie</a>.__setitem__,&nbsp;d.<a href="#SimpleCookie-keys">keys</a>(),&nbsp;d.<a href="#SimpleCookie-values">values</a>())</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-output"><strong>output</strong></a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="SimpleCookie-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#SimpleCookie-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#SimpleCookie-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-update">update</a>(E,&nbsp;**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;E&nbsp;and&nbsp;F:&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+(if&nbsp;E&nbsp;has&nbsp;keys&nbsp;else:&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v)&nbsp;then:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="SimpleCookie-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#SimpleCookie-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b83b98&gt;<dd><tt>T.<a href="#SimpleCookie-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>fromkeys</strong> = &lt;built-in method fromkeys of type object at 0x98521e0&gt;<dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#SimpleCookie-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SmartCookie">class <strong>SmartCookie</strong></a>(<a href="Cookie.html#BaseCookie">BaseCookie</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SmartCookie">SmartCookie</a><br>
+<a href="#SmartCookie">SmartCookie</a>&nbsp;supports&nbsp;arbitrary&nbsp;objects&nbsp;as&nbsp;cookie&nbsp;values.&nbsp;&nbsp;If&nbsp;the<br>
+object&nbsp;is&nbsp;a&nbsp;string,&nbsp;then&nbsp;it&nbsp;is&nbsp;quoted.&nbsp;&nbsp;If&nbsp;the&nbsp;object&nbsp;is&nbsp;not&nbsp;a<br>
+string,&nbsp;however,&nbsp;then&nbsp;<a href="#SmartCookie">SmartCookie</a>&nbsp;will&nbsp;use&nbsp;cPickle&nbsp;to&nbsp;serialize<br>
+the&nbsp;object&nbsp;into&nbsp;a&nbsp;string&nbsp;representation.<br>
+&nbsp;<br>
+Note:&nbsp;Large&nbsp;cookie&nbsp;values&nbsp;add&nbsp;overhead&nbsp;because&nbsp;they&nbsp;must&nbsp;be<br>
+retransmitted&nbsp;on&nbsp;every&nbsp;HTTP&nbsp;transaction.<br>
+&nbsp;<br>
+Note:&nbsp;HTTP&nbsp;has&nbsp;a&nbsp;2k&nbsp;limit&nbsp;on&nbsp;the&nbsp;size&nbsp;of&nbsp;a&nbsp;cookie.&nbsp;&nbsp;This&nbsp;class<br>
+does&nbsp;not&nbsp;check&nbsp;for&nbsp;this&nbsp;limit,&nbsp;so&nbsp;be&nbsp;careful!!!<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="Cookie.html#SmartCookie">SmartCookie</a></dd>
+<dd><a href="Cookie.html#BaseCookie">BaseCookie</a></dd>
+<dd><a href="__builtin__.html#dict">__builtin__.dict</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SmartCookie-__init__"><strong>__init__</strong></a>(self, input<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="SmartCookie-value_decode"><strong>value_decode</strong></a>(self, val)</dt><dd><tt>#&nbsp;end&nbsp;__init__</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-value_encode"><strong>value_encode</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><a name="SmartCookie-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SmartCookie-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Dictionary&nbsp;style&nbsp;assignment.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__str__"><strong>__str__</strong></a> = output(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-js_output"><strong>js_output</strong></a>(self, attrs<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;JavaScript.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-load"><strong>load</strong></a>(self, rawdata)</dt><dd><tt>Load&nbsp;cookies&nbsp;from&nbsp;a&nbsp;string&nbsp;(presumably&nbsp;HTTP_COOKIE)&nbsp;or<br>
+from&nbsp;a&nbsp;dictionary.&nbsp;&nbsp;Loading&nbsp;cookies&nbsp;from&nbsp;a&nbsp;dictionary&nbsp;'d'<br>
+is&nbsp;equivalent&nbsp;to&nbsp;calling:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;map(<a href="#Cookie">Cookie</a>.__setitem__,&nbsp;d.<a href="#SmartCookie-keys">keys</a>(),&nbsp;d.<a href="#SmartCookie-values">values</a>())</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-output"><strong>output</strong></a>(self, attrs<font color="#909090">=None</font>, header<font color="#909090">='Set-Cookie:'</font>, sep<font color="#909090">='<font color="#c040c0">\r\n</font>'</font>)</dt><dd><tt>Return&nbsp;a&nbsp;string&nbsp;suitable&nbsp;for&nbsp;HTTP.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="Cookie.html#BaseCookie">BaseCookie</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><a name="SmartCookie-__cmp__"><strong>__cmp__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__cmp__">__cmp__</a>(y)&nbsp;&lt;==&gt;&nbsp;cmp(x,y)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-__contains__">__contains__</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__delitem__"><strong>__delitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__delitem__">__delitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;del&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__iter__"><strong>__iter__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__iter__">__iter__</a>()&nbsp;&lt;==&gt;&nbsp;iter(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#SmartCookie-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-clear"><strong>clear</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-clear">clear</a>()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-copy"><strong>copy</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-copy">copy</a>()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-get"><strong>get</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-get">get</a>(k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;else&nbsp;d.&nbsp;&nbsp;d&nbsp;defaults&nbsp;to&nbsp;None.</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-has_key"><strong>has_key</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-has_key">has_key</a>(k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-items"><strong>items</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-items">items</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;as&nbsp;2-tuples</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-iteritems"><strong>iteritems</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-iteritems">iteritems</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;value)&nbsp;items&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-iterkeys"><strong>iterkeys</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-iterkeys">iterkeys</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-itervalues"><strong>itervalues</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-itervalues">itervalues</a>()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;values&nbsp;of&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-keys"><strong>keys</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-keys">keys</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;keys</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-pop"><strong>pop</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-pop">pop</a>(k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;remove&nbsp;specified&nbsp;key&nbsp;and&nbsp;return&nbsp;the&nbsp;corresponding&nbsp;value<br>
+If&nbsp;key&nbsp;is&nbsp;not&nbsp;found,&nbsp;d&nbsp;is&nbsp;returned&nbsp;if&nbsp;given,&nbsp;otherwise&nbsp;KeyError&nbsp;is&nbsp;raised</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-popitem"><strong>popitem</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-popitem">popitem</a>()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;remove&nbsp;and&nbsp;return&nbsp;some&nbsp;(key,&nbsp;value)&nbsp;pair&nbsp;as&nbsp;a<br>
+2-tuple;&nbsp;but&nbsp;raise&nbsp;KeyError&nbsp;if&nbsp;D&nbsp;is&nbsp;empty</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-setdefault"><strong>setdefault</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-setdefault">setdefault</a>(k[,d])&nbsp;-&gt;&nbsp;D.<a href="#SmartCookie-get">get</a>(k,d),&nbsp;also&nbsp;set&nbsp;D[k]=d&nbsp;if&nbsp;k&nbsp;not&nbsp;in&nbsp;D</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-update"><strong>update</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-update">update</a>(E,&nbsp;**F)&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Update&nbsp;D&nbsp;from&nbsp;E&nbsp;and&nbsp;F:&nbsp;for&nbsp;k&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;E[k]<br>
+(if&nbsp;E&nbsp;has&nbsp;keys&nbsp;else:&nbsp;for&nbsp;(k,&nbsp;v)&nbsp;in&nbsp;E:&nbsp;D[k]&nbsp;=&nbsp;v)&nbsp;then:&nbsp;for&nbsp;k&nbsp;in&nbsp;F:&nbsp;D[k]&nbsp;=&nbsp;F[k]</tt></dd></dl>
+
+<dl><dt><a name="SmartCookie-values"><strong>values</strong></a>(...)</dt><dd><tt>D.<a href="#SmartCookie-values">values</a>()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D's&nbsp;values</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="__builtin__.html#dict">__builtin__.dict</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b83b98&gt;<dd><tt>T.<a href="#SmartCookie-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>fromkeys</strong> = &lt;built-in method fromkeys of type object at 0x98e41e0&gt;<dd><tt><a href="__builtin__.html#dict">dict</a>.<a href="#SmartCookie-fromkeys">fromkeys</a>(S[,v])&nbsp;-&gt;&nbsp;New&nbsp;<a href="__builtin__.html#dict">dict</a>&nbsp;with&nbsp;keys&nbsp;from&nbsp;S&nbsp;and&nbsp;values&nbsp;equal&nbsp;to&nbsp;v.<br>
+v&nbsp;defaults&nbsp;to&nbsp;None.</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['CookieError', 'BaseCookie', 'SimpleCookie', 'SerialCookie', 'SmartCookie', 'Cookie']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

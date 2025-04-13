@@ -1,0 +1,2216 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>decimal</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/decimal.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/decimal.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;is&nbsp;a&nbsp;Py2.3&nbsp;implementation&nbsp;of&nbsp;decimal&nbsp;floating&nbsp;point&nbsp;arithmetic&nbsp;based&nbsp;on<br>
+the&nbsp;General&nbsp;<a href="#Decimal">Decimal</a>&nbsp;Arithmetic&nbsp;Specification:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;www2.hursley.ibm.com/decimal/decarith.html<br>
+&nbsp;<br>
+and&nbsp;IEEE&nbsp;standard&nbsp;854-1987:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;www.cs.berkeley.edu/~ejr/projects/754/private/drafts/854-1987/dir.html<br>
+&nbsp;<br>
+<a href="#Decimal">Decimal</a>&nbsp;floating&nbsp;point&nbsp;has&nbsp;finite&nbsp;precision&nbsp;with&nbsp;arbitrarily&nbsp;large&nbsp;bounds.<br>
+&nbsp;<br>
+The&nbsp;purpose&nbsp;of&nbsp;this&nbsp;module&nbsp;is&nbsp;to&nbsp;support&nbsp;arithmetic&nbsp;using&nbsp;familiar<br>
+"schoolhouse"&nbsp;rules&nbsp;and&nbsp;to&nbsp;avoid&nbsp;some&nbsp;of&nbsp;the&nbsp;tricky&nbsp;representation<br>
+issues&nbsp;associated&nbsp;with&nbsp;binary&nbsp;floating&nbsp;point.&nbsp;&nbsp;The&nbsp;package&nbsp;is&nbsp;especially<br>
+useful&nbsp;for&nbsp;financial&nbsp;applications&nbsp;or&nbsp;for&nbsp;contexts&nbsp;where&nbsp;users&nbsp;have<br>
+expectations&nbsp;that&nbsp;are&nbsp;at&nbsp;odds&nbsp;with&nbsp;binary&nbsp;floating&nbsp;point&nbsp;(for&nbsp;instance,<br>
+in&nbsp;binary&nbsp;floating&nbsp;point,&nbsp;1.00&nbsp;%&nbsp;0.1&nbsp;gives&nbsp;0.09999999999999995&nbsp;instead<br>
+of&nbsp;the&nbsp;expected&nbsp;<a href="#Decimal">Decimal</a>("0.00")&nbsp;returned&nbsp;by&nbsp;decimal&nbsp;floating&nbsp;point).<br>
+&nbsp;<br>
+Here&nbsp;are&nbsp;some&nbsp;examples&nbsp;of&nbsp;using&nbsp;the&nbsp;decimal&nbsp;module:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;from&nbsp;decimal&nbsp;import&nbsp;*<br>
+&gt;&gt;&gt;&nbsp;<a href="#-setcontext">setcontext</a>(ExtendedContext)<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>(0)<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>("1")<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>("-.0123")<br>
+<a href="#Decimal">Decimal</a>("-0.0123")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>(123456)<br>
+<a href="#Decimal">Decimal</a>("123456")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>("123.45e12345678901234567890")<br>
+<a href="#Decimal">Decimal</a>("1.2345E+12345678901234567892")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>("1.33")&nbsp;+&nbsp;<a href="#Decimal">Decimal</a>("1.27")<br>
+<a href="#Decimal">Decimal</a>("2.60")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>("12.34")&nbsp;+&nbsp;<a href="#Decimal">Decimal</a>("3.87")&nbsp;-&nbsp;<a href="#Decimal">Decimal</a>("18.41")<br>
+<a href="#Decimal">Decimal</a>("-2.20")<br>
+&gt;&gt;&gt;&nbsp;dig&nbsp;=&nbsp;<a href="#Decimal">Decimal</a>(1)<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;dig&nbsp;/&nbsp;<a href="#Decimal">Decimal</a>(3)<br>
+0.333333333<br>
+&gt;&gt;&gt;&nbsp;<a href="#-getcontext">getcontext</a>().prec&nbsp;=&nbsp;18<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;dig&nbsp;/&nbsp;<a href="#Decimal">Decimal</a>(3)<br>
+0.333333333333333333<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;dig.sqrt()<br>
+1<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;<a href="#Decimal">Decimal</a>(3).sqrt()<br>
+1.73205080756887729<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;<a href="#Decimal">Decimal</a>(3)&nbsp;**&nbsp;123<br>
+4.85192780976896427E+58<br>
+&gt;&gt;&gt;&nbsp;inf&nbsp;=&nbsp;<a href="#Decimal">Decimal</a>(1)&nbsp;/&nbsp;<a href="#Decimal">Decimal</a>(0)<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;inf<br>
+Infinity<br>
+&gt;&gt;&gt;&nbsp;neginf&nbsp;=&nbsp;<a href="#Decimal">Decimal</a>(-1)&nbsp;/&nbsp;<a href="#Decimal">Decimal</a>(0)<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;neginf<br>
+-Infinity<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;neginf&nbsp;+&nbsp;inf<br>
+NaN<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;neginf&nbsp;*&nbsp;inf<br>
+-Infinity<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;dig&nbsp;/&nbsp;0<br>
+Infinity<br>
+&gt;&gt;&gt;&nbsp;<a href="#-getcontext">getcontext</a>().traps[<a href="#DivisionByZero">DivisionByZero</a>]&nbsp;=&nbsp;1<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;dig&nbsp;/&nbsp;0<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;...<br>
+<a href="#DivisionByZero">DivisionByZero</a>:&nbsp;x&nbsp;/&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;<a href="#Context">Context</a>()<br>
+&gt;&gt;&gt;&nbsp;c.traps[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+0<br>
+&gt;&gt;&gt;&nbsp;c.divide(<a href="#Decimal">Decimal</a>(0),&nbsp;<a href="#Decimal">Decimal</a>(0))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;c.traps[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;1<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+1<br>
+&gt;&gt;&gt;&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.divide(<a href="#Decimal">Decimal</a>(0),&nbsp;<a href="#Decimal">Decimal</a>(0))<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;...<br>
+&nbsp;&nbsp;...<br>
+<a href="#InvalidOperation">InvalidOperation</a>:&nbsp;0&nbsp;/&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+1<br>
+&gt;&gt;&gt;&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;c.traps[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.divide(<a href="#Decimal">Decimal</a>(0),&nbsp;<a href="#Decimal">Decimal</a>(0))<br>
+NaN<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+1<br>
+&gt;&gt;&gt;</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="decimal.html#Context">Context</a>
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#Decimal">Decimal</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="decimal.html#DecimalException">DecimalException</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="decimal.html#Clamped">Clamped</a>
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#DivisionByZero">DivisionByZero</a>(<a href="decimal.html#DecimalException">DecimalException</a>, <a href="exceptions.html#ZeroDivisionError">exceptions.ZeroDivisionError</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#Inexact">Inexact</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="decimal.html#Overflow">Overflow</a>(<a href="decimal.html#Inexact">Inexact</a>, <a href="decimal.html#Rounded">Rounded</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#Underflow">Underflow</a>(<a href="decimal.html#Inexact">Inexact</a>, <a href="decimal.html#Rounded">Rounded</a>, <a href="decimal.html#Subnormal">Subnormal</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="decimal.html#InvalidOperation">InvalidOperation</a>
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#Rounded">Rounded</a>
+</font></dt><dt><font face="helvetica, arial"><a href="decimal.html#Subnormal">Subnormal</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Clamped">class <strong>Clamped</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exponent&nbsp;of&nbsp;a&nbsp;0&nbsp;changed&nbsp;to&nbsp;fit&nbsp;bounds.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;clamped&nbsp;if&nbsp;the&nbsp;exponent&nbsp;of&nbsp;a&nbsp;result&nbsp;has&nbsp;been<br>
+altered&nbsp;in&nbsp;order&nbsp;to&nbsp;fit&nbsp;the&nbsp;constraints&nbsp;of&nbsp;a&nbsp;specific&nbsp;concrete<br>
+representation.&nbsp;&nbsp;This&nbsp;may&nbsp;occur&nbsp;when&nbsp;the&nbsp;exponent&nbsp;of&nbsp;a&nbsp;zero&nbsp;result&nbsp;would<br>
+be&nbsp;outside&nbsp;the&nbsp;bounds&nbsp;of&nbsp;a&nbsp;representation,&nbsp;or&nbsp;when&nbsp;a&nbsp;large&nbsp;normal<br>
+number&nbsp;would&nbsp;have&nbsp;an&nbsp;encoded&nbsp;exponent&nbsp;that&nbsp;cannot&nbsp;be&nbsp;represented.&nbsp;&nbsp;In<br>
+this&nbsp;latter&nbsp;case,&nbsp;the&nbsp;exponent&nbsp;is&nbsp;reduced&nbsp;to&nbsp;fit&nbsp;and&nbsp;the&nbsp;corresponding<br>
+number&nbsp;of&nbsp;zero&nbsp;digits&nbsp;are&nbsp;appended&nbsp;to&nbsp;the&nbsp;coefficient&nbsp;("fold-down").<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Clamped">Clamped</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><a name="Clamped-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Clamped-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Clamped-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Clamped-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Clamped-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Clamped-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Clamped-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Clamped-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Context">class <strong>Context</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Contains&nbsp;the&nbsp;context&nbsp;for&nbsp;a&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance.<br>
+&nbsp;<br>
+Contains:<br>
+prec&nbsp;-&nbsp;precision&nbsp;(for&nbsp;use&nbsp;in&nbsp;rounding,&nbsp;division,&nbsp;square&nbsp;roots..)<br>
+rounding&nbsp;-&nbsp;rounding&nbsp;type&nbsp;(how&nbsp;you&nbsp;round)<br>
+traps&nbsp;-&nbsp;If&nbsp;traps[exception]&nbsp;=&nbsp;1,&nbsp;then&nbsp;the&nbsp;exception&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raised&nbsp;when&nbsp;it&nbsp;is&nbsp;caused.&nbsp;&nbsp;Otherwise,&nbsp;a&nbsp;value&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;substituted&nbsp;in.<br>
+flags&nbsp;&nbsp;-&nbsp;When&nbsp;an&nbsp;exception&nbsp;is&nbsp;caused,&nbsp;flags[exception]&nbsp;is&nbsp;incremented.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Whether&nbsp;or&nbsp;not&nbsp;the&nbsp;trap_enabler&nbsp;is&nbsp;set)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Should&nbsp;be&nbsp;reset&nbsp;by&nbsp;user&nbsp;of&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance.<br>
+Emin&nbsp;-&nbsp;&nbsp;&nbsp;Minimum&nbsp;exponent<br>
+Emax&nbsp;-&nbsp;&nbsp;&nbsp;Maximum&nbsp;exponent<br>
+capitals&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;1,&nbsp;1*10^1&nbsp;is&nbsp;printed&nbsp;as&nbsp;1E+1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;0,&nbsp;printed&nbsp;as&nbsp;1e1<br>
+_clamp&nbsp;-&nbsp;If&nbsp;1,&nbsp;change&nbsp;exponents&nbsp;if&nbsp;too&nbsp;high&nbsp;(Default&nbsp;0)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Context-Etiny"><strong>Etiny</strong></a>(self)</dt><dd><tt>Returns&nbsp;Etiny&nbsp;(=&nbsp;Emin&nbsp;-&nbsp;prec&nbsp;+&nbsp;1)</tt></dd></dl>
+
+<dl><dt><a name="Context-Etop"><strong>Etop</strong></a>(self)</dt><dd><tt>Returns&nbsp;maximum&nbsp;exponent&nbsp;(=&nbsp;Emax&nbsp;-&nbsp;prec&nbsp;+&nbsp;1)</tt></dd></dl>
+
+<dl><dt><a name="Context-__copy__"><strong>__copy__</strong></a> = <a href="#Context-copy">copy</a>(self)</dt></dl>
+
+<dl><dt><a name="Context-__hash__"><strong>__hash__</strong></a>(self)</dt><dd><tt>A&nbsp;<a href="#Context">Context</a>&nbsp;cannot&nbsp;be&nbsp;hashed.</tt></dd></dl>
+
+<dl><dt><a name="Context-__init__"><strong>__init__</strong></a>(self, prec<font color="#909090">=None</font>, rounding<font color="#909090">=None</font>, traps<font color="#909090">=None</font>, flags<font color="#909090">=None</font>, Emin<font color="#909090">=None</font>, Emax<font color="#909090">=None</font>, capitals<font color="#909090">=None</font>, _clamp<font color="#909090">=0</font>, _ignored_flags<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Context-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Show&nbsp;the&nbsp;current&nbsp;context.</tt></dd></dl>
+
+<dl><dt><a name="Context-abs"><strong>abs</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;operand&nbsp;is&nbsp;negative,&nbsp;the&nbsp;result&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;using&nbsp;the&nbsp;minus<br>
+operation&nbsp;on&nbsp;the&nbsp;operand.&nbsp;&nbsp;Otherwise,&nbsp;the&nbsp;result&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;using<br>
+the&nbsp;plus&nbsp;operation&nbsp;on&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-abs">abs</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-abs">abs</a>(<a href="#Decimal">Decimal</a>('-100'))<br>
+<a href="#Decimal">Decimal</a>("100")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-abs">abs</a>(<a href="#Decimal">Decimal</a>('101.5'))<br>
+<a href="#Decimal">Decimal</a>("101.5")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-abs">abs</a>(<a href="#Decimal">Decimal</a>('-101.5'))<br>
+<a href="#Decimal">Decimal</a>("101.5")</tt></dd></dl>
+
+<dl><dt><a name="Context-add"><strong>add</strong></a>(self, a, b)</dt><dd><tt>Return&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;two&nbsp;operands.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-add">add</a>(<a href="#Decimal">Decimal</a>('12'),&nbsp;<a href="#Decimal">Decimal</a>('7.00'))<br>
+<a href="#Decimal">Decimal</a>("19.00")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-add">add</a>(<a href="#Decimal">Decimal</a>('1E+2'),&nbsp;<a href="#Decimal">Decimal</a>('1.01E+4'))<br>
+<a href="#Decimal">Decimal</a>("1.02E+4")</tt></dd></dl>
+
+<dl><dt><a name="Context-canonical"><strong>canonical</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;same&nbsp;<a href="#Decimal">Decimal</a>&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+&nbsp;<br>
+As&nbsp;we&nbsp;do&nbsp;not&nbsp;have&nbsp;different&nbsp;encodings&nbsp;for&nbsp;the&nbsp;same&nbsp;number,&nbsp;the<br>
+received&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;already&nbsp;is&nbsp;in&nbsp;its&nbsp;canonical&nbsp;form.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-canonical">canonical</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+<a href="#Decimal">Decimal</a>("2.50")</tt></dd></dl>
+
+<dl><dt><a name="Context-clear_flags"><strong>clear_flags</strong></a>(self)</dt><dd><tt>Reset&nbsp;all&nbsp;flags&nbsp;to&nbsp;zero</tt></dd></dl>
+
+<dl><dt><a name="Context-compare"><strong>compare</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;values&nbsp;numerically.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;signs&nbsp;of&nbsp;the&nbsp;operands&nbsp;differ,&nbsp;a&nbsp;value&nbsp;representing&nbsp;each&nbsp;operand<br>
+('-1'&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;less&nbsp;than&nbsp;zero,&nbsp;'0'&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;zero&nbsp;or<br>
+negative&nbsp;zero,&nbsp;or&nbsp;'1'&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;greater&nbsp;than&nbsp;zero)&nbsp;is&nbsp;used&nbsp;in<br>
+place&nbsp;of&nbsp;that&nbsp;operand&nbsp;for&nbsp;the&nbsp;comparison&nbsp;instead&nbsp;of&nbsp;the&nbsp;actual<br>
+operand.<br>
+&nbsp;<br>
+The&nbsp;comparison&nbsp;is&nbsp;then&nbsp;effected&nbsp;by&nbsp;subtracting&nbsp;the&nbsp;second&nbsp;operand&nbsp;from<br>
+the&nbsp;first&nbsp;and&nbsp;then&nbsp;returning&nbsp;a&nbsp;value&nbsp;according&nbsp;to&nbsp;the&nbsp;result&nbsp;of&nbsp;the<br>
+subtraction:&nbsp;'-1'&nbsp;if&nbsp;the&nbsp;result&nbsp;is&nbsp;less&nbsp;than&nbsp;zero,&nbsp;'0'&nbsp;if&nbsp;the&nbsp;result&nbsp;is<br>
+zero&nbsp;or&nbsp;negative&nbsp;zero,&nbsp;or&nbsp;'1'&nbsp;if&nbsp;the&nbsp;result&nbsp;is&nbsp;greater&nbsp;than&nbsp;zero.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('2.10'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('-3'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare">compare</a>(<a href="#Decimal">Decimal</a>('-3'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("-1")</tt></dd></dl>
+
+<dl><dt><a name="Context-compare_signal"><strong>compare_signal</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;the&nbsp;values&nbsp;of&nbsp;the&nbsp;two&nbsp;operands&nbsp;numerically.<br>
+&nbsp;<br>
+It's&nbsp;pretty&nbsp;much&nbsp;like&nbsp;<a href="#Context-compare">compare</a>(),&nbsp;but&nbsp;all&nbsp;NaNs&nbsp;signal,&nbsp;with&nbsp;signaling<br>
+NaNs&nbsp;taking&nbsp;precedence&nbsp;over&nbsp;quiet&nbsp;NaNs.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-compare_signal">compare_signal</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-compare_signal">compare_signal</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+0<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-compare_signal">compare_signal</a>(<a href="#Decimal">Decimal</a>('NaN'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+1<br>
+&gt;&gt;&gt;&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]&nbsp;=&nbsp;0<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+0<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-compare_signal">compare_signal</a>(<a href="#Decimal">Decimal</a>('sNaN'),&nbsp;<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;c.flags[<a href="#InvalidOperation">InvalidOperation</a>]<br>
+1</tt></dd></dl>
+
+<dl><dt><a name="Context-compare_total"><strong>compare_total</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;two&nbsp;operands&nbsp;using&nbsp;their&nbsp;abstract&nbsp;representation.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;not&nbsp;like&nbsp;the&nbsp;standard&nbsp;compare,&nbsp;which&nbsp;use&nbsp;their&nbsp;numerical<br>
+value.&nbsp;Note&nbsp;that&nbsp;a&nbsp;total&nbsp;ordering&nbsp;is&nbsp;defined&nbsp;for&nbsp;all&nbsp;possible&nbsp;abstract<br>
+representations.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('12.73'),&nbsp;<a href="#Decimal">Decimal</a>('127.9'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('-127'),&nbsp;&nbsp;<a href="#Decimal">Decimal</a>('12'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('12.30'),&nbsp;<a href="#Decimal">Decimal</a>('12.3'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('12.30'),&nbsp;<a href="#Decimal">Decimal</a>('12.30'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('12.3'),&nbsp;&nbsp;<a href="#Decimal">Decimal</a>('12.300'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-compare_total">compare_total</a>(<a href="#Decimal">Decimal</a>('12.3'),&nbsp;&nbsp;<a href="#Decimal">Decimal</a>('NaN'))<br>
+<a href="#Decimal">Decimal</a>("-1")</tt></dd></dl>
+
+<dl><dt><a name="Context-compare_total_mag"><strong>compare_total_mag</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;two&nbsp;operands&nbsp;using&nbsp;their&nbsp;abstract&nbsp;representation&nbsp;ignoring&nbsp;sign.<br>
+&nbsp;<br>
+Like&nbsp;compare_total,&nbsp;but&nbsp;with&nbsp;operand's&nbsp;sign&nbsp;ignored&nbsp;and&nbsp;assumed&nbsp;to&nbsp;be&nbsp;0.</tt></dd></dl>
+
+<dl><dt><a name="Context-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;deep&nbsp;copy&nbsp;from&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Context-copy_abs"><strong>copy_abs</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;operand&nbsp;with&nbsp;the&nbsp;sign&nbsp;set&nbsp;to&nbsp;0.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_abs">copy_abs</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_abs">copy_abs</a>(<a href="#Decimal">Decimal</a>('-100'))<br>
+<a href="#Decimal">Decimal</a>("100")</tt></dd></dl>
+
+<dl><dt><a name="Context-copy_decimal"><strong>copy_decimal</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;decimal&nbsp;objet.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_decimal">copy_decimal</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_decimal">copy_decimal</a>(<a href="#Decimal">Decimal</a>('-1.00'))<br>
+<a href="#Decimal">Decimal</a>("-1.00")</tt></dd></dl>
+
+<dl><dt><a name="Context-copy_negate"><strong>copy_negate</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;operand&nbsp;with&nbsp;the&nbsp;sign&nbsp;inverted.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_negate">copy_negate</a>(<a href="#Decimal">Decimal</a>('101.5'))<br>
+<a href="#Decimal">Decimal</a>("-101.5")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_negate">copy_negate</a>(<a href="#Decimal">Decimal</a>('-101.5'))<br>
+<a href="#Decimal">Decimal</a>("101.5")</tt></dd></dl>
+
+<dl><dt><a name="Context-copy_sign"><strong>copy_sign</strong></a>(self, a, b)</dt><dd><tt>Copies&nbsp;the&nbsp;second&nbsp;operand's&nbsp;sign&nbsp;to&nbsp;the&nbsp;first&nbsp;one.<br>
+&nbsp;<br>
+In&nbsp;detail,&nbsp;it&nbsp;returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;first&nbsp;operand&nbsp;with&nbsp;the&nbsp;sign<br>
+equal&nbsp;to&nbsp;the&nbsp;sign&nbsp;of&nbsp;the&nbsp;second&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_sign">copy_sign</a>(<a href="#Decimal">Decimal</a>(&nbsp;'1.50'),&nbsp;<a href="#Decimal">Decimal</a>('7.33'))<br>
+<a href="#Decimal">Decimal</a>("1.50")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_sign">copy_sign</a>(<a href="#Decimal">Decimal</a>('-1.50'),&nbsp;<a href="#Decimal">Decimal</a>('7.33'))<br>
+<a href="#Decimal">Decimal</a>("1.50")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_sign">copy_sign</a>(<a href="#Decimal">Decimal</a>(&nbsp;'1.50'),&nbsp;<a href="#Decimal">Decimal</a>('-7.33'))<br>
+<a href="#Decimal">Decimal</a>("-1.50")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-copy_sign">copy_sign</a>(<a href="#Decimal">Decimal</a>('-1.50'),&nbsp;<a href="#Decimal">Decimal</a>('-7.33'))<br>
+<a href="#Decimal">Decimal</a>("-1.50")</tt></dd></dl>
+
+<dl><dt><a name="Context-create_decimal"><strong>create_decimal</strong></a>(self, num<font color="#909090">='0'</font>)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance&nbsp;but&nbsp;using&nbsp;self&nbsp;as&nbsp;context.</tt></dd></dl>
+
+<dl><dt><a name="Context-divide"><strong>divide</strong></a>(self, a, b)</dt><dd><tt><a href="#Decimal">Decimal</a>&nbsp;division&nbsp;in&nbsp;a&nbsp;specified&nbsp;context.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("0.333333333")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('2'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("0.666666667")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('5'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("2.5")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("0.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('12'),&nbsp;<a href="#Decimal">Decimal</a>('12'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('8.00'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("4.00")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('2.400'),&nbsp;<a href="#Decimal">Decimal</a>('2.0'))<br>
+<a href="#Decimal">Decimal</a>("1.20")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('1000'),&nbsp;<a href="#Decimal">Decimal</a>('100'))<br>
+<a href="#Decimal">Decimal</a>("10")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('1000'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1000")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide">divide</a>(<a href="#Decimal">Decimal</a>('2.40E+6'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("1.20E+6")</tt></dd></dl>
+
+<dl><dt><a name="Context-divide_int"><strong>divide_int</strong></a>(self, a, b)</dt><dd><tt>Divides&nbsp;two&nbsp;numbers&nbsp;and&nbsp;returns&nbsp;the&nbsp;integer&nbsp;part&nbsp;of&nbsp;the&nbsp;result.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide_int">divide_int</a>(<a href="#Decimal">Decimal</a>('2'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide_int">divide_int</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("3")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-divide_int">divide_int</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('0.3'))<br>
+<a href="#Decimal">Decimal</a>("3")</tt></dd></dl>
+
+<dl><dt><a name="Context-divmod"><strong>divmod</strong></a>(self, a, b)</dt></dl>
+
+<dl><dt><a name="Context-exp"><strong>exp</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;e&nbsp;**&nbsp;a.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('-Infinity'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('-1'))<br>
+<a href="#Decimal">Decimal</a>("0.367879441")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("2.71828183")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('0.693147181'))<br>
+<a href="#Decimal">Decimal</a>("2.00000000")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-exp">exp</a>(<a href="#Decimal">Decimal</a>('+Infinity'))<br>
+<a href="#Decimal">Decimal</a>("Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-fma"><strong>fma</strong></a>(self, a, b, c)</dt><dd><tt>Returns&nbsp;a&nbsp;multiplied&nbsp;by&nbsp;b,&nbsp;plus&nbsp;c.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;two&nbsp;operands&nbsp;are&nbsp;multiplied&nbsp;together,&nbsp;using&nbsp;multiply,<br>
+the&nbsp;third&nbsp;operand&nbsp;is&nbsp;then&nbsp;added&nbsp;to&nbsp;the&nbsp;result&nbsp;of&nbsp;that<br>
+multiplication,&nbsp;using&nbsp;add,&nbsp;all&nbsp;with&nbsp;only&nbsp;one&nbsp;final&nbsp;rounding.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-fma">fma</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('5'),&nbsp;<a href="#Decimal">Decimal</a>('7'))<br>
+<a href="#Decimal">Decimal</a>("22")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-fma">fma</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('-5'),&nbsp;<a href="#Decimal">Decimal</a>('7'))<br>
+<a href="#Decimal">Decimal</a>("-8")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-fma">fma</a>(<a href="#Decimal">Decimal</a>('888565290'),&nbsp;<a href="#Decimal">Decimal</a>('1557.96930'),&nbsp;<a href="#Decimal">Decimal</a>('-86087.7578'))<br>
+<a href="#Decimal">Decimal</a>("1.38435736E+12")</tt></dd></dl>
+
+<dl><dt><a name="Context-is_canonical"><strong>is_canonical</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;canonical;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+Currently,&nbsp;the&nbsp;encoding&nbsp;of&nbsp;a&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance&nbsp;is&nbsp;always<br>
+canonical,&nbsp;so&nbsp;this&nbsp;method&nbsp;returns&nbsp;True&nbsp;for&nbsp;any&nbsp;<a href="#Decimal">Decimal</a>.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_canonical">is_canonical</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-is_finite"><strong>is_finite</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;finite;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+A&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance&nbsp;is&nbsp;considered&nbsp;finite&nbsp;if&nbsp;it&nbsp;is&nbsp;neither<br>
+infinite&nbsp;nor&nbsp;a&nbsp;NaN.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_finite">is_finite</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_finite">is_finite</a>(<a href="#Decimal">Decimal</a>('-0.3'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_finite">is_finite</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_finite">is_finite</a>(<a href="#Decimal">Decimal</a>('Inf'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_finite">is_finite</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+False</tt></dd></dl>
+
+<dl><dt><a name="Context-is_infinite"><strong>is_infinite</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;infinite;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_infinite">is_infinite</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_infinite">is_infinite</a>(<a href="#Decimal">Decimal</a>('-Inf'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_infinite">is_infinite</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+False</tt></dd></dl>
+
+<dl><dt><a name="Context-is_nan"><strong>is_nan</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;a&nbsp;qNaN&nbsp;or&nbsp;sNaN;<br>
+otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_nan">is_nan</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_nan">is_nan</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_nan">is_nan</a>(<a href="#Decimal">Decimal</a>('-sNaN'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-is_normal"><strong>is_normal</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;a&nbsp;normal&nbsp;number;<br>
+otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_normal">is_normal</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_normal">is_normal</a>(<a href="#Decimal">Decimal</a>('0.1E-999'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_normal">is_normal</a>(<a href="#Decimal">Decimal</a>('0.00'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_normal">is_normal</a>(<a href="#Decimal">Decimal</a>('-Inf'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_normal">is_normal</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+False</tt></dd></dl>
+
+<dl><dt><a name="Context-is_qnan"><strong>is_qnan</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;a&nbsp;quiet&nbsp;NaN;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_qnan">is_qnan</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_qnan">is_qnan</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_qnan">is_qnan</a>(<a href="#Decimal">Decimal</a>('sNaN'))<br>
+False</tt></dd></dl>
+
+<dl><dt><a name="Context-is_signed"><strong>is_signed</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;negative;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_signed">is_signed</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_signed">is_signed</a>(<a href="#Decimal">Decimal</a>('-12'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_signed">is_signed</a>(<a href="#Decimal">Decimal</a>('-0'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-is_snan"><strong>is_snan</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;a&nbsp;signaling&nbsp;NaN;<br>
+otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_snan">is_snan</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_snan">is_snan</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_snan">is_snan</a>(<a href="#Decimal">Decimal</a>('sNaN'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-is_subnormal"><strong>is_subnormal</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;subnormal;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_subnormal">is_subnormal</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_subnormal">is_subnormal</a>(<a href="#Decimal">Decimal</a>('0.1E-999'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_subnormal">is_subnormal</a>(<a href="#Decimal">Decimal</a>('0.00'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_subnormal">is_subnormal</a>(<a href="#Decimal">Decimal</a>('-Inf'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-is_subnormal">is_subnormal</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+False</tt></dd></dl>
+
+<dl><dt><a name="Context-is_zero"><strong>is_zero</strong></a>(self, a)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;the&nbsp;operand&nbsp;is&nbsp;a&nbsp;zero;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_zero">is_zero</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_zero">is_zero</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-is_zero">is_zero</a>(<a href="#Decimal">Decimal</a>('-0E+2'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-ln"><strong>ln</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;natural&nbsp;(base&nbsp;e)&nbsp;logarithm&nbsp;of&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-ln">ln</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-ln">ln</a>(<a href="#Decimal">Decimal</a>('1.000'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-ln">ln</a>(<a href="#Decimal">Decimal</a>('2.71828183'))<br>
+<a href="#Decimal">Decimal</a>("1.00000000")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-ln">ln</a>(<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("2.30258509")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-ln">ln</a>(<a href="#Decimal">Decimal</a>('+Infinity'))<br>
+<a href="#Decimal">Decimal</a>("Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-log10"><strong>log10</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;base&nbsp;10&nbsp;logarithm&nbsp;of&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('0.001'))<br>
+<a href="#Decimal">Decimal</a>("-3")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('1.000'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("0.301029996")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('70'))<br>
+<a href="#Decimal">Decimal</a>("1.84509804")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-log10">log10</a>(<a href="#Decimal">Decimal</a>('+Infinity'))<br>
+<a href="#Decimal">Decimal</a>("Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-logb"><strong>logb</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;exponent&nbsp;of&nbsp;the&nbsp;magnitude&nbsp;of&nbsp;the&nbsp;operand's&nbsp;MSD.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;the&nbsp;integer&nbsp;which&nbsp;is&nbsp;the&nbsp;exponent&nbsp;of&nbsp;the&nbsp;magnitude<br>
+of&nbsp;the&nbsp;most&nbsp;significant&nbsp;digit&nbsp;of&nbsp;the&nbsp;operand&nbsp;(as&nbsp;though&nbsp;the<br>
+operand&nbsp;were&nbsp;truncated&nbsp;to&nbsp;a&nbsp;single&nbsp;digit&nbsp;while&nbsp;maintaining&nbsp;the<br>
+value&nbsp;of&nbsp;that&nbsp;digit&nbsp;and&nbsp;without&nbsp;limiting&nbsp;the&nbsp;resulting&nbsp;exponent).<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logb">logb</a>(<a href="#Decimal">Decimal</a>('250'))<br>
+<a href="#Decimal">Decimal</a>("2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logb">logb</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logb">logb</a>(<a href="#Decimal">Decimal</a>('0.03'))<br>
+<a href="#Decimal">Decimal</a>("-2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logb">logb</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-logical_and"><strong>logical_and</strong></a>(self, a, b)</dt><dd><tt>Applies&nbsp;the&nbsp;logical&nbsp;operation&nbsp;'and'&nbsp;between&nbsp;each&nbsp;operand's&nbsp;digits.<br>
+&nbsp;<br>
+The&nbsp;operands&nbsp;must&nbsp;be&nbsp;both&nbsp;logical&nbsp;numbers.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('1100'),&nbsp;<a href="#Decimal">Decimal</a>('1010'))<br>
+<a href="#Decimal">Decimal</a>("1000")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_and">logical_and</a>(<a href="#Decimal">Decimal</a>('1111'),&nbsp;<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("10")</tt></dd></dl>
+
+<dl><dt><a name="Context-logical_invert"><strong>logical_invert</strong></a>(self, a)</dt><dd><tt>Invert&nbsp;all&nbsp;the&nbsp;digits&nbsp;in&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+The&nbsp;operand&nbsp;must&nbsp;be&nbsp;a&nbsp;logical&nbsp;number.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_invert">logical_invert</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("111111111")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_invert">logical_invert</a>(<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("111111110")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_invert">logical_invert</a>(<a href="#Decimal">Decimal</a>('111111111'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_invert">logical_invert</a>(<a href="#Decimal">Decimal</a>('101010101'))<br>
+<a href="#Decimal">Decimal</a>("10101010")</tt></dd></dl>
+
+<dl><dt><a name="Context-logical_or"><strong>logical_or</strong></a>(self, a, b)</dt><dd><tt>Applies&nbsp;the&nbsp;logical&nbsp;operation&nbsp;'or'&nbsp;between&nbsp;each&nbsp;operand's&nbsp;digits.<br>
+&nbsp;<br>
+The&nbsp;operands&nbsp;must&nbsp;be&nbsp;both&nbsp;logical&nbsp;numbers.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('1100'),&nbsp;<a href="#Decimal">Decimal</a>('1010'))<br>
+<a href="#Decimal">Decimal</a>("1110")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_or">logical_or</a>(<a href="#Decimal">Decimal</a>('1110'),&nbsp;<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("1110")</tt></dd></dl>
+
+<dl><dt><a name="Context-logical_xor"><strong>logical_xor</strong></a>(self, a, b)</dt><dd><tt>Applies&nbsp;the&nbsp;logical&nbsp;operation&nbsp;'xor'&nbsp;between&nbsp;each&nbsp;operand's&nbsp;digits.<br>
+&nbsp;<br>
+The&nbsp;operands&nbsp;must&nbsp;be&nbsp;both&nbsp;logical&nbsp;numbers.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('1100'),&nbsp;<a href="#Decimal">Decimal</a>('1010'))<br>
+<a href="#Decimal">Decimal</a>("110")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-logical_xor">logical_xor</a>(<a href="#Decimal">Decimal</a>('1111'),&nbsp;<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("1101")</tt></dd></dl>
+
+<dl><dt><a name="Context-max"><strong>max</strong></a>(self, a, b)</dt><dd><tt>max&nbsp;compares&nbsp;two&nbsp;values&nbsp;numerically&nbsp;and&nbsp;returns&nbsp;the&nbsp;maximum.<br>
+&nbsp;<br>
+If&nbsp;either&nbsp;operand&nbsp;is&nbsp;a&nbsp;NaN&nbsp;then&nbsp;the&nbsp;general&nbsp;rules&nbsp;apply.<br>
+Otherwise,&nbsp;the&nbsp;operands&nbsp;are&nbsp;compared&nbsp;as&nbsp;as&nbsp;though&nbsp;by&nbsp;the&nbsp;compare<br>
+operation.&nbsp;&nbsp;If&nbsp;they&nbsp;are&nbsp;numerically&nbsp;equal&nbsp;then&nbsp;the&nbsp;left-hand&nbsp;operand<br>
+is&nbsp;chosen&nbsp;as&nbsp;the&nbsp;result.&nbsp;&nbsp;Otherwise&nbsp;the&nbsp;maximum&nbsp;(closer&nbsp;to&nbsp;positive<br>
+infinity)&nbsp;of&nbsp;the&nbsp;two&nbsp;operands&nbsp;is&nbsp;chosen&nbsp;as&nbsp;the&nbsp;result.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-max">max</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("3")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-max">max</a>(<a href="#Decimal">Decimal</a>('-10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("3")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-max">max</a>(<a href="#Decimal">Decimal</a>('1.0'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-max">max</a>(<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('NaN'))<br>
+<a href="#Decimal">Decimal</a>("7")</tt></dd></dl>
+
+<dl><dt><a name="Context-max_mag"><strong>max_mag</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;the&nbsp;values&nbsp;numerically&nbsp;with&nbsp;their&nbsp;sign&nbsp;ignored.</tt></dd></dl>
+
+<dl><dt><a name="Context-min"><strong>min</strong></a>(self, a, b)</dt><dd><tt>min&nbsp;compares&nbsp;two&nbsp;values&nbsp;numerically&nbsp;and&nbsp;returns&nbsp;the&nbsp;minimum.<br>
+&nbsp;<br>
+If&nbsp;either&nbsp;operand&nbsp;is&nbsp;a&nbsp;NaN&nbsp;then&nbsp;the&nbsp;general&nbsp;rules&nbsp;apply.<br>
+Otherwise,&nbsp;the&nbsp;operands&nbsp;are&nbsp;compared&nbsp;as&nbsp;as&nbsp;though&nbsp;by&nbsp;the&nbsp;compare<br>
+operation.&nbsp;&nbsp;If&nbsp;they&nbsp;are&nbsp;numerically&nbsp;equal&nbsp;then&nbsp;the&nbsp;left-hand&nbsp;operand<br>
+is&nbsp;chosen&nbsp;as&nbsp;the&nbsp;result.&nbsp;&nbsp;Otherwise&nbsp;the&nbsp;minimum&nbsp;(closer&nbsp;to&nbsp;negative<br>
+infinity)&nbsp;of&nbsp;the&nbsp;two&nbsp;operands&nbsp;is&nbsp;chosen&nbsp;as&nbsp;the&nbsp;result.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-min">min</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-min">min</a>(<a href="#Decimal">Decimal</a>('-10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-10")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-min">min</a>(<a href="#Decimal">Decimal</a>('1.0'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1.0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-min">min</a>(<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('NaN'))<br>
+<a href="#Decimal">Decimal</a>("7")</tt></dd></dl>
+
+<dl><dt><a name="Context-min_mag"><strong>min_mag</strong></a>(self, a, b)</dt><dd><tt>Compares&nbsp;the&nbsp;values&nbsp;numerically&nbsp;with&nbsp;their&nbsp;sign&nbsp;ignored.</tt></dd></dl>
+
+<dl><dt><a name="Context-minus"><strong>minus</strong></a>(self, a)</dt><dd><tt>Minus&nbsp;corresponds&nbsp;to&nbsp;unary&nbsp;prefix&nbsp;minus&nbsp;in&nbsp;Python.<br>
+&nbsp;<br>
+The&nbsp;operation&nbsp;is&nbsp;evaluated&nbsp;using&nbsp;the&nbsp;same&nbsp;rules&nbsp;as&nbsp;subtract;&nbsp;the<br>
+operation&nbsp;<a href="#Context-minus">minus</a>(a)&nbsp;is&nbsp;calculated&nbsp;as&nbsp;<a href="#Context-subtract">subtract</a>('0',&nbsp;a)&nbsp;where&nbsp;the&nbsp;'0'<br>
+has&nbsp;the&nbsp;same&nbsp;exponent&nbsp;as&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-minus">minus</a>(<a href="#Decimal">Decimal</a>('1.3'))<br>
+<a href="#Decimal">Decimal</a>("-1.3")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-minus">minus</a>(<a href="#Decimal">Decimal</a>('-1.3'))<br>
+<a href="#Decimal">Decimal</a>("1.3")</tt></dd></dl>
+
+<dl><dt><a name="Context-multiply"><strong>multiply</strong></a>(self, a, b)</dt><dd><tt>multiply&nbsp;multiplies&nbsp;two&nbsp;operands.<br>
+&nbsp;<br>
+If&nbsp;either&nbsp;operand&nbsp;is&nbsp;a&nbsp;special&nbsp;value&nbsp;then&nbsp;the&nbsp;general&nbsp;rules&nbsp;apply.<br>
+Otherwise,&nbsp;the&nbsp;operands&nbsp;are&nbsp;multiplied&nbsp;together&nbsp;('long&nbsp;multiplication'),<br>
+resulting&nbsp;in&nbsp;a&nbsp;number&nbsp;which&nbsp;may&nbsp;be&nbsp;as&nbsp;long&nbsp;as&nbsp;the&nbsp;sum&nbsp;of&nbsp;the&nbsp;lengths<br>
+of&nbsp;the&nbsp;two&nbsp;operands.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-multiply">multiply</a>(<a href="#Decimal">Decimal</a>('1.20'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("3.60")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-multiply">multiply</a>(<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("21")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-multiply">multiply</a>(<a href="#Decimal">Decimal</a>('0.9'),&nbsp;<a href="#Decimal">Decimal</a>('0.8'))<br>
+<a href="#Decimal">Decimal</a>("0.72")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-multiply">multiply</a>(<a href="#Decimal">Decimal</a>('0.9'),&nbsp;<a href="#Decimal">Decimal</a>('-0'))<br>
+<a href="#Decimal">Decimal</a>("-0.0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-multiply">multiply</a>(<a href="#Decimal">Decimal</a>('654321'),&nbsp;<a href="#Decimal">Decimal</a>('654321'))<br>
+<a href="#Decimal">Decimal</a>("4.28135971E+11")</tt></dd></dl>
+
+<dl><dt><a name="Context-next_minus"><strong>next_minus</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;largest&nbsp;representable&nbsp;number&nbsp;smaller&nbsp;than&nbsp;a.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-next_minus">next_minus</a>(<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("0.999999999")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_minus">next_minus</a>(<a href="#Decimal">Decimal</a>('1E-1007'))<br>
+<a href="#Decimal">Decimal</a>("0E-1007")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-next_minus">next_minus</a>(<a href="#Decimal">Decimal</a>('-1.00000003'))<br>
+<a href="#Decimal">Decimal</a>("-1.00000004")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_minus">next_minus</a>(<a href="#Decimal">Decimal</a>('Infinity'))<br>
+<a href="#Decimal">Decimal</a>("9.99999999E+999")</tt></dd></dl>
+
+<dl><dt><a name="Context-next_plus"><strong>next_plus</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;the&nbsp;smallest&nbsp;representable&nbsp;number&nbsp;larger&nbsp;than&nbsp;a.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-next_plus">next_plus</a>(<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1.00000001")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_plus">next_plus</a>(<a href="#Decimal">Decimal</a>('-1E-1007'))<br>
+<a href="#Decimal">Decimal</a>("-0E-1007")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-next_plus">next_plus</a>(<a href="#Decimal">Decimal</a>('-1.00000003'))<br>
+<a href="#Decimal">Decimal</a>("-1.00000002")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_plus">next_plus</a>(<a href="#Decimal">Decimal</a>('-Infinity'))<br>
+<a href="#Decimal">Decimal</a>("-9.99999999E+999")</tt></dd></dl>
+
+<dl><dt><a name="Context-next_toward"><strong>next_toward</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;closest&nbsp;to&nbsp;a,&nbsp;in&nbsp;direction&nbsp;towards&nbsp;b.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;the&nbsp;closest&nbsp;representable&nbsp;number&nbsp;from&nbsp;the&nbsp;first<br>
+operand&nbsp;(but&nbsp;not&nbsp;the&nbsp;first&nbsp;operand)&nbsp;that&nbsp;is&nbsp;in&nbsp;the&nbsp;direction<br>
+towards&nbsp;the&nbsp;second&nbsp;operand,&nbsp;unless&nbsp;the&nbsp;operands&nbsp;have&nbsp;the&nbsp;same<br>
+value.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("1.00000001")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('-1E-1007'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("-0E-1007")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('-1.00000003'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("-1.00000002")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('1'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0.999999999")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('1E-1007'),&nbsp;<a href="#Decimal">Decimal</a>('-100'))<br>
+<a href="#Decimal">Decimal</a>("0E-1007")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('-1.00000003'),&nbsp;<a href="#Decimal">Decimal</a>('-10'))<br>
+<a href="#Decimal">Decimal</a>("-1.00000004")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-next_toward">next_toward</a>(<a href="#Decimal">Decimal</a>('0.00'),&nbsp;<a href="#Decimal">Decimal</a>('-0.0000'))<br>
+<a href="#Decimal">Decimal</a>("-0.00")</tt></dd></dl>
+
+<dl><dt><a name="Context-normalize"><strong>normalize</strong></a>(self, a)</dt><dd><tt>normalize&nbsp;reduces&nbsp;an&nbsp;operand&nbsp;to&nbsp;its&nbsp;simplest&nbsp;form.<br>
+&nbsp;<br>
+Essentially&nbsp;a&nbsp;plus&nbsp;operation&nbsp;with&nbsp;all&nbsp;trailing&nbsp;zeros&nbsp;removed&nbsp;from&nbsp;the<br>
+result.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('-2.0'))<br>
+<a href="#Decimal">Decimal</a>("-2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('1.200'))<br>
+<a href="#Decimal">Decimal</a>("1.2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('-120'))<br>
+<a href="#Decimal">Decimal</a>("-1.2E+2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('120.00'))<br>
+<a href="#Decimal">Decimal</a>("1.2E+2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-normalize">normalize</a>(<a href="#Decimal">Decimal</a>('0.00'))<br>
+<a href="#Decimal">Decimal</a>("0")</tt></dd></dl>
+
+<dl><dt><a name="Context-number_class"><strong>number_class</strong></a>(self, a)</dt><dd><tt>Returns&nbsp;an&nbsp;indication&nbsp;of&nbsp;the&nbsp;class&nbsp;of&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;is&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;strings:<br>
+&nbsp;&nbsp;-sNaN<br>
+&nbsp;&nbsp;-NaN<br>
+&nbsp;&nbsp;-Infinity<br>
+&nbsp;&nbsp;-Normal<br>
+&nbsp;&nbsp;-<a href="#Subnormal">Subnormal</a><br>
+&nbsp;&nbsp;-Zero<br>
+&nbsp;&nbsp;+Zero<br>
+&nbsp;&nbsp;+<a href="#Subnormal">Subnormal</a><br>
+&nbsp;&nbsp;+Normal<br>
+&nbsp;&nbsp;+Infinity<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;<a href="#Context">Context</a>(ExtendedContext)<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('Infinity'))<br>
+'+Infinity'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('1E-10'))<br>
+'+Normal'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('2.50'))<br>
+'+Normal'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('0.1E-999'))<br>
+'+<a href="#Subnormal">Subnormal</a>'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+'+Zero'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-0'))<br>
+'-Zero'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-0.1E-999'))<br>
+'-<a href="#Subnormal">Subnormal</a>'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-1E-10'))<br>
+'-Normal'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-2.50'))<br>
+'-Normal'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-Infinity'))<br>
+'-Infinity'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('NaN'))<br>
+'NaN'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('-NaN'))<br>
+'NaN'<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-number_class">number_class</a>(<a href="#Decimal">Decimal</a>('sNaN'))<br>
+'sNaN'</tt></dd></dl>
+
+<dl><dt><a name="Context-plus"><strong>plus</strong></a>(self, a)</dt><dd><tt>Plus&nbsp;corresponds&nbsp;to&nbsp;unary&nbsp;prefix&nbsp;plus&nbsp;in&nbsp;Python.<br>
+&nbsp;<br>
+The&nbsp;operation&nbsp;is&nbsp;evaluated&nbsp;using&nbsp;the&nbsp;same&nbsp;rules&nbsp;as&nbsp;add;&nbsp;the<br>
+operation&nbsp;<a href="#Context-plus">plus</a>(a)&nbsp;is&nbsp;calculated&nbsp;as&nbsp;<a href="#Context-add">add</a>('0',&nbsp;a)&nbsp;where&nbsp;the&nbsp;'0'<br>
+has&nbsp;the&nbsp;same&nbsp;exponent&nbsp;as&nbsp;the&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-plus">plus</a>(<a href="#Decimal">Decimal</a>('1.3'))<br>
+<a href="#Decimal">Decimal</a>("1.3")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-plus">plus</a>(<a href="#Decimal">Decimal</a>('-1.3'))<br>
+<a href="#Decimal">Decimal</a>("-1.3")</tt></dd></dl>
+
+<dl><dt><a name="Context-power"><strong>power</strong></a>(self, a, b, modulo<font color="#909090">=None</font>)</dt><dd><tt>Raises&nbsp;a&nbsp;to&nbsp;the&nbsp;power&nbsp;of&nbsp;b,&nbsp;to&nbsp;modulo&nbsp;if&nbsp;given.<br>
+&nbsp;<br>
+With&nbsp;two&nbsp;arguments,&nbsp;compute&nbsp;a**b.&nbsp;&nbsp;If&nbsp;a&nbsp;is&nbsp;negative&nbsp;then&nbsp;b<br>
+must&nbsp;be&nbsp;integral.&nbsp;&nbsp;The&nbsp;result&nbsp;will&nbsp;be&nbsp;inexact&nbsp;unless&nbsp;b&nbsp;is<br>
+integral&nbsp;and&nbsp;the&nbsp;result&nbsp;is&nbsp;finite&nbsp;and&nbsp;can&nbsp;be&nbsp;expressed&nbsp;exactly<br>
+in&nbsp;'precision'&nbsp;digits.<br>
+&nbsp;<br>
+With&nbsp;three&nbsp;arguments,&nbsp;compute&nbsp;(a**b)&nbsp;%&nbsp;modulo.&nbsp;&nbsp;For&nbsp;the<br>
+three&nbsp;argument&nbsp;form,&nbsp;the&nbsp;following&nbsp;restrictions&nbsp;on&nbsp;the<br>
+arguments&nbsp;hold:<br>
+&nbsp;<br>
+&nbsp;-&nbsp;all&nbsp;three&nbsp;arguments&nbsp;must&nbsp;be&nbsp;integral<br>
+&nbsp;-&nbsp;b&nbsp;must&nbsp;be&nbsp;nonnegative<br>
+&nbsp;-&nbsp;at&nbsp;least&nbsp;one&nbsp;of&nbsp;a&nbsp;or&nbsp;b&nbsp;must&nbsp;be&nbsp;nonzero<br>
+&nbsp;-&nbsp;modulo&nbsp;must&nbsp;be&nbsp;nonzero&nbsp;and&nbsp;have&nbsp;at&nbsp;most&nbsp;'precision'&nbsp;digits<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;of&nbsp;pow(a,&nbsp;b,&nbsp;modulo)&nbsp;is&nbsp;identical&nbsp;to&nbsp;the&nbsp;result<br>
+that&nbsp;would&nbsp;be&nbsp;obtained&nbsp;by&nbsp;computing&nbsp;(a**b)&nbsp;%&nbsp;modulo&nbsp;with<br>
+unbounded&nbsp;precision,&nbsp;but&nbsp;is&nbsp;computed&nbsp;more&nbsp;efficiently.&nbsp;&nbsp;It&nbsp;is<br>
+always&nbsp;exact.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c&nbsp;=&nbsp;ExtendedContext.<a href="#Context-copy">copy</a>()<br>
+&gt;&gt;&gt;&nbsp;c.Emin&nbsp;=&nbsp;-999<br>
+&gt;&gt;&gt;&nbsp;c.Emax&nbsp;=&nbsp;999<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('2'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("8")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-2'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-8")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('2'),&nbsp;<a href="#Decimal">Decimal</a>('-3'))<br>
+<a href="#Decimal">Decimal</a>("0.125")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('1.7'),&nbsp;<a href="#Decimal">Decimal</a>('8'))<br>
+<a href="#Decimal">Decimal</a>("69.7575744")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('0.301029996'))<br>
+<a href="#Decimal">Decimal</a>("2.00000000")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('-1'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("Infinity")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('-1'))<br>
+<a href="#Decimal">Decimal</a>("-0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-Infinity'),&nbsp;<a href="#Decimal">Decimal</a>('2'))<br>
+<a href="#Decimal">Decimal</a>("Infinity")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('16'))<br>
+<a href="#Decimal">Decimal</a>("11")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-3'),&nbsp;<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('16'))<br>
+<a href="#Decimal">Decimal</a>("-11")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-3'),&nbsp;<a href="#Decimal">Decimal</a>('8'),&nbsp;<a href="#Decimal">Decimal</a>('16'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('3'),&nbsp;<a href="#Decimal">Decimal</a>('7'),&nbsp;<a href="#Decimal">Decimal</a>('-16'))<br>
+<a href="#Decimal">Decimal</a>("11")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('23E12345'),&nbsp;<a href="#Decimal">Decimal</a>('67E189'),&nbsp;<a href="#Decimal">Decimal</a>('123456789'))<br>
+<a href="#Decimal">Decimal</a>("11729830")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-0'),&nbsp;<a href="#Decimal">Decimal</a>('17'),&nbsp;<a href="#Decimal">Decimal</a>('1729'))<br>
+<a href="#Decimal">Decimal</a>("-0")<br>
+&gt;&gt;&gt;&nbsp;c.<a href="#Context-power">power</a>(<a href="#Decimal">Decimal</a>('-23'),&nbsp;<a href="#Decimal">Decimal</a>('0'),&nbsp;<a href="#Decimal">Decimal</a>('65537'))<br>
+<a href="#Decimal">Decimal</a>("1")</tt></dd></dl>
+
+<dl><dt><a name="Context-quantize"><strong>quantize</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;a&nbsp;value&nbsp;equal&nbsp;to&nbsp;'a'&nbsp;(rounded),&nbsp;having&nbsp;the&nbsp;exponent&nbsp;of&nbsp;'b'.<br>
+&nbsp;<br>
+The&nbsp;coefficient&nbsp;of&nbsp;the&nbsp;result&nbsp;is&nbsp;derived&nbsp;from&nbsp;that&nbsp;of&nbsp;the&nbsp;left-hand<br>
+operand.&nbsp;&nbsp;It&nbsp;may&nbsp;be&nbsp;rounded&nbsp;using&nbsp;the&nbsp;current&nbsp;rounding&nbsp;setting&nbsp;(if&nbsp;the<br>
+exponent&nbsp;is&nbsp;being&nbsp;increased),&nbsp;multiplied&nbsp;by&nbsp;a&nbsp;positive&nbsp;power&nbsp;of&nbsp;ten&nbsp;(if<br>
+the&nbsp;exponent&nbsp;is&nbsp;being&nbsp;decreased),&nbsp;or&nbsp;is&nbsp;unchanged&nbsp;(if&nbsp;the&nbsp;exponent&nbsp;is<br>
+already&nbsp;equal&nbsp;to&nbsp;that&nbsp;of&nbsp;the&nbsp;right-hand&nbsp;operand).<br>
+&nbsp;<br>
+Unlike&nbsp;other&nbsp;operations,&nbsp;if&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;coefficient&nbsp;after&nbsp;the<br>
+quantize&nbsp;operation&nbsp;would&nbsp;be&nbsp;greater&nbsp;than&nbsp;precision&nbsp;then&nbsp;an&nbsp;Invalid<br>
+operation&nbsp;condition&nbsp;is&nbsp;raised.&nbsp;&nbsp;This&nbsp;guarantees&nbsp;that,&nbsp;unless&nbsp;there&nbsp;is<br>
+an&nbsp;error&nbsp;condition,&nbsp;the&nbsp;exponent&nbsp;of&nbsp;the&nbsp;result&nbsp;of&nbsp;a&nbsp;quantize&nbsp;is&nbsp;always<br>
+equal&nbsp;to&nbsp;that&nbsp;of&nbsp;the&nbsp;right-hand&nbsp;operand.<br>
+&nbsp;<br>
+Also&nbsp;unlike&nbsp;other&nbsp;operations,&nbsp;quantize&nbsp;will&nbsp;never&nbsp;raise&nbsp;<a href="#Underflow">Underflow</a>,&nbsp;even<br>
+if&nbsp;the&nbsp;result&nbsp;is&nbsp;subnormal&nbsp;and&nbsp;inexact.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('0.001'))<br>
+<a href="#Decimal">Decimal</a>("2.170")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('0.01'))<br>
+<a href="#Decimal">Decimal</a>("2.17")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('0.1'))<br>
+<a href="#Decimal">Decimal</a>("2.2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('1e+0'))<br>
+<a href="#Decimal">Decimal</a>("2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('1e+1'))<br>
+<a href="#Decimal">Decimal</a>("0E+1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('-Inf'),&nbsp;<a href="#Decimal">Decimal</a>('Infinity'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('2'),&nbsp;<a href="#Decimal">Decimal</a>('Infinity'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('-0.1'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("-0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('-0'),&nbsp;<a href="#Decimal">Decimal</a>('1e+5'))<br>
+<a href="#Decimal">Decimal</a>("-0E+5")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('+35236450.6'),&nbsp;<a href="#Decimal">Decimal</a>('1e-2'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('-35236450.6'),&nbsp;<a href="#Decimal">Decimal</a>('1e-2'))<br>
+<a href="#Decimal">Decimal</a>("NaN")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('217'),&nbsp;<a href="#Decimal">Decimal</a>('1e-1'))<br>
+<a href="#Decimal">Decimal</a>("217.0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('217'),&nbsp;<a href="#Decimal">Decimal</a>('1e-0'))<br>
+<a href="#Decimal">Decimal</a>("217")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('217'),&nbsp;<a href="#Decimal">Decimal</a>('1e+1'))<br>
+<a href="#Decimal">Decimal</a>("2.2E+2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-quantize">quantize</a>(<a href="#Decimal">Decimal</a>('217'),&nbsp;<a href="#Decimal">Decimal</a>('1e+2'))<br>
+<a href="#Decimal">Decimal</a>("2E+2")</tt></dd></dl>
+
+<dl><dt><a name="Context-radix"><strong>radix</strong></a>(self)</dt><dd><tt>Just&nbsp;returns&nbsp;10,&nbsp;as&nbsp;this&nbsp;is&nbsp;<a href="#Decimal">Decimal</a>,&nbsp;:)<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-radix">radix</a>()<br>
+<a href="#Decimal">Decimal</a>("10")</tt></dd></dl>
+
+<dl><dt><a name="Context-remainder"><strong>remainder</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;the&nbsp;remainder&nbsp;from&nbsp;integer&nbsp;division.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;the&nbsp;residue&nbsp;of&nbsp;the&nbsp;dividend&nbsp;after&nbsp;the&nbsp;operation&nbsp;of<br>
+calculating&nbsp;integer&nbsp;division&nbsp;as&nbsp;described&nbsp;for&nbsp;divide-integer,&nbsp;rounded<br>
+to&nbsp;precision&nbsp;digits&nbsp;if&nbsp;necessary.&nbsp;&nbsp;The&nbsp;sign&nbsp;of&nbsp;the&nbsp;result,&nbsp;if<br>
+non-zero,&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;that&nbsp;of&nbsp;the&nbsp;original&nbsp;dividend.<br>
+&nbsp;<br>
+This&nbsp;operation&nbsp;will&nbsp;fail&nbsp;under&nbsp;the&nbsp;same&nbsp;conditions&nbsp;as&nbsp;integer&nbsp;division<br>
+(that&nbsp;is,&nbsp;if&nbsp;integer&nbsp;division&nbsp;on&nbsp;the&nbsp;same&nbsp;two&nbsp;operands&nbsp;would&nbsp;fail,&nbsp;the<br>
+remainder&nbsp;cannot&nbsp;be&nbsp;calculated).<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("2.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('-10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('10.2'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("0.2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('0.3'))<br>
+<a href="#Decimal">Decimal</a>("0.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder">remainder</a>(<a href="#Decimal">Decimal</a>('3.6'),&nbsp;<a href="#Decimal">Decimal</a>('1.3'))<br>
+<a href="#Decimal">Decimal</a>("1.0")</tt></dd></dl>
+
+<dl><dt><a name="Context-remainder_near"><strong>remainder_near</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;to&nbsp;be&nbsp;"a&nbsp;-&nbsp;b&nbsp;*&nbsp;n",&nbsp;where&nbsp;n&nbsp;is&nbsp;the&nbsp;integer&nbsp;nearest&nbsp;the&nbsp;exact<br>
+value&nbsp;of&nbsp;"x&nbsp;/&nbsp;b"&nbsp;(if&nbsp;two&nbsp;integers&nbsp;are&nbsp;equally&nbsp;near&nbsp;then&nbsp;the&nbsp;even&nbsp;one<br>
+is&nbsp;chosen).&nbsp;&nbsp;If&nbsp;the&nbsp;result&nbsp;is&nbsp;equal&nbsp;to&nbsp;0&nbsp;then&nbsp;its&nbsp;sign&nbsp;will&nbsp;be&nbsp;the<br>
+sign&nbsp;of&nbsp;a.<br>
+&nbsp;<br>
+This&nbsp;operation&nbsp;will&nbsp;fail&nbsp;under&nbsp;the&nbsp;same&nbsp;conditions&nbsp;as&nbsp;integer&nbsp;division<br>
+(that&nbsp;is,&nbsp;if&nbsp;integer&nbsp;division&nbsp;on&nbsp;the&nbsp;same&nbsp;two&nbsp;operands&nbsp;would&nbsp;fail,&nbsp;the<br>
+remainder&nbsp;cannot&nbsp;be&nbsp;calculated).<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('2.1'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-0.9")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('6'))<br>
+<a href="#Decimal">Decimal</a>("-2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('-10'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("-1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('10.2'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("0.2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('10'),&nbsp;<a href="#Decimal">Decimal</a>('0.3'))<br>
+<a href="#Decimal">Decimal</a>("0.1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-remainder_near">remainder_near</a>(<a href="#Decimal">Decimal</a>('3.6'),&nbsp;<a href="#Decimal">Decimal</a>('1.3'))<br>
+<a href="#Decimal">Decimal</a>("-0.3")</tt></dd></dl>
+
+<dl><dt><a name="Context-rotate"><strong>rotate</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;a&nbsp;rotated&nbsp;copy&nbsp;of&nbsp;a,&nbsp;b&nbsp;times.<br>
+&nbsp;<br>
+The&nbsp;coefficient&nbsp;of&nbsp;the&nbsp;result&nbsp;is&nbsp;a&nbsp;rotated&nbsp;copy&nbsp;of&nbsp;the&nbsp;digits&nbsp;in<br>
+the&nbsp;coefficient&nbsp;of&nbsp;the&nbsp;first&nbsp;operand.&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;places&nbsp;of<br>
+rotation&nbsp;is&nbsp;taken&nbsp;from&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;the&nbsp;second&nbsp;operand,<br>
+with&nbsp;the&nbsp;rotation&nbsp;being&nbsp;to&nbsp;the&nbsp;left&nbsp;if&nbsp;the&nbsp;second&nbsp;operand&nbsp;is<br>
+positive&nbsp;or&nbsp;to&nbsp;the&nbsp;right&nbsp;otherwise.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-rotate">rotate</a>(<a href="#Decimal">Decimal</a>('34'),&nbsp;<a href="#Decimal">Decimal</a>('8'))<br>
+<a href="#Decimal">Decimal</a>("400000003")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-rotate">rotate</a>(<a href="#Decimal">Decimal</a>('12'),&nbsp;<a href="#Decimal">Decimal</a>('9'))<br>
+<a href="#Decimal">Decimal</a>("12")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-rotate">rotate</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('-2'))<br>
+<a href="#Decimal">Decimal</a>("891234567")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-rotate">rotate</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("123456789")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-rotate">rotate</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('+2'))<br>
+<a href="#Decimal">Decimal</a>("345678912")</tt></dd></dl>
+
+<dl><dt><a name="Context-same_quantum"><strong>same_quantum</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;two&nbsp;operands&nbsp;have&nbsp;the&nbsp;same&nbsp;exponent.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;never&nbsp;affected&nbsp;by&nbsp;either&nbsp;the&nbsp;sign&nbsp;or&nbsp;the&nbsp;coefficient&nbsp;of<br>
+either&nbsp;operand.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-same_quantum">same_quantum</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('0.001'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-same_quantum">same_quantum</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('0.01'))<br>
+True<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-same_quantum">same_quantum</a>(<a href="#Decimal">Decimal</a>('2.17'),&nbsp;<a href="#Decimal">Decimal</a>('1'))<br>
+False<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-same_quantum">same_quantum</a>(<a href="#Decimal">Decimal</a>('Inf'),&nbsp;<a href="#Decimal">Decimal</a>('-Inf'))<br>
+True</tt></dd></dl>
+
+<dl><dt><a name="Context-scaleb"><strong>scaleb</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;the&nbsp;first&nbsp;operand&nbsp;after&nbsp;adding&nbsp;the&nbsp;second&nbsp;value&nbsp;its&nbsp;exp.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-scaleb">scaleb</a>(<a href="#Decimal">Decimal</a>('7.50'),&nbsp;<a href="#Decimal">Decimal</a>('-2'))<br>
+<a href="#Decimal">Decimal</a>("0.0750")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-scaleb">scaleb</a>(<a href="#Decimal">Decimal</a>('7.50'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("7.50")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-scaleb">scaleb</a>(<a href="#Decimal">Decimal</a>('7.50'),&nbsp;<a href="#Decimal">Decimal</a>('3'))<br>
+<a href="#Decimal">Decimal</a>("7.50E+3")</tt></dd></dl>
+
+<dl><dt><a name="Context-shift"><strong>shift</strong></a>(self, a, b)</dt><dd><tt>Returns&nbsp;a&nbsp;shifted&nbsp;copy&nbsp;of&nbsp;a,&nbsp;b&nbsp;times.<br>
+&nbsp;<br>
+The&nbsp;coefficient&nbsp;of&nbsp;the&nbsp;result&nbsp;is&nbsp;a&nbsp;shifted&nbsp;copy&nbsp;of&nbsp;the&nbsp;digits<br>
+in&nbsp;the&nbsp;coefficient&nbsp;of&nbsp;the&nbsp;first&nbsp;operand.&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;places<br>
+to&nbsp;shift&nbsp;is&nbsp;taken&nbsp;from&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;the&nbsp;second&nbsp;operand,<br>
+with&nbsp;the&nbsp;shift&nbsp;being&nbsp;to&nbsp;the&nbsp;left&nbsp;if&nbsp;the&nbsp;second&nbsp;operand&nbsp;is<br>
+positive&nbsp;or&nbsp;to&nbsp;the&nbsp;right&nbsp;otherwise.&nbsp;&nbsp;Digits&nbsp;shifted&nbsp;into&nbsp;the<br>
+coefficient&nbsp;are&nbsp;zeros.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-shift">shift</a>(<a href="#Decimal">Decimal</a>('34'),&nbsp;<a href="#Decimal">Decimal</a>('8'))<br>
+<a href="#Decimal">Decimal</a>("400000000")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-shift">shift</a>(<a href="#Decimal">Decimal</a>('12'),&nbsp;<a href="#Decimal">Decimal</a>('9'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-shift">shift</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('-2'))<br>
+<a href="#Decimal">Decimal</a>("1234567")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-shift">shift</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("123456789")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-shift">shift</a>(<a href="#Decimal">Decimal</a>('123456789'),&nbsp;<a href="#Decimal">Decimal</a>('+2'))<br>
+<a href="#Decimal">Decimal</a>("345678900")</tt></dd></dl>
+
+<dl><dt><a name="Context-sqrt"><strong>sqrt</strong></a>(self, a)</dt><dd><tt>Square&nbsp;root&nbsp;of&nbsp;a&nbsp;non-negative&nbsp;number&nbsp;to&nbsp;context&nbsp;precision.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;result&nbsp;must&nbsp;be&nbsp;inexact,&nbsp;it&nbsp;is&nbsp;rounded&nbsp;using&nbsp;the&nbsp;round-half-even<br>
+algorithm.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('0'))<br>
+<a href="#Decimal">Decimal</a>("0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('-0'))<br>
+<a href="#Decimal">Decimal</a>("-0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('0.39'))<br>
+<a href="#Decimal">Decimal</a>("0.624499800")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('100'))<br>
+<a href="#Decimal">Decimal</a>("10")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('1'))<br>
+<a href="#Decimal">Decimal</a>("1")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('1.0'))<br>
+<a href="#Decimal">Decimal</a>("1.0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('1.00'))<br>
+<a href="#Decimal">Decimal</a>("1.0")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('7'))<br>
+<a href="#Decimal">Decimal</a>("2.64575131")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-sqrt">sqrt</a>(<a href="#Decimal">Decimal</a>('10'))<br>
+<a href="#Decimal">Decimal</a>("3.16227766")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.prec<br>
+9</tt></dd></dl>
+
+<dl><dt><a name="Context-subtract"><strong>subtract</strong></a>(self, a, b)</dt><dd><tt>Return&nbsp;the&nbsp;difference&nbsp;between&nbsp;the&nbsp;two&nbsp;operands.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-subtract">subtract</a>(<a href="#Decimal">Decimal</a>('1.3'),&nbsp;<a href="#Decimal">Decimal</a>('1.07'))<br>
+<a href="#Decimal">Decimal</a>("0.23")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-subtract">subtract</a>(<a href="#Decimal">Decimal</a>('1.3'),&nbsp;<a href="#Decimal">Decimal</a>('1.30'))<br>
+<a href="#Decimal">Decimal</a>("0.00")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-subtract">subtract</a>(<a href="#Decimal">Decimal</a>('1.3'),&nbsp;<a href="#Decimal">Decimal</a>('2.07'))<br>
+<a href="#Decimal">Decimal</a>("-0.77")</tt></dd></dl>
+
+<dl><dt><a name="Context-to_eng_string"><strong>to_eng_string</strong></a>(self, a)</dt><dd><tt>Converts&nbsp;a&nbsp;number&nbsp;to&nbsp;a&nbsp;string,&nbsp;using&nbsp;scientific&nbsp;notation.<br>
+&nbsp;<br>
+The&nbsp;operation&nbsp;is&nbsp;not&nbsp;affected&nbsp;by&nbsp;the&nbsp;context.</tt></dd></dl>
+
+<dl><dt><a name="Context-to_integral"><strong>to_integral</strong></a> = <a href="#Context-to_integral_value">to_integral_value</a>(self, a)</dt></dl>
+
+<dl><dt><a name="Context-to_integral_exact"><strong>to_integral_exact</strong></a>(self, a)</dt><dd><tt>Rounds&nbsp;to&nbsp;an&nbsp;integer.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;operand&nbsp;has&nbsp;a&nbsp;negative&nbsp;exponent,&nbsp;the&nbsp;result&nbsp;is&nbsp;the&nbsp;same<br>
+as&nbsp;using&nbsp;the&nbsp;<a href="#Context-quantize">quantize</a>()&nbsp;operation&nbsp;using&nbsp;the&nbsp;given&nbsp;operand&nbsp;as&nbsp;the<br>
+left-hand-operand,&nbsp;1E+0&nbsp;as&nbsp;the&nbsp;right-hand-operand,&nbsp;and&nbsp;the&nbsp;precision<br>
+of&nbsp;the&nbsp;operand&nbsp;as&nbsp;the&nbsp;precision&nbsp;setting;&nbsp;<a href="#Inexact">Inexact</a>&nbsp;and&nbsp;<a href="#Rounded">Rounded</a>&nbsp;flags<br>
+are&nbsp;allowed&nbsp;in&nbsp;this&nbsp;operation.&nbsp;&nbsp;The&nbsp;rounding&nbsp;mode&nbsp;is&nbsp;taken&nbsp;from&nbsp;the<br>
+context.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('100'))<br>
+<a href="#Decimal">Decimal</a>("100")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('100.0'))<br>
+<a href="#Decimal">Decimal</a>("100")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('101.5'))<br>
+<a href="#Decimal">Decimal</a>("102")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('-101.5'))<br>
+<a href="#Decimal">Decimal</a>("-102")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('10E+5'))<br>
+<a href="#Decimal">Decimal</a>("1.0E+6")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('7.89E+77'))<br>
+<a href="#Decimal">Decimal</a>("7.89E+77")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_exact">to_integral_exact</a>(<a href="#Decimal">Decimal</a>('-Inf'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-to_integral_value"><strong>to_integral_value</strong></a>(self, a)</dt><dd><tt>Rounds&nbsp;to&nbsp;an&nbsp;integer.<br>
+&nbsp;<br>
+When&nbsp;the&nbsp;operand&nbsp;has&nbsp;a&nbsp;negative&nbsp;exponent,&nbsp;the&nbsp;result&nbsp;is&nbsp;the&nbsp;same<br>
+as&nbsp;using&nbsp;the&nbsp;<a href="#Context-quantize">quantize</a>()&nbsp;operation&nbsp;using&nbsp;the&nbsp;given&nbsp;operand&nbsp;as&nbsp;the<br>
+left-hand-operand,&nbsp;1E+0&nbsp;as&nbsp;the&nbsp;right-hand-operand,&nbsp;and&nbsp;the&nbsp;precision<br>
+of&nbsp;the&nbsp;operand&nbsp;as&nbsp;the&nbsp;precision&nbsp;setting,&nbsp;except&nbsp;that&nbsp;no&nbsp;flags&nbsp;will<br>
+be&nbsp;set.&nbsp;&nbsp;The&nbsp;rounding&nbsp;mode&nbsp;is&nbsp;taken&nbsp;from&nbsp;the&nbsp;context.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('2.1'))<br>
+<a href="#Decimal">Decimal</a>("2")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('100'))<br>
+<a href="#Decimal">Decimal</a>("100")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('100.0'))<br>
+<a href="#Decimal">Decimal</a>("100")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('101.5'))<br>
+<a href="#Decimal">Decimal</a>("102")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('-101.5'))<br>
+<a href="#Decimal">Decimal</a>("-102")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('10E+5'))<br>
+<a href="#Decimal">Decimal</a>("1.0E+6")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('7.89E+77'))<br>
+<a href="#Decimal">Decimal</a>("7.89E+77")<br>
+&gt;&gt;&gt;&nbsp;ExtendedContext.<a href="#Context-to_integral_value">to_integral_value</a>(<a href="#Decimal">Decimal</a>('-Inf'))<br>
+<a href="#Decimal">Decimal</a>("-Infinity")</tt></dd></dl>
+
+<dl><dt><a name="Context-to_sci_string"><strong>to_sci_string</strong></a>(self, a)</dt><dd><tt>Converts&nbsp;a&nbsp;number&nbsp;to&nbsp;a&nbsp;string,&nbsp;using&nbsp;scientific&nbsp;notation.<br>
+&nbsp;<br>
+The&nbsp;operation&nbsp;is&nbsp;not&nbsp;affected&nbsp;by&nbsp;the&nbsp;context.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Decimal">class <strong>Decimal</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Floating&nbsp;point&nbsp;class&nbsp;for&nbsp;decimal&nbsp;arithmetic.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Decimal-__abs__"><strong>__abs__</strong></a>(self, round<font color="#909090">=True</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;absolute&nbsp;value&nbsp;of&nbsp;self.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;keyword&nbsp;argument&nbsp;'round'&nbsp;is&nbsp;false,&nbsp;do&nbsp;not&nbsp;round.&nbsp;&nbsp;The<br>
+expression&nbsp;<a href="#Decimal-__abs__">__abs__</a>(round=False)&nbsp;is&nbsp;equivalent&nbsp;to<br>
+<a href="#Decimal-copy_abs">copy_abs</a>().</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__add__"><strong>__add__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;self&nbsp;+&nbsp;other.<br>
+&nbsp;<br>
+-INF&nbsp;+&nbsp;INF&nbsp;(or&nbsp;the&nbsp;reverse)&nbsp;cause&nbsp;<a href="#InvalidOperation">InvalidOperation</a>&nbsp;errors.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__cmp__"><strong>__cmp__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Decimal-__copy__"><strong>__copy__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Decimal-__deepcopy__"><strong>__deepcopy__</strong></a>(self, memo)</dt></dl>
+
+<dl><dt><a name="Decimal-__div__"><strong>__div__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;self&nbsp;/&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__divmod__"><strong>__divmod__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;(self&nbsp;//&nbsp;other,&nbsp;self&nbsp;%&nbsp;other)</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__eq__"><strong>__eq__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Decimal-__float__"><strong>__float__</strong></a>(self)</dt><dd><tt>Float&nbsp;representation.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__floordiv__"><strong>__floordiv__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>self&nbsp;//&nbsp;other</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__hash__"><strong>__hash__</strong></a>(self)</dt><dd><tt>x.<a href="#Decimal-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__int__"><strong>__int__</strong></a>(self)</dt><dd><tt>Converts&nbsp;self&nbsp;to&nbsp;an&nbsp;int,&nbsp;truncating&nbsp;if&nbsp;necessary.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__long__"><strong>__long__</strong></a>(self)</dt><dd><tt>Converts&nbsp;to&nbsp;a&nbsp;long.<br>
+&nbsp;<br>
+Equivalent&nbsp;to&nbsp;long(int(self))</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__mod__"><strong>__mod__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>self&nbsp;%&nbsp;other</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__mul__"><strong>__mul__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;self&nbsp;*&nbsp;other.<br>
+&nbsp;<br>
+(+-)&nbsp;INF&nbsp;*&nbsp;0&nbsp;(or&nbsp;its&nbsp;reverse)&nbsp;raise&nbsp;<a href="#InvalidOperation">InvalidOperation</a>.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__ne__"><strong>__ne__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Decimal-__neg__"><strong>__neg__</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;with&nbsp;the&nbsp;sign&nbsp;switched.<br>
+&nbsp;<br>
+Rounds,&nbsp;if&nbsp;it&nbsp;has&nbsp;reason.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__nonzero__"><strong>__nonzero__</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;nonzero;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+NaNs&nbsp;and&nbsp;infinities&nbsp;are&nbsp;considered&nbsp;nonzero.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__pos__"><strong>__pos__</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;copy,&nbsp;unless&nbsp;it&nbsp;is&nbsp;a&nbsp;sNaN.<br>
+&nbsp;<br>
+Rounds&nbsp;the&nbsp;number&nbsp;(if&nbsp;more&nbsp;then&nbsp;precision&nbsp;digits)</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__pow__"><strong>__pow__</strong></a>(self, other, modulo<font color="#909090">=None</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;self&nbsp;**&nbsp;other&nbsp;[&nbsp;%&nbsp;modulo].<br>
+&nbsp;<br>
+With&nbsp;two&nbsp;arguments,&nbsp;compute&nbsp;self**other.<br>
+&nbsp;<br>
+With&nbsp;three&nbsp;arguments,&nbsp;compute&nbsp;(self**other)&nbsp;%&nbsp;modulo.&nbsp;&nbsp;For&nbsp;the<br>
+three&nbsp;argument&nbsp;form,&nbsp;the&nbsp;following&nbsp;restrictions&nbsp;on&nbsp;the<br>
+arguments&nbsp;hold:<br>
+&nbsp;<br>
+&nbsp;-&nbsp;all&nbsp;three&nbsp;arguments&nbsp;must&nbsp;be&nbsp;integral<br>
+&nbsp;-&nbsp;other&nbsp;must&nbsp;be&nbsp;nonnegative<br>
+&nbsp;-&nbsp;either&nbsp;self&nbsp;or&nbsp;other&nbsp;(or&nbsp;both)&nbsp;must&nbsp;be&nbsp;nonzero<br>
+&nbsp;-&nbsp;modulo&nbsp;must&nbsp;be&nbsp;nonzero&nbsp;and&nbsp;must&nbsp;have&nbsp;at&nbsp;most&nbsp;p&nbsp;digits,<br>
+&nbsp;&nbsp;&nbsp;where&nbsp;p&nbsp;is&nbsp;the&nbsp;context&nbsp;precision.<br>
+&nbsp;<br>
+If&nbsp;any&nbsp;of&nbsp;these&nbsp;restrictions&nbsp;is&nbsp;violated&nbsp;the&nbsp;<a href="#InvalidOperation">InvalidOperation</a><br>
+flag&nbsp;is&nbsp;raised.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;of&nbsp;pow(self,&nbsp;other,&nbsp;modulo)&nbsp;is&nbsp;identical&nbsp;to&nbsp;the<br>
+result&nbsp;that&nbsp;would&nbsp;be&nbsp;obtained&nbsp;by&nbsp;computing&nbsp;(self**other)&nbsp;%<br>
+modulo&nbsp;with&nbsp;unbounded&nbsp;precision,&nbsp;but&nbsp;is&nbsp;computed&nbsp;more<br>
+efficiently.&nbsp;&nbsp;It&nbsp;is&nbsp;always&nbsp;exact.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__radd__"><strong>__radd__</strong></a> = <a href="#Decimal-__add__">__add__</a>(self, other, context<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Decimal-__rdiv__"><strong>__rdiv__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Swaps&nbsp;self/other&nbsp;and&nbsp;returns&nbsp;__div__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rdivmod__"><strong>__rdivmod__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Swaps&nbsp;self/other&nbsp;and&nbsp;returns&nbsp;__divmod__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__reduce__"><strong>__reduce__</strong></a>(self)</dt><dd><tt>#&nbsp;Support&nbsp;for&nbsp;pickling,&nbsp;copy,&nbsp;and&nbsp;deepcopy</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Represents&nbsp;the&nbsp;number&nbsp;as&nbsp;an&nbsp;instance&nbsp;of&nbsp;<a href="#Decimal">Decimal</a>.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rfloordiv__"><strong>__rfloordiv__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Swaps&nbsp;self/other&nbsp;and&nbsp;returns&nbsp;__floordiv__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rmod__"><strong>__rmod__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Swaps&nbsp;self/other&nbsp;and&nbsp;returns&nbsp;__mod__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rmul__"><strong>__rmul__</strong></a> = <a href="#Decimal-__mul__">__mul__</a>(self, other, context<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Decimal-__rpow__"><strong>__rpow__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Swaps&nbsp;self/other&nbsp;and&nbsp;returns&nbsp;__pow__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rsub__"><strong>__rsub__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;other&nbsp;-&nbsp;self</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__rtruediv__"><strong>__rtruediv__</strong></a> = <a href="#Decimal-__rdiv__">__rdiv__</a>(self, other, context<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Decimal-__str__"><strong>__str__</strong></a>(self, eng<font color="#909090">=False</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;number&nbsp;in&nbsp;scientific&nbsp;notation.<br>
+&nbsp;<br>
+Captures&nbsp;all&nbsp;of&nbsp;the&nbsp;information&nbsp;in&nbsp;the&nbsp;underlying&nbsp;representation.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__sub__"><strong>__sub__</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;self&nbsp;-&nbsp;other</tt></dd></dl>
+
+<dl><dt><a name="Decimal-__truediv__"><strong>__truediv__</strong></a> = <a href="#Decimal-__div__">__div__</a>(self, other, context<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Decimal-adjusted"><strong>adjusted</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;adjusted&nbsp;exponent&nbsp;of&nbsp;self</tt></dd></dl>
+
+<dl><dt><a name="Decimal-as_tuple"><strong>as_tuple</strong></a>(self)</dt><dd><tt>Represents&nbsp;the&nbsp;number&nbsp;as&nbsp;a&nbsp;triple&nbsp;tuple.<br>
+&nbsp;<br>
+To&nbsp;show&nbsp;the&nbsp;internals&nbsp;exactly&nbsp;as&nbsp;they&nbsp;are.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-canonical"><strong>canonical</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;same&nbsp;<a href="#Decimal">Decimal</a>&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+&nbsp;<br>
+As&nbsp;we&nbsp;do&nbsp;not&nbsp;have&nbsp;different&nbsp;encodings&nbsp;for&nbsp;the&nbsp;same&nbsp;number,&nbsp;the<br>
+received&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;already&nbsp;is&nbsp;in&nbsp;its&nbsp;canonical&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-compare"><strong>compare</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Compares&nbsp;one&nbsp;to&nbsp;another.<br>
+&nbsp;<br>
+-1&nbsp;=&gt;&nbsp;a&nbsp;&lt;&nbsp;b<br>
+0&nbsp;&nbsp;=&gt;&nbsp;a&nbsp;=&nbsp;b<br>
+1&nbsp;&nbsp;=&gt;&nbsp;a&nbsp;&gt;&nbsp;b<br>
+NaN&nbsp;=&gt;&nbsp;one&nbsp;is&nbsp;NaN<br>
+Like&nbsp;__cmp__,&nbsp;but&nbsp;returns&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instances.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-compare_signal"><strong>compare_signal</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Compares&nbsp;self&nbsp;to&nbsp;the&nbsp;other&nbsp;operand&nbsp;numerically.<br>
+&nbsp;<br>
+It's&nbsp;pretty&nbsp;much&nbsp;like&nbsp;<a href="#Decimal-compare">compare</a>(),&nbsp;but&nbsp;all&nbsp;NaNs&nbsp;signal,&nbsp;with&nbsp;signaling<br>
+NaNs&nbsp;taking&nbsp;precedence&nbsp;over&nbsp;quiet&nbsp;NaNs.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-compare_total"><strong>compare_total</strong></a>(self, other)</dt><dd><tt>Compares&nbsp;self&nbsp;to&nbsp;other&nbsp;using&nbsp;the&nbsp;abstract&nbsp;representations.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;not&nbsp;like&nbsp;the&nbsp;standard&nbsp;compare,&nbsp;which&nbsp;use&nbsp;their&nbsp;numerical<br>
+value.&nbsp;Note&nbsp;that&nbsp;a&nbsp;total&nbsp;ordering&nbsp;is&nbsp;defined&nbsp;for&nbsp;all&nbsp;possible&nbsp;abstract<br>
+representations.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-compare_total_mag"><strong>compare_total_mag</strong></a>(self, other)</dt><dd><tt>Compares&nbsp;self&nbsp;to&nbsp;other&nbsp;using&nbsp;abstract&nbsp;repr.,&nbsp;ignoring&nbsp;sign.<br>
+&nbsp;<br>
+Like&nbsp;compare_total,&nbsp;but&nbsp;with&nbsp;operand's&nbsp;sign&nbsp;ignored&nbsp;and&nbsp;assumed&nbsp;to&nbsp;be&nbsp;0.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-copy_abs"><strong>copy_abs</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;with&nbsp;the&nbsp;sign&nbsp;set&nbsp;to&nbsp;0.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-copy_negate"><strong>copy_negate</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;with&nbsp;the&nbsp;sign&nbsp;inverted.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-copy_sign"><strong>copy_sign</strong></a>(self, other)</dt><dd><tt>Returns&nbsp;self&nbsp;with&nbsp;the&nbsp;sign&nbsp;of&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-exp"><strong>exp</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;e&nbsp;**&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-fma"><strong>fma</strong></a>(self, other, third, context<font color="#909090">=None</font>)</dt><dd><tt>Fused&nbsp;multiply-add.<br>
+&nbsp;<br>
+Returns&nbsp;self*other+third&nbsp;with&nbsp;no&nbsp;rounding&nbsp;of&nbsp;the&nbsp;intermediate<br>
+product&nbsp;self*other.<br>
+&nbsp;<br>
+self&nbsp;and&nbsp;other&nbsp;are&nbsp;multiplied&nbsp;together,&nbsp;with&nbsp;no&nbsp;rounding&nbsp;of<br>
+the&nbsp;result.&nbsp;&nbsp;The&nbsp;third&nbsp;operand&nbsp;is&nbsp;then&nbsp;added&nbsp;to&nbsp;the&nbsp;result,<br>
+and&nbsp;a&nbsp;single&nbsp;final&nbsp;rounding&nbsp;is&nbsp;performed.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_canonical"><strong>is_canonical</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;canonical;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+Currently,&nbsp;the&nbsp;encoding&nbsp;of&nbsp;a&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance&nbsp;is&nbsp;always<br>
+canonical,&nbsp;so&nbsp;this&nbsp;method&nbsp;returns&nbsp;True&nbsp;for&nbsp;any&nbsp;<a href="#Decimal">Decimal</a>.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_finite"><strong>is_finite</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;finite;&nbsp;otherwise&nbsp;return&nbsp;False.<br>
+&nbsp;<br>
+A&nbsp;<a href="#Decimal">Decimal</a>&nbsp;instance&nbsp;is&nbsp;considered&nbsp;finite&nbsp;if&nbsp;it&nbsp;is&nbsp;neither<br>
+infinite&nbsp;nor&nbsp;a&nbsp;NaN.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_infinite"><strong>is_infinite</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;infinite;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_nan"><strong>is_nan</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;a&nbsp;qNaN&nbsp;or&nbsp;sNaN;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_normal"><strong>is_normal</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;a&nbsp;normal&nbsp;number;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_qnan"><strong>is_qnan</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;a&nbsp;quiet&nbsp;NaN;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_signed"><strong>is_signed</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;negative;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_snan"><strong>is_snan</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;a&nbsp;signaling&nbsp;NaN;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_subnormal"><strong>is_subnormal</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;subnormal;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-is_zero"><strong>is_zero</strong></a>(self)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;is&nbsp;a&nbsp;zero;&nbsp;otherwise&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-ln"><strong>ln</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;natural&nbsp;(base&nbsp;e)&nbsp;logarithm&nbsp;of&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-log10"><strong>log10</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;base&nbsp;10&nbsp;logarithm&nbsp;of&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-logb"><strong>logb</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;exponent&nbsp;of&nbsp;the&nbsp;magnitude&nbsp;of&nbsp;self's&nbsp;MSD.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;the&nbsp;integer&nbsp;which&nbsp;is&nbsp;the&nbsp;exponent&nbsp;of&nbsp;the&nbsp;magnitude<br>
+of&nbsp;the&nbsp;most&nbsp;significant&nbsp;digit&nbsp;of&nbsp;self&nbsp;(as&nbsp;though&nbsp;it&nbsp;were&nbsp;truncated<br>
+to&nbsp;a&nbsp;single&nbsp;digit&nbsp;while&nbsp;maintaining&nbsp;the&nbsp;value&nbsp;of&nbsp;that&nbsp;digit&nbsp;and<br>
+without&nbsp;limiting&nbsp;the&nbsp;resulting&nbsp;exponent).</tt></dd></dl>
+
+<dl><dt><a name="Decimal-logical_and"><strong>logical_and</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Applies&nbsp;an&nbsp;'and'&nbsp;operation&nbsp;between&nbsp;self&nbsp;and&nbsp;other's&nbsp;digits.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-logical_invert"><strong>logical_invert</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Invert&nbsp;all&nbsp;its&nbsp;digits.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-logical_or"><strong>logical_or</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Applies&nbsp;an&nbsp;'or'&nbsp;operation&nbsp;between&nbsp;self&nbsp;and&nbsp;other's&nbsp;digits.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-logical_xor"><strong>logical_xor</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Applies&nbsp;an&nbsp;'xor'&nbsp;operation&nbsp;between&nbsp;self&nbsp;and&nbsp;other's&nbsp;digits.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-max"><strong>max</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;larger&nbsp;value.<br>
+&nbsp;<br>
+Like&nbsp;<a href="#Decimal-max">max</a>(self,&nbsp;other)&nbsp;except&nbsp;if&nbsp;one&nbsp;is&nbsp;not&nbsp;a&nbsp;number,&nbsp;returns<br>
+NaN&nbsp;(and&nbsp;signals&nbsp;if&nbsp;one&nbsp;is&nbsp;sNaN).&nbsp;&nbsp;Also&nbsp;rounds.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-max_mag"><strong>max_mag</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Compares&nbsp;the&nbsp;values&nbsp;numerically&nbsp;with&nbsp;their&nbsp;sign&nbsp;ignored.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-min"><strong>min</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;smaller&nbsp;value.<br>
+&nbsp;<br>
+Like&nbsp;<a href="#Decimal-min">min</a>(self,&nbsp;other)&nbsp;except&nbsp;if&nbsp;one&nbsp;is&nbsp;not&nbsp;a&nbsp;number,&nbsp;returns<br>
+NaN&nbsp;(and&nbsp;signals&nbsp;if&nbsp;one&nbsp;is&nbsp;sNaN).&nbsp;&nbsp;Also&nbsp;rounds.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-min_mag"><strong>min_mag</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Compares&nbsp;the&nbsp;values&nbsp;numerically&nbsp;with&nbsp;their&nbsp;sign&nbsp;ignored.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-next_minus"><strong>next_minus</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;largest&nbsp;representable&nbsp;number&nbsp;smaller&nbsp;than&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-next_plus"><strong>next_plus</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;smallest&nbsp;representable&nbsp;number&nbsp;larger&nbsp;than&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-next_toward"><strong>next_toward</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;closest&nbsp;to&nbsp;self,&nbsp;in&nbsp;the&nbsp;direction&nbsp;towards&nbsp;other.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;the&nbsp;closest&nbsp;representable&nbsp;number&nbsp;to&nbsp;self<br>
+(excluding&nbsp;self)&nbsp;that&nbsp;is&nbsp;in&nbsp;the&nbsp;direction&nbsp;towards&nbsp;other,<br>
+unless&nbsp;both&nbsp;have&nbsp;the&nbsp;same&nbsp;value.&nbsp;&nbsp;If&nbsp;the&nbsp;two&nbsp;operands&nbsp;are<br>
+numerically&nbsp;equal,&nbsp;then&nbsp;the&nbsp;result&nbsp;is&nbsp;a&nbsp;copy&nbsp;of&nbsp;self&nbsp;with&nbsp;the<br>
+sign&nbsp;set&nbsp;to&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;sign&nbsp;of&nbsp;other.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-normalize"><strong>normalize</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Normalize-&nbsp;strip&nbsp;trailing&nbsp;0s,&nbsp;change&nbsp;anything&nbsp;equal&nbsp;to&nbsp;0&nbsp;to&nbsp;0e0</tt></dd></dl>
+
+<dl><dt><a name="Decimal-number_class"><strong>number_class</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;an&nbsp;indication&nbsp;of&nbsp;the&nbsp;class&nbsp;of&nbsp;self.<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;is&nbsp;one&nbsp;of&nbsp;the&nbsp;following&nbsp;strings:<br>
+&nbsp;&nbsp;sNaN<br>
+&nbsp;&nbsp;NaN<br>
+&nbsp;&nbsp;-Infinity<br>
+&nbsp;&nbsp;-Normal<br>
+&nbsp;&nbsp;-<a href="#Subnormal">Subnormal</a><br>
+&nbsp;&nbsp;-Zero<br>
+&nbsp;&nbsp;+Zero<br>
+&nbsp;&nbsp;+<a href="#Subnormal">Subnormal</a><br>
+&nbsp;&nbsp;+Normal<br>
+&nbsp;&nbsp;+Infinity</tt></dd></dl>
+
+<dl><dt><a name="Decimal-quantize"><strong>quantize</strong></a>(self, exp, rounding<font color="#909090">=None</font>, context<font color="#909090">=None</font>, watchexp<font color="#909090">=True</font>)</dt><dd><tt>Quantize&nbsp;self&nbsp;so&nbsp;its&nbsp;exponent&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;that&nbsp;of&nbsp;exp.<br>
+&nbsp;<br>
+Similar&nbsp;to&nbsp;_rescale(exp._exp)&nbsp;but&nbsp;with&nbsp;error&nbsp;checking.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-radix"><strong>radix</strong></a>(self)</dt><dd><tt>Just&nbsp;returns&nbsp;10,&nbsp;as&nbsp;this&nbsp;is&nbsp;<a href="#Decimal">Decimal</a>,&nbsp;:)</tt></dd></dl>
+
+<dl><dt><a name="Decimal-remainder_near"><strong>remainder_near</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Remainder&nbsp;nearest&nbsp;to&nbsp;0-&nbsp;&nbsp;abs(remainder-near)&nbsp;&lt;=&nbsp;other/2</tt></dd></dl>
+
+<dl><dt><a name="Decimal-rotate"><strong>rotate</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;rotated&nbsp;copy&nbsp;of&nbsp;self,&nbsp;value-of-other&nbsp;times.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-same_quantum"><strong>same_quantum</strong></a>(self, other)</dt><dd><tt>Return&nbsp;True&nbsp;if&nbsp;self&nbsp;and&nbsp;other&nbsp;have&nbsp;the&nbsp;same&nbsp;exponent;&nbsp;otherwise<br>
+return&nbsp;False.<br>
+&nbsp;<br>
+If&nbsp;either&nbsp;operand&nbsp;is&nbsp;a&nbsp;special&nbsp;value,&nbsp;the&nbsp;following&nbsp;rules&nbsp;are&nbsp;used:<br>
+&nbsp;&nbsp;&nbsp;*&nbsp;return&nbsp;True&nbsp;if&nbsp;both&nbsp;operands&nbsp;are&nbsp;infinities<br>
+&nbsp;&nbsp;&nbsp;*&nbsp;return&nbsp;True&nbsp;if&nbsp;both&nbsp;operands&nbsp;are&nbsp;NaNs<br>
+&nbsp;&nbsp;&nbsp;*&nbsp;otherwise,&nbsp;return&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-scaleb"><strong>scaleb</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;self&nbsp;operand&nbsp;after&nbsp;adding&nbsp;the&nbsp;second&nbsp;value&nbsp;to&nbsp;its&nbsp;exp.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-shift"><strong>shift</strong></a>(self, other, context<font color="#909090">=None</font>)</dt><dd><tt>Returns&nbsp;a&nbsp;shifted&nbsp;copy&nbsp;of&nbsp;self,&nbsp;value-of-other&nbsp;times.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-sqrt"><strong>sqrt</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;square&nbsp;root&nbsp;of&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-to_eng_string"><strong>to_eng_string</strong></a>(self, context<font color="#909090">=None</font>)</dt><dd><tt>Convert&nbsp;to&nbsp;engineering-type&nbsp;string.<br>
+&nbsp;<br>
+Engineering&nbsp;notation&nbsp;has&nbsp;an&nbsp;exponent&nbsp;which&nbsp;is&nbsp;a&nbsp;multiple&nbsp;of&nbsp;3,&nbsp;so&nbsp;there<br>
+are&nbsp;up&nbsp;to&nbsp;3&nbsp;digits&nbsp;left&nbsp;of&nbsp;the&nbsp;decimal&nbsp;place.<br>
+&nbsp;<br>
+Same&nbsp;rules&nbsp;for&nbsp;when&nbsp;in&nbsp;exponential&nbsp;and&nbsp;when&nbsp;as&nbsp;a&nbsp;value&nbsp;as&nbsp;in&nbsp;__str__.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-to_integral"><strong>to_integral</strong></a> = <a href="#Decimal-to_integral_value">to_integral_value</a>(self, rounding<font color="#909090">=None</font>, context<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Decimal-to_integral_exact"><strong>to_integral_exact</strong></a>(self, rounding<font color="#909090">=None</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Rounds&nbsp;to&nbsp;a&nbsp;nearby&nbsp;integer.<br>
+&nbsp;<br>
+If&nbsp;no&nbsp;rounding&nbsp;mode&nbsp;is&nbsp;specified,&nbsp;take&nbsp;the&nbsp;rounding&nbsp;mode&nbsp;from<br>
+the&nbsp;context.&nbsp;&nbsp;This&nbsp;method&nbsp;raises&nbsp;the&nbsp;<a href="#Rounded">Rounded</a>&nbsp;and&nbsp;<a href="#Inexact">Inexact</a>&nbsp;flags<br>
+when&nbsp;appropriate.<br>
+&nbsp;<br>
+See&nbsp;also:&nbsp;to_integral_value,&nbsp;which&nbsp;does&nbsp;exactly&nbsp;the&nbsp;same&nbsp;as<br>
+this&nbsp;method&nbsp;except&nbsp;that&nbsp;it&nbsp;doesn't&nbsp;raise&nbsp;<a href="#Inexact">Inexact</a>&nbsp;or&nbsp;<a href="#Rounded">Rounded</a>.</tt></dd></dl>
+
+<dl><dt><a name="Decimal-to_integral_value"><strong>to_integral_value</strong></a>(self, rounding<font color="#909090">=None</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Rounds&nbsp;to&nbsp;the&nbsp;nearest&nbsp;integer,&nbsp;without&nbsp;raising&nbsp;inexact,&nbsp;rounded.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Decimal-__new__"><strong>__new__</strong></a>(cls, value<font color="#909090">='0'</font>, context<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;decimal&nbsp;point&nbsp;instance.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>('3.14')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;string&nbsp;input<br>
+<a href="#Decimal">Decimal</a>("3.14")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>((0,&nbsp;(3,&nbsp;1,&nbsp;4),&nbsp;-2))&nbsp;&nbsp;#&nbsp;tuple&nbsp;(sign,&nbsp;digit_tuple,&nbsp;exponent)<br>
+<a href="#Decimal">Decimal</a>("3.14")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>(314)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;int&nbsp;or&nbsp;long<br>
+<a href="#Decimal">Decimal</a>("314")<br>
+&gt;&gt;&gt;&nbsp;<a href="#Decimal">Decimal</a>(<a href="#Decimal">Decimal</a>(314))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;another&nbsp;decimal&nbsp;instance<br>
+<a href="#Decimal">Decimal</a>("314")</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DecimalException">class <strong>DecimalException</strong></a>(<a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;exception&nbsp;class.<br>
+&nbsp;<br>
+Used&nbsp;exceptions&nbsp;derive&nbsp;from&nbsp;this.<br>
+If&nbsp;an&nbsp;exception&nbsp;derives&nbsp;from&nbsp;another&nbsp;exception&nbsp;besides&nbsp;this&nbsp;(such&nbsp;as<br>
+<a href="#Underflow">Underflow</a>&nbsp;(<a href="#Inexact">Inexact</a>,&nbsp;<a href="#Rounded">Rounded</a>,&nbsp;<a href="#Subnormal">Subnormal</a>)&nbsp;that&nbsp;indicates&nbsp;that&nbsp;it&nbsp;is&nbsp;only<br>
+called&nbsp;if&nbsp;the&nbsp;others&nbsp;are&nbsp;present.&nbsp;&nbsp;This&nbsp;isn't&nbsp;actually&nbsp;used&nbsp;for<br>
+anything,&nbsp;though.<br>
+&nbsp;<br>
+handle&nbsp;&nbsp;--&nbsp;Called&nbsp;when&nbsp;context._raise_error&nbsp;is&nbsp;called&nbsp;and&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trap_enabler&nbsp;is&nbsp;set.&nbsp;&nbsp;First&nbsp;argument&nbsp;is&nbsp;self,&nbsp;second&nbsp;is&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context.&nbsp;&nbsp;More&nbsp;arguments&nbsp;can&nbsp;be&nbsp;given,&nbsp;those&nbsp;being&nbsp;after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;explanation&nbsp;in&nbsp;_raise_error&nbsp;(For&nbsp;example,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context._raise_error(NewError,&nbsp;'(-x)!',&nbsp;self.<strong>_sign</strong>)&nbsp;would<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;call&nbsp;NewError().<a href="#DecimalException-handle">handle</a>(context,&nbsp;self.<strong>_sign</strong>).)<br>
+&nbsp;<br>
+To&nbsp;define&nbsp;a&nbsp;new&nbsp;exception,&nbsp;it&nbsp;should&nbsp;be&nbsp;sufficient&nbsp;to&nbsp;have&nbsp;it&nbsp;derive<br>
+from&nbsp;<a href="#DecimalException">DecimalException</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DecimalException-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="DecimalException-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#DecimalException-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="DecimalException-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DecimalException-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="DecimalException-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DecimalException-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#DecimalException-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DivisionByZero">class <strong>DivisionByZero</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>, <a href="exceptions.html#ZeroDivisionError">exceptions.ZeroDivisionError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Division&nbsp;by&nbsp;0.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;division-by-zero&nbsp;if&nbsp;division&nbsp;of&nbsp;a&nbsp;finite&nbsp;number<br>
+by&nbsp;zero&nbsp;was&nbsp;attempted&nbsp;(during&nbsp;a&nbsp;divide-integer&nbsp;or&nbsp;divide&nbsp;operation,&nbsp;or&nbsp;a<br>
+power&nbsp;operation&nbsp;with&nbsp;negative&nbsp;right-hand&nbsp;operand),&nbsp;and&nbsp;the&nbsp;dividend&nbsp;was<br>
+not&nbsp;zero.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;of&nbsp;the&nbsp;operation&nbsp;is&nbsp;[sign,inf],&nbsp;where&nbsp;sign&nbsp;is&nbsp;the&nbsp;exclusive<br>
+or&nbsp;of&nbsp;the&nbsp;signs&nbsp;of&nbsp;the&nbsp;operands&nbsp;for&nbsp;divide,&nbsp;or&nbsp;is&nbsp;1&nbsp;for&nbsp;an&nbsp;odd&nbsp;power&nbsp;of<br>
+-0,&nbsp;for&nbsp;power.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#DivisionByZero">DivisionByZero</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ZeroDivisionError">exceptions.ZeroDivisionError</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DivisionByZero-handle"><strong>handle</strong></a>(self, context, sign, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ZeroDivisionError">exceptions.ZeroDivisionError</a>:<br>
+<dl><dt><a name="DivisionByZero-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ZeroDivisionError">exceptions.ZeroDivisionError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8f014&gt;<dd><tt>T.<a href="#DivisionByZero-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="DivisionByZero-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DivisionByZero-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="DivisionByZero-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DivisionByZero-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#DivisionByZero-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Inexact">class <strong>Inexact</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Had&nbsp;to&nbsp;round,&nbsp;losing&nbsp;information.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;inexact&nbsp;whenever&nbsp;the&nbsp;result&nbsp;of&nbsp;an&nbsp;operation&nbsp;is<br>
+not&nbsp;exact&nbsp;(that&nbsp;is,&nbsp;it&nbsp;needed&nbsp;to&nbsp;be&nbsp;rounded&nbsp;and&nbsp;any&nbsp;discarded&nbsp;digits<br>
+were&nbsp;non-zero),&nbsp;or&nbsp;if&nbsp;an&nbsp;overflow&nbsp;or&nbsp;underflow&nbsp;condition&nbsp;occurs.&nbsp;&nbsp;The<br>
+result&nbsp;in&nbsp;all&nbsp;cases&nbsp;is&nbsp;unchanged.<br>
+&nbsp;<br>
+The&nbsp;inexact&nbsp;signal&nbsp;may&nbsp;be&nbsp;tested&nbsp;(or&nbsp;trapped)&nbsp;to&nbsp;determine&nbsp;if&nbsp;a&nbsp;given<br>
+operation&nbsp;(or&nbsp;sequence&nbsp;of&nbsp;operations)&nbsp;was&nbsp;inexact.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Inexact">Inexact</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><a name="Inexact-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Inexact-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Inexact-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Inexact-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Inexact-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Inexact-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Inexact-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Inexact-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InvalidOperation">class <strong>InvalidOperation</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>An&nbsp;invalid&nbsp;operation&nbsp;was&nbsp;performed.<br>
+&nbsp;<br>
+Various&nbsp;bad&nbsp;things&nbsp;cause&nbsp;this:<br>
+&nbsp;<br>
+Something&nbsp;creates&nbsp;a&nbsp;signaling&nbsp;NaN<br>
+-INF&nbsp;+&nbsp;INF<br>
+0&nbsp;*&nbsp;(+-)INF<br>
+(+-)INF&nbsp;/&nbsp;(+-)INF<br>
+x&nbsp;%&nbsp;0<br>
+(+-)INF&nbsp;%&nbsp;x<br>
+x._rescale(&nbsp;non-integer&nbsp;)<br>
+sqrt(-x)&nbsp;,&nbsp;x&nbsp;&gt;&nbsp;0<br>
+0&nbsp;**&nbsp;0<br>
+x&nbsp;**&nbsp;(non-integer)<br>
+x&nbsp;**&nbsp;(+-)INF<br>
+An&nbsp;operand&nbsp;is&nbsp;invalid<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;of&nbsp;the&nbsp;operation&nbsp;after&nbsp;these&nbsp;is&nbsp;a&nbsp;quiet&nbsp;positive&nbsp;NaN,<br>
+except&nbsp;when&nbsp;the&nbsp;cause&nbsp;is&nbsp;a&nbsp;signaling&nbsp;NaN,&nbsp;in&nbsp;which&nbsp;case&nbsp;the&nbsp;result&nbsp;is<br>
+also&nbsp;a&nbsp;quiet&nbsp;NaN,&nbsp;but&nbsp;with&nbsp;the&nbsp;original&nbsp;sign,&nbsp;and&nbsp;an&nbsp;optional<br>
+diagnostic&nbsp;information.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#InvalidOperation">InvalidOperation</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="InvalidOperation-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="InvalidOperation-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#InvalidOperation-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="InvalidOperation-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InvalidOperation-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="InvalidOperation-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InvalidOperation-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#InvalidOperation-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Overflow">class <strong>Overflow</strong></a>(<a href="decimal.html#Inexact">Inexact</a>, <a href="decimal.html#Rounded">Rounded</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Numerical&nbsp;overflow.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;overflow&nbsp;if&nbsp;the&nbsp;adjusted&nbsp;exponent&nbsp;of&nbsp;a&nbsp;result<br>
+(from&nbsp;a&nbsp;conversion&nbsp;or&nbsp;from&nbsp;an&nbsp;operation&nbsp;that&nbsp;is&nbsp;not&nbsp;an&nbsp;attempt&nbsp;to&nbsp;divide<br>
+by&nbsp;zero),&nbsp;after&nbsp;rounding,&nbsp;would&nbsp;be&nbsp;greater&nbsp;than&nbsp;the&nbsp;largest&nbsp;value&nbsp;that<br>
+can&nbsp;be&nbsp;handled&nbsp;by&nbsp;the&nbsp;implementation&nbsp;(the&nbsp;value&nbsp;Emax).<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;depends&nbsp;on&nbsp;the&nbsp;rounding&nbsp;mode:<br>
+&nbsp;<br>
+For&nbsp;round-half-up&nbsp;and&nbsp;round-half-even&nbsp;(and&nbsp;for&nbsp;round-half-down&nbsp;and<br>
+round-up,&nbsp;if&nbsp;implemented),&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation&nbsp;is&nbsp;[sign,inf],<br>
+where&nbsp;sign&nbsp;is&nbsp;the&nbsp;sign&nbsp;of&nbsp;the&nbsp;intermediate&nbsp;result.&nbsp;&nbsp;For&nbsp;round-down,&nbsp;the<br>
+result&nbsp;is&nbsp;the&nbsp;largest&nbsp;finite&nbsp;number&nbsp;that&nbsp;can&nbsp;be&nbsp;represented&nbsp;in&nbsp;the<br>
+current&nbsp;precision,&nbsp;with&nbsp;the&nbsp;sign&nbsp;of&nbsp;the&nbsp;intermediate&nbsp;result.&nbsp;&nbsp;For<br>
+round-ceiling,&nbsp;the&nbsp;result&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;for&nbsp;round-down&nbsp;if&nbsp;the&nbsp;sign&nbsp;of<br>
+the&nbsp;intermediate&nbsp;result&nbsp;is&nbsp;1,&nbsp;or&nbsp;is&nbsp;[0,inf]&nbsp;otherwise.&nbsp;&nbsp;For&nbsp;round-floor,<br>
+the&nbsp;result&nbsp;is&nbsp;the&nbsp;same&nbsp;as&nbsp;for&nbsp;round-down&nbsp;if&nbsp;the&nbsp;sign&nbsp;of&nbsp;the&nbsp;intermediate<br>
+result&nbsp;is&nbsp;0,&nbsp;or&nbsp;is&nbsp;[1,inf]&nbsp;otherwise.&nbsp;&nbsp;In&nbsp;all&nbsp;cases,&nbsp;<a href="#Inexact">Inexact</a>&nbsp;and&nbsp;<a href="#Rounded">Rounded</a><br>
+will&nbsp;also&nbsp;be&nbsp;raised.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Overflow">Overflow</a></dd>
+<dd><a href="decimal.html#Inexact">Inexact</a></dd>
+<dd><a href="decimal.html#Rounded">Rounded</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Overflow-handle"><strong>handle</strong></a>(self, context, sign, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Overflow-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Overflow-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Overflow-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Overflow-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Overflow-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Overflow-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Overflow-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Rounded">class <strong>Rounded</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Number&nbsp;got&nbsp;rounded&nbsp;(not&nbsp;&nbsp;necessarily&nbsp;changed&nbsp;during&nbsp;rounding).<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;rounded&nbsp;whenever&nbsp;the&nbsp;result&nbsp;of&nbsp;an&nbsp;operation&nbsp;is<br>
+rounded&nbsp;(that&nbsp;is,&nbsp;some&nbsp;zero&nbsp;or&nbsp;non-zero&nbsp;digits&nbsp;were&nbsp;discarded&nbsp;from&nbsp;the<br>
+coefficient),&nbsp;or&nbsp;if&nbsp;an&nbsp;overflow&nbsp;or&nbsp;underflow&nbsp;condition&nbsp;occurs.&nbsp;&nbsp;The<br>
+result&nbsp;in&nbsp;all&nbsp;cases&nbsp;is&nbsp;unchanged.<br>
+&nbsp;<br>
+The&nbsp;rounded&nbsp;signal&nbsp;may&nbsp;be&nbsp;tested&nbsp;(or&nbsp;trapped)&nbsp;to&nbsp;determine&nbsp;if&nbsp;a&nbsp;given<br>
+operation&nbsp;(or&nbsp;sequence&nbsp;of&nbsp;operations)&nbsp;caused&nbsp;a&nbsp;loss&nbsp;of&nbsp;precision.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Rounded">Rounded</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><a name="Rounded-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Rounded-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Rounded-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Rounded-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Rounded-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Rounded-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Rounded-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Rounded-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Subnormal">class <strong>Subnormal</strong></a>(<a href="decimal.html#DecimalException">DecimalException</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exponent&nbsp;&lt;&nbsp;Emin&nbsp;before&nbsp;rounding.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;subnormal&nbsp;whenever&nbsp;the&nbsp;result&nbsp;of&nbsp;a&nbsp;conversion&nbsp;or<br>
+operation&nbsp;is&nbsp;subnormal&nbsp;(that&nbsp;is,&nbsp;its&nbsp;adjusted&nbsp;exponent&nbsp;is&nbsp;less&nbsp;than<br>
+Emin,&nbsp;before&nbsp;any&nbsp;rounding).&nbsp;&nbsp;The&nbsp;result&nbsp;in&nbsp;all&nbsp;cases&nbsp;is&nbsp;unchanged.<br>
+&nbsp;<br>
+The&nbsp;subnormal&nbsp;signal&nbsp;may&nbsp;be&nbsp;tested&nbsp;(or&nbsp;trapped)&nbsp;to&nbsp;determine&nbsp;if&nbsp;a&nbsp;given<br>
+or&nbsp;operation&nbsp;(or&nbsp;sequence&nbsp;of&nbsp;operations)&nbsp;yielded&nbsp;a&nbsp;subnormal&nbsp;result.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Subnormal">Subnormal</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><a name="Subnormal-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Subnormal-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Subnormal-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Subnormal-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Subnormal-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Subnormal-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Subnormal-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Subnormal-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Underflow">class <strong>Underflow</strong></a>(<a href="decimal.html#Inexact">Inexact</a>, <a href="decimal.html#Rounded">Rounded</a>, <a href="decimal.html#Subnormal">Subnormal</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Numerical&nbsp;underflow&nbsp;with&nbsp;result&nbsp;rounded&nbsp;to&nbsp;0.<br>
+&nbsp;<br>
+This&nbsp;occurs&nbsp;and&nbsp;signals&nbsp;underflow&nbsp;if&nbsp;a&nbsp;result&nbsp;is&nbsp;inexact&nbsp;and&nbsp;the<br>
+adjusted&nbsp;exponent&nbsp;of&nbsp;the&nbsp;result&nbsp;would&nbsp;be&nbsp;smaller&nbsp;(more&nbsp;negative)&nbsp;than<br>
+the&nbsp;smallest&nbsp;value&nbsp;that&nbsp;can&nbsp;be&nbsp;handled&nbsp;by&nbsp;the&nbsp;implementation&nbsp;(the&nbsp;value<br>
+Emin).&nbsp;&nbsp;That&nbsp;is,&nbsp;the&nbsp;result&nbsp;is&nbsp;both&nbsp;inexact&nbsp;and&nbsp;subnormal.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;after&nbsp;an&nbsp;underflow&nbsp;will&nbsp;be&nbsp;a&nbsp;subnormal&nbsp;number&nbsp;rounded,&nbsp;if<br>
+necessary,&nbsp;so&nbsp;that&nbsp;its&nbsp;exponent&nbsp;is&nbsp;not&nbsp;less&nbsp;than&nbsp;Etiny.&nbsp;&nbsp;This&nbsp;may&nbsp;result<br>
+in&nbsp;0&nbsp;with&nbsp;the&nbsp;sign&nbsp;of&nbsp;the&nbsp;intermediate&nbsp;result&nbsp;and&nbsp;an&nbsp;exponent&nbsp;of&nbsp;Etiny.<br>
+&nbsp;<br>
+In&nbsp;all&nbsp;cases,&nbsp;<a href="#Inexact">Inexact</a>,&nbsp;<a href="#Rounded">Rounded</a>,&nbsp;and&nbsp;<a href="#Subnormal">Subnormal</a>&nbsp;will&nbsp;also&nbsp;be&nbsp;raised.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="decimal.html#Underflow">Underflow</a></dd>
+<dd><a href="decimal.html#Inexact">Inexact</a></dd>
+<dd><a href="decimal.html#Rounded">Rounded</a></dd>
+<dd><a href="decimal.html#Subnormal">Subnormal</a></dd>
+<dd><a href="decimal.html#DecimalException">DecimalException</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><a name="Underflow-handle"><strong>handle</strong></a>(self, context, *args)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="decimal.html#DecimalException">DecimalException</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><a name="Underflow-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#ArithmeticError">exceptions.ArithmeticError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ea20&gt;<dd><tt>T.<a href="#Underflow-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="Underflow-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Underflow-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="Underflow-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Underflow-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#Underflow-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-getcontext"><strong>getcontext</strong></a>(_local<font color="#909090">=&lt;thread._local object at 0x8ccedd0&gt;</font>)</dt><dd><tt>Returns&nbsp;this&nbsp;thread's&nbsp;context.<br>
+&nbsp;<br>
+If&nbsp;this&nbsp;thread&nbsp;does&nbsp;not&nbsp;yet&nbsp;have&nbsp;a&nbsp;context,&nbsp;returns<br>
+a&nbsp;new&nbsp;context&nbsp;and&nbsp;sets&nbsp;this&nbsp;thread's&nbsp;context.<br>
+New&nbsp;contexts&nbsp;are&nbsp;copies&nbsp;of&nbsp;DefaultContext.</tt></dd></dl>
+ <dl><dt><a name="-localcontext"><strong>localcontext</strong></a>(ctx<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;a&nbsp;context&nbsp;manager&nbsp;for&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;supplied&nbsp;context<br>
+&nbsp;<br>
+Uses&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;current&nbsp;context&nbsp;if&nbsp;no&nbsp;context&nbsp;is&nbsp;specified<br>
+The&nbsp;returned&nbsp;context&nbsp;manager&nbsp;creates&nbsp;a&nbsp;local&nbsp;decimal&nbsp;context<br>
+in&nbsp;a&nbsp;with&nbsp;statement:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;sin(x):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;<a href="#-localcontext">localcontext</a>()&nbsp;as&nbsp;ctx:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.prec&nbsp;+=&nbsp;2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Rest&nbsp;of&nbsp;sin&nbsp;calculation&nbsp;algorithm<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;uses&nbsp;a&nbsp;precision&nbsp;2&nbsp;greater&nbsp;than&nbsp;normal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;+s&nbsp;&nbsp;#&nbsp;Convert&nbsp;result&nbsp;to&nbsp;normal&nbsp;precision<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;sin(x):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;<a href="#-localcontext">localcontext</a>(ExtendedContext):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Rest&nbsp;of&nbsp;sin&nbsp;calculation&nbsp;algorithm<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;uses&nbsp;the&nbsp;Extended&nbsp;<a href="#Context">Context</a>&nbsp;from&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;General&nbsp;<a href="#Decimal">Decimal</a>&nbsp;Arithmetic&nbsp;Specification<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;+s&nbsp;&nbsp;#&nbsp;Convert&nbsp;result&nbsp;to&nbsp;normal&nbsp;context</tt></dd></dl>
+ <dl><dt><a name="-setcontext"><strong>setcontext</strong></a>(context, _local<font color="#909090">=&lt;thread._local object at 0x8ccedd0&gt;</font>)</dt><dd><tt>Set&nbsp;this&nbsp;thread's&nbsp;context&nbsp;to&nbsp;context.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BasicContext</strong> = Context(prec=9, rounding=ROUND_HALF_UP, Emin=-99...ow, DivisionByZero, Underflow, InvalidOperation])<br>
+<strong>DefaultContext</strong> = Context(prec=28, rounding=ROUND_HALF_EVEN, Emin=...aps=[Overflow, DivisionByZero, InvalidOperation])<br>
+<strong>ExtendedContext</strong> = Context(prec=9, rounding=ROUND_HALF_EVEN, Emin=-..., Emax=999999999, capitals=1, flags=[], traps=[])<br>
+<strong>ROUND_05UP</strong> = 'ROUND_05UP'<br>
+<strong>ROUND_CEILING</strong> = 'ROUND_CEILING'<br>
+<strong>ROUND_DOWN</strong> = 'ROUND_DOWN'<br>
+<strong>ROUND_FLOOR</strong> = 'ROUND_FLOOR'<br>
+<strong>ROUND_HALF_DOWN</strong> = 'ROUND_HALF_DOWN'<br>
+<strong>ROUND_HALF_EVEN</strong> = 'ROUND_HALF_EVEN'<br>
+<strong>ROUND_HALF_UP</strong> = 'ROUND_HALF_UP'<br>
+<strong>ROUND_UP</strong> = 'ROUND_UP'<br>
+<strong>__all__</strong> = ['Decimal', 'Context', 'DefaultContext', 'BasicContext', 'ExtendedContext', 'DecimalException', 'Clamped', 'InvalidOperation', 'DivisionByZero', 'Inexact', 'Rounded', 'Subnormal', 'Overflow', 'Underflow', 'ROUND_DOWN', 'ROUND_HALF_UP', 'ROUND_HALF_EVEN', 'ROUND_CEILING', 'ROUND_FLOOR', 'ROUND_UP', ...]<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

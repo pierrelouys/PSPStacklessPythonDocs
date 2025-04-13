@@ -1,0 +1,261 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>encodings</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/encodings/__init__.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/encodings/__init__.py</a></font></td></tr></table>
+    <p><tt>Standard&nbsp;"encodings"&nbsp;Package<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Standard&nbsp;Python&nbsp;encoding&nbsp;modules&nbsp;are&nbsp;stored&nbsp;in&nbsp;this&nbsp;package<br>
+&nbsp;&nbsp;&nbsp;&nbsp;directory.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Codec&nbsp;modules&nbsp;must&nbsp;have&nbsp;names&nbsp;corresponding&nbsp;to&nbsp;normalized&nbsp;encoding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;as&nbsp;defined&nbsp;in&nbsp;the&nbsp;<a href="#-normalize_encoding">normalize_encoding</a>()&nbsp;function&nbsp;below,&nbsp;e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'utf-8'&nbsp;must&nbsp;be&nbsp;implemented&nbsp;by&nbsp;the&nbsp;module&nbsp;'utf_8.py'.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;codec&nbsp;module&nbsp;must&nbsp;export&nbsp;the&nbsp;following&nbsp;interface:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;getregentry()&nbsp;-&gt;&nbsp;codecs.CodecInfo&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;getregentry()&nbsp;API&nbsp;must&nbsp;a&nbsp;CodecInfo&nbsp;object&nbsp;with&nbsp;encoder,&nbsp;decoder,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;incrementalencoder,&nbsp;incrementaldecoder,&nbsp;streamwriter&nbsp;and&nbsp;streamreader<br>
+&nbsp;&nbsp;&nbsp;&nbsp;atttributes&nbsp;which&nbsp;adhere&nbsp;to&nbsp;the&nbsp;Python&nbsp;Codec&nbsp;Interface&nbsp;Standard.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;In&nbsp;addition,&nbsp;a&nbsp;module&nbsp;may&nbsp;optionally&nbsp;also&nbsp;define&nbsp;the&nbsp;following<br>
+&nbsp;&nbsp;&nbsp;&nbsp;APIs&nbsp;which&nbsp;are&nbsp;then&nbsp;used&nbsp;by&nbsp;the&nbsp;package's&nbsp;codec&nbsp;search&nbsp;function:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;getaliases()&nbsp;-&gt;&nbsp;sequence&nbsp;of&nbsp;encoding&nbsp;name&nbsp;strings&nbsp;to&nbsp;use&nbsp;as&nbsp;aliases<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Alias&nbsp;names&nbsp;returned&nbsp;by&nbsp;getaliases()&nbsp;must&nbsp;be&nbsp;normalized&nbsp;encoding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;as&nbsp;defined&nbsp;by&nbsp;<a href="#-normalize_encoding">normalize_encoding</a>().<br>
+&nbsp;<br>
+Written&nbsp;by&nbsp;Marc-Andre&nbsp;Lemburg&nbsp;(mal@lemburg.com).<br>
+&nbsp;<br>
+(c)&nbsp;Copyright&nbsp;CNRI,&nbsp;All&nbsp;Rights&nbsp;Reserved.&nbsp;NO&nbsp;WARRANTY.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="encodings.aliases.html">aliases</a><br>
+<a href="encodings.ascii.html">ascii</a><br>
+<a href="encodings.base64_codec.html">base64_codec</a><br>
+<a href="encodings.big5.html">big5</a><br>
+<a href="encodings.big5hkscs.html">big5hkscs</a><br>
+<a href="encodings.bz2_codec.html">bz2_codec</a><br>
+<a href="encodings.charmap.html">charmap</a><br>
+<a href="encodings.cp037.html">cp037</a><br>
+<a href="encodings.cp1006.html">cp1006</a><br>
+<a href="encodings.cp1026.html">cp1026</a><br>
+<a href="encodings.cp1140.html">cp1140</a><br>
+<a href="encodings.cp1250.html">cp1250</a><br>
+<a href="encodings.cp1251.html">cp1251</a><br>
+<a href="encodings.cp1252.html">cp1252</a><br>
+<a href="encodings.cp1253.html">cp1253</a><br>
+<a href="encodings.cp1254.html">cp1254</a><br>
+<a href="encodings.cp1255.html">cp1255</a><br>
+<a href="encodings.cp1256.html">cp1256</a><br>
+<a href="encodings.cp1257.html">cp1257</a><br>
+<a href="encodings.cp1258.html">cp1258</a><br>
+<a href="encodings.cp424.html">cp424</a><br>
+<a href="encodings.cp437.html">cp437</a><br>
+<a href="encodings.cp500.html">cp500</a><br>
+<a href="encodings.cp737.html">cp737</a><br>
+<a href="encodings.cp775.html">cp775</a><br>
+<a href="encodings.cp850.html">cp850</a><br>
+<a href="encodings.cp852.html">cp852</a><br>
+<a href="encodings.cp855.html">cp855</a><br>
+<a href="encodings.cp856.html">cp856</a><br>
+</td><td width="25%" valign=top><a href="encodings.cp857.html">cp857</a><br>
+<a href="encodings.cp860.html">cp860</a><br>
+<a href="encodings.cp861.html">cp861</a><br>
+<a href="encodings.cp862.html">cp862</a><br>
+<a href="encodings.cp863.html">cp863</a><br>
+<a href="encodings.cp864.html">cp864</a><br>
+<a href="encodings.cp865.html">cp865</a><br>
+<a href="encodings.cp866.html">cp866</a><br>
+<a href="encodings.cp869.html">cp869</a><br>
+<a href="encodings.cp874.html">cp874</a><br>
+<a href="encodings.cp875.html">cp875</a><br>
+<a href="encodings.cp932.html">cp932</a><br>
+<a href="encodings.cp949.html">cp949</a><br>
+<a href="encodings.cp950.html">cp950</a><br>
+<a href="encodings.euc_jis_2004.html">euc_jis_2004</a><br>
+<a href="encodings.euc_jisx0213.html">euc_jisx0213</a><br>
+<a href="encodings.euc_jp.html">euc_jp</a><br>
+<a href="encodings.euc_kr.html">euc_kr</a><br>
+<a href="encodings.gb18030.html">gb18030</a><br>
+<a href="encodings.gb2312.html">gb2312</a><br>
+<a href="encodings.gbk.html">gbk</a><br>
+<a href="encodings.hex_codec.html">hex_codec</a><br>
+<a href="encodings.hp_roman8.html">hp_roman8</a><br>
+<a href="encodings.hz.html">hz</a><br>
+<a href="encodings.idna.html">idna</a><br>
+<a href="encodings.iso2022_jp.html">iso2022_jp</a><br>
+<a href="encodings.iso2022_jp_1.html">iso2022_jp_1</a><br>
+<a href="encodings.iso2022_jp_2.html">iso2022_jp_2</a><br>
+<a href="encodings.iso2022_jp_2004.html">iso2022_jp_2004</a><br>
+</td><td width="25%" valign=top><a href="encodings.iso2022_jp_3.html">iso2022_jp_3</a><br>
+<a href="encodings.iso2022_jp_ext.html">iso2022_jp_ext</a><br>
+<a href="encodings.iso2022_kr.html">iso2022_kr</a><br>
+<a href="encodings.iso8859_1.html">iso8859_1</a><br>
+<a href="encodings.iso8859_10.html">iso8859_10</a><br>
+<a href="encodings.iso8859_11.html">iso8859_11</a><br>
+<a href="encodings.iso8859_13.html">iso8859_13</a><br>
+<a href="encodings.iso8859_14.html">iso8859_14</a><br>
+<a href="encodings.iso8859_15.html">iso8859_15</a><br>
+<a href="encodings.iso8859_16.html">iso8859_16</a><br>
+<a href="encodings.iso8859_2.html">iso8859_2</a><br>
+<a href="encodings.iso8859_3.html">iso8859_3</a><br>
+<a href="encodings.iso8859_4.html">iso8859_4</a><br>
+<a href="encodings.iso8859_5.html">iso8859_5</a><br>
+<a href="encodings.iso8859_6.html">iso8859_6</a><br>
+<a href="encodings.iso8859_7.html">iso8859_7</a><br>
+<a href="encodings.iso8859_8.html">iso8859_8</a><br>
+<a href="encodings.iso8859_9.html">iso8859_9</a><br>
+<a href="encodings.johab.html">johab</a><br>
+<a href="encodings.koi8_r.html">koi8_r</a><br>
+<a href="encodings.koi8_u.html">koi8_u</a><br>
+<a href="encodings.latin_1.html">latin_1</a><br>
+<a href="encodings.mac_arabic.html">mac_arabic</a><br>
+<a href="encodings.mac_centeuro.html">mac_centeuro</a><br>
+<a href="encodings.mac_croatian.html">mac_croatian</a><br>
+<a href="encodings.mac_cyrillic.html">mac_cyrillic</a><br>
+<a href="encodings.mac_farsi.html">mac_farsi</a><br>
+<a href="encodings.mac_greek.html">mac_greek</a><br>
+<a href="encodings.mac_iceland.html">mac_iceland</a><br>
+</td><td width="25%" valign=top><a href="encodings.mac_latin2.html">mac_latin2</a><br>
+<a href="encodings.mac_roman.html">mac_roman</a><br>
+<a href="encodings.mac_romanian.html">mac_romanian</a><br>
+<a href="encodings.mac_turkish.html">mac_turkish</a><br>
+<a href="encodings.mbcs.html">mbcs</a><br>
+<a href="encodings.palmos.html">palmos</a><br>
+<a href="encodings.ptcp154.html">ptcp154</a><br>
+<a href="encodings.punycode.html">punycode</a><br>
+<a href="encodings.quopri_codec.html">quopri_codec</a><br>
+<a href="encodings.raw_unicode_escape.html">raw_unicode_escape</a><br>
+<a href="encodings.rot_13.html">rot_13</a><br>
+<a href="encodings.shift_jis.html">shift_jis</a><br>
+<a href="encodings.shift_jis_2004.html">shift_jis_2004</a><br>
+<a href="encodings.shift_jisx0213.html">shift_jisx0213</a><br>
+<a href="encodings.string_escape.html">string_escape</a><br>
+<a href="encodings.tis_620.html">tis_620</a><br>
+<a href="encodings.undefined.html">undefined</a><br>
+<a href="encodings.unicode_escape.html">unicode_escape</a><br>
+<a href="encodings.unicode_internal.html">unicode_internal</a><br>
+<a href="encodings.utf_16.html">utf_16</a><br>
+<a href="encodings.utf_16_be.html">utf_16_be</a><br>
+<a href="encodings.utf_16_le.html">utf_16_le</a><br>
+<a href="encodings.utf_7.html">utf_7</a><br>
+<a href="encodings.utf_8.html">utf_8</a><br>
+<a href="encodings.utf_8_sig.html">utf_8_sig</a><br>
+<a href="encodings.uu_codec.html">uu_codec</a><br>
+<a href="encodings.zlib_codec.html">zlib_codec</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#LookupError">exceptions.LookupError</a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="encodings.html#CodecRegistryError">CodecRegistryError</a>(<a href="exceptions.html#LookupError">exceptions.LookupError</a>, <a href="exceptions.html#SystemError">exceptions.SystemError</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#SystemError">exceptions.SystemError</a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="encodings.html#CodecRegistryError">CodecRegistryError</a>(<a href="exceptions.html#LookupError">exceptions.LookupError</a>, <a href="exceptions.html#SystemError">exceptions.SystemError</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CodecRegistryError">class <strong>CodecRegistryError</strong></a>(<a href="exceptions.html#LookupError">exceptions.LookupError</a>, <a href="exceptions.html#SystemError">exceptions.SystemError</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="encodings.html#CodecRegistryError">CodecRegistryError</a></dd>
+<dd><a href="exceptions.html#LookupError">exceptions.LookupError</a></dd>
+<dd><a href="exceptions.html#SystemError">exceptions.SystemError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#LookupError">exceptions.LookupError</a>:<br>
+<dl><dt><a name="CodecRegistryError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#LookupError">exceptions.LookupError</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8d844&gt;<dd><tt>T.<a href="#CodecRegistryError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="CodecRegistryError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CodecRegistryError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="CodecRegistryError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CodecRegistryError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#CodecRegistryError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-normalize_encoding"><strong>normalize_encoding</strong></a>(encoding)</dt><dd><tt>Normalize&nbsp;an&nbsp;encoding&nbsp;name.<br>
+&nbsp;<br>
+Normalization&nbsp;works&nbsp;as&nbsp;follows:&nbsp;all&nbsp;non-alphanumeric<br>
+characters&nbsp;except&nbsp;the&nbsp;dot&nbsp;used&nbsp;for&nbsp;Python&nbsp;package&nbsp;names&nbsp;are<br>
+collapsed&nbsp;and&nbsp;replaced&nbsp;with&nbsp;a&nbsp;single&nbsp;underscore,&nbsp;e.g.&nbsp;'&nbsp;&nbsp;-;#'<br>
+becomes&nbsp;'_'.&nbsp;Leading&nbsp;and&nbsp;trailing&nbsp;underscores&nbsp;are&nbsp;removed.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;encoding&nbsp;names&nbsp;should&nbsp;be&nbsp;ASCII&nbsp;only;&nbsp;if&nbsp;they&nbsp;do&nbsp;use<br>
+non-ASCII&nbsp;characters,&nbsp;these&nbsp;must&nbsp;be&nbsp;Latin-1&nbsp;compatible.</tt></dd></dl>
+ <dl><dt><a name="-search_function"><strong>search_function</strong></a>(encoding)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

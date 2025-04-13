@@ -1,0 +1,157 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>StringIO</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/StringIO.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/StringIO.py</a></font></td></tr></table>
+    <p><tt>File-like&nbsp;objects&nbsp;that&nbsp;read&nbsp;from&nbsp;or&nbsp;write&nbsp;to&nbsp;a&nbsp;string&nbsp;buffer.<br>
+&nbsp;<br>
+This&nbsp;implements&nbsp;(nearly)&nbsp;all&nbsp;stdio&nbsp;methods.<br>
+&nbsp;<br>
+f&nbsp;=&nbsp;<a href="#StringIO">StringIO</a>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;ready&nbsp;for&nbsp;writing<br>
+f&nbsp;=&nbsp;<a href="#StringIO">StringIO</a>(buf)&nbsp;&nbsp;&nbsp;#&nbsp;ready&nbsp;for&nbsp;reading<br>
+f.close()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;explicitly&nbsp;release&nbsp;resources&nbsp;held<br>
+flag&nbsp;=&nbsp;f.isatty()&nbsp;&nbsp;&nbsp;#&nbsp;always&nbsp;false<br>
+pos&nbsp;=&nbsp;f.tell()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;get&nbsp;current&nbsp;position<br>
+f.seek(pos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;set&nbsp;current&nbsp;position<br>
+f.seek(pos,&nbsp;mode)&nbsp;&nbsp;&nbsp;#&nbsp;mode&nbsp;0:&nbsp;absolute;&nbsp;1:&nbsp;relative;&nbsp;2:&nbsp;relative&nbsp;to&nbsp;EOF<br>
+buf&nbsp;=&nbsp;f.read()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;read&nbsp;until&nbsp;EOF<br>
+buf&nbsp;=&nbsp;f.read(n)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;read&nbsp;up&nbsp;to&nbsp;n&nbsp;bytes<br>
+buf&nbsp;=&nbsp;f.readline()&nbsp;&nbsp;#&nbsp;read&nbsp;until&nbsp;end&nbsp;of&nbsp;line&nbsp;('\n')&nbsp;or&nbsp;EOF<br>
+list&nbsp;=&nbsp;f.readlines()#&nbsp;list&nbsp;of&nbsp;f.readline()&nbsp;results&nbsp;until&nbsp;EOF<br>
+f.truncate([size])&nbsp;&nbsp;#&nbsp;truncate&nbsp;file&nbsp;at&nbsp;to&nbsp;at&nbsp;most&nbsp;size&nbsp;(default:&nbsp;current&nbsp;pos)<br>
+f.write(buf)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;write&nbsp;at&nbsp;current&nbsp;position<br>
+f.writelines(list)&nbsp;&nbsp;#&nbsp;for&nbsp;line&nbsp;in&nbsp;list:&nbsp;f.write(line)<br>
+f.getvalue()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;return&nbsp;whole&nbsp;file's&nbsp;contents&nbsp;as&nbsp;a&nbsp;string<br>
+&nbsp;<br>
+Notes:<br>
+-&nbsp;Using&nbsp;a&nbsp;real&nbsp;file&nbsp;is&nbsp;often&nbsp;faster&nbsp;(but&nbsp;less&nbsp;convenient).<br>
+-&nbsp;There's&nbsp;also&nbsp;a&nbsp;much&nbsp;faster&nbsp;implementation&nbsp;in&nbsp;C,&nbsp;called&nbsp;cStringIO,&nbsp;but<br>
+&nbsp;&nbsp;it's&nbsp;not&nbsp;subclassable.<br>
+-&nbsp;fileno()&nbsp;is&nbsp;left&nbsp;unimplemented&nbsp;so&nbsp;that&nbsp;code&nbsp;which&nbsp;uses&nbsp;it&nbsp;triggers<br>
+&nbsp;&nbsp;an&nbsp;exception&nbsp;early.<br>
+-&nbsp;Seeking&nbsp;far&nbsp;beyond&nbsp;EOF&nbsp;and&nbsp;then&nbsp;writing&nbsp;will&nbsp;insert&nbsp;real&nbsp;null<br>
+&nbsp;&nbsp;bytes&nbsp;that&nbsp;occupy&nbsp;space&nbsp;in&nbsp;the&nbsp;buffer.<br>
+-&nbsp;There's&nbsp;a&nbsp;simple&nbsp;test&nbsp;set&nbsp;(see&nbsp;end&nbsp;of&nbsp;this&nbsp;file).</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="StringIO.html#StringIO">StringIO</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StringIO">class <strong>StringIO</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>class&nbsp;<a href="#StringIO">StringIO</a>([buffer])<br>
+&nbsp;<br>
+When&nbsp;a&nbsp;<a href="#StringIO">StringIO</a>&nbsp;object&nbsp;is&nbsp;created,&nbsp;it&nbsp;can&nbsp;be&nbsp;initialized&nbsp;to&nbsp;an&nbsp;existing<br>
+string&nbsp;by&nbsp;passing&nbsp;the&nbsp;string&nbsp;to&nbsp;the&nbsp;constructor.&nbsp;If&nbsp;no&nbsp;string&nbsp;is&nbsp;given,<br>
+the&nbsp;<a href="#StringIO">StringIO</a>&nbsp;will&nbsp;start&nbsp;empty.<br>
+&nbsp;<br>
+The&nbsp;<a href="#StringIO">StringIO</a>&nbsp;object&nbsp;can&nbsp;accept&nbsp;either&nbsp;Unicode&nbsp;or&nbsp;8-bit&nbsp;strings,&nbsp;but<br>
+mixing&nbsp;the&nbsp;two&nbsp;may&nbsp;take&nbsp;some&nbsp;care.&nbsp;If&nbsp;both&nbsp;are&nbsp;used,&nbsp;8-bit&nbsp;strings&nbsp;that<br>
+cannot&nbsp;be&nbsp;interpreted&nbsp;as&nbsp;7-bit&nbsp;ASCII&nbsp;(that&nbsp;use&nbsp;the&nbsp;8th&nbsp;bit)&nbsp;will&nbsp;cause<br>
+a&nbsp;UnicodeError&nbsp;to&nbsp;be&nbsp;raised&nbsp;when&nbsp;<a href="#StringIO-getvalue">getvalue</a>()&nbsp;is&nbsp;called.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="StringIO-__init__"><strong>__init__</strong></a>(self, buf<font color="#909090">=''</font>)</dt></dl>
+
+<dl><dt><a name="StringIO-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="StringIO-close"><strong>close</strong></a>(self)</dt><dd><tt>Free&nbsp;the&nbsp;memory&nbsp;buffer.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-flush"><strong>flush</strong></a>(self)</dt><dd><tt>Flush&nbsp;the&nbsp;internal&nbsp;buffer</tt></dd></dl>
+
+<dl><dt><a name="StringIO-getvalue"><strong>getvalue</strong></a>(self)</dt><dd><tt>Retrieve&nbsp;the&nbsp;entire&nbsp;contents&nbsp;of&nbsp;the&nbsp;"file"&nbsp;at&nbsp;any&nbsp;time&nbsp;before<br>
+the&nbsp;<a href="#StringIO">StringIO</a>&nbsp;object's&nbsp;<a href="#StringIO-close">close</a>()&nbsp;method&nbsp;is&nbsp;called.<br>
+&nbsp;<br>
+The&nbsp;<a href="#StringIO">StringIO</a>&nbsp;object&nbsp;can&nbsp;accept&nbsp;either&nbsp;Unicode&nbsp;or&nbsp;8-bit&nbsp;strings,<br>
+but&nbsp;mixing&nbsp;the&nbsp;two&nbsp;may&nbsp;take&nbsp;some&nbsp;care.&nbsp;If&nbsp;both&nbsp;are&nbsp;used,&nbsp;8-bit<br>
+strings&nbsp;that&nbsp;cannot&nbsp;be&nbsp;interpreted&nbsp;as&nbsp;7-bit&nbsp;ASCII&nbsp;(that&nbsp;use&nbsp;the<br>
+8th&nbsp;bit)&nbsp;will&nbsp;cause&nbsp;a&nbsp;UnicodeError&nbsp;to&nbsp;be&nbsp;raised&nbsp;when&nbsp;<a href="#StringIO-getvalue">getvalue</a>()<br>
+is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-isatty"><strong>isatty</strong></a>(self)</dt><dd><tt>Returns&nbsp;False&nbsp;because&nbsp;<a href="#StringIO">StringIO</a>&nbsp;objects&nbsp;are&nbsp;not&nbsp;connected&nbsp;to&nbsp;a<br>
+tty-like&nbsp;device.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-next"><strong>next</strong></a>(self)</dt><dd><tt>A&nbsp;file&nbsp;object&nbsp;is&nbsp;its&nbsp;own&nbsp;iterator,&nbsp;for&nbsp;example&nbsp;iter(f)&nbsp;returns&nbsp;f<br>
+(unless&nbsp;f&nbsp;is&nbsp;closed).&nbsp;When&nbsp;a&nbsp;file&nbsp;is&nbsp;used&nbsp;as&nbsp;an&nbsp;iterator,&nbsp;typically<br>
+in&nbsp;a&nbsp;for&nbsp;loop&nbsp;(for&nbsp;example,&nbsp;for&nbsp;line&nbsp;in&nbsp;f:&nbsp;print&nbsp;line),&nbsp;the&nbsp;<a href="#StringIO-next">next</a>()<br>
+method&nbsp;is&nbsp;called&nbsp;repeatedly.&nbsp;This&nbsp;method&nbsp;returns&nbsp;the&nbsp;next&nbsp;input&nbsp;line,<br>
+or&nbsp;raises&nbsp;StopIteration&nbsp;when&nbsp;EOF&nbsp;is&nbsp;hit.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-read"><strong>read</strong></a>(self, n<font color="#909090">=-1</font>)</dt><dd><tt>Read&nbsp;at&nbsp;most&nbsp;size&nbsp;bytes&nbsp;from&nbsp;the&nbsp;file<br>
+(less&nbsp;if&nbsp;the&nbsp;read&nbsp;hits&nbsp;EOF&nbsp;before&nbsp;obtaining&nbsp;size&nbsp;bytes).<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;size&nbsp;argument&nbsp;is&nbsp;negative&nbsp;or&nbsp;omitted,&nbsp;read&nbsp;all&nbsp;data&nbsp;until&nbsp;EOF<br>
+is&nbsp;reached.&nbsp;The&nbsp;bytes&nbsp;are&nbsp;returned&nbsp;as&nbsp;a&nbsp;string&nbsp;object.&nbsp;An&nbsp;empty<br>
+string&nbsp;is&nbsp;returned&nbsp;when&nbsp;EOF&nbsp;is&nbsp;encountered&nbsp;immediately.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-readline"><strong>readline</strong></a>(self, length<font color="#909090">=None</font>)</dt><dd><tt>Read&nbsp;one&nbsp;entire&nbsp;line&nbsp;from&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+A&nbsp;trailing&nbsp;newline&nbsp;character&nbsp;is&nbsp;kept&nbsp;in&nbsp;the&nbsp;string&nbsp;(but&nbsp;may&nbsp;be&nbsp;absent<br>
+when&nbsp;a&nbsp;file&nbsp;ends&nbsp;with&nbsp;an&nbsp;incomplete&nbsp;line).&nbsp;If&nbsp;the&nbsp;size&nbsp;argument&nbsp;is<br>
+present&nbsp;and&nbsp;non-negative,&nbsp;it&nbsp;is&nbsp;a&nbsp;maximum&nbsp;byte&nbsp;count&nbsp;(including&nbsp;the<br>
+trailing&nbsp;newline)&nbsp;and&nbsp;an&nbsp;incomplete&nbsp;line&nbsp;may&nbsp;be&nbsp;returned.<br>
+&nbsp;<br>
+An&nbsp;empty&nbsp;string&nbsp;is&nbsp;returned&nbsp;only&nbsp;when&nbsp;EOF&nbsp;is&nbsp;encountered&nbsp;immediately.<br>
+&nbsp;<br>
+Note:&nbsp;Unlike&nbsp;stdio's&nbsp;fgets(),&nbsp;the&nbsp;returned&nbsp;string&nbsp;contains&nbsp;null<br>
+characters&nbsp;('\0')&nbsp;if&nbsp;they&nbsp;occurred&nbsp;in&nbsp;the&nbsp;input.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-readlines"><strong>readlines</strong></a>(self, sizehint<font color="#909090">=0</font>)</dt><dd><tt>Read&nbsp;until&nbsp;EOF&nbsp;using&nbsp;<a href="#StringIO-readline">readline</a>()&nbsp;and&nbsp;return&nbsp;a&nbsp;list&nbsp;containing&nbsp;the<br>
+lines&nbsp;thus&nbsp;read.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;sizehint&nbsp;argument&nbsp;is&nbsp;present,&nbsp;instead&nbsp;of&nbsp;reading&nbsp;up<br>
+to&nbsp;EOF,&nbsp;whole&nbsp;lines&nbsp;totalling&nbsp;approximately&nbsp;sizehint&nbsp;bytes&nbsp;(or&nbsp;more<br>
+to&nbsp;accommodate&nbsp;a&nbsp;final&nbsp;whole&nbsp;line).</tt></dd></dl>
+
+<dl><dt><a name="StringIO-seek"><strong>seek</strong></a>(self, pos, mode<font color="#909090">=0</font>)</dt><dd><tt>Set&nbsp;the&nbsp;file's&nbsp;current&nbsp;position.<br>
+&nbsp;<br>
+The&nbsp;mode&nbsp;argument&nbsp;is&nbsp;optional&nbsp;and&nbsp;defaults&nbsp;to&nbsp;0&nbsp;(absolute&nbsp;file<br>
+positioning);&nbsp;other&nbsp;values&nbsp;are&nbsp;1&nbsp;(seek&nbsp;relative&nbsp;to&nbsp;the&nbsp;current<br>
+position)&nbsp;and&nbsp;2&nbsp;(seek&nbsp;relative&nbsp;to&nbsp;the&nbsp;file's&nbsp;end).<br>
+&nbsp;<br>
+There&nbsp;is&nbsp;no&nbsp;return&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-tell"><strong>tell</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;file's&nbsp;current&nbsp;position.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-truncate"><strong>truncate</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Truncate&nbsp;the&nbsp;file's&nbsp;size.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;size&nbsp;argument&nbsp;is&nbsp;present,&nbsp;the&nbsp;file&nbsp;is&nbsp;truncated&nbsp;to<br>
+(at&nbsp;most)&nbsp;that&nbsp;size.&nbsp;The&nbsp;size&nbsp;defaults&nbsp;to&nbsp;the&nbsp;current&nbsp;position.<br>
+The&nbsp;current&nbsp;file&nbsp;position&nbsp;is&nbsp;not&nbsp;changed&nbsp;unless&nbsp;the&nbsp;position<br>
+is&nbsp;beyond&nbsp;the&nbsp;new&nbsp;file&nbsp;size.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;specified&nbsp;size&nbsp;exceeds&nbsp;the&nbsp;file's&nbsp;current&nbsp;size,&nbsp;the<br>
+file&nbsp;remains&nbsp;unchanged.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-write"><strong>write</strong></a>(self, s)</dt><dd><tt>Write&nbsp;a&nbsp;string&nbsp;to&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+There&nbsp;is&nbsp;no&nbsp;return&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="StringIO-writelines"><strong>writelines</strong></a>(self, iterable)</dt><dd><tt>Write&nbsp;a&nbsp;sequence&nbsp;of&nbsp;strings&nbsp;to&nbsp;the&nbsp;file.&nbsp;The&nbsp;sequence&nbsp;can&nbsp;be&nbsp;any<br>
+iterable&nbsp;object&nbsp;producing&nbsp;strings,&nbsp;typically&nbsp;a&nbsp;list&nbsp;of&nbsp;strings.&nbsp;There<br>
+is&nbsp;no&nbsp;return&nbsp;value.<br>
+&nbsp;<br>
+(The&nbsp;name&nbsp;is&nbsp;intended&nbsp;to&nbsp;match&nbsp;<a href="#StringIO-readlines">readlines</a>();&nbsp;<a href="#StringIO-writelines">writelines</a>()&nbsp;does&nbsp;not&nbsp;add<br>
+line&nbsp;separators.)</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['StringIO']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

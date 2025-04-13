@@ -1,0 +1,248 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>telnetlib</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/telnetlib.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/telnetlib.py</a></font></td></tr></table>
+    <p><tt>TELNET&nbsp;client&nbsp;class.<br>
+&nbsp;<br>
+Based&nbsp;on&nbsp;<a href="http://www.rfc-editor.org/rfc/rfc854.txt">RFC&nbsp;854</a>:&nbsp;TELNET&nbsp;Protocol&nbsp;Specification,&nbsp;by&nbsp;J.&nbsp;Postel&nbsp;and<br>
+J.&nbsp;Reynolds<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;from&nbsp;telnetlib&nbsp;import&nbsp;<a href="#Telnet">Telnet</a><br>
+&gt;&gt;&gt;&nbsp;tn&nbsp;=&nbsp;<a href="#Telnet">Telnet</a>('www.python.org',&nbsp;79)&nbsp;&nbsp;&nbsp;#&nbsp;connect&nbsp;to&nbsp;finger&nbsp;port<br>
+&gt;&gt;&gt;&nbsp;tn.write('guido\r\n')<br>
+&gt;&gt;&gt;&nbsp;print&nbsp;tn.read_all()<br>
+Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Idle&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;&nbsp;&nbsp;&nbsp;Where<br>
+guido&nbsp;&nbsp;&nbsp;&nbsp;Guido&nbsp;van&nbsp;Rossum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pts/2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Dec&nbsp;&nbsp;2&nbsp;11:10&gt;&nbsp;snag.cnri.reston..<br>
+&nbsp;<br>
+&gt;&gt;&gt;<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;read_all()&nbsp;won't&nbsp;read&nbsp;until&nbsp;eof&nbsp;--&nbsp;it&nbsp;just&nbsp;reads&nbsp;some&nbsp;data<br>
+--&nbsp;but&nbsp;it&nbsp;guarantees&nbsp;to&nbsp;read&nbsp;at&nbsp;least&nbsp;one&nbsp;byte&nbsp;unless&nbsp;EOF&nbsp;is&nbsp;hit.<br>
+&nbsp;<br>
+It&nbsp;is&nbsp;possible&nbsp;to&nbsp;pass&nbsp;a&nbsp;<a href="#Telnet">Telnet</a>&nbsp;object&nbsp;to&nbsp;select.select()&nbsp;in&nbsp;order&nbsp;to<br>
+wait&nbsp;until&nbsp;more&nbsp;data&nbsp;is&nbsp;available.&nbsp;&nbsp;Note&nbsp;that&nbsp;in&nbsp;this&nbsp;case,<br>
+read_eager()&nbsp;may&nbsp;return&nbsp;''&nbsp;even&nbsp;if&nbsp;there&nbsp;was&nbsp;data&nbsp;on&nbsp;the&nbsp;socket,<br>
+because&nbsp;the&nbsp;protocol&nbsp;negotiation&nbsp;may&nbsp;have&nbsp;eaten&nbsp;the&nbsp;data.&nbsp;&nbsp;This&nbsp;is&nbsp;why<br>
+EOFError&nbsp;is&nbsp;needed&nbsp;in&nbsp;some&nbsp;cases&nbsp;to&nbsp;distinguish&nbsp;between&nbsp;"no&nbsp;data"&nbsp;and<br>
+"connection&nbsp;closed"&nbsp;(since&nbsp;the&nbsp;socket&nbsp;also&nbsp;appears&nbsp;ready&nbsp;for&nbsp;reading<br>
+when&nbsp;it&nbsp;is&nbsp;closed).<br>
+&nbsp;<br>
+To&nbsp;do:<br>
+-&nbsp;option&nbsp;negotiation<br>
+-&nbsp;timeout&nbsp;should&nbsp;be&nbsp;intrinsic&nbsp;to&nbsp;the&nbsp;connection&nbsp;object&nbsp;instead&nbsp;of&nbsp;an<br>
+&nbsp;&nbsp;option&nbsp;on&nbsp;one&nbsp;of&nbsp;the&nbsp;read&nbsp;calls&nbsp;only</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="select.html">select</a><br>
+</td><td width="25%" valign=top><a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="telnetlib.html#Telnet">Telnet</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Telnet">class <strong>Telnet</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Telnet">Telnet</a>&nbsp;interface&nbsp;class.<br>
+&nbsp;<br>
+An&nbsp;instance&nbsp;of&nbsp;this&nbsp;class&nbsp;represents&nbsp;a&nbsp;connection&nbsp;to&nbsp;a&nbsp;telnet<br>
+server.&nbsp;&nbsp;The&nbsp;instance&nbsp;is&nbsp;initially&nbsp;not&nbsp;connected;&nbsp;the&nbsp;<a href="#Telnet-open">open</a>()<br>
+method&nbsp;must&nbsp;be&nbsp;used&nbsp;to&nbsp;establish&nbsp;a&nbsp;connection.&nbsp;&nbsp;Alternatively,&nbsp;the<br>
+host&nbsp;name&nbsp;and&nbsp;optional&nbsp;port&nbsp;number&nbsp;can&nbsp;be&nbsp;passed&nbsp;to&nbsp;the<br>
+constructor,&nbsp;too.<br>
+&nbsp;<br>
+Don't&nbsp;try&nbsp;to&nbsp;reopen&nbsp;an&nbsp;already&nbsp;connected&nbsp;instance.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;has&nbsp;many&nbsp;read_*()&nbsp;methods.&nbsp;&nbsp;Note&nbsp;that&nbsp;some&nbsp;of&nbsp;them<br>
+raise&nbsp;EOFError&nbsp;when&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;connection&nbsp;is&nbsp;read,&nbsp;because<br>
+they&nbsp;can&nbsp;return&nbsp;an&nbsp;empty&nbsp;string&nbsp;for&nbsp;other&nbsp;reasons.&nbsp;&nbsp;See&nbsp;the<br>
+individual&nbsp;doc&nbsp;strings.<br>
+&nbsp;<br>
+<a href="#Telnet-read_until">read_until</a>(expected,&nbsp;[timeout])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;until&nbsp;the&nbsp;expected&nbsp;string&nbsp;has&nbsp;been&nbsp;seen,&nbsp;or&nbsp;a&nbsp;timeout&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hit&nbsp;(default&nbsp;is&nbsp;no&nbsp;timeout);&nbsp;may&nbsp;block.<br>
+&nbsp;<br>
+<a href="#Telnet-read_all">read_all</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;all&nbsp;data&nbsp;until&nbsp;EOF;&nbsp;may&nbsp;block.<br>
+&nbsp;<br>
+<a href="#Telnet-read_some">read_some</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;at&nbsp;least&nbsp;one&nbsp;byte&nbsp;or&nbsp;EOF;&nbsp;may&nbsp;block.<br>
+&nbsp;<br>
+<a href="#Telnet-read_very_eager">read_very_eager</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;all&nbsp;data&nbsp;available&nbsp;already&nbsp;queued&nbsp;or&nbsp;on&nbsp;the&nbsp;socket,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;without&nbsp;blocking.<br>
+&nbsp;<br>
+<a href="#Telnet-read_eager">read_eager</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;either&nbsp;data&nbsp;already&nbsp;queued&nbsp;or&nbsp;some&nbsp;data&nbsp;available&nbsp;on&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;socket,&nbsp;without&nbsp;blocking.<br>
+&nbsp;<br>
+<a href="#Telnet-read_lazy">read_lazy</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Read&nbsp;all&nbsp;data&nbsp;in&nbsp;the&nbsp;raw&nbsp;queue&nbsp;(processing&nbsp;it&nbsp;first),&nbsp;without<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doing&nbsp;any&nbsp;socket&nbsp;I/O.<br>
+&nbsp;<br>
+<a href="#Telnet-read_very_lazy">read_very_lazy</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Reads&nbsp;all&nbsp;data&nbsp;in&nbsp;the&nbsp;cooked&nbsp;queue,&nbsp;without&nbsp;doing&nbsp;any&nbsp;socket<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I/O.<br>
+&nbsp;<br>
+<a href="#Telnet-read_sb_data">read_sb_data</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Reads&nbsp;available&nbsp;data&nbsp;between&nbsp;SB&nbsp;...&nbsp;SE&nbsp;sequence.&nbsp;Don't&nbsp;block.<br>
+&nbsp;<br>
+<a href="#Telnet-set_option_negotiation_callback">set_option_negotiation_callback</a>(callback)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;time&nbsp;a&nbsp;telnet&nbsp;option&nbsp;is&nbsp;read&nbsp;on&nbsp;the&nbsp;input&nbsp;flow,&nbsp;this&nbsp;callback<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;set)&nbsp;is&nbsp;called&nbsp;with&nbsp;the&nbsp;following&nbsp;parameters&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;callback(telnet&nbsp;socket,&nbsp;command,&nbsp;option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option&nbsp;will&nbsp;be&nbsp;chr(0)&nbsp;when&nbsp;there&nbsp;is&nbsp;no&nbsp;option.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;other&nbsp;action&nbsp;is&nbsp;done&nbsp;afterwards&nbsp;by&nbsp;telnetlib.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Telnet-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Destructor&nbsp;--&nbsp;close&nbsp;the&nbsp;connection.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-__init__"><strong>__init__</strong></a>(self, host<font color="#909090">=None</font>, port<font color="#909090">=0</font>)</dt><dd><tt>Constructor.<br>
+&nbsp;<br>
+When&nbsp;called&nbsp;without&nbsp;arguments,&nbsp;create&nbsp;an&nbsp;unconnected&nbsp;instance.<br>
+With&nbsp;a&nbsp;hostname&nbsp;argument,&nbsp;it&nbsp;connects&nbsp;the&nbsp;instance;&nbsp;a&nbsp;port<br>
+number&nbsp;is&nbsp;optional.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;connection.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-expect"><strong>expect</strong></a>(self, list, timeout<font color="#909090">=None</font>)</dt><dd><tt>Read&nbsp;until&nbsp;one&nbsp;from&nbsp;a&nbsp;list&nbsp;of&nbsp;a&nbsp;regular&nbsp;expressions&nbsp;matches.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;argument&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;regular&nbsp;expressions,&nbsp;either<br>
+compiled&nbsp;(re.RegexObject&nbsp;instances)&nbsp;or&nbsp;uncompiled&nbsp;(strings).<br>
+The&nbsp;optional&nbsp;second&nbsp;argument&nbsp;is&nbsp;a&nbsp;timeout,&nbsp;in&nbsp;seconds;&nbsp;default<br>
+is&nbsp;no&nbsp;timeout.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;tuple&nbsp;of&nbsp;three&nbsp;items:&nbsp;the&nbsp;index&nbsp;in&nbsp;the&nbsp;list&nbsp;of&nbsp;the<br>
+first&nbsp;regular&nbsp;expression&nbsp;that&nbsp;matches;&nbsp;the&nbsp;match&nbsp;object<br>
+returned;&nbsp;and&nbsp;the&nbsp;text&nbsp;read&nbsp;up&nbsp;till&nbsp;and&nbsp;including&nbsp;the&nbsp;match.<br>
+&nbsp;<br>
+If&nbsp;EOF&nbsp;is&nbsp;read&nbsp;and&nbsp;no&nbsp;text&nbsp;was&nbsp;read,&nbsp;raise&nbsp;EOFError.<br>
+Otherwise,&nbsp;when&nbsp;nothing&nbsp;matches,&nbsp;return&nbsp;(-1,&nbsp;None,&nbsp;text)&nbsp;where<br>
+text&nbsp;is&nbsp;the&nbsp;text&nbsp;received&nbsp;so&nbsp;far&nbsp;(may&nbsp;be&nbsp;the&nbsp;empty&nbsp;string&nbsp;if&nbsp;a<br>
+timeout&nbsp;happened).<br>
+&nbsp;<br>
+If&nbsp;a&nbsp;regular&nbsp;expression&nbsp;ends&nbsp;with&nbsp;a&nbsp;greedy&nbsp;match&nbsp;(e.g.&nbsp;'.*')<br>
+or&nbsp;if&nbsp;more&nbsp;than&nbsp;one&nbsp;expression&nbsp;can&nbsp;match&nbsp;the&nbsp;same&nbsp;input,&nbsp;the<br>
+results&nbsp;are&nbsp;undeterministic,&nbsp;and&nbsp;may&nbsp;depend&nbsp;on&nbsp;the&nbsp;I/O&nbsp;timing.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-fileno"><strong>fileno</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;<a href="#Telnet-fileno">fileno</a>()&nbsp;of&nbsp;the&nbsp;socket&nbsp;object&nbsp;used&nbsp;internally.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-fill_rawq"><strong>fill_rawq</strong></a>(self)</dt><dd><tt>Fill&nbsp;raw&nbsp;queue&nbsp;from&nbsp;exactly&nbsp;one&nbsp;recv()&nbsp;system&nbsp;call.<br>
+&nbsp;<br>
+Block&nbsp;if&nbsp;no&nbsp;data&nbsp;is&nbsp;immediately&nbsp;available.&nbsp;&nbsp;Set&nbsp;self.<strong>eof</strong>&nbsp;when<br>
+connection&nbsp;is&nbsp;closed.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-get_socket"><strong>get_socket</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;socket&nbsp;object&nbsp;used&nbsp;internally.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-interact"><strong>interact</strong></a>(self)</dt><dd><tt>Interaction&nbsp;function,&nbsp;emulates&nbsp;a&nbsp;very&nbsp;dumb&nbsp;telnet&nbsp;client.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-listener"><strong>listener</strong></a>(self)</dt><dd><tt>Helper&nbsp;for&nbsp;<a href="#Telnet-mt_interact">mt_interact</a>()&nbsp;--&nbsp;this&nbsp;executes&nbsp;in&nbsp;the&nbsp;other&nbsp;thread.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-msg"><strong>msg</strong></a>(self, msg, *args)</dt><dd><tt>Print&nbsp;a&nbsp;debug&nbsp;message,&nbsp;when&nbsp;the&nbsp;debug&nbsp;level&nbsp;is&nbsp;&gt;&nbsp;0.<br>
+&nbsp;<br>
+If&nbsp;extra&nbsp;arguments&nbsp;are&nbsp;present,&nbsp;they&nbsp;are&nbsp;substituted&nbsp;in&nbsp;the<br>
+message&nbsp;using&nbsp;the&nbsp;standard&nbsp;string&nbsp;formatting&nbsp;operator.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-mt_interact"><strong>mt_interact</strong></a>(self)</dt><dd><tt>Multithreaded&nbsp;version&nbsp;of&nbsp;<a href="#Telnet-interact">interact</a>().</tt></dd></dl>
+
+<dl><dt><a name="Telnet-open"><strong>open</strong></a>(self, host, port<font color="#909090">=0</font>)</dt><dd><tt>Connect&nbsp;to&nbsp;a&nbsp;host.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;second&nbsp;argument&nbsp;is&nbsp;the&nbsp;port&nbsp;number,&nbsp;which<br>
+defaults&nbsp;to&nbsp;the&nbsp;standard&nbsp;telnet&nbsp;port&nbsp;(23).<br>
+&nbsp;<br>
+Don't&nbsp;try&nbsp;to&nbsp;reopen&nbsp;an&nbsp;already&nbsp;connected&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-process_rawq"><strong>process_rawq</strong></a>(self)</dt><dd><tt>Transfer&nbsp;from&nbsp;raw&nbsp;queue&nbsp;to&nbsp;cooked&nbsp;queue.<br>
+&nbsp;<br>
+Set&nbsp;self.<strong>eof</strong>&nbsp;when&nbsp;connection&nbsp;is&nbsp;closed.&nbsp;&nbsp;Don't&nbsp;block&nbsp;unless&nbsp;in<br>
+the&nbsp;midst&nbsp;of&nbsp;an&nbsp;IAC&nbsp;sequence.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-rawq_getchar"><strong>rawq_getchar</strong></a>(self)</dt><dd><tt>Get&nbsp;next&nbsp;char&nbsp;from&nbsp;raw&nbsp;queue.<br>
+&nbsp;<br>
+Block&nbsp;if&nbsp;no&nbsp;data&nbsp;is&nbsp;immediately&nbsp;available.&nbsp;&nbsp;Raise&nbsp;EOFError<br>
+when&nbsp;connection&nbsp;is&nbsp;closed.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_all"><strong>read_all</strong></a>(self)</dt><dd><tt>Read&nbsp;all&nbsp;data&nbsp;until&nbsp;EOF;&nbsp;block&nbsp;until&nbsp;connection&nbsp;closed.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_eager"><strong>read_eager</strong></a>(self)</dt><dd><tt>Read&nbsp;readily&nbsp;available&nbsp;data.<br>
+&nbsp;<br>
+Raise&nbsp;EOFError&nbsp;if&nbsp;connection&nbsp;closed&nbsp;and&nbsp;no&nbsp;cooked&nbsp;data<br>
+available.&nbsp;&nbsp;Return&nbsp;''&nbsp;if&nbsp;no&nbsp;cooked&nbsp;data&nbsp;available&nbsp;otherwise.<br>
+Don't&nbsp;block&nbsp;unless&nbsp;in&nbsp;the&nbsp;midst&nbsp;of&nbsp;an&nbsp;IAC&nbsp;sequence.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_lazy"><strong>read_lazy</strong></a>(self)</dt><dd><tt>Process&nbsp;and&nbsp;return&nbsp;data&nbsp;that's&nbsp;already&nbsp;in&nbsp;the&nbsp;queues&nbsp;(lazy).<br>
+&nbsp;<br>
+Raise&nbsp;EOFError&nbsp;if&nbsp;connection&nbsp;closed&nbsp;and&nbsp;no&nbsp;data&nbsp;available.<br>
+Return&nbsp;''&nbsp;if&nbsp;no&nbsp;cooked&nbsp;data&nbsp;available&nbsp;otherwise.&nbsp;&nbsp;Don't&nbsp;block<br>
+unless&nbsp;in&nbsp;the&nbsp;midst&nbsp;of&nbsp;an&nbsp;IAC&nbsp;sequence.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_sb_data"><strong>read_sb_data</strong></a>(self)</dt><dd><tt>Return&nbsp;any&nbsp;data&nbsp;available&nbsp;in&nbsp;the&nbsp;SB&nbsp;...&nbsp;SE&nbsp;queue.<br>
+&nbsp;<br>
+Return&nbsp;''&nbsp;if&nbsp;no&nbsp;SB&nbsp;...&nbsp;SE&nbsp;available.&nbsp;Should&nbsp;only&nbsp;be&nbsp;called<br>
+after&nbsp;seeing&nbsp;a&nbsp;SB&nbsp;or&nbsp;SE&nbsp;command.&nbsp;When&nbsp;a&nbsp;new&nbsp;SB&nbsp;command&nbsp;is<br>
+found,&nbsp;old&nbsp;unread&nbsp;SB&nbsp;data&nbsp;will&nbsp;be&nbsp;discarded.&nbsp;Don't&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_some"><strong>read_some</strong></a>(self)</dt><dd><tt>Read&nbsp;at&nbsp;least&nbsp;one&nbsp;byte&nbsp;of&nbsp;cooked&nbsp;data&nbsp;unless&nbsp;EOF&nbsp;is&nbsp;hit.<br>
+&nbsp;<br>
+Return&nbsp;''&nbsp;if&nbsp;EOF&nbsp;is&nbsp;hit.&nbsp;&nbsp;Block&nbsp;if&nbsp;no&nbsp;data&nbsp;is&nbsp;immediately<br>
+available.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_until"><strong>read_until</strong></a>(self, match, timeout<font color="#909090">=None</font>)</dt><dd><tt>Read&nbsp;until&nbsp;a&nbsp;given&nbsp;string&nbsp;is&nbsp;encountered&nbsp;or&nbsp;until&nbsp;timeout.<br>
+&nbsp;<br>
+When&nbsp;no&nbsp;match&nbsp;is&nbsp;found,&nbsp;return&nbsp;whatever&nbsp;is&nbsp;available&nbsp;instead,<br>
+possibly&nbsp;the&nbsp;empty&nbsp;string.&nbsp;&nbsp;Raise&nbsp;EOFError&nbsp;if&nbsp;the&nbsp;connection<br>
+is&nbsp;closed&nbsp;and&nbsp;no&nbsp;cooked&nbsp;data&nbsp;is&nbsp;available.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_very_eager"><strong>read_very_eager</strong></a>(self)</dt><dd><tt>Read&nbsp;everything&nbsp;that's&nbsp;possible&nbsp;without&nbsp;blocking&nbsp;in&nbsp;I/O&nbsp;(eager).<br>
+&nbsp;<br>
+Raise&nbsp;EOFError&nbsp;if&nbsp;connection&nbsp;closed&nbsp;and&nbsp;no&nbsp;cooked&nbsp;data<br>
+available.&nbsp;&nbsp;Return&nbsp;''&nbsp;if&nbsp;no&nbsp;cooked&nbsp;data&nbsp;available&nbsp;otherwise.<br>
+Don't&nbsp;block&nbsp;unless&nbsp;in&nbsp;the&nbsp;midst&nbsp;of&nbsp;an&nbsp;IAC&nbsp;sequence.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-read_very_lazy"><strong>read_very_lazy</strong></a>(self)</dt><dd><tt>Return&nbsp;any&nbsp;data&nbsp;available&nbsp;in&nbsp;the&nbsp;cooked&nbsp;queue&nbsp;(very&nbsp;lazy).<br>
+&nbsp;<br>
+Raise&nbsp;EOFError&nbsp;if&nbsp;connection&nbsp;closed&nbsp;and&nbsp;no&nbsp;data&nbsp;available.<br>
+Return&nbsp;''&nbsp;if&nbsp;no&nbsp;cooked&nbsp;data&nbsp;available&nbsp;otherwise.&nbsp;&nbsp;Don't&nbsp;block.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-set_debuglevel"><strong>set_debuglevel</strong></a>(self, debuglevel)</dt><dd><tt>Set&nbsp;the&nbsp;debug&nbsp;level.<br>
+&nbsp;<br>
+The&nbsp;higher&nbsp;it&nbsp;is,&nbsp;the&nbsp;more&nbsp;debug&nbsp;output&nbsp;you&nbsp;get&nbsp;(on&nbsp;sys.stdout).</tt></dd></dl>
+
+<dl><dt><a name="Telnet-set_option_negotiation_callback"><strong>set_option_negotiation_callback</strong></a>(self, callback)</dt><dd><tt>Provide&nbsp;a&nbsp;callback&nbsp;function&nbsp;called&nbsp;after&nbsp;each&nbsp;receipt&nbsp;of&nbsp;a&nbsp;telnet&nbsp;option.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-sock_avail"><strong>sock_avail</strong></a>(self)</dt><dd><tt>Test&nbsp;whether&nbsp;data&nbsp;is&nbsp;available&nbsp;on&nbsp;the&nbsp;socket.</tt></dd></dl>
+
+<dl><dt><a name="Telnet-write"><strong>write</strong></a>(self, buffer)</dt><dd><tt>Write&nbsp;a&nbsp;string&nbsp;to&nbsp;the&nbsp;socket,&nbsp;doubling&nbsp;any&nbsp;IAC&nbsp;characters.<br>
+&nbsp;<br>
+Can&nbsp;block&nbsp;if&nbsp;the&nbsp;connection&nbsp;is&nbsp;blocked.&nbsp;&nbsp;May&nbsp;raise<br>
+socket.error&nbsp;if&nbsp;the&nbsp;connection&nbsp;is&nbsp;closed.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['Telnet']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;</td></tr></table>

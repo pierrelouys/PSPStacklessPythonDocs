@@ -1,0 +1,921 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>optparse</strong></big></big> (version 1.5.3)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/optparse.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/optparse.py</a></font></td></tr></table>
+    <p><tt>optparse&nbsp;-&nbsp;a&nbsp;powerful,&nbsp;extensible,&nbsp;and&nbsp;easy-to-use&nbsp;option&nbsp;parser.<br>
+&nbsp;<br>
+By&nbsp;Greg&nbsp;Ward&nbsp;&lt;gward@python.net&gt;<br>
+&nbsp;<br>
+Originally&nbsp;distributed&nbsp;as&nbsp;Optik;&nbsp;see&nbsp;<a href="http://optik.sourceforge.net/">http://optik.sourceforge.net/</a>&nbsp;.<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;have&nbsp;problems&nbsp;with&nbsp;this&nbsp;module,&nbsp;please&nbsp;do&nbsp;not&nbsp;file&nbsp;bugs,<br>
+patches,&nbsp;or&nbsp;feature&nbsp;requests&nbsp;with&nbsp;Python;&nbsp;instead,&nbsp;use&nbsp;Optik's<br>
+SourceForge&nbsp;project&nbsp;page:<br>
+&nbsp;&nbsp;<a href="http://sourceforge.net/projects/optik">http://sourceforge.net/projects/optik</a><br>
+&nbsp;<br>
+For&nbsp;support,&nbsp;use&nbsp;the&nbsp;optik-users@lists.sourceforge.net&nbsp;mailing&nbsp;list<br>
+(<a href="http://lists.sourceforge.net/lists/listinfo/optik-users">http://lists.sourceforge.net/lists/listinfo/optik-users</a>).</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="textwrap.html">textwrap</a><br>
+</td><td width="25%" valign=top><a href="types.html">types</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="optparse.html#OptParseError">OptParseError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="optparse.html#BadOptionError">BadOptionError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="optparse.html#OptionError">OptionError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="optparse.html#OptionConflictError">OptionConflictError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="optparse.html#OptionValueError">OptionValueError</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="optparse.html#HelpFormatter">HelpFormatter</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="optparse.html#IndentedHelpFormatter">IndentedHelpFormatter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="optparse.html#TitledHelpFormatter">TitledHelpFormatter</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="optparse.html#Option">Option</a>
+</font></dt><dt><font face="helvetica, arial"><a href="optparse.html#OptionContainer">OptionContainer</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="optparse.html#OptionGroup">OptionGroup</a>
+</font></dt><dt><font face="helvetica, arial"><a href="optparse.html#OptionParser">OptionParser</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="optparse.html#Values">Values</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BadOptionError">class <strong>BadOptionError</strong></a>(<a href="optparse.html#OptParseError">OptParseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;if&nbsp;an&nbsp;invalid&nbsp;option&nbsp;is&nbsp;seen&nbsp;on&nbsp;the&nbsp;command&nbsp;line.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="optparse.html#BadOptionError">BadOptionError</a></dd>
+<dd><a href="optparse.html#OptParseError">OptParseError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="BadOptionError-__init__"><strong>__init__</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="BadOptionError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="optparse.html#OptParseError">OptParseError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#BadOptionError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="BadOptionError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="BadOptionError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#BadOptionError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="BadOptionError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HelpFormatter">class <strong>HelpFormatter</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;formatting&nbsp;option&nbsp;help.&nbsp;&nbsp;<a href="#OptionParser">OptionParser</a><br>
+instances&nbsp;should&nbsp;use&nbsp;one&nbsp;of&nbsp;the&nbsp;<a href="#HelpFormatter">HelpFormatter</a>&nbsp;subclasses&nbsp;for<br>
+formatting&nbsp;help;&nbsp;by&nbsp;default&nbsp;<a href="#IndentedHelpFormatter">IndentedHelpFormatter</a>&nbsp;is&nbsp;used.<br>
+&nbsp;<br>
+Instance&nbsp;attributes:<br>
+&nbsp;&nbsp;parser&nbsp;:&nbsp;<a href="#OptionParser">OptionParser</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;controlling&nbsp;<a href="#OptionParser">OptionParser</a>&nbsp;instance<br>
+&nbsp;&nbsp;indent_increment&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;to&nbsp;indent&nbsp;per&nbsp;nesting&nbsp;level<br>
+&nbsp;&nbsp;max_help_position&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;maximum&nbsp;starting&nbsp;column&nbsp;for&nbsp;option&nbsp;help&nbsp;text<br>
+&nbsp;&nbsp;help_position&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;calculated&nbsp;starting&nbsp;column&nbsp;for&nbsp;option&nbsp;help&nbsp;text;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;initially&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;maximum<br>
+&nbsp;&nbsp;width&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp;number&nbsp;of&nbsp;columns&nbsp;for&nbsp;output&nbsp;(pass&nbsp;None&nbsp;to&nbsp;constructor&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;value&nbsp;to&nbsp;be&nbsp;taken&nbsp;from&nbsp;the&nbsp;$COLUMNS&nbsp;environment&nbsp;variable)<br>
+&nbsp;&nbsp;level&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current&nbsp;indentation&nbsp;level<br>
+&nbsp;&nbsp;current_indent&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current&nbsp;indentation&nbsp;level&nbsp;(in&nbsp;columns)<br>
+&nbsp;&nbsp;help_width&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;number&nbsp;of&nbsp;columns&nbsp;available&nbsp;for&nbsp;option&nbsp;help&nbsp;text&nbsp;(calculated)<br>
+&nbsp;&nbsp;default_tag&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;text&nbsp;to&nbsp;replace&nbsp;with&nbsp;each&nbsp;option's&nbsp;default&nbsp;value,&nbsp;"%default"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;default.&nbsp;&nbsp;Set&nbsp;to&nbsp;false&nbsp;value&nbsp;to&nbsp;disable&nbsp;default&nbsp;value&nbsp;expansion.<br>
+&nbsp;&nbsp;option_strings&nbsp;:&nbsp;{&nbsp;<a href="#Option">Option</a>&nbsp;:&nbsp;str&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;maps&nbsp;<a href="#Option">Option</a>&nbsp;instances&nbsp;to&nbsp;the&nbsp;snippet&nbsp;of&nbsp;help&nbsp;text&nbsp;explaining<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;syntax&nbsp;of&nbsp;that&nbsp;option,&nbsp;e.g.&nbsp;"-h,&nbsp;--help"&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"-fFILE,&nbsp;--file=FILE"<br>
+&nbsp;&nbsp;_short_opt_fmt&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;string&nbsp;controlling&nbsp;how&nbsp;short&nbsp;options&nbsp;with&nbsp;values&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;printed&nbsp;in&nbsp;help&nbsp;text.&nbsp;&nbsp;Must&nbsp;be&nbsp;either&nbsp;"%s%s"&nbsp;("-fFILE")&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"%s&nbsp;%s"&nbsp;("-f&nbsp;FILE"),&nbsp;because&nbsp;those&nbsp;are&nbsp;the&nbsp;two&nbsp;syntaxes&nbsp;that<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Optik&nbsp;supports.<br>
+&nbsp;&nbsp;_long_opt_fmt&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;similar&nbsp;but&nbsp;for&nbsp;long&nbsp;options;&nbsp;must&nbsp;be&nbsp;either&nbsp;"%s&nbsp;%s"&nbsp;("--file&nbsp;FILE")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;"%s=%s"&nbsp;("--file=FILE").<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="HelpFormatter-__init__"><strong>__init__</strong></a>(self, indent_increment, max_help_position, width, short_first)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-dedent"><strong>dedent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-expand_default"><strong>expand_default</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-format_description"><strong>format_description</strong></a>(self, description)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-format_epilog"><strong>format_epilog</strong></a>(self, epilog)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-format_heading"><strong>format_heading</strong></a>(self, heading)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-format_option"><strong>format_option</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-format_option_strings"><strong>format_option_strings</strong></a>(self, option)</dt><dd><tt>Return&nbsp;a&nbsp;comma-separated&nbsp;list&nbsp;of&nbsp;option&nbsp;strings&nbsp;&amp;&nbsp;metavariables.</tt></dd></dl>
+
+<dl><dt><a name="HelpFormatter-format_usage"><strong>format_usage</strong></a>(self, usage)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-indent"><strong>indent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-set_long_opt_delimiter"><strong>set_long_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-set_parser"><strong>set_parser</strong></a>(self, parser)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-set_short_opt_delimiter"><strong>set_short_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="HelpFormatter-store_option_strings"><strong>store_option_strings</strong></a>(self, parser)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>NO_DEFAULT_VALUE</strong> = 'none'</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IndentedHelpFormatter">class <strong>IndentedHelpFormatter</strong></a>(<a href="optparse.html#HelpFormatter">HelpFormatter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Format&nbsp;help&nbsp;with&nbsp;indented&nbsp;section&nbsp;bodies.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="IndentedHelpFormatter-__init__"><strong>__init__</strong></a>(self, indent_increment<font color="#909090">=2</font>, max_help_position<font color="#909090">=24</font>, width<font color="#909090">=None</font>, short_first<font color="#909090">=1</font>)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_heading"><strong>format_heading</strong></a>(self, heading)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_usage"><strong>format_usage</strong></a>(self, usage)</dt></dl>
+
+<hr>
+Methods inherited from <a href="optparse.html#HelpFormatter">HelpFormatter</a>:<br>
+<dl><dt><a name="IndentedHelpFormatter-dedent"><strong>dedent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-expand_default"><strong>expand_default</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_description"><strong>format_description</strong></a>(self, description)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_epilog"><strong>format_epilog</strong></a>(self, epilog)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_option"><strong>format_option</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-format_option_strings"><strong>format_option_strings</strong></a>(self, option)</dt><dd><tt>Return&nbsp;a&nbsp;comma-separated&nbsp;list&nbsp;of&nbsp;option&nbsp;strings&nbsp;&amp;&nbsp;metavariables.</tt></dd></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-indent"><strong>indent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-set_long_opt_delimiter"><strong>set_long_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-set_parser"><strong>set_parser</strong></a>(self, parser)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-set_short_opt_delimiter"><strong>set_short_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="IndentedHelpFormatter-store_option_strings"><strong>store_option_strings</strong></a>(self, parser)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="optparse.html#HelpFormatter">HelpFormatter</a>:<br>
+<dl><dt><strong>NO_DEFAULT_VALUE</strong> = 'none'</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptParseError">class <strong>OptParseError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="optparse.html#OptParseError">OptParseError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="OptParseError-__init__"><strong>__init__</strong></a>(self, msg)</dt></dl>
+
+<dl><dt><a name="OptParseError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#OptParseError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="OptParseError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OptParseError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptParseError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OptParseError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Option">class <strong>Option</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Instance&nbsp;attributes:<br>
+&nbsp;&nbsp;_short_opts&nbsp;:&nbsp;[string]<br>
+&nbsp;&nbsp;_long_opts&nbsp;:&nbsp;[string]<br>
+&nbsp;<br>
+&nbsp;&nbsp;action&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;type&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;dest&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;default&nbsp;:&nbsp;any<br>
+&nbsp;&nbsp;nargs&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;const&nbsp;:&nbsp;any<br>
+&nbsp;&nbsp;choices&nbsp;:&nbsp;[string]<br>
+&nbsp;&nbsp;callback&nbsp;:&nbsp;function<br>
+&nbsp;&nbsp;callback_args&nbsp;:&nbsp;(any*)<br>
+&nbsp;&nbsp;callback_kwargs&nbsp;:&nbsp;{&nbsp;string&nbsp;:&nbsp;any&nbsp;}<br>
+&nbsp;&nbsp;help&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;metavar&nbsp;:&nbsp;string<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Option-__init__"><strong>__init__</strong></a>(self, *opts, **attrs)</dt></dl>
+
+<dl><dt><a name="Option-__repr__"><strong>__repr__</strong></a> = _repr(self)</dt></dl>
+
+<dl><dt><a name="Option-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Option-check_value"><strong>check_value</strong></a>(self, opt, value)</dt></dl>
+
+<dl><dt><a name="Option-convert_value"><strong>convert_value</strong></a>(self, opt, value)</dt></dl>
+
+<dl><dt><a name="Option-get_opt_string"><strong>get_opt_string</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Option-process"><strong>process</strong></a>(self, opt, value, values, parser)</dt></dl>
+
+<dl><dt><a name="Option-take_action"><strong>take_action</strong></a>(self, action, dest, opt, value, values, parser)</dt></dl>
+
+<dl><dt><a name="Option-takes_value"><strong>takes_value</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>ACTIONS</strong> = ('store', 'store_const', 'store_true', 'store_false', 'append', 'append_const', 'count', 'callback', 'help', 'version')</dl>
+
+<dl><dt><strong>ALWAYS_TYPED_ACTIONS</strong> = ('store', 'append')</dl>
+
+<dl><dt><strong>ATTRS</strong> = ['action', 'type', 'dest', 'default', 'nargs', 'const', 'choices', 'callback', 'callback_args', 'callback_kwargs', 'help', 'metavar']</dl>
+
+<dl><dt><strong>CHECK_METHODS</strong> = [&lt;function _check_action at 0x9f0c330&gt;, &lt;function _check_type at 0x9f0c370&gt;, &lt;function _check_choice at 0x9f0c3b0&gt;, &lt;function _check_dest at 0x9f0c3f0&gt;, &lt;function _check_const at 0x9f0c430&gt;, &lt;function _check_nargs at 0x9f0c470&gt;, &lt;function _check_callback at 0x9f0c4b0&gt;]</dl>
+
+<dl><dt><strong>CONST_ACTIONS</strong> = ('store_const', 'append_const')</dl>
+
+<dl><dt><strong>STORE_ACTIONS</strong> = ('store', 'store_const', 'store_true', 'store_false', 'append', 'append_const', 'count')</dl>
+
+<dl><dt><strong>TYPED_ACTIONS</strong> = ('store', 'append', 'callback')</dl>
+
+<dl><dt><strong>TYPES</strong> = ('string', 'int', 'long', 'float', 'complex', 'choice')</dl>
+
+<dl><dt><strong>TYPE_CHECKER</strong> = {'choice': &lt;function check_choice at 0x9f0c1f0&gt;, 'complex': &lt;function check_builtin at 0x9f0c1b0&gt;, 'float': &lt;function check_builtin at 0x9f0c1b0&gt;, 'int': &lt;function check_builtin at 0x9f0c1b0&gt;, 'long': &lt;function check_builtin at 0x9f0c1b0&gt;}</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionConflictError">class <strong>OptionConflictError</strong></a>(<a href="optparse.html#OptionError">OptionError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;if&nbsp;conflicting&nbsp;options&nbsp;are&nbsp;added&nbsp;to&nbsp;an&nbsp;<a href="#OptionParser">OptionParser</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="optparse.html#OptionConflictError">OptionConflictError</a></dd>
+<dd><a href="optparse.html#OptionError">OptionError</a></dd>
+<dd><a href="optparse.html#OptParseError">OptParseError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="optparse.html#OptionError">OptionError</a>:<br>
+<dl><dt><a name="OptionConflictError-__init__"><strong>__init__</strong></a>(self, msg, option)</dt></dl>
+
+<dl><dt><a name="OptionConflictError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="optparse.html#OptParseError">OptParseError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#OptionConflictError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="OptionConflictError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OptionConflictError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionConflictError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OptionConflictError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionContainer">class <strong>OptionContainer</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;base&nbsp;class.<br>
+&nbsp;<br>
+Class&nbsp;attributes:<br>
+&nbsp;&nbsp;standard_option_list&nbsp;:&nbsp;[<a href="#Option">Option</a>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;standard&nbsp;options&nbsp;that&nbsp;will&nbsp;be&nbsp;accepted&nbsp;by&nbsp;all&nbsp;instances<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;this&nbsp;parser&nbsp;class&nbsp;(intended&nbsp;to&nbsp;be&nbsp;overridden&nbsp;by&nbsp;subclasses).<br>
+&nbsp;<br>
+Instance&nbsp;attributes:<br>
+&nbsp;&nbsp;option_list&nbsp;:&nbsp;[<a href="#Option">Option</a>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;of&nbsp;<a href="#Option">Option</a>&nbsp;objects&nbsp;contained&nbsp;by&nbsp;this&nbsp;<a href="#OptionContainer">OptionContainer</a><br>
+&nbsp;&nbsp;_short_opt&nbsp;:&nbsp;{&nbsp;string&nbsp;:&nbsp;<a href="#Option">Option</a>&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;mapping&nbsp;short&nbsp;option&nbsp;strings,&nbsp;eg.&nbsp;"-f"&nbsp;or&nbsp;"-X",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;the&nbsp;<a href="#Option">Option</a>&nbsp;instances&nbsp;that&nbsp;implement&nbsp;them.&nbsp;&nbsp;If&nbsp;an&nbsp;<a href="#Option">Option</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;has&nbsp;multiple&nbsp;short&nbsp;option&nbsp;strings,&nbsp;it&nbsp;will&nbsp;appears&nbsp;in&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;multiple&nbsp;times.&nbsp;[1]<br>
+&nbsp;&nbsp;_long_opt&nbsp;:&nbsp;{&nbsp;string&nbsp;:&nbsp;<a href="#Option">Option</a>&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;mapping&nbsp;long&nbsp;option&nbsp;strings,&nbsp;eg.&nbsp;"--file"&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"--exclude",&nbsp;to&nbsp;the&nbsp;<a href="#Option">Option</a>&nbsp;instances&nbsp;that&nbsp;implement&nbsp;them.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Again,&nbsp;a&nbsp;given&nbsp;<a href="#Option">Option</a>&nbsp;can&nbsp;occur&nbsp;multiple&nbsp;times&nbsp;in&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary.&nbsp;[1]<br>
+&nbsp;&nbsp;defaults&nbsp;:&nbsp;{&nbsp;string&nbsp;:&nbsp;any&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dictionary&nbsp;mapping&nbsp;option&nbsp;destination&nbsp;names&nbsp;to&nbsp;default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;for&nbsp;each&nbsp;destination&nbsp;[1]<br>
+&nbsp;<br>
+[1]&nbsp;These&nbsp;mappings&nbsp;are&nbsp;common&nbsp;to&nbsp;(shared&nbsp;by)&nbsp;all&nbsp;components&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;controlling&nbsp;<a href="#OptionParser">OptionParser</a>,&nbsp;where&nbsp;they&nbsp;are&nbsp;initially&nbsp;created.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OptionContainer-__init__"><strong>__init__</strong></a>(self, option_class, conflict_handler, description)</dt></dl>
+
+<dl><dt><a name="OptionContainer-add_option"><strong>add_option</strong></a>(self, *args, **kwargs)</dt><dd><tt><a href="#OptionContainer-add_option">add_option</a>(<a href="#Option">Option</a>)<br>
+<a href="#OptionContainer-add_option">add_option</a>(opt_str,&nbsp;...,&nbsp;kwarg=val,&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="OptionContainer-add_options"><strong>add_options</strong></a>(self, option_list)</dt></dl>
+
+<dl><dt><a name="OptionContainer-destroy"><strong>destroy</strong></a>(self)</dt><dd><tt>see&nbsp;<a href="#OptionParser">OptionParser</a>.<a href="#OptionContainer-destroy">destroy</a>().</tt></dd></dl>
+
+<dl><dt><a name="OptionContainer-format_description"><strong>format_description</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionContainer-format_help"><strong>format_help</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionContainer-format_option_help"><strong>format_option_help</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionContainer-get_description"><strong>get_description</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionContainer-get_option"><strong>get_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionContainer-has_option"><strong>has_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionContainer-remove_option"><strong>remove_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionContainer-set_conflict_handler"><strong>set_conflict_handler</strong></a>(self, handler)</dt></dl>
+
+<dl><dt><a name="OptionContainer-set_description"><strong>set_description</strong></a>(self, description)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionError">class <strong>OptionError</strong></a>(<a href="optparse.html#OptParseError">OptParseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;if&nbsp;an&nbsp;<a href="#Option">Option</a>&nbsp;instance&nbsp;is&nbsp;created&nbsp;with&nbsp;invalid&nbsp;or<br>
+inconsistent&nbsp;arguments.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="optparse.html#OptionError">OptionError</a></dd>
+<dd><a href="optparse.html#OptParseError">OptParseError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="OptionError-__init__"><strong>__init__</strong></a>(self, msg, option)</dt></dl>
+
+<dl><dt><a name="OptionError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="optparse.html#OptParseError">OptParseError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#OptionError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="OptionError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OptionError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OptionError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionGroup">class <strong>OptionGroup</strong></a>(<a href="optparse.html#OptionContainer">OptionContainer</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OptionGroup-__init__"><strong>__init__</strong></a>(self, parser, title, description<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OptionGroup-destroy"><strong>destroy</strong></a>(self)</dt><dd><tt>see&nbsp;<a href="#OptionParser">OptionParser</a>.<a href="#OptionGroup-destroy">destroy</a>().</tt></dd></dl>
+
+<dl><dt><a name="OptionGroup-format_help"><strong>format_help</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionGroup-set_title"><strong>set_title</strong></a>(self, title)</dt></dl>
+
+<hr>
+Methods inherited from <a href="optparse.html#OptionContainer">OptionContainer</a>:<br>
+<dl><dt><a name="OptionGroup-add_option"><strong>add_option</strong></a>(self, *args, **kwargs)</dt><dd><tt><a href="#OptionGroup-add_option">add_option</a>(<a href="#Option">Option</a>)<br>
+<a href="#OptionGroup-add_option">add_option</a>(opt_str,&nbsp;...,&nbsp;kwarg=val,&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="OptionGroup-add_options"><strong>add_options</strong></a>(self, option_list)</dt></dl>
+
+<dl><dt><a name="OptionGroup-format_description"><strong>format_description</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionGroup-format_option_help"><strong>format_option_help</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionGroup-get_description"><strong>get_description</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionGroup-get_option"><strong>get_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionGroup-has_option"><strong>has_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionGroup-remove_option"><strong>remove_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionGroup-set_conflict_handler"><strong>set_conflict_handler</strong></a>(self, handler)</dt></dl>
+
+<dl><dt><a name="OptionGroup-set_description"><strong>set_description</strong></a>(self, description)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionParser">class <strong>OptionParser</strong></a>(<a href="optparse.html#OptionContainer">OptionContainer</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;attributes:<br>
+&nbsp;&nbsp;standard_option_list&nbsp;:&nbsp;[<a href="#Option">Option</a>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;standard&nbsp;options&nbsp;that&nbsp;will&nbsp;be&nbsp;accepted&nbsp;by&nbsp;all&nbsp;instances<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;this&nbsp;parser&nbsp;class&nbsp;(intended&nbsp;to&nbsp;be&nbsp;overridden&nbsp;by&nbsp;subclasses).<br>
+&nbsp;<br>
+Instance&nbsp;attributes:<br>
+&nbsp;&nbsp;usage&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;usage&nbsp;string&nbsp;for&nbsp;your&nbsp;program.&nbsp;&nbsp;Before&nbsp;it&nbsp;is&nbsp;displayed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;the&nbsp;user,&nbsp;"%prog"&nbsp;will&nbsp;be&nbsp;expanded&nbsp;to&nbsp;the&nbsp;name&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;your&nbsp;program&nbsp;(self.<strong>prog</strong>&nbsp;or&nbsp;os.path.basename(sys.argv[0])).<br>
+&nbsp;&nbsp;prog&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;current&nbsp;program&nbsp;(to&nbsp;override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;os.path.basename(sys.argv[0])).<br>
+&nbsp;&nbsp;epilog&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;paragraph&nbsp;of&nbsp;help&nbsp;text&nbsp;to&nbsp;print&nbsp;after&nbsp;option&nbsp;help<br>
+&nbsp;<br>
+&nbsp;&nbsp;option_groups&nbsp;:&nbsp;[<a href="#OptionGroup">OptionGroup</a>]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;option&nbsp;groups&nbsp;in&nbsp;this&nbsp;parser&nbsp;(option&nbsp;groups&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;irrelevant&nbsp;for&nbsp;parsing&nbsp;the&nbsp;command-line,&nbsp;but&nbsp;very&nbsp;useful<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;generating&nbsp;help)<br>
+&nbsp;<br>
+&nbsp;&nbsp;allow_interspersed_args&nbsp;:&nbsp;bool&nbsp;=&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;true,&nbsp;positional&nbsp;arguments&nbsp;may&nbsp;be&nbsp;interspersed&nbsp;with&nbsp;options.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Assuming&nbsp;-a&nbsp;and&nbsp;-b&nbsp;each&nbsp;take&nbsp;a&nbsp;single&nbsp;argument,&nbsp;the&nbsp;command-line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-ablah&nbsp;foo&nbsp;bar&nbsp;-bboo&nbsp;baz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;interpreted&nbsp;the&nbsp;same&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-ablah&nbsp;-bboo&nbsp;--&nbsp;foo&nbsp;bar&nbsp;baz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;this&nbsp;flag&nbsp;were&nbsp;false,&nbsp;that&nbsp;command&nbsp;line&nbsp;would&nbsp;be&nbsp;interpreted&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-ablah&nbsp;--&nbsp;foo&nbsp;bar&nbsp;-bboo&nbsp;baz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;ie.&nbsp;we&nbsp;stop&nbsp;processing&nbsp;options&nbsp;as&nbsp;soon&nbsp;as&nbsp;we&nbsp;see&nbsp;the&nbsp;first<br>
+&nbsp;&nbsp;&nbsp;&nbsp;non-option&nbsp;argument.&nbsp;&nbsp;(This&nbsp;is&nbsp;the&nbsp;tradition&nbsp;followed&nbsp;by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Python's&nbsp;getopt&nbsp;module,&nbsp;Perl's&nbsp;Getopt::Std,&nbsp;and&nbsp;other&nbsp;argument-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parsing&nbsp;libraries,&nbsp;but&nbsp;it&nbsp;is&nbsp;generally&nbsp;annoying&nbsp;to&nbsp;users.)<br>
+&nbsp;<br>
+&nbsp;&nbsp;process_default_values&nbsp;:&nbsp;bool&nbsp;=&nbsp;true<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;true,&nbsp;option&nbsp;default&nbsp;values&nbsp;are&nbsp;processed&nbsp;similarly&nbsp;to&nbsp;option<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;from&nbsp;the&nbsp;command&nbsp;line:&nbsp;that&nbsp;is,&nbsp;they&nbsp;are&nbsp;passed&nbsp;to&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type-checking&nbsp;function&nbsp;for&nbsp;the&nbsp;option's&nbsp;type&nbsp;(as&nbsp;long&nbsp;as&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;value&nbsp;is&nbsp;a&nbsp;string).&nbsp;&nbsp;(This&nbsp;really&nbsp;only&nbsp;matters&nbsp;if&nbsp;you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;have&nbsp;defined&nbsp;custom&nbsp;types;&nbsp;see&nbsp;SF&nbsp;bug&nbsp;#955889.)&nbsp;&nbsp;Set&nbsp;it&nbsp;to&nbsp;false<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;restore&nbsp;the&nbsp;behaviour&nbsp;of&nbsp;Optik&nbsp;1.4.1&nbsp;and&nbsp;earlier.<br>
+&nbsp;<br>
+&nbsp;&nbsp;rargs&nbsp;:&nbsp;[string]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;argument&nbsp;list&nbsp;currently&nbsp;being&nbsp;parsed.&nbsp;&nbsp;Only&nbsp;set&nbsp;when<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#OptionParser-parse_args">parse_args</a>()&nbsp;is&nbsp;active,&nbsp;and&nbsp;continually&nbsp;trimmed&nbsp;down&nbsp;as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;we&nbsp;consume&nbsp;arguments.&nbsp;&nbsp;Mainly&nbsp;there&nbsp;for&nbsp;the&nbsp;benefit&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;callback&nbsp;options.<br>
+&nbsp;&nbsp;largs&nbsp;:&nbsp;[string]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;of&nbsp;leftover&nbsp;arguments&nbsp;that&nbsp;we&nbsp;have&nbsp;skipped&nbsp;while<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parsing&nbsp;options.&nbsp;&nbsp;If&nbsp;allow_interspersed_args&nbsp;is&nbsp;false,&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;is&nbsp;always&nbsp;empty.<br>
+&nbsp;&nbsp;values&nbsp;:&nbsp;<a href="#Values">Values</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;set&nbsp;of&nbsp;option&nbsp;values&nbsp;currently&nbsp;being&nbsp;accumulated.&nbsp;&nbsp;Only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;when&nbsp;<a href="#OptionParser-parse_args">parse_args</a>()&nbsp;is&nbsp;active.&nbsp;&nbsp;Also&nbsp;mainly&nbsp;for&nbsp;callbacks.<br>
+&nbsp;<br>
+Because&nbsp;of&nbsp;the&nbsp;'rargs',&nbsp;'largs',&nbsp;and&nbsp;'values'&nbsp;attributes,<br>
+<a href="#OptionParser">OptionParser</a>&nbsp;is&nbsp;not&nbsp;thread-safe.&nbsp;&nbsp;If,&nbsp;for&nbsp;some&nbsp;perverse&nbsp;reason,&nbsp;you<br>
+need&nbsp;to&nbsp;parse&nbsp;command-line&nbsp;arguments&nbsp;simultaneously&nbsp;in&nbsp;different<br>
+threads,&nbsp;use&nbsp;different&nbsp;<a href="#OptionParser">OptionParser</a>&nbsp;instances.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OptionParser-__init__"><strong>__init__</strong></a>(self, usage<font color="#909090">=None</font>, option_list<font color="#909090">=None</font>, option_class<font color="#909090">=&lt;class optparse.Option at 0x9f04ae0&gt;</font>, version<font color="#909090">=None</font>, conflict_handler<font color="#909090">='error'</font>, description<font color="#909090">=None</font>, formatter<font color="#909090">=None</font>, add_help_option<font color="#909090">=True</font>, prog<font color="#909090">=None</font>, epilog<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OptionParser-add_option_group"><strong>add_option_group</strong></a>(self, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="OptionParser-check_values"><strong>check_values</strong></a>(self, values, args)</dt><dd><tt><a href="#OptionParser-check_values">check_values</a>(values&nbsp;:&nbsp;<a href="#Values">Values</a>,&nbsp;args&nbsp;:&nbsp;[string])<br>
+-&gt;&nbsp;(values&nbsp;:&nbsp;<a href="#Values">Values</a>,&nbsp;args&nbsp;:&nbsp;[string])<br>
+&nbsp;<br>
+Check&nbsp;that&nbsp;the&nbsp;supplied&nbsp;option&nbsp;values&nbsp;and&nbsp;leftover&nbsp;arguments&nbsp;are<br>
+valid.&nbsp;&nbsp;Returns&nbsp;the&nbsp;option&nbsp;values&nbsp;and&nbsp;leftover&nbsp;arguments<br>
+(possibly&nbsp;adjusted,&nbsp;possibly&nbsp;completely&nbsp;new&nbsp;--&nbsp;whatever&nbsp;you<br>
+like).&nbsp;&nbsp;Default&nbsp;implementation&nbsp;just&nbsp;returns&nbsp;the&nbsp;passed-in<br>
+values;&nbsp;subclasses&nbsp;may&nbsp;override&nbsp;as&nbsp;desired.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-destroy"><strong>destroy</strong></a>(self)</dt><dd><tt>Declare&nbsp;that&nbsp;you&nbsp;are&nbsp;done&nbsp;with&nbsp;this&nbsp;<a href="#OptionParser">OptionParser</a>.&nbsp;&nbsp;This&nbsp;cleans&nbsp;up<br>
+reference&nbsp;cycles&nbsp;so&nbsp;the&nbsp;<a href="#OptionParser">OptionParser</a>&nbsp;(and&nbsp;all&nbsp;objects&nbsp;referenced&nbsp;by<br>
+it)&nbsp;can&nbsp;be&nbsp;garbage-collected&nbsp;promptly.&nbsp;&nbsp;After&nbsp;calling&nbsp;<a href="#OptionParser-destroy">destroy</a>(),&nbsp;the<br>
+<a href="#OptionParser">OptionParser</a>&nbsp;is&nbsp;unusable.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-disable_interspersed_args"><strong>disable_interspersed_args</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-enable_interspersed_args"><strong>enable_interspersed_args</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-error"><strong>error</strong></a>(self, msg)</dt><dd><tt><a href="#OptionParser-error">error</a>(msg&nbsp;:&nbsp;string)<br>
+&nbsp;<br>
+Print&nbsp;a&nbsp;usage&nbsp;message&nbsp;incorporating&nbsp;'msg'&nbsp;to&nbsp;stderr&nbsp;and&nbsp;exit.<br>
+If&nbsp;you&nbsp;override&nbsp;this&nbsp;in&nbsp;a&nbsp;subclass,&nbsp;it&nbsp;should&nbsp;not&nbsp;return&nbsp;--&nbsp;it<br>
+should&nbsp;either&nbsp;exit&nbsp;or&nbsp;raise&nbsp;an&nbsp;exception.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-exit"><strong>exit</strong></a>(self, status<font color="#909090">=0</font>, msg<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OptionParser-expand_prog_name"><strong>expand_prog_name</strong></a>(self, s)</dt></dl>
+
+<dl><dt><a name="OptionParser-format_epilog"><strong>format_epilog</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionParser-format_help"><strong>format_help</strong></a>(self, formatter<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OptionParser-format_option_help"><strong>format_option_help</strong></a>(self, formatter<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_default_values"><strong>get_default_values</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_description"><strong>get_description</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_option_group"><strong>get_option_group</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_prog_name"><strong>get_prog_name</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_usage"><strong>get_usage</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_version"><strong>get_version</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="OptionParser-parse_args"><strong>parse_args</strong></a>(self, args<font color="#909090">=None</font>, values<font color="#909090">=None</font>)</dt><dd><tt><a href="#OptionParser-parse_args">parse_args</a>(args&nbsp;:&nbsp;[string]&nbsp;=&nbsp;sys.argv[1:],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values&nbsp;:&nbsp;<a href="#Values">Values</a>&nbsp;=&nbsp;None)<br>
+-&gt;&nbsp;(values&nbsp;:&nbsp;<a href="#Values">Values</a>,&nbsp;args&nbsp;:&nbsp;[string])<br>
+&nbsp;<br>
+Parse&nbsp;the&nbsp;command-line&nbsp;options&nbsp;found&nbsp;in&nbsp;'args'&nbsp;(default:<br>
+sys.argv[1:]).&nbsp;&nbsp;Any&nbsp;errors&nbsp;result&nbsp;in&nbsp;a&nbsp;call&nbsp;to&nbsp;'<a href="#OptionParser-error">error</a>()',&nbsp;which<br>
+by&nbsp;default&nbsp;prints&nbsp;the&nbsp;usage&nbsp;message&nbsp;to&nbsp;stderr&nbsp;and&nbsp;calls<br>
+sys.<a href="#OptionParser-exit">exit</a>()&nbsp;with&nbsp;an&nbsp;error&nbsp;message.&nbsp;&nbsp;On&nbsp;success&nbsp;returns&nbsp;a&nbsp;pair<br>
+(values,&nbsp;args)&nbsp;where&nbsp;'values'&nbsp;is&nbsp;an&nbsp;<a href="#Values">Values</a>&nbsp;instance&nbsp;(with&nbsp;all<br>
+your&nbsp;option&nbsp;values)&nbsp;and&nbsp;'args'&nbsp;is&nbsp;the&nbsp;list&nbsp;of&nbsp;arguments&nbsp;left<br>
+over&nbsp;after&nbsp;parsing&nbsp;options.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-print_help"><strong>print_help</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt><a href="#OptionParser-print_help">print_help</a>(file&nbsp;:&nbsp;file&nbsp;=&nbsp;stdout)<br>
+&nbsp;<br>
+Print&nbsp;an&nbsp;extended&nbsp;help&nbsp;message,&nbsp;listing&nbsp;all&nbsp;options&nbsp;and&nbsp;any<br>
+help&nbsp;text&nbsp;provided&nbsp;with&nbsp;them,&nbsp;to&nbsp;'file'&nbsp;(default&nbsp;stdout).</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-print_usage"><strong>print_usage</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt><a href="#OptionParser-print_usage">print_usage</a>(file&nbsp;:&nbsp;file&nbsp;=&nbsp;stdout)<br>
+&nbsp;<br>
+Print&nbsp;the&nbsp;usage&nbsp;message&nbsp;for&nbsp;the&nbsp;current&nbsp;program&nbsp;(self.<strong>usage</strong>)&nbsp;to<br>
+'file'&nbsp;(default&nbsp;stdout).&nbsp;&nbsp;Any&nbsp;occurence&nbsp;of&nbsp;the&nbsp;string&nbsp;"%prog"&nbsp;in<br>
+self.<strong>usage</strong>&nbsp;is&nbsp;replaced&nbsp;with&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;current&nbsp;program<br>
+(basename&nbsp;of&nbsp;sys.argv[0]).&nbsp;&nbsp;Does&nbsp;nothing&nbsp;if&nbsp;self.<strong>usage</strong>&nbsp;is&nbsp;empty<br>
+or&nbsp;not&nbsp;defined.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-print_version"><strong>print_version</strong></a>(self, file<font color="#909090">=None</font>)</dt><dd><tt><a href="#OptionParser-print_version">print_version</a>(file&nbsp;:&nbsp;file&nbsp;=&nbsp;stdout)<br>
+&nbsp;<br>
+Print&nbsp;the&nbsp;version&nbsp;message&nbsp;for&nbsp;this&nbsp;program&nbsp;(self.<strong>version</strong>)&nbsp;to<br>
+'file'&nbsp;(default&nbsp;stdout).&nbsp;&nbsp;As&nbsp;with&nbsp;<a href="#OptionParser-print_usage">print_usage</a>(),&nbsp;any&nbsp;occurence<br>
+of&nbsp;"%prog"&nbsp;in&nbsp;self.<strong>version</strong>&nbsp;is&nbsp;replaced&nbsp;by&nbsp;the&nbsp;current&nbsp;program's<br>
+name.&nbsp;&nbsp;Does&nbsp;nothing&nbsp;if&nbsp;self.<strong>version</strong>&nbsp;is&nbsp;empty&nbsp;or&nbsp;undefined.</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-set_default"><strong>set_default</strong></a>(self, dest, value)</dt></dl>
+
+<dl><dt><a name="OptionParser-set_defaults"><strong>set_defaults</strong></a>(self, **kwargs)</dt></dl>
+
+<dl><dt><a name="OptionParser-set_process_default_values"><strong>set_process_default_values</strong></a>(self, process)</dt></dl>
+
+<dl><dt><a name="OptionParser-set_usage"><strong>set_usage</strong></a>(self, usage)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>standard_option_list</strong> = []</dl>
+
+<hr>
+Methods inherited from <a href="optparse.html#OptionContainer">OptionContainer</a>:<br>
+<dl><dt><a name="OptionParser-add_option"><strong>add_option</strong></a>(self, *args, **kwargs)</dt><dd><tt><a href="#OptionParser-add_option">add_option</a>(<a href="#Option">Option</a>)<br>
+<a href="#OptionParser-add_option">add_option</a>(opt_str,&nbsp;...,&nbsp;kwarg=val,&nbsp;...)</tt></dd></dl>
+
+<dl><dt><a name="OptionParser-add_options"><strong>add_options</strong></a>(self, option_list)</dt></dl>
+
+<dl><dt><a name="OptionParser-format_description"><strong>format_description</strong></a>(self, formatter)</dt></dl>
+
+<dl><dt><a name="OptionParser-get_option"><strong>get_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionParser-has_option"><strong>has_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionParser-remove_option"><strong>remove_option</strong></a>(self, opt_str)</dt></dl>
+
+<dl><dt><a name="OptionParser-set_conflict_handler"><strong>set_conflict_handler</strong></a>(self, handler)</dt></dl>
+
+<dl><dt><a name="OptionParser-set_description"><strong>set_description</strong></a>(self, description)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OptionValueError">class <strong>OptionValueError</strong></a>(<a href="optparse.html#OptParseError">OptParseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Raised&nbsp;if&nbsp;an&nbsp;invalid&nbsp;option&nbsp;value&nbsp;is&nbsp;encountered&nbsp;on&nbsp;the&nbsp;command<br>
+line.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="optparse.html#OptionValueError">OptionValueError</a></dd>
+<dd><a href="optparse.html#OptParseError">OptParseError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="optparse.html#OptParseError">OptParseError</a>:<br>
+<dl><dt><a name="OptionValueError-__init__"><strong>__init__</strong></a>(self, msg)</dt></dl>
+
+<dl><dt><a name="OptionValueError-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="optparse.html#OptParseError">OptParseError</a>:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8ae98&gt;<dd><tt>T.<a href="#OptionValueError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="OptionValueError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OptionValueError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#OptionValueError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OptionValueError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TitledHelpFormatter">class <strong>TitledHelpFormatter</strong></a>(<a href="optparse.html#HelpFormatter">HelpFormatter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Format&nbsp;help&nbsp;with&nbsp;underlined&nbsp;section&nbsp;headers.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TitledHelpFormatter-__init__"><strong>__init__</strong></a>(self, indent_increment<font color="#909090">=0</font>, max_help_position<font color="#909090">=24</font>, width<font color="#909090">=None</font>, short_first<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_heading"><strong>format_heading</strong></a>(self, heading)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_usage"><strong>format_usage</strong></a>(self, usage)</dt></dl>
+
+<hr>
+Methods inherited from <a href="optparse.html#HelpFormatter">HelpFormatter</a>:<br>
+<dl><dt><a name="TitledHelpFormatter-dedent"><strong>dedent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-expand_default"><strong>expand_default</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_description"><strong>format_description</strong></a>(self, description)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_epilog"><strong>format_epilog</strong></a>(self, epilog)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_option"><strong>format_option</strong></a>(self, option)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-format_option_strings"><strong>format_option_strings</strong></a>(self, option)</dt><dd><tt>Return&nbsp;a&nbsp;comma-separated&nbsp;list&nbsp;of&nbsp;option&nbsp;strings&nbsp;&amp;&nbsp;metavariables.</tt></dd></dl>
+
+<dl><dt><a name="TitledHelpFormatter-indent"><strong>indent</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-set_long_opt_delimiter"><strong>set_long_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-set_parser"><strong>set_parser</strong></a>(self, parser)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-set_short_opt_delimiter"><strong>set_short_opt_delimiter</strong></a>(self, delim)</dt></dl>
+
+<dl><dt><a name="TitledHelpFormatter-store_option_strings"><strong>store_option_strings</strong></a>(self, parser)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="optparse.html#HelpFormatter">HelpFormatter</a>:<br>
+<dl><dt><strong>NO_DEFAULT_VALUE</strong> = 'none'</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Values">class <strong>Values</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Values-__cmp__"><strong>__cmp__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Values-__init__"><strong>__init__</strong></a>(self, defaults<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="Values-__repr__"><strong>__repr__</strong></a> = _repr(self)</dt></dl>
+
+<dl><dt><a name="Values-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Values-ensure_value"><strong>ensure_value</strong></a>(self, attr, value)</dt></dl>
+
+<dl><dt><a name="Values-read_file"><strong>read_file</strong></a>(self, filename, mode<font color="#909090">='careful'</font>)</dt></dl>
+
+<dl><dt><a name="Values-read_module"><strong>read_module</strong></a>(self, modname, mode<font color="#909090">='careful'</font>)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>SUPPRESS_HELP</strong> = 'SUPPRESSHELP'<br>
+<strong>SUPPRESS_USAGE</strong> = 'SUPPRESSUSAGE'<br>
+<strong>__all__</strong> = ['Option', 'SUPPRESS_HELP', 'SUPPRESS_USAGE', 'Values', 'OptionContainer', 'OptionGroup', 'OptionParser', 'HelpFormatter', 'IndentedHelpFormatter', 'TitledHelpFormatter', 'OptParseError', 'OptionError', 'OptionConflictError', 'OptionValueError', 'BadOptionError']<br>
+<strong>__copyright__</strong> = '<font color="#c040c0">\n</font>Copyright (c) 2001-2006 Gregory P. Ward.  All r...EN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.<font color="#c040c0">\n</font>'<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__version__</strong> = '1.5.3'</td></tr></table>

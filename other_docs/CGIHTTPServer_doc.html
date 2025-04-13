@@ -1,0 +1,275 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>CGIHTTPServer</strong></big></big> (version 0.4)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/CGIHTTPServer.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/CGIHTTPServer.py</a></font></td></tr></table>
+    <p><tt>CGI-savvy&nbsp;HTTP&nbsp;Server.<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;builds&nbsp;on&nbsp;SimpleHTTPServer&nbsp;by&nbsp;implementing&nbsp;GET&nbsp;and&nbsp;POST<br>
+requests&nbsp;to&nbsp;cgi-bin&nbsp;scripts.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;os.fork()&nbsp;function&nbsp;is&nbsp;not&nbsp;present&nbsp;(e.g.&nbsp;on&nbsp;Windows),<br>
+os.popen2()&nbsp;is&nbsp;used&nbsp;as&nbsp;a&nbsp;fallback,&nbsp;with&nbsp;slightly&nbsp;altered&nbsp;semantics;&nbsp;if<br>
+that&nbsp;function&nbsp;is&nbsp;not&nbsp;present&nbsp;either&nbsp;(e.g.&nbsp;on&nbsp;Macintosh),&nbsp;only&nbsp;Python<br>
+scripts&nbsp;are&nbsp;supported,&nbsp;and&nbsp;they&nbsp;are&nbsp;executed&nbsp;by&nbsp;the&nbsp;current&nbsp;process.<br>
+&nbsp;<br>
+In&nbsp;all&nbsp;cases,&nbsp;the&nbsp;implementation&nbsp;is&nbsp;intentionally&nbsp;naive&nbsp;--&nbsp;all<br>
+requests&nbsp;are&nbsp;executed&nbsp;sychronously.<br>
+&nbsp;<br>
+SECURITY&nbsp;WARNING:&nbsp;DON'T&nbsp;USE&nbsp;THIS&nbsp;CODE&nbsp;UNLESS&nbsp;YOU&nbsp;ARE&nbsp;INSIDE&nbsp;A&nbsp;FIREWALL<br>
+--&nbsp;it&nbsp;may&nbsp;execute&nbsp;arbitrary&nbsp;Python&nbsp;code&nbsp;or&nbsp;external&nbsp;programs.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;status&nbsp;code&nbsp;200&nbsp;is&nbsp;sent&nbsp;prior&nbsp;to&nbsp;execution&nbsp;of&nbsp;a&nbsp;CGI&nbsp;script,&nbsp;so<br>
+scripts&nbsp;cannot&nbsp;send&nbsp;other&nbsp;status&nbsp;codes&nbsp;such&nbsp;as&nbsp;302&nbsp;(redirect).</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="BaseHTTPServer.html">BaseHTTPServer</a><br>
+<a href="SimpleHTTPServer.html">SimpleHTTPServer</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="select.html">select</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="urllib.html">urllib</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="SimpleHTTPServer.html#SimpleHTTPRequestHandler">SimpleHTTPServer.SimpleHTTPRequestHandler</a>(<a href="BaseHTTPServer.html#BaseHTTPRequestHandler">BaseHTTPServer.BaseHTTPRequestHandler</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="CGIHTTPServer.html#CGIHTTPRequestHandler">CGIHTTPRequestHandler</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CGIHTTPRequestHandler">class <strong>CGIHTTPRequestHandler</strong></a>(<a href="SimpleHTTPServer.html#SimpleHTTPRequestHandler">SimpleHTTPServer.SimpleHTTPRequestHandler</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Complete&nbsp;HTTP&nbsp;server&nbsp;with&nbsp;GET,&nbsp;HEAD&nbsp;and&nbsp;POST&nbsp;commands.<br>
+&nbsp;<br>
+GET&nbsp;and&nbsp;HEAD&nbsp;also&nbsp;support&nbsp;running&nbsp;CGI&nbsp;scripts.<br>
+&nbsp;<br>
+The&nbsp;POST&nbsp;command&nbsp;is&nbsp;*only*&nbsp;implemented&nbsp;for&nbsp;CGI&nbsp;scripts.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="CGIHTTPServer.html#CGIHTTPRequestHandler">CGIHTTPRequestHandler</a></dd>
+<dd><a href="SimpleHTTPServer.html#SimpleHTTPRequestHandler">SimpleHTTPServer.SimpleHTTPRequestHandler</a></dd>
+<dd><a href="BaseHTTPServer.html#BaseHTTPRequestHandler">BaseHTTPServer.BaseHTTPRequestHandler</a></dd>
+<dd><a href="SocketServer.html#StreamRequestHandler">SocketServer.StreamRequestHandler</a></dd>
+<dd><a href="SocketServer.html#BaseRequestHandler">SocketServer.BaseRequestHandler</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CGIHTTPRequestHandler-do_POST"><strong>do_POST</strong></a>(self)</dt><dd><tt>Serve&nbsp;a&nbsp;POST&nbsp;request.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;only&nbsp;implemented&nbsp;for&nbsp;CGI&nbsp;scripts.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-is_cgi"><strong>is_cgi</strong></a>(self)</dt><dd><tt>Test&nbsp;whether&nbsp;self.<strong>path</strong>&nbsp;corresponds&nbsp;to&nbsp;a&nbsp;CGI&nbsp;script.<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;tuple&nbsp;(dir,&nbsp;rest)&nbsp;if&nbsp;self.<strong>path</strong>&nbsp;requires&nbsp;running&nbsp;a<br>
+CGI&nbsp;script,&nbsp;None&nbsp;if&nbsp;not.&nbsp;&nbsp;Note&nbsp;that&nbsp;rest&nbsp;begins&nbsp;with&nbsp;a<br>
+slash&nbsp;if&nbsp;it&nbsp;is&nbsp;not&nbsp;empty.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;tests&nbsp;whether&nbsp;the&nbsp;path<br>
+begins&nbsp;with&nbsp;one&nbsp;of&nbsp;the&nbsp;strings&nbsp;in&nbsp;the&nbsp;list<br>
+self.<strong>cgi_directories</strong>&nbsp;(and&nbsp;the&nbsp;next&nbsp;character&nbsp;is&nbsp;a&nbsp;'/'<br>
+or&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;string).</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-is_executable"><strong>is_executable</strong></a>(self, path)</dt><dd><tt>Test&nbsp;whether&nbsp;argument&nbsp;path&nbsp;is&nbsp;an&nbsp;executable&nbsp;file.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-is_python"><strong>is_python</strong></a>(self, path)</dt><dd><tt>Test&nbsp;whether&nbsp;argument&nbsp;path&nbsp;is&nbsp;a&nbsp;Python&nbsp;script.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-run_cgi"><strong>run_cgi</strong></a>(self)</dt><dd><tt>Execute&nbsp;a&nbsp;CGI&nbsp;script.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-send_head"><strong>send_head</strong></a>(self)</dt><dd><tt>Version&nbsp;of&nbsp;send_head&nbsp;that&nbsp;support&nbsp;CGI&nbsp;scripts</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>cgi_directories</strong> = ['/cgi-bin', '/htbin']</dl>
+
+<dl><dt><strong>have_fork</strong> = False</dl>
+
+<dl><dt><strong>have_popen2</strong> = False</dl>
+
+<dl><dt><strong>have_popen3</strong> = False</dl>
+
+<dl><dt><strong>rbufsize</strong> = 0</dl>
+
+<hr>
+Methods inherited from <a href="SimpleHTTPServer.html#SimpleHTTPRequestHandler">SimpleHTTPServer.SimpleHTTPRequestHandler</a>:<br>
+<dl><dt><a name="CGIHTTPRequestHandler-copyfile"><strong>copyfile</strong></a>(self, source, outputfile)</dt><dd><tt>Copy&nbsp;all&nbsp;data&nbsp;between&nbsp;two&nbsp;file&nbsp;objects.<br>
+&nbsp;<br>
+The&nbsp;SOURCE&nbsp;argument&nbsp;is&nbsp;a&nbsp;file&nbsp;object&nbsp;open&nbsp;for&nbsp;reading<br>
+(or&nbsp;anything&nbsp;with&nbsp;a&nbsp;read()&nbsp;method)&nbsp;and&nbsp;the&nbsp;DESTINATION<br>
+argument&nbsp;is&nbsp;a&nbsp;file&nbsp;object&nbsp;open&nbsp;for&nbsp;writing&nbsp;(or<br>
+anything&nbsp;with&nbsp;a&nbsp;write()&nbsp;method).<br>
+&nbsp;<br>
+The&nbsp;only&nbsp;reason&nbsp;for&nbsp;overriding&nbsp;this&nbsp;would&nbsp;be&nbsp;to&nbsp;change<br>
+the&nbsp;block&nbsp;size&nbsp;or&nbsp;perhaps&nbsp;to&nbsp;replace&nbsp;newlines&nbsp;by&nbsp;CRLF<br>
+--&nbsp;note&nbsp;however&nbsp;that&nbsp;this&nbsp;the&nbsp;default&nbsp;server&nbsp;uses&nbsp;this<br>
+to&nbsp;copy&nbsp;binary&nbsp;data&nbsp;as&nbsp;well.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-do_GET"><strong>do_GET</strong></a>(self)</dt><dd><tt>Serve&nbsp;a&nbsp;GET&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-do_HEAD"><strong>do_HEAD</strong></a>(self)</dt><dd><tt>Serve&nbsp;a&nbsp;HEAD&nbsp;request.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-guess_type"><strong>guess_type</strong></a>(self, path)</dt><dd><tt>Guess&nbsp;the&nbsp;type&nbsp;of&nbsp;a&nbsp;file.<br>
+&nbsp;<br>
+Argument&nbsp;is&nbsp;a&nbsp;PATH&nbsp;(a&nbsp;filename).<br>
+&nbsp;<br>
+Return&nbsp;value&nbsp;is&nbsp;a&nbsp;string&nbsp;of&nbsp;the&nbsp;form&nbsp;type/subtype,<br>
+usable&nbsp;for&nbsp;a&nbsp;MIME&nbsp;Content-type&nbsp;header.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;looks&nbsp;the&nbsp;file's&nbsp;extension<br>
+up&nbsp;in&nbsp;the&nbsp;table&nbsp;self.<strong>extensions_map</strong>,&nbsp;using&nbsp;application/octet-stream<br>
+as&nbsp;a&nbsp;default;&nbsp;however&nbsp;it&nbsp;would&nbsp;be&nbsp;permissible&nbsp;(if<br>
+slow)&nbsp;to&nbsp;look&nbsp;inside&nbsp;the&nbsp;data&nbsp;to&nbsp;make&nbsp;a&nbsp;better&nbsp;guess.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-list_directory"><strong>list_directory</strong></a>(self, path)</dt><dd><tt>Helper&nbsp;to&nbsp;produce&nbsp;a&nbsp;directory&nbsp;listing&nbsp;(absent&nbsp;index.html).<br>
+&nbsp;<br>
+Return&nbsp;value&nbsp;is&nbsp;either&nbsp;a&nbsp;file&nbsp;object,&nbsp;or&nbsp;None&nbsp;(indicating&nbsp;an<br>
+error).&nbsp;&nbsp;In&nbsp;either&nbsp;case,&nbsp;the&nbsp;headers&nbsp;are&nbsp;sent,&nbsp;making&nbsp;the<br>
+interface&nbsp;the&nbsp;same&nbsp;as&nbsp;for&nbsp;<a href="#CGIHTTPRequestHandler-send_head">send_head</a>().</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-translate_path"><strong>translate_path</strong></a>(self, path)</dt><dd><tt>Translate&nbsp;a&nbsp;/-separated&nbsp;PATH&nbsp;to&nbsp;the&nbsp;local&nbsp;filename&nbsp;syntax.<br>
+&nbsp;<br>
+Components&nbsp;that&nbsp;mean&nbsp;special&nbsp;things&nbsp;to&nbsp;the&nbsp;local&nbsp;file&nbsp;system<br>
+(e.g.&nbsp;drive&nbsp;or&nbsp;directory&nbsp;names)&nbsp;are&nbsp;ignored.&nbsp;&nbsp;(XXX&nbsp;They&nbsp;should<br>
+probably&nbsp;be&nbsp;diagnosed.)</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="SimpleHTTPServer.html#SimpleHTTPRequestHandler">SimpleHTTPServer.SimpleHTTPRequestHandler</a>:<br>
+<dl><dt><strong>extensions_map</strong> = {'': 'application/octet-stream', '.a': 'application/octet-stream', '.ai': 'application/postscript', '.aif': 'audio/x-aiff', '.aifc': 'audio/x-aiff', '.aiff': 'audio/x-aiff', '.au': 'audio/basic', '.avi': 'video/x-msvideo', '.bat': 'text/plain', '.bcpio': 'application/x-bcpio', ...}</dl>
+
+<dl><dt><strong>server_version</strong> = 'SimpleHTTP/0.6'</dl>
+
+<hr>
+Methods inherited from <a href="BaseHTTPServer.html#BaseHTTPRequestHandler">BaseHTTPServer.BaseHTTPRequestHandler</a>:<br>
+<dl><dt><a name="CGIHTTPRequestHandler-address_string"><strong>address_string</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;client&nbsp;address&nbsp;formatted&nbsp;for&nbsp;logging.<br>
+&nbsp;<br>
+This&nbsp;version&nbsp;looks&nbsp;up&nbsp;the&nbsp;full&nbsp;hostname&nbsp;using&nbsp;gethostbyaddr(),<br>
+and&nbsp;tries&nbsp;to&nbsp;find&nbsp;a&nbsp;name&nbsp;that&nbsp;contains&nbsp;at&nbsp;least&nbsp;one&nbsp;dot.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-date_time_string"><strong>date_time_string</strong></a>(self, timestamp<font color="#909090">=None</font>)</dt><dd><tt>Return&nbsp;the&nbsp;current&nbsp;date&nbsp;and&nbsp;time&nbsp;formatted&nbsp;for&nbsp;a&nbsp;message&nbsp;header.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-end_headers"><strong>end_headers</strong></a>(self)</dt><dd><tt>Send&nbsp;the&nbsp;blank&nbsp;line&nbsp;ending&nbsp;the&nbsp;MIME&nbsp;headers.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-handle"><strong>handle</strong></a>(self)</dt><dd><tt>Handle&nbsp;multiple&nbsp;requests&nbsp;if&nbsp;necessary.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-handle_one_request"><strong>handle_one_request</strong></a>(self)</dt><dd><tt>Handle&nbsp;a&nbsp;single&nbsp;HTTP&nbsp;request.<br>
+&nbsp;<br>
+You&nbsp;normally&nbsp;don't&nbsp;need&nbsp;to&nbsp;override&nbsp;this&nbsp;method;&nbsp;see&nbsp;the&nbsp;class<br>
+__doc__&nbsp;string&nbsp;for&nbsp;information&nbsp;on&nbsp;how&nbsp;to&nbsp;handle&nbsp;specific&nbsp;HTTP<br>
+commands&nbsp;such&nbsp;as&nbsp;GET&nbsp;and&nbsp;POST.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-log_date_time_string"><strong>log_date_time_string</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;current&nbsp;time&nbsp;formatted&nbsp;for&nbsp;logging.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-log_error"><strong>log_error</strong></a>(self, *args)</dt><dd><tt>Log&nbsp;an&nbsp;error.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;request&nbsp;cannot&nbsp;be&nbsp;fulfilled.&nbsp;&nbsp;By<br>
+default&nbsp;it&nbsp;passes&nbsp;the&nbsp;message&nbsp;on&nbsp;to&nbsp;<a href="#CGIHTTPRequestHandler-log_message">log_message</a>().<br>
+&nbsp;<br>
+Arguments&nbsp;are&nbsp;the&nbsp;same&nbsp;as&nbsp;for&nbsp;<a href="#CGIHTTPRequestHandler-log_message">log_message</a>().<br>
+&nbsp;<br>
+XXX&nbsp;This&nbsp;should&nbsp;go&nbsp;to&nbsp;the&nbsp;separate&nbsp;error&nbsp;log.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-log_message"><strong>log_message</strong></a>(self, format, *args)</dt><dd><tt>Log&nbsp;an&nbsp;arbitrary&nbsp;message.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;used&nbsp;by&nbsp;all&nbsp;other&nbsp;logging&nbsp;functions.&nbsp;&nbsp;Override<br>
+it&nbsp;if&nbsp;you&nbsp;have&nbsp;specific&nbsp;logging&nbsp;wishes.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;argument,&nbsp;FORMAT,&nbsp;is&nbsp;a&nbsp;format&nbsp;string&nbsp;for&nbsp;the<br>
+message&nbsp;to&nbsp;be&nbsp;logged.&nbsp;&nbsp;If&nbsp;the&nbsp;format&nbsp;string&nbsp;contains<br>
+any&nbsp;%&nbsp;escapes&nbsp;requiring&nbsp;parameters,&nbsp;they&nbsp;should&nbsp;be<br>
+specified&nbsp;as&nbsp;subsequent&nbsp;arguments&nbsp;(it's&nbsp;just&nbsp;like<br>
+printf!).<br>
+&nbsp;<br>
+The&nbsp;client&nbsp;host&nbsp;and&nbsp;current&nbsp;date/time&nbsp;are&nbsp;prefixed&nbsp;to<br>
+every&nbsp;message.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-log_request"><strong>log_request</strong></a>(self, code<font color="#909090">='-'</font>, size<font color="#909090">='-'</font>)</dt><dd><tt>Log&nbsp;an&nbsp;accepted&nbsp;request.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;called&nbsp;by&nbsp;<a href="#CGIHTTPRequestHandler-send_response">send_response</a>().</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-parse_request"><strong>parse_request</strong></a>(self)</dt><dd><tt>Parse&nbsp;a&nbsp;request&nbsp;(internal).<br>
+&nbsp;<br>
+The&nbsp;request&nbsp;should&nbsp;be&nbsp;stored&nbsp;in&nbsp;self.<strong>raw_requestline</strong>;&nbsp;the&nbsp;results<br>
+are&nbsp;in&nbsp;self.<strong>command</strong>,&nbsp;self.<strong>path</strong>,&nbsp;self.<strong>request_version</strong>&nbsp;and<br>
+self.<strong>headers</strong>.<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;for&nbsp;success,&nbsp;False&nbsp;for&nbsp;failure;&nbsp;on&nbsp;failure,&nbsp;an<br>
+error&nbsp;is&nbsp;sent&nbsp;back.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-send_error"><strong>send_error</strong></a>(self, code, message<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;and&nbsp;log&nbsp;an&nbsp;error&nbsp;reply.<br>
+&nbsp;<br>
+Arguments&nbsp;are&nbsp;the&nbsp;error&nbsp;code,&nbsp;and&nbsp;a&nbsp;detailed&nbsp;message.<br>
+The&nbsp;detailed&nbsp;message&nbsp;defaults&nbsp;to&nbsp;the&nbsp;short&nbsp;entry&nbsp;matching&nbsp;the<br>
+response&nbsp;code.<br>
+&nbsp;<br>
+This&nbsp;sends&nbsp;an&nbsp;error&nbsp;response&nbsp;(so&nbsp;it&nbsp;must&nbsp;be&nbsp;called&nbsp;before&nbsp;any<br>
+output&nbsp;has&nbsp;been&nbsp;generated),&nbsp;logs&nbsp;the&nbsp;error,&nbsp;and&nbsp;finally&nbsp;sends<br>
+a&nbsp;piece&nbsp;of&nbsp;HTML&nbsp;explaining&nbsp;the&nbsp;error&nbsp;to&nbsp;the&nbsp;user.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-send_header"><strong>send_header</strong></a>(self, keyword, value)</dt><dd><tt>Send&nbsp;a&nbsp;MIME&nbsp;header.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-send_response"><strong>send_response</strong></a>(self, code, message<font color="#909090">=None</font>)</dt><dd><tt>Send&nbsp;the&nbsp;response&nbsp;header&nbsp;and&nbsp;log&nbsp;the&nbsp;response&nbsp;code.<br>
+&nbsp;<br>
+Also&nbsp;send&nbsp;two&nbsp;standard&nbsp;headers&nbsp;with&nbsp;the&nbsp;server&nbsp;software<br>
+version&nbsp;and&nbsp;the&nbsp;current&nbsp;date.</tt></dd></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-version_string"><strong>version_string</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;server&nbsp;software&nbsp;version&nbsp;string.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="BaseHTTPServer.html#BaseHTTPRequestHandler">BaseHTTPServer.BaseHTTPRequestHandler</a>:<br>
+<dl><dt><strong>MessageClass</strong> = &lt;class mimetools.Message at 0x9943a50&gt;<dd><tt>A&nbsp;derived&nbsp;class&nbsp;of&nbsp;rfc822.Message&nbsp;that&nbsp;knows&nbsp;about&nbsp;MIME&nbsp;headers&nbsp;and<br>
+contains&nbsp;some&nbsp;hooks&nbsp;for&nbsp;decoding&nbsp;encoded&nbsp;and&nbsp;multipart&nbsp;messages.</tt></dl>
+
+<dl><dt><strong>error_message_format</strong> = '&lt;head&gt;<font color="#c040c0">\n</font>&lt;title&gt;Error response&lt;/title&gt;<font color="#c040c0">\n</font>&lt;/head&gt;<font color="#c040c0">\n</font>&lt;bo...ode explanation: %(code)s = %(explain)s.<font color="#c040c0">\n</font>&lt;/body&gt;<font color="#c040c0">\n</font>'</dl>
+
+<dl><dt><strong>monthname</strong> = [None, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']</dl>
+
+<dl><dt><strong>protocol_version</strong> = 'HTTP/1.0'</dl>
+
+<dl><dt><strong>responses</strong> = {100: ('Continue', 'Request received, please continue'), 101: ('Switching Protocols', 'Switching to new protocol; obey Upgrade header'), 200: ('OK', 'Request fulfilled, document follows'), 201: ('Created', 'Document created, URL follows'), 202: ('Accepted', 'Request accepted, processing continues off-line'), 203: ('Non-Authoritative Information', 'Request fulfilled from cache'), 204: ('No Content', 'Request fulfilled, nothing follows'), 205: ('Reset Content', 'Clear input form for further input.'), 206: ('Partial Content', 'Partial content follows.'), 300: ('Multiple Choices', 'Object has several resources -- see URI list'), ...}</dl>
+
+<dl><dt><strong>sys_version</strong> = 'Python/2.5.2'</dl>
+
+<dl><dt><strong>weekdayname</strong> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']</dl>
+
+<hr>
+Methods inherited from <a href="SocketServer.html#StreamRequestHandler">SocketServer.StreamRequestHandler</a>:<br>
+<dl><dt><a name="CGIHTTPRequestHandler-finish"><strong>finish</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CGIHTTPRequestHandler-setup"><strong>setup</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="SocketServer.html#StreamRequestHandler">SocketServer.StreamRequestHandler</a>:<br>
+<dl><dt><strong>wbufsize</strong> = 0</dl>
+
+<hr>
+Methods inherited from <a href="SocketServer.html#BaseRequestHandler">SocketServer.BaseRequestHandler</a>:<br>
+<dl><dt><a name="CGIHTTPRequestHandler-__init__"><strong>__init__</strong></a>(self, request, client_address, server)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['CGIHTTPRequestHandler']<br>
+<strong>__loader__</strong> = &lt;zipimporter object "ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip"&gt;<br>
+<strong>__version__</strong> = '0.4'</td></tr></table>

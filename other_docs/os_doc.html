@@ -1,0 +1,422 @@
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>os</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/os.py">ms0:/PSP/GAME/StacklessPSP-2.5.2_R1(1)/python.zip/os.py</a></font></td></tr></table>
+    <p><tt>OS&nbsp;routines&nbsp;for&nbsp;Mac,&nbsp;NT,&nbsp;or&nbsp;Posix&nbsp;depending&nbsp;on&nbsp;what&nbsp;system&nbsp;we're&nbsp;on.<br>
+&nbsp;<br>
+This&nbsp;exports:<br>
+&nbsp;&nbsp;-&nbsp;all&nbsp;functions&nbsp;from&nbsp;posix,&nbsp;nt,&nbsp;os2,&nbsp;mac,&nbsp;or&nbsp;ce,&nbsp;e.g.&nbsp;unlink,&nbsp;stat,&nbsp;etc.<br>
+&nbsp;&nbsp;-&nbsp;os.path&nbsp;is&nbsp;one&nbsp;of&nbsp;the&nbsp;modules&nbsp;posixpath,&nbsp;ntpath,&nbsp;or&nbsp;macpath<br>
+&nbsp;&nbsp;-&nbsp;os.name&nbsp;is&nbsp;'posix',&nbsp;'nt',&nbsp;'os2',&nbsp;'mac',&nbsp;'ce'&nbsp;or&nbsp;'riscos'<br>
+&nbsp;&nbsp;-&nbsp;os.curdir&nbsp;is&nbsp;a&nbsp;string&nbsp;representing&nbsp;the&nbsp;current&nbsp;directory&nbsp;('.'&nbsp;or&nbsp;':')<br>
+&nbsp;&nbsp;-&nbsp;os.pardir&nbsp;is&nbsp;a&nbsp;string&nbsp;representing&nbsp;the&nbsp;parent&nbsp;directory&nbsp;('..'&nbsp;or&nbsp;'::')<br>
+&nbsp;&nbsp;-&nbsp;os.sep&nbsp;is&nbsp;the&nbsp;(or&nbsp;a&nbsp;most&nbsp;common)&nbsp;pathname&nbsp;separator&nbsp;('/'&nbsp;or&nbsp;':'&nbsp;or&nbsp;'\\')<br>
+&nbsp;&nbsp;-&nbsp;os.extsep&nbsp;is&nbsp;the&nbsp;extension&nbsp;separator&nbsp;('.'&nbsp;or&nbsp;'/')<br>
+&nbsp;&nbsp;-&nbsp;os.altsep&nbsp;is&nbsp;the&nbsp;alternate&nbsp;pathname&nbsp;separator&nbsp;(None&nbsp;or&nbsp;'/')<br>
+&nbsp;&nbsp;-&nbsp;os.pathsep&nbsp;is&nbsp;the&nbsp;component&nbsp;separator&nbsp;used&nbsp;in&nbsp;$PATH&nbsp;etc<br>
+&nbsp;&nbsp;-&nbsp;os.linesep&nbsp;is&nbsp;the&nbsp;line&nbsp;separator&nbsp;in&nbsp;text&nbsp;files&nbsp;('\r'&nbsp;or&nbsp;'\n'&nbsp;or&nbsp;'\r\n')<br>
+&nbsp;&nbsp;-&nbsp;os.defpath&nbsp;is&nbsp;the&nbsp;default&nbsp;search&nbsp;path&nbsp;for&nbsp;executables<br>
+&nbsp;&nbsp;-&nbsp;os.devnull&nbsp;is&nbsp;the&nbsp;file&nbsp;path&nbsp;of&nbsp;the&nbsp;null&nbsp;device&nbsp;('/dev/null',&nbsp;etc.)<br>
+&nbsp;<br>
+Programs&nbsp;that&nbsp;import&nbsp;and&nbsp;use&nbsp;'os'&nbsp;stand&nbsp;a&nbsp;better&nbsp;chance&nbsp;of&nbsp;being<br>
+portable&nbsp;between&nbsp;different&nbsp;platforms.&nbsp;&nbsp;Of&nbsp;course,&nbsp;they&nbsp;must&nbsp;then<br>
+only&nbsp;use&nbsp;functions&nbsp;that&nbsp;are&nbsp;defined&nbsp;by&nbsp;all&nbsp;platforms&nbsp;(e.g.,&nbsp;unlink<br>
+and&nbsp;opendir),&nbsp;and&nbsp;leave&nbsp;all&nbsp;pathname&nbsp;manipulation&nbsp;to&nbsp;os.path<br>
+(e.g.,&nbsp;split&nbsp;and&nbsp;join).</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="UserDict.html">UserDict</a><br>
+<a href="copy_reg.html">copy_reg</a><br>
+</td><td width="25%" valign=top><a href="errno.html">errno</a><br>
+<a href="psppath.html">psppath</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pspos.html#stat_result">pspos.stat_result</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#EnvironmentError">exceptions.EnvironmentError</a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#OSError">exceptions.OSError</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>error</strong> = <a name="error">class OSError</a>(<a href="exceptions.html#EnvironmentError">EnvironmentError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>OS&nbsp;system&nbsp;call&nbsp;failed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#OSError">OSError</a></dd>
+<dd><a href="exceptions.html#EnvironmentError">EnvironmentError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="OSError-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8b8c46c&gt;<dd><tt>T.<a href="#error-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#EnvironmentError">EnvironmentError</a>:<br>
+<dl><dt><a name="OSError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OSError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#EnvironmentError">EnvironmentError</a>:<br>
+<dl><dt><strong>errno</strong></dt>
+<dd><tt>exception&nbsp;errno</tt></dd>
+</dl>
+<dl><dt><strong>filename</strong></dt>
+<dd><tt>exception&nbsp;filename</tt></dd>
+</dl>
+<dl><dt><strong>message</strong></dt>
+<dd><tt>exception&nbsp;message</tt></dd>
+</dl>
+<dl><dt><strong>strerror</strong></dt>
+<dd><tt>exception&nbsp;strerror</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">BaseException</a>:<br>
+<dl><dt><a name="OSError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OSError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="OSError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="OSError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="OSError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="OSError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#error-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="OSError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="stat_result">class <strong>stat_result</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#stat_result">stat_result</a>:&nbsp;Result&nbsp;from&nbsp;stat&nbsp;or&nbsp;lstat.<br>
+&nbsp;<br>
+This&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;may&nbsp;be&nbsp;accessed&nbsp;either&nbsp;as&nbsp;a&nbsp;tuple&nbsp;of<br>
+&nbsp;&nbsp;(mode,ino,dev,nlink,uid,gid,size,atime,mtime,ctime)<br>
+or&nbsp;via&nbsp;the&nbsp;attributes&nbsp;st_mode,&nbsp;st_ino,&nbsp;st_dev,&nbsp;st_nlink,&nbsp;st_uid,&nbsp;and&nbsp;so&nbsp;on.<br>
+&nbsp;<br>
+See&nbsp;os.stat&nbsp;for&nbsp;more&nbsp;information.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="stat_result-__add__"><strong>__add__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__add__">__add__</a>(y)&nbsp;&lt;==&gt;&nbsp;x+y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__contains__"><strong>__contains__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__contains__">__contains__</a>(y)&nbsp;&lt;==&gt;&nbsp;y&nbsp;in&nbsp;x</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__eq__"><strong>__eq__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__eq__">__eq__</a>(y)&nbsp;&lt;==&gt;&nbsp;x==y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__ge__"><strong>__ge__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__ge__">__ge__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;=y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__gt__"><strong>__gt__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__gt__">__gt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&gt;y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__hash__"><strong>__hash__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__hash__">__hash__</a>()&nbsp;&lt;==&gt;&nbsp;hash(x)</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__le__"><strong>__le__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__le__">__le__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;=y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__len__"><strong>__len__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__len__">__len__</a>()&nbsp;&lt;==&gt;&nbsp;len(x)</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__lt__"><strong>__lt__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__lt__">__lt__</a>(y)&nbsp;&lt;==&gt;&nbsp;x&lt;y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__mul__"><strong>__mul__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__mul__">__mul__</a>(n)&nbsp;&lt;==&gt;&nbsp;x*n</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__ne__"><strong>__ne__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__ne__">__ne__</a>(y)&nbsp;&lt;==&gt;&nbsp;x!=y</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="stat_result-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="stat_result-__rmul__"><strong>__rmul__</strong></a>(...)</dt><dd><tt>x.<a href="#stat_result-__rmul__">__rmul__</a>(n)&nbsp;&lt;==&gt;&nbsp;n*x</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>st_atime</strong></dt>
+<dd><tt>time&nbsp;of&nbsp;last&nbsp;access</tt></dd>
+</dl>
+<dl><dt><strong>st_ctime</strong></dt>
+<dd><tt>time&nbsp;of&nbsp;last&nbsp;change</tt></dd>
+</dl>
+<dl><dt><strong>st_dev</strong></dt>
+<dd><tt>device</tt></dd>
+</dl>
+<dl><dt><strong>st_gid</strong></dt>
+<dd><tt>group&nbsp;ID&nbsp;of&nbsp;owner</tt></dd>
+</dl>
+<dl><dt><strong>st_ino</strong></dt>
+<dd><tt>inode</tt></dd>
+</dl>
+<dl><dt><strong>st_mode</strong></dt>
+<dd><tt>protection&nbsp;bits</tt></dd>
+</dl>
+<dl><dt><strong>st_mtime</strong></dt>
+<dd><tt>time&nbsp;of&nbsp;last&nbsp;modification</tt></dd>
+</dl>
+<dl><dt><strong>st_nlink</strong></dt>
+<dd><tt>number&nbsp;of&nbsp;hard&nbsp;links</tt></dd>
+</dl>
+<dl><dt><strong>st_size</strong></dt>
+<dd><tt>total&nbsp;size,&nbsp;in&nbsp;bytes</tt></dd>
+</dl>
+<dl><dt><strong>st_uid</strong></dt>
+<dd><tt>user&nbsp;ID&nbsp;of&nbsp;owner</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x8ba0fb4&gt;<dd><tt>T.<a href="#stat_result-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<dl><dt><strong>n_fields</strong> = 10</dl>
+
+<dl><dt><strong>n_sequence_fields</strong> = 10</dl>
+
+<dl><dt><strong>n_unnamed_fields</strong> = 0</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-access"><strong>access</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-battery"><strong>battery</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-chdir"><strong>chdir</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-chmod"><strong>chmod</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-close"><strong>close</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-delenv"><strong>delenv</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-execl"><strong>execl</strong></a>(file, *args)</dt><dd><tt><a href="#-execl">execl</a>(file,&nbsp;*args)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;with&nbsp;argument&nbsp;list&nbsp;args,&nbsp;replacing&nbsp;the<br>
+current&nbsp;process.</tt></dd></dl>
+ <dl><dt><a name="-execle"><strong>execle</strong></a>(file, *args)</dt><dd><tt><a href="#-execle">execle</a>(file,&nbsp;*args,&nbsp;env)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;with&nbsp;argument&nbsp;list&nbsp;args&nbsp;and<br>
+environment&nbsp;env,&nbsp;replacing&nbsp;the&nbsp;current&nbsp;process.</tt></dd></dl>
+ <dl><dt><a name="-execlp"><strong>execlp</strong></a>(file, *args)</dt><dd><tt><a href="#-execlp">execlp</a>(file,&nbsp;*args)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;(which&nbsp;is&nbsp;searched&nbsp;for&nbsp;along&nbsp;$PATH)<br>
+with&nbsp;argument&nbsp;list&nbsp;args,&nbsp;replacing&nbsp;the&nbsp;current&nbsp;process.</tt></dd></dl>
+ <dl><dt><a name="-execlpe"><strong>execlpe</strong></a>(file, *args)</dt><dd><tt><a href="#-execlpe">execlpe</a>(file,&nbsp;*args,&nbsp;env)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;(which&nbsp;is&nbsp;searched&nbsp;for&nbsp;along&nbsp;$PATH)<br>
+with&nbsp;argument&nbsp;list&nbsp;args&nbsp;and&nbsp;environment&nbsp;env,&nbsp;replacing&nbsp;the&nbsp;current<br>
+process.</tt></dd></dl>
+ <dl><dt><a name="-execvp"><strong>execvp</strong></a>(file, args)</dt><dd><tt>execp(file,&nbsp;args)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;(which&nbsp;is&nbsp;searched&nbsp;for&nbsp;along&nbsp;$PATH)<br>
+with&nbsp;argument&nbsp;list&nbsp;args,&nbsp;replacing&nbsp;the&nbsp;current&nbsp;process.<br>
+args&nbsp;may&nbsp;be&nbsp;a&nbsp;list&nbsp;or&nbsp;tuple&nbsp;of&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-execvpe"><strong>execvpe</strong></a>(file, args, env)</dt><dd><tt><a href="#-execvpe">execvpe</a>(file,&nbsp;args,&nbsp;env)<br>
+&nbsp;<br>
+Execute&nbsp;the&nbsp;executable&nbsp;file&nbsp;(which&nbsp;is&nbsp;searched&nbsp;for&nbsp;along&nbsp;$PATH)<br>
+with&nbsp;argument&nbsp;list&nbsp;args&nbsp;and&nbsp;environment&nbsp;env&nbsp;,&nbsp;replacing&nbsp;the<br>
+current&nbsp;process.<br>
+args&nbsp;may&nbsp;be&nbsp;a&nbsp;list&nbsp;or&nbsp;tuple&nbsp;of&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-fdopen"><strong>fdopen</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-freemem"><strong>freemem</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getbus"><strong>getbus</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getclock"><strong>getclock</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getclocks"><strong>getclocks</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getcwd"><strong>getcwd</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getenv"><strong>getenv</strong></a>(key, default<font color="#909090">=None</font>)</dt><dd><tt>Get&nbsp;an&nbsp;environment&nbsp;variable,&nbsp;return&nbsp;None&nbsp;if&nbsp;it&nbsp;doesn't&nbsp;exist.<br>
+The&nbsp;optional&nbsp;second&nbsp;argument&nbsp;can&nbsp;specify&nbsp;an&nbsp;alternate&nbsp;default.</tt></dd></dl>
+ <dl><dt><a name="-getenvdict"><strong>getenvdict</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getnickname"><strong>getnickname</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-getsystemparam"><strong>getsystemparam</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-listdir"><strong>listdir</strong></a>(p)</dt></dl>
+ <dl><dt><a name="-lstat"><strong>lstat</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-makedirs"><strong>makedirs</strong></a>(name, mode<font color="#909090">=511</font>)</dt><dd><tt><a href="#-makedirs">makedirs</a>(path&nbsp;[,&nbsp;mode=0777])<br>
+&nbsp;<br>
+Super-mkdir;&nbsp;create&nbsp;a&nbsp;leaf&nbsp;directory&nbsp;and&nbsp;all&nbsp;intermediate&nbsp;ones.<br>
+Works&nbsp;like&nbsp;mkdir,&nbsp;except&nbsp;that&nbsp;any&nbsp;intermediate&nbsp;path&nbsp;segment&nbsp;(not<br>
+just&nbsp;the&nbsp;rightmost)&nbsp;will&nbsp;be&nbsp;created&nbsp;if&nbsp;it&nbsp;does&nbsp;not&nbsp;exist.&nbsp;&nbsp;This&nbsp;is<br>
+recursive.</tt></dd></dl>
+ <dl><dt><a name="-mkdir"><strong>mkdir</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-open"><strong>open</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-powertick"><strong>powertick</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-putenv"><strong>putenv</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-realmem"><strong>realmem</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-remove"><strong>remove</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-removedirs"><strong>removedirs</strong></a>(name)</dt><dd><tt><a href="#-removedirs">removedirs</a>(path)<br>
+&nbsp;<br>
+Super-rmdir;&nbsp;remove&nbsp;a&nbsp;leaf&nbsp;directory&nbsp;and&nbsp;all&nbsp;empty&nbsp;intermediate<br>
+ones.&nbsp;&nbsp;Works&nbsp;like&nbsp;rmdir&nbsp;except&nbsp;that,&nbsp;if&nbsp;the&nbsp;leaf&nbsp;directory&nbsp;is<br>
+successfully&nbsp;removed,&nbsp;directories&nbsp;corresponding&nbsp;to&nbsp;rightmost&nbsp;path<br>
+segments&nbsp;will&nbsp;be&nbsp;pruned&nbsp;away&nbsp;until&nbsp;either&nbsp;the&nbsp;whole&nbsp;path&nbsp;is<br>
+consumed&nbsp;or&nbsp;an&nbsp;<a href="#error">error</a>&nbsp;occurs.&nbsp;&nbsp;Errors&nbsp;during&nbsp;this&nbsp;latter&nbsp;phase&nbsp;are<br>
+ignored&nbsp;--&nbsp;they&nbsp;generally&nbsp;mean&nbsp;that&nbsp;a&nbsp;directory&nbsp;was&nbsp;not&nbsp;empty.</tt></dd></dl>
+ <dl><dt><a name="-rename"><strong>rename</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-renames"><strong>renames</strong></a>(old, new)</dt><dd><tt><a href="#-renames">renames</a>(old,&nbsp;new)<br>
+&nbsp;<br>
+Super-rename;&nbsp;create&nbsp;directories&nbsp;as&nbsp;necessary&nbsp;and&nbsp;delete&nbsp;any&nbsp;left<br>
+empty.&nbsp;&nbsp;Works&nbsp;like&nbsp;rename,&nbsp;except&nbsp;creation&nbsp;of&nbsp;any&nbsp;intermediate<br>
+directories&nbsp;needed&nbsp;to&nbsp;make&nbsp;the&nbsp;new&nbsp;pathname&nbsp;good&nbsp;is&nbsp;attempted<br>
+first.&nbsp;&nbsp;After&nbsp;the&nbsp;rename,&nbsp;directories&nbsp;corresponding&nbsp;to&nbsp;rightmost<br>
+path&nbsp;segments&nbsp;of&nbsp;the&nbsp;old&nbsp;name&nbsp;will&nbsp;be&nbsp;pruned&nbsp;way&nbsp;until&nbsp;either&nbsp;the<br>
+whole&nbsp;path&nbsp;is&nbsp;consumed&nbsp;or&nbsp;a&nbsp;nonempty&nbsp;directory&nbsp;is&nbsp;found.<br>
+&nbsp;<br>
+Note:&nbsp;this&nbsp;function&nbsp;can&nbsp;fail&nbsp;with&nbsp;the&nbsp;new&nbsp;directory&nbsp;structure&nbsp;made<br>
+if&nbsp;you&nbsp;lack&nbsp;permissions&nbsp;needed&nbsp;to&nbsp;unlink&nbsp;the&nbsp;leaf&nbsp;directory&nbsp;or<br>
+file.</tt></dd></dl>
+ <dl><dt><a name="-rmdir"><strong>rmdir</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-setbus"><strong>setbus</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-setclock"><strong>setclock</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-setclocks"><strong>setclocks</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-stat"><strong>stat</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-system"><strong>system</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-unlink"><strong>unlink</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-utime"><strong>utime</strong></a>(...)</dt></dl>
+ <dl><dt><a name="-walk"><strong>walk</strong></a>(top, topdown<font color="#909090">=True</font>, onerror<font color="#909090">=None</font>)</dt><dd><tt>Directory&nbsp;tree&nbsp;generator.<br>
+&nbsp;<br>
+For&nbsp;each&nbsp;directory&nbsp;in&nbsp;the&nbsp;directory&nbsp;tree&nbsp;rooted&nbsp;at&nbsp;top&nbsp;(including&nbsp;top<br>
+itself,&nbsp;but&nbsp;excluding&nbsp;'.'&nbsp;and&nbsp;'..'),&nbsp;yields&nbsp;a&nbsp;3-tuple<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dirpath,&nbsp;dirnames,&nbsp;filenames<br>
+&nbsp;<br>
+dirpath&nbsp;is&nbsp;a&nbsp;string,&nbsp;the&nbsp;path&nbsp;to&nbsp;the&nbsp;directory.&nbsp;&nbsp;dirnames&nbsp;is&nbsp;a&nbsp;list&nbsp;of<br>
+the&nbsp;names&nbsp;of&nbsp;the&nbsp;subdirectories&nbsp;in&nbsp;dirpath&nbsp;(excluding&nbsp;'.'&nbsp;and&nbsp;'..').<br>
+filenames&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;names&nbsp;of&nbsp;the&nbsp;non-directory&nbsp;files&nbsp;in&nbsp;dirpath.<br>
+Note&nbsp;that&nbsp;the&nbsp;names&nbsp;in&nbsp;the&nbsp;lists&nbsp;are&nbsp;just&nbsp;names,&nbsp;with&nbsp;no&nbsp;path&nbsp;components.<br>
+To&nbsp;get&nbsp;a&nbsp;full&nbsp;path&nbsp;(which&nbsp;begins&nbsp;with&nbsp;top)&nbsp;to&nbsp;a&nbsp;file&nbsp;or&nbsp;directory&nbsp;in<br>
+dirpath,&nbsp;do&nbsp;os.path.join(dirpath,&nbsp;name).<br>
+&nbsp;<br>
+If&nbsp;optional&nbsp;arg&nbsp;'topdown'&nbsp;is&nbsp;true&nbsp;or&nbsp;not&nbsp;specified,&nbsp;the&nbsp;triple&nbsp;for&nbsp;a<br>
+directory&nbsp;is&nbsp;generated&nbsp;before&nbsp;the&nbsp;triples&nbsp;for&nbsp;any&nbsp;of&nbsp;its&nbsp;subdirectories<br>
+(directories&nbsp;are&nbsp;generated&nbsp;top&nbsp;down).&nbsp;&nbsp;If&nbsp;topdown&nbsp;is&nbsp;false,&nbsp;the&nbsp;triple<br>
+for&nbsp;a&nbsp;directory&nbsp;is&nbsp;generated&nbsp;after&nbsp;the&nbsp;triples&nbsp;for&nbsp;all&nbsp;of&nbsp;its<br>
+subdirectories&nbsp;(directories&nbsp;are&nbsp;generated&nbsp;bottom&nbsp;up).<br>
+&nbsp;<br>
+When&nbsp;topdown&nbsp;is&nbsp;true,&nbsp;the&nbsp;caller&nbsp;can&nbsp;modify&nbsp;the&nbsp;dirnames&nbsp;list&nbsp;in-place<br>
+(e.g.,&nbsp;via&nbsp;del&nbsp;or&nbsp;slice&nbsp;assignment),&nbsp;and&nbsp;walk&nbsp;will&nbsp;only&nbsp;recurse&nbsp;into&nbsp;the<br>
+subdirectories&nbsp;whose&nbsp;names&nbsp;remain&nbsp;in&nbsp;dirnames;&nbsp;this&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;prune<br>
+the&nbsp;search,&nbsp;or&nbsp;to&nbsp;impose&nbsp;a&nbsp;specific&nbsp;order&nbsp;of&nbsp;visiting.&nbsp;&nbsp;Modifying<br>
+dirnames&nbsp;when&nbsp;topdown&nbsp;is&nbsp;false&nbsp;is&nbsp;ineffective,&nbsp;since&nbsp;the&nbsp;directories&nbsp;in<br>
+dirnames&nbsp;have&nbsp;already&nbsp;been&nbsp;generated&nbsp;by&nbsp;the&nbsp;time&nbsp;dirnames&nbsp;itself&nbsp;is<br>
+generated.<br>
+&nbsp;<br>
+By&nbsp;default&nbsp;errors&nbsp;from&nbsp;the&nbsp;os.<a href="#-listdir">listdir</a>()&nbsp;call&nbsp;are&nbsp;ignored.&nbsp;&nbsp;If<br>
+optional&nbsp;arg&nbsp;'onerror'&nbsp;is&nbsp;specified,&nbsp;it&nbsp;should&nbsp;be&nbsp;a&nbsp;function;&nbsp;it<br>
+will&nbsp;be&nbsp;called&nbsp;with&nbsp;one&nbsp;argument,&nbsp;an&nbsp;os.<a href="#error">error</a>&nbsp;instance.&nbsp;&nbsp;It&nbsp;can<br>
+report&nbsp;the&nbsp;<a href="#error">error</a>&nbsp;to&nbsp;continue&nbsp;with&nbsp;the&nbsp;walk,&nbsp;or&nbsp;raise&nbsp;the&nbsp;exception<br>
+to&nbsp;abort&nbsp;the&nbsp;walk.&nbsp;&nbsp;Note&nbsp;that&nbsp;the&nbsp;filename&nbsp;is&nbsp;available&nbsp;as&nbsp;the<br>
+filename&nbsp;attribute&nbsp;of&nbsp;the&nbsp;exception&nbsp;<a href="__builtin__.html#object">object</a>.<br>
+&nbsp;<br>
+Caution:&nbsp;&nbsp;if&nbsp;you&nbsp;pass&nbsp;a&nbsp;relative&nbsp;pathname&nbsp;for&nbsp;top,&nbsp;don't&nbsp;change&nbsp;the<br>
+current&nbsp;working&nbsp;directory&nbsp;between&nbsp;resumptions&nbsp;of&nbsp;walk.&nbsp;&nbsp;walk&nbsp;never<br>
+changes&nbsp;the&nbsp;current&nbsp;directory,&nbsp;and&nbsp;assumes&nbsp;that&nbsp;the&nbsp;client&nbsp;doesn't<br>
+either.<br>
+&nbsp;<br>
+Example:<br>
+&nbsp;<br>
+from&nbsp;os.path&nbsp;import&nbsp;join,&nbsp;getsize<br>
+for&nbsp;root,&nbsp;dirs,&nbsp;files&nbsp;in&nbsp;<a href="#-walk">walk</a>('python/Lib/email'):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;root,&nbsp;"consumes",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;sum([getsize(join(root,&nbsp;name))&nbsp;for&nbsp;name&nbsp;in&nbsp;files]),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;"bytes&nbsp;in",&nbsp;len(files),&nbsp;"non-directory&nbsp;files"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;'CVS'&nbsp;in&nbsp;dirs:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dirs.<a href="#-remove">remove</a>('CVS')&nbsp;&nbsp;#&nbsp;don't&nbsp;visit&nbsp;CVS&nbsp;directories</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>O_CREAT</strong> = 512<br>
+<strong>O_EXCL</strong> = 2048<br>
+<strong>O_RDONLY</strong> = 0<br>
+<strong>O_RDWR</strong> = 2<br>
+<strong>O_WRONLY</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_ADHOC_CHANNEL_1</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_ADHOC_CHANNEL_11</strong> = 11<br>
+<strong>PSP_SYSTEMPARAM_ADHOC_CHANNEL_6</strong> = 6<br>
+<strong>PSP_SYSTEMPARAM_ADHOC_CHANNEL_AUTOMATIC</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_DATE_FORMAT_DDMMYYYY</strong> = 2<br>
+<strong>PSP_SYSTEMPARAM_DATE_FORMAT_MMDDYYYY</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_DATE_FORMAT_YYYYMMDD</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_DAYLIGHTSAVINGS_SAVING</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_DAYLIGHTSAVINGS_STD</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_ADHOC_CHANNEL</strong> = 2<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_DATE_FORMAT</strong> = 4<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_DAYLIGHTSAVINGS</strong> = 7<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_LANGUAGE</strong> = 8<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_TIMEZONE</strong> = 6<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_TIME_FORMAT</strong> = 5<br>
+<strong>PSP_SYSTEMPARAM_ID_INT_WLAN_POWERSAVE</strong> = 3<br>
+<strong>PSP_SYSTEMPARAM_ID_STRING_NICKNAME</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_DUTCH</strong> = 6<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_ENGLISH</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_FRENCH</strong> = 2<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_GERMAN</strong> = 4<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_ITALIAN</strong> = 5<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_JAPANESE</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_KOREAN</strong> = 9<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_PORTUGUESE</strong> = 7<br>
+<strong>PSP_SYSTEMPARAM_LANGUAGE_SPANISH</strong> = 3<br>
+<strong>PSP_SYSTEMPARAM_TIME_FORMAT_12HR</strong> = 1<br>
+<strong>PSP_SYSTEMPARAM_TIME_FORMAT_24HR</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_WLAN_POWERSAVE_OFF</strong> = 0<br>
+<strong>PSP_SYSTEMPARAM_WLAN_POWERSAVE_ON</strong> = 1<br>
+<strong>SEEK_CUR</strong> = 1<br>
+<strong>SEEK_END</strong> = 2<br>
+<strong>SEEK_SET</strong> = 0<br>
+<strong>__all__</strong> = ['altsep', 'curdir', 'pardir', 'sep', 'pathsep', 'linesep', 'defpath', 'name', 'path', 'devnull', 'SEEK_SET', 'SEEK_CUR', 'SEEK_END', 'O_CREAT', 'O_EXCL', 'O_RDONLY', 'O_RDWR', 'O_WRONLY', 'PSP_SYSTEMPARAM_ADHOC_CHANNEL_1', 'PSP_SYSTEMPARAM_ADHOC_CHANNEL_11', ...]<br>
+<strong>__loader__</strong> = &lt;zipimporter object "python.zip"&gt;<br>
+<strong>altsep</strong> = None<br>
+<strong>curdir</strong> = '.'<br>
+<strong>defpath</strong> = ''<br>
+<strong>devnull</strong> = '/dev/null'<br>
+<strong>linesep</strong> = '<font color="#c040c0">\n</font>'<br>
+<strong>name</strong> = 'psp'<br>
+<strong>pardir</strong> = '..'<br>
+<strong>pathsep</strong> = ';'<br>
+<strong>sep</strong> = '/'</td></tr></table>
