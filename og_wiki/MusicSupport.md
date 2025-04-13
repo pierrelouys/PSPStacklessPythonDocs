@@ -19,7 +19,7 @@ Information
 ### OGG
 
 Inside your PSP/GAME/Stackless (or PSP/GAME3XX/Stackless) dir, create a script.py file containing the following code, also place your OGG file and change its name in the "load" function.
-{{{
+```
 import pspogg, psp2d
 
 pspogg.init(2)
@@ -42,7 +42,7 @@ print "exit"
 
 Inside your PSP/GAME/Stackless (or PSP/GAME3XX/Stackless) dir, create a script.py file containing the following code, also place your MP3 file and change its name in the "load" function.
 
-{{{
+```
 import pspmp3, psp2d
 
 pspmp3.init(1)
